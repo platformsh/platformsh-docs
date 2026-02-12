@@ -15,6 +15,7 @@
     "type": "chrome-headless",
     "versions": {
       "deprecated": [
+        "113",
         "95",
         "91",
         "86",
@@ -25,8 +26,7 @@
         "73"
       ],
       "supported": [
-        "120",
-        "113"
+        "120"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -99,6 +99,8 @@
     "type": "dotnet",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.0",
         "5.0",
         "3.1",
         "2.2",
@@ -106,9 +108,8 @@
         "2.0"
       ],
       "supported": [
-        "8.0",
-        "7.0",
-        "6.0"
+        "10.0",
+        "8.0"
       ]
     }
   },
@@ -128,23 +129,16 @@
     "type": "elasticsearch",
     "versions": {
       "deprecated": [
-        "6.8",
-        "6.5",
-        "5.4",
-        "5.2",
-        "2.4",
-        "1.7",
-        "1.4",
-        "0.90"
-      ],
-      "supported": [
-        "7.12",
-        "7.10",
         "7.9",
         "7.7",
         "7.6",
         "7.5",
-        "7.2"
+        "7.2",
+        "6.8",
+        "6.5"
+      ],
+      "supported": [
+        "7.10"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -179,6 +173,38 @@
         "6.5"
       ],
       "supported": []
+    }
+  },
+  "elasticsearch-enterprise": {
+    "description": "Support for the enterprise edition of ElasticSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "elasticsearch-enterprise",
+      "service_name": "elasticsearch-enterprise",
+      "url": "/add-services/elasticsearch.html"
+    },
+    "endpoint": "elasticsearch-enterprise",
+    "min_disk_size": 512,
+    "name": "Elasticsearch-Enterprise",
+    "premium": true,
+    "repo_name": "elasticsearch-enterprise",
+    "runtime": false,
+    "type": "elasticsearch-enterprise",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "8.19",
+        "8.5",
+        "7.17"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [],
+      "supported": [
+        "7.17",
+        "8.5",
+        "8.19"
+      ]
     }
   },
   "elixir": {
@@ -217,7 +243,6 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
-        "1.15",
         "1.14",
         "1.13",
         "1.12",
@@ -226,7 +251,8 @@
         "1.9"
       ],
       "supported": [
-        "1.18"
+        "1.18",
+        "1.15"
       ]
     }
   },
@@ -266,6 +292,10 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.23",
+        "1.22",
+        "1.21",
+        "1.20",
         "1.19",
         "1.18",
         "1.17",
@@ -275,17 +305,11 @@
         "1.13",
         "1.12",
         "1.11",
-        "1.10",
-        "1.9",
-        "1.8"
+        "1.10"
       ],
       "supported": [
         "1.25",
-        "1.24",
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20"
+        "1.24"
       ]
     }
   },
@@ -308,20 +332,20 @@
         "2.2",
         "2.1",
         "2.0",
+        "1.8",
         "1.7",
         "1.3",
         "1.2"
       ],
       "supported": [
         "2.7",
-        "2.3",
-        "1.8"
+        "2.3"
       ]
     }
   },
   "gotenberg": {
     "description": "",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "gotenberg",
       "service_name": "gotenberg",
@@ -365,6 +389,8 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "19",
+        "18",
         "14",
         "13",
         "12",
@@ -373,8 +399,6 @@
       ],
       "supported": [
         "21",
-        "19",
-        "18",
         "17"
       ]
     },
@@ -389,7 +413,8 @@
         "13",
         "7"
       ]
-    }
+    },
+    "disk": false
   },
   "kafka": {
     "description": "",
@@ -407,6 +432,9 @@
     "type": "kafka",
     "versions": {
       "deprecated": [
+        "3.6",
+        "3.4",
+        "3.2",
         "2.7",
         "2.6",
         "2.5",
@@ -416,10 +444,7 @@
         "2.1"
       ],
       "supported": [
-        "3.7",
-        "3.6",
-        "3.4",
-        "3.2"
+        "3.7"
       ]
     }
   },
@@ -439,7 +464,6 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -503,7 +527,6 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -567,17 +590,39 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "1.6",
+      "deprecated": [
         "1.5",
         "1.4"
+      ],
+      "supported": [
+        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "1.5",
         "1.4"
+      ]
+    }
+  },
+  "mercure": {
+    "description": "Mercure is a flexible platform for orchestrating medical images in the standard DICOM format.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mercure",
+      "service_name": "mercure",
+      "url": "/add-services/mercure.html"
+    },
+    "endpoint": "mercure",
+    "min_disk_size": 256,
+    "name": "Mercure",
+    "repo_name": "mercure",
+    "runtime": false,
+    "type": "mercure",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "0"
       ]
     }
   },
@@ -624,14 +669,14 @@
     "premium": true,
     "versions": {
       "deprecated": [
+        "6.0",
+        "5.0",
+        "4.4",
         "4.2",
         "4.0"
       ],
       "supported": [
-        "7.0",
-        "6.0",
-        "5.0",
-        "4.4"
+        "7.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -663,10 +708,9 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "0.2"
+        "2.0"
       ],
       "supported": [
-        "2.0",
         "1.0"
       ]
     },
@@ -698,6 +742,8 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
+        "16",
         "8.9",
         "6.10",
         "6.9",
@@ -710,15 +756,12 @@
         "4.5",
         "4.4",
         "4.3",
-        "4.2",
-        "0.12"
+        "4.2"
       ],
       "supported": [
         "24",
         "22",
-        "20",
-        "18",
-        "16"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -754,8 +797,7 @@
     "versions": {
       "deprecated": [
         "1.2",
-        "1.1",
-        "1"
+        "1.1"
       ],
       "supported": [
         "3",
@@ -895,6 +937,8 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "13",
+        "12",
         "11",
         "10",
         "9.6",
@@ -906,9 +950,7 @@
         "17",
         "16",
         "15",
-        "14",
-        "13",
-        "12"
+        "14"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -968,6 +1010,7 @@
     "type": "python",
     "versions": {
       "deprecated": [
+        "3.9",
         "3.8",
         "3.7",
         "3.6",
@@ -979,8 +1022,7 @@
         "3.13",
         "3.12",
         "3.11",
-        "3.10",
-        "3.9"
+        "3.10"
       ]
     }
   },
@@ -1000,6 +1042,9 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
+        "4.0",
+        "3.13",
+        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -1009,10 +1054,7 @@
         "3.5"
       ],
       "supported": [
-        "4.1",
-        "4.0",
-        "3.13",
-        "3.12"
+        "4.1"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1058,18 +1100,14 @@
     "type": "redis",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
-        "5.0",
-        "4.0",
-        "3.2",
-        "3.0",
-        "2.8"
+        "5.0"
       ],
       "supported": [
         "8.0",
-        "7.2",
-        "7.0",
-        "6.2"
+        "7.2"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1186,7 +1224,7 @@
   "rust": {
     "description": "",
     "repo_name": "rust",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "rust",
       "service_name": "rust",
@@ -1225,7 +1263,6 @@
     "type": "solr",
     "versions": {
       "deprecated": [
-        "9.7",
         "9.0",
         "8.11",
         "8.0",
@@ -1325,15 +1362,12 @@
     "type": "varnish",
     "versions": {
       "deprecated": [
-        "5.2",
-        "5.1"
+        "7.3",
+        "7.2",
+        "7.1"
       ],
       "supported": [
         "7.6",
-        "7.3",
-        "7.2",
-        "7.1",
-        "6.3",
         "6.0"
       ]
     }
@@ -1354,10 +1388,7 @@
     "runtime": false,
     "type": "vault-kms",
     "versions": {
-      "deprecated": [
-        "1.8",
-        "1.6"
-      ],
+      "deprecated": [],
       "supported": [
         "1.12"
       ]
@@ -1377,31 +1408,44 @@
       ]
     }
   },
-  "activemq-artemis": {
+  "mariadb-replica": {
     "versions": {
       "deprecated": [],
       "supported": [
-        "2"
+        "11.4"
       ]
     },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "mariadb-replica",
+    "repo_name": "mariadb-replica",
+    "runtime": false,
+    "type": "mariadb-replica",
     "docs": {
-      "relationship_name": "activemq-artemis",
-      "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
+      "relationship_name": "mariadb-replica",
+      "service_name": "mariadb-replica",
+      "url": "/add-services/mysql/mysql-readonly-replication.html"
     }
   },
-  "elasticsearch-enterprise": {
+  "postgresql-replica": {
     "versions": {
       "deprecated": [],
       "supported": [
-        "8.5",
-        "7.17"
+        "15"
       ]
     },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "postgresql-replica",
+    "repo_name": "postgresql-replica",
+    "runtime": false,
+    "type": "postgresql-replica",
     "docs": {
-      "relationship_name": "elasticsearch-enterprise",
-      "service_name": "elasticsearch-enterprise",
-      "url": "/add-services/elasticsearch-enterprise.html"
+      "relationship_name": "postgresql-replica",
+      "service_name": "postgresql-replica",
+      "url": "/add-services/postgresql/postgresql-readonly-replication.html"
     }
   }
 }

@@ -400,14 +400,13 @@ The attributes appear in the routes data like so:
 
 ## Route limits
 
-The maximum size of the routes document is 128&nbsp;KB, which should fit around 300 different routes.
-If your `{{< vendor/configfile "routes" >}}` file would result in too large of a route information value, it's rejected.
+The routes document (the decoded `$PLATFORM_ROUTES` JSON) has a maximum size of 128&nbsp;KB, typically allowing for about 300 routes.<BR>It intentionally excludes the `redirects` property, which defines [partial redirects](/define-routes/redirects.md#partial-redirects). Routes documents that exceed 128&nbsp;KB are rejected.
 
-The full list of generated route information is often much larger than what's specified in the `{{< vendor/configfile "routes" >}}` file.
+The routes document is often much larger than what is defined in the `{{< vendor/configfile "routes" >}}` file.
 For example, by default all HTTPS routes (and all uses of `{all}`) are duplicated to create HTTP redirect routes.
-As a general rule, you should keep to your defined routes under 100.
+To stay under the 128&nbsp;KB routes document limit, aim to define fewer than 100 routes in the `{{< vendor/configfile "routes" >}}` file.
 
-If your `{{< vendor/configfile "routes" >}}` file is rejected for being too big, do one of the following:
+If your routes document is rejected, do one of the following:
 
 * Move redirect routes to the application.
 * Collapse the route definitions into a [regular expression-based redirect](/define-routes/redirects.md#partial-redirects).

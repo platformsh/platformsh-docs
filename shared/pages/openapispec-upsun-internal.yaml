@@ -1262,6 +1262,29 @@ paths:
                     description: Required action impeding project update.
                     type: object
                 type: object
+  /subscriptions/{subscriptionId}/can-afford:
+    post:
+      tags:
+        - Subscriptions
+      summary: Checks if the user can afford the requested resources.
+      operationId: can-afford-subscription
+      parameters:
+        - $ref: '#/components/parameters/subscription_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                resources:
+                  description: A map of resource keys to quantities (both strings).
+                  type: object
+                  additionalProperties: {}
+              type: object
+      responses:
+        '200':
+          description: Proposed resource change is affordable.
+        '402':
+          description: Proposed change is not affordable.
   /subscriptions/{subscriptionId}/can-transfer:
     get:
       tags:
@@ -2166,6 +2189,108 @@ paths:
                       description: The human-readable label of the category.
                       type: string
                   type: object
+  /health:
+    get:
+      operationId: aiHealthCheck
+      summary: '[Internal] Health check'
+      description: Check the health of the service
+      parameters:
+        - name: full
+          in: query
+          schema:
+            type: boolean
+          description: Request full status information
+      responses:
+        '200':
+          description: Health status results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  http:
+                    type: string
+                    enum:
+                      - UP
+                      - DOWN
+                  mysql:
+                    type: string
+                    enum:
+                      - UP
+                      - DOWN
+                required:
+                  - http
+        '400':
+          description: Invalid query parameters
+        '500':
+          description: Service unhealthy
+  /ai/generate-configuration:
+    post:
+      operationId: generateProjectConfiguration
+      summary: '[Internal] Generate project configuration'
+      description: Generate Upsun configuration for a project using AI
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateConfigurationRequest'
+      responses:
+        '200':
+          description: Streaming response with configuration generation progress
+          content:
+            application/x-ndjson:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/StreamMessage'
+                  - $ref: '#/components/schemas/DataMessage'
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient permissions
+        '404':
+          description: Organization or project not found
+  /ai/configure-repo:
+    post:
+      operationId: configureRepository
+      summary: '[Internal] Configure repository'
+      description: Generate configuration for a repository by URL
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigureRepositoryRequest'
+      responses:
+        '200':
+          description: Streaming response with repository configuration
+          content:
+            application/x-ndjson:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/StreamMessage'
+                  - $ref: '#/components/schemas/DataMessage'
+        '400':
+          description: Bad request - invalid URL or parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/invitations:
     parameters:
       - $ref: '#/components/parameters/OrganizationID'
@@ -4908,11 +5033,11 @@ paths:
         - OAuth2: []
   /billing:
     get:
-      summary: '[Internal] List billing account mapping details.'
-      description: Lists billing account mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-billing-accounts
+      summary: '[Internal] List billing profile mapping details.'
+      description: Lists billing profile mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-billing-profiles
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
         - name: sort
           in: query
@@ -4947,33 +5072,33 @@ paths:
             type: string
       responses:
         '200':
-          description: List of billing accounts
+          description: List of billing profiles
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_account_list'
+                $ref: '#/components/schemas/billing_profile_list'
         '403':
           description: Forbidden
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}:
+  /billing/{billing_profile_id}:
     get:
-      summary: '[Internal] Get billing account mapping details'
-      description: Retrieves mapping details for a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-billing-account
+      summary: '[Internal] Get billing profile mapping details'
+      description: Retrieves mapping details for a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-billing-profile-mapping
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
-          description: Billing account found
+          description: Billing profile found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_account_with_links'
+                $ref: '#/components/schemas/billing_profile_with_links'
         '403':
           description: Forbidden
           content:
@@ -4987,13 +5112,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     patch:
-      summary: '[Internal] Update billing account mapping details'
-      description: Updates a billing account entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: update-billing-account
+      summary: '[Internal] Update billing profile mapping details'
+      description: Updates the mapping of a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: update-billing-profile-mapping
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         required: true
         content:
@@ -5010,29 +5135,29 @@ paths:
                   description: The country code to update.
       responses:
         '200':
-          description: Billing account updated
+          description: Billing profile updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_account_with_links'
+                $ref: '#/components/schemas/billing_profile_with_links'
         '403':
           description: Forbidden
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/account:
+  /billing/{billing_profile_id}/profile:
     get:
-      summary: '[Internal] Get profile for billing account'
-      description: Retrieves the profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-account-profile
+      summary: '[Internal] Get billing profile'
+      description: Retrieves a specific billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-billing-profile
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
-          description: Account profile payload
+          description: Billing profile payload
           content:
             application/json:
               schema:
@@ -5050,13 +5175,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     patch:
-      summary: '[Internal] Update profile for billing account'
-      description: Update the profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: update-account-profile
+      summary: '[Internal] Update billing profile'
+      description: Update the profile associated with a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: update-billing-profile
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         required: true
         content:
@@ -5090,7 +5215,7 @@ paths:
                   description: Agency partner tier classification
       responses:
         '200':
-          description: Account profile updated and returned
+          description: Billing profile updated and returned
           content:
             application/json:
               schema:
@@ -5113,22 +5238,22 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/addons:
+  /billing/{billing_profile_id}/addons:
     get:
       summary: Get add-ons
-      description: Retrieves information about the add-ons for a billing account.
-      operationId: get-account-addons
+      description: Retrieves information about the add-ons for a billing profile.
+      operationId: get-profile-addons
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/account_addons'
+                $ref: '#/components/schemas/profile_addons'
         '403':
           description: Forbidden
           content:
@@ -5144,12 +5269,12 @@ paths:
       x-vendor: upsun
     patch:
       summary: '[Internal] Update add-ons'
-      description: Updates the add-ons for a billing account.
-      operationId: update-account-addons
+      description: Updates the add-ons for a billing profile.
+      operationId: update-profile-addons
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         content:
           application/json:
@@ -5161,14 +5286,14 @@ paths:
                   enum:
                     - ''
                     - standard
-                  description: The support level for the billing account.
+                  description: The support level for the billing profile.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/account_addons'
+                $ref: '#/components/schemas/profile_addons'
         '403':
           description: Forbidden
           content:
@@ -5182,139 +5307,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
       x-vendor: upsun
-  /billing/{billing_account_id}/invoices:
-    get:
-      summary: '[Internal] List invoices'
-      description: |
-        Retrieves a paginated list of invoices for the specified billing account.
-
-        This endpoint returns all invoices associated with a billing account, including
-        both current and historical invoices. Results are returned in reverse chronological
-        order (newest first) by default.
-
-        Note:  This is a BillingBridge (new billing system middleware) endpoint,
-        which is still in the development phase. API behavior may change.
-      operationId: list-account-invoices
-      tags:
-        - Invoices
-      parameters:
-        - $ref: '#/components/parameters/billing_account_id'
-        - name: page[size]
-          in: query
-          description: Number of invoices per page
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - name: page[after]
-          in: query
-          description: Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - name: page[before]
-          in: query
-          description: Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - name: filter[status][eq]
-          in: query
-          description: Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.
-          required: false
-          schema:
-            type: string
-            enum:
-              - current
-              - closing
-              - closed
-              - approved
-        - name: filter[type][eq]
-          in: query
-          description: Filter by invoice type (exact match)
-          required: false
-          schema:
-            type: string
-            enum:
-              - invoice
-              - legacy_invoice
-        - name: filter[invoice_date][gte]
-          in: query
-          description: Filter by invoice date greater than or equal to specified date
-          required: false
-          schema:
-            type: string
-            format: date
-            example: '2026-01-01'
-        - name: filter[invoice_date][lte]
-          in: query
-          description: Filter by invoice date less than or equal to specified date
-          required: false
-          schema:
-            type: string
-            format: date
-            example: '2026-01-01'
-        - name: filter[invoice_due][gte]
-          in: query
-          description: Filter by invoice due date greater than or equal to specified date
-          required: false
-          schema:
-            type: string
-            format: date
-            example: '2026-01-01'
-        - name: filter[invoice_due][lte]
-          in: query
-          description: Filter by invoice due date less than or equal to specified date
-          required: false
-          schema:
-            type: string
-            format: date
-            example: '2026-01-01'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/invoice'
-                    description: Array of invoices.
-                  _links:
-                    type: object
-                    description: HAL links for pagination.
-                    properties:
-                      self:
-                        $ref: '#/components/schemas/link'
-                      next:
-                        $ref: '#/components/schemas/link'
-                      previous:
-                        $ref: '#/components/schemas/link'
-                    required:
-                      - self
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/payment-source:
+  /billing/{billing_profile_id}/payment-source:
     get:
       summary: '[Internal] Get payment source'
-      description: Retrieves the payment source for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      description: Retrieves the payment source for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
       operationId: get-payment-source
       tags:
         - Payments
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -5344,12 +5345,12 @@ paths:
                 $ref: '#/components/schemas/error'
     post:
       summary: '[Internal] Create payment source'
-      description: Creates a payment source for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      description: Creates a payment source for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
       operationId: create-payment-source
       tags:
         - Payments
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         content:
           application/json:
@@ -5393,15 +5394,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/payment-source/intent:
+  /billing/{billing_profile_id}/payment-source/intent:
     post:
       summary: '[Internal] Create payment intent'
-      description: Creates a payment intent for the specified billing account.
-      operationId: create-account-payment-intent
+      description: Creates a payment intent for the specified billing profile.
+      operationId: create-profile-payment-intent
       tags:
         - Payments
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -5436,11 +5437,47 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
+  /billing/{billing_profile_id}/prepayment:
+    get:
+      summary: '[Internal] Get prepayment'
+      description: Retrieves prepayment information for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-prepayment
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/billing_profile_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prepayment:
+                    $ref: '#/components/schemas/prepayment'
+                  _links:
+                    type: object
+                    properties:
+                      self:
+                        $ref: '#/components/schemas/link'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
   /billing/invoices:
     get:
       summary: '[Internal] List all invoices'
       description: |
-        Retrieves a paginated and filterable list of invoices across all billing accounts.
+        Retrieves a paginated and filterable list of invoices across all billing profiles.
 
         This endpoint returns all invoices that the authenticated user has access to,
         with support for filtering by various criteria. Results are returned in reverse
@@ -5497,7 +5534,7 @@ paths:
           schema:
             type: string
             enum:
-              - billing_account
+              - billing_profile
               - organization
         - name: filter[invoice_date][gte]
           in: query
@@ -5565,11 +5602,135 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/invoices/{invoice_id}:
+  /billing/{billing_profile_id}/invoices:
+    get:
+      summary: '[Internal] List invoices'
+      description: |
+        Retrieves a paginated list of invoices for the specified billing profile.
+
+        This endpoint returns all invoices associated with a billing profile, including
+        both current and historical invoices. Results are returned in reverse chronological
+        order (newest first) by default.
+
+        Note:  This is a BillingBridge (new billing system middleware) endpoint,
+        which is still in the development phase. API behavior may change.
+      operationId: list-profile-invoices
+      tags:
+        - Invoices
+      parameters:
+        - $ref: '#/components/parameters/billing_profile_id'
+        - name: page[size]
+          in: query
+          description: Number of invoices per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: null
+        - name: page[after]
+          in: query
+          description: Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: page[before]
+          in: query
+          description: Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: filter[status][eq]
+          in: query
+          description: Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.
+          required: false
+          schema:
+            type: string
+            enum:
+              - current
+              - closing
+              - closed
+              - approved
+        - name: filter[type][eq]
+          in: query
+          description: Filter by invoice type (exact match)
+          required: false
+          schema:
+            type: string
+            enum:
+              - invoice
+              - legacy_invoice
+        - name: filter[invoice_date][gte]
+          in: query
+          description: Filter by invoice date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_date][lte]
+          in: query
+          description: Filter by invoice date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][gte]
+          in: query
+          description: Filter by invoice due date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][lte]
+          in: query
+          description: Filter by invoice due date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/invoice'
+                    description: Array of invoices.
+                  _links:
+                    type: object
+                    description: HAL links for pagination.
+                    properties:
+                      self:
+                        $ref: '#/components/schemas/link'
+                      next:
+                        $ref: '#/components/schemas/link'
+                      previous:
+                        $ref: '#/components/schemas/link'
+                    required:
+                      - self
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/{billing_profile_id}/invoices/{invoice_id}:
     get:
       summary: '[Internal] Get invoice'
       description: |
-        Retrieves a specific invoice by its ID for the specified billing account.
+        Retrieves a specific invoice by its ID for the specified billing profile.
 
         This endpoint provides detailed information about a single invoice, including
         all monetary amounts, dates, status information, and links to related resources
@@ -5577,11 +5738,11 @@ paths:
 
         Note: This is a BillingBridge (new billing system middleware) endpoint,
         which is still in the development phase. API behavior may change.
-      operationId: get-account-invoice
+      operationId: get-profile-invoice
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_invoice_id'
       responses:
         '200':
@@ -5602,15 +5763,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/invoices/{invoice_id}/details:
+  /billing/{billing_profile_id}/invoices/{invoice_id}/details:
     get:
       summary: '[Internal] Get invoice details'
       description: Retrieves the lines items of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-account-invoice-details
+      operationId: get-profile-invoice-details
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_invoice_id'
       responses:
         '200':
@@ -5637,15 +5798,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/invoices/{invoice_id}/payments:
+  /billing/{billing_profile_id}/invoices/{invoice_id}/payments:
     get:
       summary: '[Internal] Get invoice payments'
       description: Retrieves the payments of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-account-invoice-payments
+      operationId: get-profile-invoice-payments
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_invoice_id'
       responses:
         '200':
@@ -5672,15 +5833,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/alerts/billing:
+  /billing/{billing_profile_id}/alerts/billing:
     get:
       summary: '[Internal] Get billing alert configuration'
-      description: Retrieves billing alert configuration for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-account-billing-alert-config
+      description: Retrieves billing alert configuration for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-profile-billing-alert-config
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -5702,12 +5863,12 @@ paths:
                 $ref: '#/components/schemas/error'
     patch:
       summary: '[Internal] Update billing alert configuration'
-      description: Updates billing alert configuration for the specified billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: update-account-billing-alert-config
+      description: Updates billing alert configuration for the specified billing profiles. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: update-profile-billing-alert-config
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         content:
           application/json:
@@ -5746,22 +5907,22 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/dunning-actions:
+  /billing/{billing_profile_id}/dunning-actions:
     get:
       summary: '[Internal] List scheduled dunning actions'
-      description: Retrieves a list of all scheduled dunning actions for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-account-dunning-actions
+      description: Retrieves a list of all scheduled dunning actions for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-billing-profile-dunning-actions
       tags:
         - Invoices
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/account_dunning_actions'
+                $ref: '#/components/schemas/billing_profile_dunning_actions'
         '403':
           description: Forbidden
           content:
@@ -5774,15 +5935,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/discounts:
+  /billing/{billing_profile_id}/discounts:
     get:
-      summary: '[Internal] List account discounts'
-      description: Retrieves all applicable discounts granted to the specified account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-account-discounts
+      summary: '[Internal] List billing profile discounts'
+      description: Retrieves all applicable discounts granted to the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-billing-profile-discounts
       tags:
         - Discounts
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -5819,15 +5980,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/users:
+  /billing/{billing_profile_id}/users:
     get:
-      summary: '[Internal] List billing account users'
-      description: Accessible to the billing entity owner.
-      operationId: list-billing-account-users
+      summary: '[Internal] List billing profile users'
+      description: Accessible to the billing account owner.
+      operationId: list-billing-profile-users
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -5862,13 +6023,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     post:
-      summary: '[Internal] Add user to billing account'
-      description: Add a user to a billing.
+      summary: '[Internal] Add user to billing profile'
+      description: Add a user to a billing profile.
       operationId: create-billing-user
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       requestBody:
         required: true
         content:
@@ -5909,15 +6070,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/users/{billing_user_id}:
+  /billing/{billing_profile_id}/users/{billing_user_id}:
     get:
-      summary: '[Internal] Get billing account user'
-      description: Retrieves the specified billing account user.
+      summary: '[Internal] Get billing profile user'
+      description: Retrieves the specified billing profile user.
       operationId: get-billing-user
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_user_id'
       responses:
         '200':
@@ -5939,13 +6100,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     patch:
-      summary: '[Internal] Update billing account user'
-      description: Updates the specified billing account user.
+      summary: '[Internal] Update billing profile user'
+      description: Updates the specified billing profile user.
       operationId: update-billing-user
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_user_id'
       requestBody:
         content:
@@ -5981,13 +6142,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     delete:
-      summary: Remove user from billing account
-      description: Removes the specified user from the billing account.
+      summary: Remove user from billing profile
+      description: Removes the specified user from the billing profile.
       operationId: delete-billing-user
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
         - $ref: '#/components/parameters/billing_user_id'
       responses:
         '204':
@@ -6004,15 +6165,15 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_account_id}/vouchers:
+  /billing/{billing_profile_id}/vouchers:
     get:
       summary: '[Internal] List vouchers'
-      description: Retrieves vouchers for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-account-vouchers
+      description: Retrieves vouchers for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-profile-vouchers
       tags:
         - Vouchers
       parameters:
-        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_profile_id'
       responses:
         '200':
           description: OK
@@ -6032,13 +6193,13 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/account:
+  /billing/profiles:
     post:
-      summary: '[Internal] Create profile and billing account'
-      description: Create a billing account profile.
-      operationId: create-account-profile-with-billing-account
+      summary: '[Internal] Create billing account and profile (migration endpoint)'
+      description: Create a billing account and profile.
+      operationId: create-profile-with-billing-profile
       tags:
-        - Billing Accounts
+        - Billing Profiles
       parameters:
         - name: skip-avalara
           in: query
@@ -6092,11 +6253,11 @@ paths:
                   description: '[Internal] Agency partner tier classification'
       responses:
         '201':
-          description: Billing account created with associated profile
+          description: Billing profile created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_account_with_links'
+                $ref: '#/components/schemas/billing_profile_with_links'
         '400':
           description: Validation error
           content:
@@ -6105,59 +6266,6 @@ paths:
                 $ref: '#/components/schemas/bad_request_error'
         '403':
           description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /billing/accounts:
-    get:
-      summary: '[Internal] Get profiles for billing accounts'
-      description: List the profiles associated with a billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-account-profiles
-      tags:
-        - Billing Accounts
-      parameters:
-        - name: filter[account_tier][eq]
-          in: query
-          description: Filter by customer tier (exact match)
-          schema:
-            type: string
-            enum:
-              - professional
-              - enterprise
-              - elite
-        - name: filter[customer_type][eq]
-          in: query
-          description: Filter by customer type (exact match)
-          schema:
-            type: string
-            enum:
-              - corporation
-              - government
-              - individual
-      responses:
-        '200':
-          description: Account profiles list
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    description: Total number of profiles.
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/profile'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: Not Found
           content:
             application/problem+json:
               schema:
@@ -6387,16 +6495,16 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/entities:
+  /billing/accounts:
     get:
-      summary: '[Internal] List billing entities'
-      description: List billing entities. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-billing-entities
+      summary: '[Internal] List billing accounts'
+      description: List billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-billing-accounts
       tags:
-        - Billing Entities
+        - Billing Accounts
       responses:
         '200':
-          description: Billing entity list
+          description: Billing account list
           content:
             application/json:
               schema:
@@ -6404,11 +6512,11 @@ paths:
                 properties:
                   count:
                     type: integer
-                    description: Total number of entities.
+                    description: Total number of accounts.
                   items:
                     type: array
                     items:
-                      $ref: '#/components/schemas/billing_entity_with_links'
+                      $ref: '#/components/schemas/billing_account_with_links'
         '403':
           description: Forbidden
           content:
@@ -6422,46 +6530,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     post:
-      summary: '[Internal] Create billing entity'
-      description: Creates a new billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: create-billing-entity
+      summary: '[Internal] Create billing account'
+      description: Creates a new billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: create-billing-account
       tags:
-        - Billing Entities
+        - Billing Accounts
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/billing_entity_payload'
+              $ref: '#/components/schemas/billing_account_payload'
       responses:
         '201':
-          description: Billing entity created
+          description: Billing account created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_entity_with_links'
+                $ref: '#/components/schemas/billing_account_with_links'
         '403':
           description: Forbidden
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/entities/{billing_entity_id}:
+  /billing/accounts/{billing_account_id}:
     get:
-      summary: '[Internal] Get billing entity'
-      description: Retrieves a billing entity by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-billing-entity
+      summary: '[Internal] Get billing account'
+      description: Retrieves a billing account by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-billing-account
       tags:
-        - Billing Entities
+        - Billing Accounts
       parameters:
-        - $ref: '#/components/parameters/billing_entity_id'
+        - $ref: '#/components/parameters/billing_account_id'
       responses:
         '200':
-          description: Billing entity found
+          description: Billing account found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_entity_with_links'
+                $ref: '#/components/schemas/billing_account_with_links'
         '403':
           description: Forbidden
           content:
@@ -6475,26 +6583,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     patch:
-      summary: '[Internal] Update billing entity'
-      description: Updates a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: update-billing-entity
+      summary: '[Internal] Update billing account'
+      description: Updates a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: update-billing-account
       tags:
-        - Billing Entities
+        - Billing Accounts
       parameters:
-        - $ref: '#/components/parameters/billing_entity_id'
+        - $ref: '#/components/parameters/billing_account_id'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/billing_entity_payload'
+              $ref: '#/components/schemas/billing_account_payload'
       responses:
         '200':
-          description: Billing entity updated
+          description: Billing account updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/billing_entity_with_links'
+                $ref: '#/components/schemas/billing_account_with_links'
         '403':
           description: Forbidden
           content:
@@ -6507,19 +6615,19 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/entities/{billing_entity_id}/accounts:
+  /billing/accounts/{billing_account_id}/profiles:
     get:
-      summary: '[Internal] Get billing account profiles belonging to a billing entity'
-      description: List the account profiles associated with a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-entity-account-profiles
+      summary: '[Internal] Get billing profiles belonging to a billing account'
+      description: List the billing profiles associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-account-profiles
       tags:
+        - Billing Profiles
         - Billing Accounts
-        - Billing Entities
       parameters:
-        - $ref: '#/components/parameters/billing_entity_id'
+        - $ref: '#/components/parameters/billing_account_id'
       responses:
         '200':
-          description: Billing account profiles list
+          description: Billing profiles list
           content:
             application/json:
               schema:
@@ -6544,27 +6652,81 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /users/{billing_user_id}/billing/entities:
-    get:
-      summary: '[Internal] User billing entities'
-      description: Retrieves billing entities owned by the user.
-      operationId: list-user-billing-entities
+    post:
+      summary: '[Internal] Create billing profile'
+      description: Create a billing profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: create-billing-profile
       tags:
-        - Billing Entities
+        - Billing Profiles
       parameters:
-        - $ref: '#/components/parameters/billing_user_id'
+        - $ref: '#/components/parameters/billing_account_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name_line:
+                  type: string
+                billing_contact:
+                  type: string
+                country:
+                  type: string
+                company_name:
+                  type: string
+                billing_street_1:
+                  type: string
+                billing_street_2:
+                  type: string
+                administrative_area:
+                  type: string
+                locality:
+                  type: string
+                postal_code:
+                  type: string
+      responses:
+        '200':
+          description: Billing profile created and returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/profile'
+        '400':
+          description: Validation error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/bad_request_error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/quote-project/{project_id}/users:
+    get:
+      summary: '[Internal] Quote project'
+      description: Retrieves a quote (estimation) for a project cost.
+      operationId: quote-project
+      tags:
+        - Estimation
+      parameters:
+        - $ref: '#/components/parameters/project_id'
+        - $ref: '#/components/parameters/currency_query'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/billing_entity_with_links'
+                $ref: '#/components/schemas/project_estimate'
         '400':
           description: Bad Request
           content:
@@ -6580,10 +6742,43 @@ paths:
   /users/{billing_user_id}/billing/accounts:
     get:
       summary: '[Internal] User billing accounts'
-      description: Retrieves billing accounts the user has access to.
+      description: Retrieves billing accounts owned by the user.
       operationId: list-user-billing-accounts
       tags:
         - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_user_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/billing_account_with_links'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /users/{billing_user_id}/billing/profiles:
+    get:
+      summary: '[Internal] User billing profiles'
+      description: Retrieves billing profiles the user has access to.
+      operationId: list-user-billing-profiles
+      tags:
+        - Billing Profiles
       parameters:
         - $ref: '#/components/parameters/billing_user_id'
       responses:
@@ -12190,6 +12385,9 @@ paths:
                     example: 10
                   data:
                     description: HTTP traffic data containing URL statistics and time-series information
+                    required:
+                      - urls
+                      - timelines
                     properties:
                       urls:
                         description: Top URLs ranked by impact (response time × request count). Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
@@ -12413,13 +12611,13 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
-  /platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/overview-experiment:
+  /platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips:
     get:
       tags:
         - Http Traffic
-      summary: '[Internal] Get HTTP traffic overview with top URLs and time-series metrics'
-      description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
-      operationId: http_metrics_overview_experiment
+      summary: '[Internal] Get HTTP traffic timeline grouped by IP addresses'
+      description: 'Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.'
+      operationId: http_metrics_timeline_ips
       parameters:
         - name: projectId
           in: path
@@ -12453,9 +12651,9 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_urls_count
+        - name: top_count
           in: query
-          description: 'Number of top URLs to return (default: 10, max: 100)'
+          description: 'Number of top IPs to return (default: 10, max: 100)'
           required: false
           schema:
             type: integer
@@ -12463,9 +12661,141 @@ paths:
             maximum: 100
             minimum: 1
             example: 20
+        - name: methods[]
+          in: query
+          description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - GET
+                - POST
+                - PUT
+                - PATCH
+                - DELETE
+                - HEAD
+                - OPTIONS
+              example: GET
+        - name: methods_mode
+          in: query
+          description: Filter mode for methods parameter. "1" (additive) includes only specified methods. "-1" (subtractive, default) excludes specified methods and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: domains[]
+          in: query
+          description: Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: api.example.com
+        - name: domains_mode
+          in: query
+          description: Filter mode for domains parameter. "1" (additive) includes only specified domains. "-1" (subtractive, default) excludes specified domains and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: code_slots[]
+          in: query
+          description: Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 1XX
+                - 2XX
+                - 3XX
+                - 4XX
+                - 5XX
+              example: 2XX
+        - name: code_slots_mode
+          in: query
+          description: Filter mode for code_slots parameter. "1" (additive) includes only specified code groups. "-1" (subtractive, default) excludes specified code groups and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: codes[]
+          in: query
+          description: Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: '200'
+        - name: codes_mode
+          in: query
+          description: Filter mode for codes parameter. "1" (additive) includes only specified codes. "-1" (subtractive, default) excludes specified codes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: request_duration_slots[]
+          in: query
+          description: Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 0-50
+                - 50-100
+                - 100-200
+                - 200-400
+                - 400-800
+                - 800-1600
+                - 1600+
+              example: 0-50
+        - name: request_duration_slots_mode
+          in: query
+          description: Filter mode for request_duration_slots parameter. "1" (additive) includes only specified duration ranges. "-1" (subtractive, default) excludes specified duration ranges and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
       responses:
         '200':
-          description: HTTP traffic overview retrieved successfully
+          description: HTTP traffic timeline by IP retrieved successfully
           content:
             application/json:
               schema:
@@ -12477,7 +12807,7 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_urls_count
+                  - _top_count
                   - data
                 properties:
                   _grain:
@@ -12512,14 +12842,1062 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main
-                  _top_urls_count:
+                  _top_count:
+                    description: Number of top IPs included in response
+                    type: integer
+                    example: 10
+                  _methods:
+                    description: Applied method filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _methods_mode:
+                    description: Method filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _domains:
+                    description: Applied domain filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _domains_mode:
+                    description: Domain filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _code_slots:
+                    description: Applied code slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _code_slots_mode:
+                    description: Code slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _codes:
+                    description: Applied HTTP status code filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _codes_mode:
+                    description: Code filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _request_duration_slots:
+                    description: Applied request duration slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _request_duration_slots_mode:
+                    description: Request duration slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  data:
+                    description: HTTP traffic data grouped by IP addresses
+                    required:
+                      - kind
+                      - total
+                      - top_hits
+                      - timelines
+                    properties:
+                      kind:
+                        description: The kind of grouping
+                        type: string
+                        enum:
+                          - ip
+                        example: ip
+                      total:
+                        description: Total request count across all IPs
+                        type: integer
+                        example: 396519
+                      top_hits:
+                        description: Top IP addresses ranked by request count. Object keys are IP addresses.
+                        type: object
+                        example:
+                          192.168.1.1:
+                            name: 192.168.1.1
+                            impact: 15.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                          10.0.0.5:
+                            name: 10.0.0.5
+                            impact: 12.34
+                            average: 0.189
+                            p_50: 0.123
+                            p_96: 0.756
+                            count: 48921
+                          172.16.0.10:
+                            name: 172.16.0.10
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 33512
+                        additionalProperties:
+                          required:
+                            - name
+                            - impact
+                            - average
+                            - p_50
+                            - p_96
+                            - count
+                          properties:
+                            name:
+                              description: The IP address
+                              type: string
+                              example: 192.168.1.1
+                            impact:
+                              description: Impact score as percentage of total wall time consumed
+                              type: number
+                              format: float
+                              example: 15.67
+                              nullable: true
+                            average:
+                              description: Average request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.234
+                            p_50:
+                              description: 50th percentile (median) request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.156
+                            p_96:
+                              description: 96th percentile request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.892
+                            count:
+                              description: Total number of requests from this IP
+                              type: integer
+                              example: 62143
+                          type: object
+                      timelines:
+                        description: Time-series HTTP traffic metrics grouped by IP
+                        type: array
+                        items:
+                          required:
+                            - timestamp
+                          properties:
+                            timestamp:
+                              description: Data point timestamp
+                              type: integer
+                              example: 1704067200
+                            total:
+                              description: Total request count at this timestamp across all IPs. Consider 0 if absent
+                              type: integer
+                              example: 4120
+                            data:
+                              description: Per-IP metrics at this timestamp. Object keys are IP addresses.
+                              type: object
+                              example:
+                                192.168.1.1:
+                                  count: 1543
+                                  impact: 37.45
+                                10.0.0.5:
+                                  count: 1247
+                                  impact: 30.26
+                                172.16.0.10:
+                                  count: 823
+                                  impact: 19.98
+                              additionalProperties:
+                                required:
+                                  - count
+                                  - impact
+                                properties:
+                                  count:
+                                    description: Request count from this IP at this timestamp
+                                    type: integer
+                                    example: 1543
+                                  impact:
+                                    description: Impact score as percentage of wall time consumed at this timestamp
+                                    type: number
+                                    format: float
+                                    example: 37.45
+                                    nullable: true
+                                type: object
+                          type: object
+                          additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+        '499':
+          description: Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Too much data fetched
+                  message:
+                    type: string
+                    example: Please reduce the time range or add more filters to narrow down the query
+                type: object
+  /platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents:
+    get:
+      tags:
+        - Http Traffic
+      summary: '[Internal] Get HTTP traffic timeline grouped by User Agents'
+      description: 'Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.'
+      operationId: http_metrics_timeline_user_agents
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: from
+          in: query
+          description: Start timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704067200
+        - name: to
+          in: query
+          description: End timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704153600
+        - name: top_count
+          in: query
+          description: 'Number of top User Agents to return (default: 10, max: 100)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 100
+            minimum: 1
+            example: 20
+        - name: methods[]
+          in: query
+          description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - GET
+                - POST
+                - PUT
+                - PATCH
+                - DELETE
+                - HEAD
+                - OPTIONS
+              example: GET
+        - name: methods_mode
+          in: query
+          description: Filter mode for methods parameter. "1" (additive) includes only specified methods. "-1" (subtractive, default) excludes specified methods and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: domains[]
+          in: query
+          description: Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: api.example.com
+        - name: domains_mode
+          in: query
+          description: Filter mode for domains parameter. "1" (additive) includes only specified domains. "-1" (subtractive, default) excludes specified domains and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: code_slots[]
+          in: query
+          description: Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 1XX
+                - 2XX
+                - 3XX
+                - 4XX
+                - 5XX
+              example: 2XX
+        - name: code_slots_mode
+          in: query
+          description: Filter mode for code_slots parameter. "1" (additive) includes only specified code groups. "-1" (subtractive, default) excludes specified code groups and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: codes[]
+          in: query
+          description: Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: '200'
+        - name: codes_mode
+          in: query
+          description: Filter mode for codes parameter. "1" (additive) includes only specified codes. "-1" (subtractive, default) excludes specified codes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: request_duration_slots[]
+          in: query
+          description: Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 0-50
+                - 50-100
+                - 100-200
+                - 200-400
+                - 400-800
+                - 800-1600
+                - 1600+
+              example: 0-50
+        - name: request_duration_slots_mode
+          in: query
+          description: Filter mode for request_duration_slots parameter. "1" (additive) includes only specified duration ranges. "-1" (subtractive, default) excludes specified duration ranges and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+      responses:
+        '200':
+          description: HTTP traffic timeline by User Agent retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _grain
+                  - _from
+                  - _to
+                  - _project_id
+                  - _environment_id
+                  - _environment_type
+                  - _branch_machine_name
+                  - _top_count
+                  - data
+                properties:
+                  _grain:
+                    description: Data granularity in seconds
+                    type: integer
+                    example: 300
+                  _from:
+                    description: Query start timestamp
+                    type: integer
+                    example: 1704067200
+                  _to:
+                    description: Query end timestamp
+                    type: integer
+                    example: 1704153600
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _environment_type:
+                    description: Environment type
+                    type: string
+                    enum:
+                      - production
+                      - staging
+                      - development
+                    example: production
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main
+                  _top_count:
+                    description: Number of top User Agents included in response
+                    type: integer
+                    example: 10
+                  _methods:
+                    description: Applied method filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _methods_mode:
+                    description: Method filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _domains:
+                    description: Applied domain filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _domains_mode:
+                    description: Domain filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _code_slots:
+                    description: Applied code slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _code_slots_mode:
+                    description: Code slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _codes:
+                    description: Applied HTTP status code filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _codes_mode:
+                    description: Code filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _request_duration_slots:
+                    description: Applied request duration slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _request_duration_slots_mode:
+                    description: Request duration slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  data:
+                    description: HTTP traffic data grouped by User Agents
+                    required:
+                      - kind
+                      - total
+                      - top_hits
+                      - timelines
+                    properties:
+                      kind:
+                        description: The kind of grouping
+                        type: string
+                        enum:
+                          - user_agent
+                        example: user_agent
+                      total:
+                        description: Total request count across all User Agents
+                        type: integer
+                        example: 396519
+                      top_hits:
+                        description: Top User Agents ranked by request count. Object keys are User Agent strings.
+                        type: object
+                        example:
+                          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
+                            name: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                            impact: 45.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                          Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
+                            name: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+                            impact: 32.45
+                            average: 0.189
+                            p_50: 0.123
+                            p_96: 0.756
+                            count: 44123
+                          curl/7.68.0:
+                            name: curl/7.68.0
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 11512
+                        additionalProperties:
+                          required:
+                            - name
+                            - impact
+                            - average
+                            - p_50
+                            - p_96
+                            - count
+                          properties:
+                            name:
+                              description: The User Agent string
+                              type: string
+                              example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                            impact:
+                              description: Impact score as percentage of total wall time consumed
+                              type: number
+                              format: float
+                              example: 45.67
+                              nullable: true
+                            average:
+                              description: Average request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.234
+                            p_50:
+                              description: 50th percentile (median) request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.156
+                            p_96:
+                              description: 96th percentile request duration in seconds
+                              type: number
+                              format: float
+                              example: 0.892
+                            count:
+                              description: Total number of requests from this User Agent
+                              type: integer
+                              example: 62143
+                          type: object
+                      timelines:
+                        description: Time-series HTTP traffic metrics grouped by User Agent
+                        type: array
+                        items:
+                          required:
+                            - timestamp
+                          properties:
+                            timestamp:
+                              description: Data point timestamp
+                              type: integer
+                              example: 1704067200
+                            total:
+                              description: Total request count at this timestamp across all User Agents. Consider 0 if absent
+                              type: integer
+                              example: 4120
+                            data:
+                              description: Per-User Agent metrics at this timestamp. Object keys are User Agent strings.
+                              type: object
+                              example:
+                                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
+                                  count: 1543
+                                  impact: 47.45
+                                Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
+                                  count: 1247
+                                  impact: 38.26
+                                curl/7.68.0:
+                                  count: 223
+                                  impact: 6.85
+                              additionalProperties:
+                                required:
+                                  - count
+                                  - impact
+                                properties:
+                                  count:
+                                    description: Request count from this User Agent at this timestamp
+                                    type: integer
+                                    example: 1543
+                                  impact:
+                                    description: Impact score as percentage of wall time consumed at this timestamp
+                                    type: number
+                                    format: float
+                                    example: 47.45
+                                    nullable: true
+                                type: object
+                          type: object
+                          additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+        '499':
+          description: Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Too much data fetched
+                  message:
+                    type: string
+                    example: Please reduce the time range or add more filters to narrow down the query
+                type: object
+  /platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls:
+    get:
+      tags:
+        - Http Traffic
+      summary: '[Internal] Get HTTP traffic overview with top URLs and time-series metrics'
+      description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
+      operationId: http_metrics_timeline_urls
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: from
+          in: query
+          description: Start timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704067200
+        - name: to
+          in: query
+          description: End timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704153600
+        - name: top_count
+          in: query
+          description: 'Number of top URLs to return (default: 10, max: 100)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 100
+            minimum: 1
+            example: 20
+        - name: methods[]
+          in: query
+          description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - GET
+                - POST
+                - PUT
+                - PATCH
+                - DELETE
+                - HEAD
+                - OPTIONS
+              example: GET
+        - name: methods_mode
+          in: query
+          description: Filter mode for methods parameter. "1" (additive) includes only specified methods. "-1" (subtractive, default) excludes specified methods and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: domains[]
+          in: query
+          description: Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: api.example.com
+        - name: domains_mode
+          in: query
+          description: Filter mode for domains parameter. "1" (additive) includes only specified domains. "-1" (subtractive, default) excludes specified domains and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: code_slots[]
+          in: query
+          description: Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 1XX
+                - 2XX
+                - 3XX
+                - 4XX
+                - 5XX
+              example: 2XX
+        - name: code_slots_mode
+          in: query
+          description: Filter mode for code_slots parameter. "1" (additive) includes only specified code groups. "-1" (subtractive, default) excludes specified code groups and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: codes[]
+          in: query
+          description: Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: '200'
+        - name: codes_mode
+          in: query
+          description: Filter mode for codes parameter. "1" (additive) includes only specified codes. "-1" (subtractive, default) excludes specified codes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: request_duration_slots[]
+          in: query
+          description: Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - 0-50
+                - 50-100
+                - 100-200
+                - 200-400
+                - 400-800
+                - 800-1600
+                - 1600+
+              example: 0-50
+        - name: request_duration_slots_mode
+          in: query
+          description: Filter mode for request_duration_slots parameter. "1" (additive) includes only specified duration ranges. "-1" (subtractive, default) excludes specified duration ranges and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+      responses:
+        '200':
+          description: HTTP traffic overview retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _grain
+                  - _from
+                  - _to
+                  - _project_id
+                  - _environment_id
+                  - _environment_type
+                  - _branch_machine_name
+                  - _top_count
+                  - data
+                  - filters
+                properties:
+                  _grain:
+                    description: Data granularity in seconds
+                    type: integer
+                    example: 300
+                  _from:
+                    description: Query start timestamp
+                    type: integer
+                    example: 1704067200
+                  _to:
+                    description: Query end timestamp
+                    type: integer
+                    example: 1704153600
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _environment_type:
+                    description: Environment type
+                    type: string
+                    enum:
+                      - production
+                      - staging
+                      - development
+                    example: production
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main
+                  _top_count:
                     description: Number of top URLs included in response
                     type: integer
                     example: 10
+                  _methods:
+                    description: Applied method filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _methods_mode:
+                    description: Method filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _domains:
+                    description: Applied domain filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _domains_mode:
+                    description: Domain filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _code_slots:
+                    description: Applied code slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _code_slots_mode:
+                    description: Code slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _codes:
+                    description: Applied HTTP status code filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _codes_mode:
+                    description: Code filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
+                  _request_duration_slots:
+                    description: Applied request duration slot filter values
+                    type: array
+                    items:
+                      type: string
+                    nullable: true
+                  _request_duration_slots_mode:
+                    description: Request duration slot filter mode (1=additive, -1=subtractive)
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    nullable: true
                   data:
                     description: HTTP traffic data containing URL statistics and time-series information
                     properties:
-                      urls:
+                      kind:
+                        description: The kind of grouping
+                        type: string
+                        enum:
+                          - url
+                        example: url
+                      total:
+                        description: Total request count across all URLs
+                        type: integer
+                        example: 396519
+                      top_hits:
                         description: Top URLs ranked by impact (response time × request count). Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
                         type: object
                         example:
@@ -12683,6 +14061,44 @@ paths:
                               additionalProperties: false
                           type: object
                           additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                  filters:
+                    required:
+                      - max_applicable_filters
+                    properties:
+                      fields:
+                        type: object
+                        example:
+                          severity:
+                            distinct_values: 3
+                            type: string
+                            values:
+                              - value: INFO
+                                count: 297
+                              - value: ERROR
+                                count: 2
+                        additionalProperties:
+                          properties:
+                            distinct_values:
+                              type: integer
+                            type:
+                              type: string
+                              example: string
+                            values:
+                              type: array
+                              items:
+                                properties:
+                                  value:
+                                    type: string
+                                  count:
+                                    type: integer
+                                type: object
+                                additionalProperties: false
+                          type: object
+                      max_applicable_filters:
+                        type: integer
+                        example: 45
                     type: object
                     additionalProperties: false
                 type: object
@@ -12957,6 +14373,7 @@ paths:
                   - _project_id
                   - _environment_id
                   - _branch_machine_name
+                  - _total
                   - data
                   - filters
                 properties:
@@ -12984,6 +14401,109 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main
+                  _total:
+                    description: Total number of log entries matching the current filters
+                    type: integer
+                    example: 15000
+                  _severities:
+                    description: Active severity filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - ERROR
+                      - WARNING
+                  _severities_mode:
+                    description: 'Mode for severity filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _services:
+                    description: Active service filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app
+                  _services_mode:
+                    description: 'Mode for service filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _instances:
+                    description: Active instance filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app.0
+                  _instances_mode:
+                    description: 'Mode for instance filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _hosts:
+                    description: Active host filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - web-0
+                  _hosts_mode:
+                    description: 'Mode for host filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _commands:
+                    description: Active command filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - nginx
+                  _commands_mode:
+                    description: 'Mode for command filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _container_names:
+                    description: Active container name filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app_container
+                  _container_names_mode:
+                    description: 'Mode for container name filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _container_images:
+                    description: Active container image filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - php:8.1
+                  _container_images_mode:
+                    description: 'Mode for container image filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
                   data:
                     type: array
                     items:
@@ -13150,7 +14670,7 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: ulid
+        - name: cursor
           in: query
           description: Pagination cursor (ULID format) to retrieve next page of results
           required: false
@@ -13381,11 +14901,115 @@ paths:
                     type: string
                     format: ulid
                     example: 01HXYZ987654321ZYXWVUTSRQP
+                    nullable: true
+                  _has_more_results:
+                    description: Indicates whether more logs are available beyond the current result set
+                    type: boolean
+                    example: true
+                  _severities:
+                    description: Active severity filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - ERROR
+                      - WARNING
+                  _severities_mode:
+                    description: 'Mode for severity filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _services:
+                    description: Active service filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app
+                  _services_mode:
+                    description: 'Mode for service filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _instances:
+                    description: Active instance filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app.0
+                  _instances_mode:
+                    description: 'Mode for instance filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _hosts:
+                    description: Active host filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - web-0
+                  _hosts_mode:
+                    description: 'Mode for host filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _commands:
+                    description: Active command filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - nginx
+                  _commands_mode:
+                    description: 'Mode for command filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _container_names:
+                    description: Active container name filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - app_container
+                  _container_names_mode:
+                    description: 'Mode for container name filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
+                  _container_images:
+                    description: Active container image filters (only present when filters applied)
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - php:8.1
+                  _container_images_mode:
+                    description: 'Mode for container image filters: "1" (include) or "-1" (exclude)'
+                    type: string
+                    enum:
+                      - '1'
+                      - '-1'
+                    example: '1'
                   data:
                     type: array
                     items:
                       properties:
-                        ulid:
+                        cursor:
                           type: string
                           format: ulid
                           example: 01HXYZ123456789ABCDEFGHIJK
@@ -13421,42 +15045,6 @@ paths:
                           type: object
                       type: object
                       additionalProperties: false
-                  filters:
-                    properties:
-                      fields:
-                        type: object
-                        example:
-                          severity:
-                            distinct_values: 3
-                            type: string
-                            values:
-                              - value: INFO
-                                count: 297
-                              - value: ERROR
-                                count: 2
-                        additionalProperties:
-                          properties:
-                            distinct_values:
-                              type: integer
-                            type:
-                              type: string
-                              example: string
-                            values:
-                              type: array
-                              items:
-                                properties:
-                                  value:
-                                    type: string
-                                  count:
-                                    type: integer
-                                type: object
-                                additionalProperties: false
-                          type: object
-                      max_applicable_filters:
-                        type: integer
-                        example: 45
-                    type: object
-                    additionalProperties: false
                 type: object
                 additionalProperties: false
         '400':
@@ -16799,7 +18387,21 @@ paths:
                             format: uri
                         type: object
                         additionalProperties: false
-                      http_metrics_overview_experiment:
+                      http_metrics_timeline_urls:
+                        properties:
+                          href:
+                            type: string
+                            format: uri
+                        type: object
+                        additionalProperties: false
+                      http_metrics_timeline_ips:
+                        properties:
+                          href:
+                            type: string
+                            format: uri
+                        type: object
+                        additionalProperties: false
+                      http_metrics_timeline_user_agents:
                         properties:
                           href:
                             type: string
@@ -17273,9 +18875,9 @@ paths:
                 netsuite_id:
                   type: string
                   description: '[Internal] The Netsuite ID.'
-                billing_account_id:
+                billing_profile_id:
                   type: string
-                  description: '[Internal] The Billing Account ID.'
+                  description: '[Internal] The Billing Profile ID.'
                 billing_legacy:
                   type: boolean
                   description: '[Internal] Whether the account is billed with the legacy system.'
@@ -17378,9 +18980,9 @@ paths:
                 netsuite_id:
                   type: string
                   description: '[Internal] The Netsuite ID.'
-                billing_account_id:
+                billing_profile_id:
                   type: string
-                  description: '[Internal] The Billing Account ID.'
+                  description: '[Internal] The Billing Profile ID.'
                 billing_legacy:
                   type: boolean
                   description: '[Internal] Whether the account is billed with the legacy system.'
@@ -18845,6 +20447,42 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /organizations/{organization_id}/subscriptions/{subscription_id}/flex-calc:
+    get:
+      summary: '[Internal] Estimate the price of a fixed subscription as if it were owned by a flexible org.'
+      operationId: flex-calc-org-subscription
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/SubscriptionID'
+        - $ref: '#/components/parameters/Vendor'
+        - in: query
+          name: format
+          description: The format of the estimation output.
+          schema:
+            type: string
+            enum:
+              - formatted
+              - complex
+        - in: query
+          name: include_org_costs
+          description: Whether to include an estimate of flexible organization costs and discounts.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlexCalcObject'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/subscriptions/{subscription_id}/caps:
     get:
       summary: '[Internal] Get the environment caps'
@@ -20126,8 +21764,8 @@ paths:
           schema:
             $ref: '#/components/schemas/StringFilter'
         - in: query
-          name: filter[billing_account_id]
-          description: Allows filtering by `billing_account_id` using one or more operators.
+          name: filter[billing_profile_id]
+          description: Allows filtering by `billing_profile_id` using one or more operators.
           style: deepObject
           explode: true
           schema:
@@ -20139,38 +21777,11 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: filter[updated_at]
-          description: Allows filtering by `updated_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: filter[created_at]
-          description: Allows filtering by `created_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/FilterUpdatedAt'
+        - $ref: '#/components/parameters/FilterCreatedAt'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -20236,38 +21847,11 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: filter[updated_at]
-          description: Allows filtering by `updated_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: filter[created_at]
-          description: Allows filtering by `created_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/FilterUpdatedAt'
+        - $ref: '#/components/parameters/FilterCreatedAt'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -20439,9 +22023,9 @@ paths:
                 edgee_project_id:
                   allOf:
                     - $ref: '#/components/schemas/EdgeeProjectID'
-                billing_account_id:
+                billing_profile_id:
                   allOf:
-                    - $ref: '#/components/schemas/BillingAccountID'
+                    - $ref: '#/components/schemas/BillingProfileID'
       responses:
         '200':
           description: OK
@@ -20468,7 +22052,7 @@ paths:
         - $ref: '#/components/parameters/ProjectID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -20693,13 +22277,7 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: filter[updated_at]
-          description: Allows filtering by `updated_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
+        - $ref: '#/components/parameters/FilterUpdatedAt'
       responses:
         '200':
           description: OK
@@ -20875,7 +22453,7 @@ paths:
         - $ref: '#/components/parameters/ProjectAddonID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -21041,7 +22619,61 @@ paths:
         - $ref: '#/components/parameters/CdnID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}/purge:
+    post:
+      summary: '[Internal] Purge project CDN cache'
+      description: Purges all cached content for the specified project's CDN.
+      operationId: purge-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+        - $ref: '#/components/parameters/CdnID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}/rotate-tokens:
+    post:
+      summary: '[Internal] Rotate project CDN tokens'
+      description: Rotates authentication tokens for the specified project's CDN.
+      operationId: rotate-tokens-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+        - $ref: '#/components/parameters/CdnID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -21053,9 +22685,9 @@ paths:
       operationId: query-organiation-carbon
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/from'
-        - $ref: '#/components/parameters/to'
-        - $ref: '#/components/parameters/interval'
+        - $ref: '#/components/parameters/TimeRangeFrom'
+        - $ref: '#/components/parameters/TimeRangeTo'
+        - $ref: '#/components/parameters/TimeRangeInterval'
       responses:
         '200':
           description: OK
@@ -21079,9 +22711,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
         - $ref: '#/components/parameters/ProjectID'
-        - $ref: '#/components/parameters/from'
-        - $ref: '#/components/parameters/to'
-        - $ref: '#/components/parameters/interval'
+        - $ref: '#/components/parameters/TimeRangeFrom'
+        - $ref: '#/components/parameters/TimeRangeTo'
+        - $ref: '#/components/parameters/TimeRangeInterval'
       responses:
         '200':
           description: OK
@@ -21105,16 +22737,58 @@ paths:
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
         - $ref: '#/components/parameters/Vendor'
-        - $ref: '#/components/parameters/subscription_status'
-        - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/project_id'
-        - $ref: '#/components/parameters/project_title'
-        - $ref: '#/components/parameters/region'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_before'
-        - $ref: '#/components/parameters/page_after'
-        - $ref: '#/components/parameters/subscription_sort'
+        - name: filter[status]
+          in: query
+          description: 'The status of the subscription. '
+          schema:
+            type: string
+            enum:
+              - requested
+              - active
+              - failed
+              - suspended
+              - deleted
+        - name: filter[id]
+          in: query
+          description: Allows filtering by subscription `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[project_id]
+          in: query
+          description: Allows filtering by `project_id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[project_title]
+          in: query
+          description: Allows filtering by `project_title` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[region]
+          in: query
+          description: Allows filtering by `region` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - $ref: '#/components/parameters/FilterUpdatedAt'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
+        - name: sort
+          in: query
+          description: |
+            Allows sorting by a single field.<br>
+            Use a dash ("-") to sort descending.<br>
+            Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
+          schema:
+            type: string
+            example: '-updated_at'
       responses:
         '200':
           description: OK
@@ -21123,12 +22797,16 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   items:
                     type: array
                     items:
                       $ref: '#/components/schemas/Subscription'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -21318,7 +22996,7 @@ paths:
         - $ref: '#/components/parameters/Vendor'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -21380,24 +23058,9 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -21415,12 +23078,16 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   items:
                     type: array
                     items:
                       $ref: '#/components/schemas/ProjectOptions'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -21486,7 +23153,7 @@ paths:
         - $ref: '#/components/parameters/OptionsID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -21520,24 +23187,9 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -21555,12 +23207,16 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   regions:
                     type: array
                     items:
                       $ref: '#/components/schemas/Region'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -21588,7 +23244,6 @@ paths:
                 - available
                 - private
                 - endpoint
-                - code
                 - datacenter
               properties:
                 id:
@@ -21601,6 +23256,8 @@ paths:
                   $ref: '#/components/schemas/RegionSelectionLabel'
                 project_label:
                   $ref: '#/components/schemas/RegionProjectLabel'
+                short_code:
+                  $ref: '#/components/schemas/RegionCode'
                 timezone:
                   $ref: '#/components/schemas/RegionTimezone'
                 available:
@@ -21609,16 +23266,11 @@ paths:
                   $ref: '#/components/schemas/RegionPrivate'
                 endpoint:
                   $ref: '#/components/schemas/RegionEndpoint'
-                code:
-                  $ref: '#/components/schemas/RegionCode'
-                provider:
-                  $ref: '#/components/schemas/RegionProvider'
                 datacenter:
-                  $ref: '#/components/schemas/RegionDataCenter'
-                envimpact:
-                  $ref: '#/components/schemas/RegionEnvImpact'
-                compliance:
-                  $ref: '#/components/schemas/RegionCompliance'
+                  description: Data center ID.
+                  type: string
+                hipaa:
+                  $ref: '#/components/schemas/RegionHipaa'
       responses:
         '201':
           description: Created
@@ -21697,7 +23349,7 @@ paths:
         - $ref: '#/components/parameters/RegionID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -21742,6 +23394,7 @@ paths:
                 - provider
                 - zone
                 - carbon_intensity
+                - carbon_intensity_source
                 - green
               properties:
                 name:
@@ -21758,6 +23411,8 @@ paths:
                   $ref: '#/components/schemas/DataCenterZone'
                 carbon_intensity:
                   $ref: '#/components/schemas/DataCenterCarbonIntensity'
+                carbon_intensity_source:
+                  $ref: '#/components/schemas/DataCenterCarbonIntensitySource'
                 green:
                   $ref: '#/components/schemas/DataCenterGreen'
       responses:
@@ -21819,6 +23474,8 @@ paths:
                   $ref: '#/components/schemas/DataCenterZone'
                 carbon_intensity:
                   $ref: '#/components/schemas/DataCenterCarbonIntensity'
+                carbon_intensity_source:
+                  $ref: '#/components/schemas/DataCenterCarbonIntensitySource'
                 green:
                   $ref: '#/components/schemas/DataCenterGreen'
       responses:
@@ -21844,7 +23501,7 @@ paths:
         - $ref: '#/components/parameters/DataCenterName'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -21957,7 +23614,7 @@ paths:
         - $ref: '#/components/parameters/CatalogID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -22074,7 +23731,7 @@ paths:
         - $ref: '#/components/parameters/TemplateName'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -22278,24 +23935,9 @@ paths:
       tags:
         - Team Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -22319,6 +23961,7 @@ paths:
                       $ref: '#/components/schemas/TeamProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22345,7 +23988,7 @@ paths:
                   - team_id
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22381,7 +24024,7 @@ paths:
         - Team Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22398,24 +24041,9 @@ paths:
       tags:
         - User Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -22439,6 +24067,7 @@ paths:
                       $ref: '#/components/schemas/UserProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22466,12 +24095,13 @@ paths:
                   auto_add_member:
                     type: boolean
                     description: If the specified user is not a member of the project's organization, add it automatically.
+                additionalProperties: false
                 required:
                   - user_id
                   - permissions
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22517,7 +24147,7 @@ paths:
                   $ref: '#/components/schemas/ProjectPermissions'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22532,7 +24162,7 @@ paths:
         - User Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22554,24 +24184,9 @@ paths:
           description: Allows filtering by `organization_id`.
           schema:
             type: string
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -22595,6 +24210,7 @@ paths:
                       $ref: '#/components/schemas/UserProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22619,12 +24235,13 @@ paths:
                     description: ID of the project.
                   permissions:
                     $ref: '#/components/schemas/ProjectPermissions'
+                additionalProperties: false
                 required:
                   - project_id
                   - permissions
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22670,7 +24287,7 @@ paths:
                   $ref: '#/components/schemas/ProjectPermissions'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22685,7 +24302,7 @@ paths:
         - User Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22702,24 +24319,9 @@ paths:
       tags:
         - Team Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -22743,6 +24345,7 @@ paths:
                       $ref: '#/components/schemas/TeamProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22771,7 +24374,7 @@ paths:
                   - project_id
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -22807,39 +24410,13 @@ paths:
         - Team Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-  /health:
-    get:
-      summary: '[Internal] Health check'
-      description: Checks the health of the service.
-      operationId: health-check
-      tags:
-        - Health
-      parameters:
-        - in: query
-          name: full
-          description: Whether to return full health status.
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Health'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Health'
 components:
   schemas:
     Alert:
@@ -24166,6 +25743,190 @@ components:
           description: Number of support tickets by status.
           type: object
       type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+        - error
+    GenerateConfigurationRequest:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: Organization ID
+        project_id:
+          type: string
+          description: Project ID. If specified, then an organization_id must also be given.
+        digest:
+          $ref: '#/components/schemas/Digest'
+        extra_context:
+          type: string
+          maxLength: 4096
+          description: Additional context for configuration generation
+        debug:
+          type: boolean
+          default: null
+          description: Whether to output debug messages
+      required:
+        - digest
+      description: Request body for generating project configuration.
+    ConfigureRepositoryRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTPS URL of the repository to configure
+        extra_context:
+          type: string
+          description: Additional context for configuration generation
+        debug:
+          type: boolean
+          default: null
+          description: Whether to output debug messages
+        stream:
+          type: boolean
+          default: null
+          description: Whether to enable streaming mode
+      required:
+        - url
+    Digest:
+      type: object
+      properties:
+        tree:
+          type: string
+          description: Repository directory tree structure
+        reports:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/Report'
+          description: Analysis reports grouped by path (keys are file paths like ".", "src/", "package.json")
+          example:
+            .:
+              - result: reactjs
+                ruleset: frameworks
+                metadata:
+                  version: 19.1.0
+                groups:
+                  - js
+              - result: npm
+                ruleset: package_managers
+                groups:
+                  - js
+        selected_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          description: |
+            Selected files with content. If the digest was generated by the 'whatsun' package, then it will already have redacted these files, removing secrets found via gitleaks (https://github.com/gitleaks/gitleaks). Secrets will also be detected and redacted by the API server using the same system, before content is sent to the AI provider.
+      required:
+        - tree
+        - reports
+        - selected_files
+      description: Repository digest containing analysis and file content
+    Report:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Analysis result/finding
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Additional metadata from analysis
+        ruleset:
+          type: string
+          description: Ruleset that generated this report
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups this report belongs to
+      required:
+        - result
+        - ruleset
+    FileData:
+      type: object
+      properties:
+        name:
+          type: string
+          description: File path relative to repository root
+        content:
+          type: string
+          description: File content (possibly cleaned/redacted)
+        truncated:
+          type: boolean
+          description: Whether file content was truncated due to size limits
+        cleaned:
+          type: boolean
+          description: Whether file content was cleaned (comments removed, secrets redacted)
+        size:
+          type: integer
+          format: int64
+          description: Original file size in bytes
+      required:
+        - name
+        - content
+        - truncated
+        - cleaned
+        - size
+    StreamMessage:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - log
+            - output_chunk
+            - done
+            - keep_alive
+          description: Message type
+        time:
+          type: string
+          format: date-time
+          description: Message timestamp
+        level:
+          type: string
+          enum:
+            - debug
+            - info
+            - warn
+            - error
+          description: Log level (for log messages)
+        message:
+          type: string
+          description: Message content
+        tags:
+          type: array
+          items:
+            type: string
+          description: Message tags
+    DataMessage:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - data
+          description: Data message type
+        time:
+          type: string
+          format: date-time
+          description: Message timestamp
+        key:
+          type: string
+          enum:
+            - digest
+            - output
+          description: Data key identifier
+        data:
+          type: object
+          description: Data payload
     OrganizationInvitation:
       title: OrganizationInvitation
       type: object
@@ -24428,30 +26189,6 @@ components:
           website: https://platform.sh
           consented_at: '2010-04-19T10:00:00Z'
           consent_method: opt-in
-    Error:
-      description: ''
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-        code:
-          type: number
-        detail:
-          type: object
-        title:
-          type: string
-      title: ''
-      x-examples:
-        example-1:
-          status: Invalid input
-          message: This field is required.
-          code: 400
-          detail:
-            field:
-              - This field is required.
-          title: Bad Request
     ListLinks:
       type: object
       properties:
@@ -25062,59 +26799,65 @@ components:
           type: boolean
           description: Whether to enforce PKCE for authorization code flow for the client.
           example: true
-    AccountAddonsObject:
-      $ref: '#/components/schemas/account_addons'
-    AccountDunningActionsObject:
-      $ref: '#/components/schemas/account_dunning_actions'
-    AccountInvoice:
+    ProfileAddonsObject:
+      $ref: '#/components/schemas/profile_addons'
+    ProfileDunningActionsObject:
+      $ref: '#/components/schemas/billing_profile_dunning_actions'
+    ProfileInvoice:
       $ref: '#/components/schemas/invoice'
-    AccountInvoiceDetail:
+    ProfileInvoiceDetail:
       $ref: '#/components/schemas/invoice_detail'
-    AccountProfilePayload:
+    ProfilePayload:
       $ref: '#/components/schemas/profile'
     AddressVerificationPayload:
       $ref: '#/components/schemas/address_verification'
-    BillingAccountListPayload:
-      $ref: '#/components/schemas/billing_account_list'
-    BillingAccountPayload:
-      $ref: '#/components/schemas/billing_account'
-    BillingAccountPayloadWithLinks:
-      $ref: '#/components/schemas/billing_account_with_links'
+    BillingProfileListPayload:
+      $ref: '#/components/schemas/billing_profile_list'
+    BillingProfilePayload:
+      $ref: '#/components/schemas/billing_profile'
+    BillingProfilePayloadWithLinks:
+      $ref: '#/components/schemas/billing_profile_with_links'
     BillingAlertConfig:
       $ref: '#/components/schemas/billing_alert_config'
-    BillingEntity:
-      $ref: '#/components/schemas/billing_entity'
-    BillingEntityPayload:
-      $ref: '#/components/schemas/billing_entity_payload'
-    BillingEntityWithLinks:
-      $ref: '#/components/schemas/billing_entity_with_links'
+    BillingAccounts:
+      $ref: '#/components/schemas/billing_account'
+    BillingAccountPayload:
+      $ref: '#/components/schemas/billing_account_payload'
+    BillingAccountWithLinks:
+      $ref: '#/components/schemas/billing_account_with_links'
     BillingUser:
       $ref: '#/components/schemas/billing_user'
     BillingUserPermissions:
       $ref: '#/components/schemas/billing_user_permissions'
     CountryPayload:
       $ref: '#/components/schemas/country'
+    EstimationItem:
+      $ref: '#/components/schemas/estimation_item'
     FormattedCost:
       $ref: '#/components/schemas/formatted_cost'
     Payment:
       $ref: '#/components/schemas/payment'
+    Price:
+      $ref: '#/components/schemas/price'
+    ProjectEstimate:
+      $ref: '#/components/schemas/project_estimate'
     Vouchers:
       $ref: '#/components/schemas/voucher_list'
     BadRequestError:
       $ref: '#/components/schemas/bad_request_error'
-    billing_account:
+    billing_profile:
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier of the billing account.
-        billing_entity_id:
+          description: The unique identifier of the billing profile.
+        billing_account_id:
           type: string
-          description: The ID of the billing entity associated with this billing account.
+          description: The ID of the billing account associated with this billing profile.
           nullable: true
         salesforce_id:
           type: string
-          description: The Salesforce ID associated with the billing account.
+          description: The Salesforce ID associated with the billing profile.
           nullable: true
         bp_account_id:
           type: integer
@@ -25135,30 +26878,30 @@ components:
         country:
           type: string
           nullable: true
-          description: The country code for the billing account.
+          description: The country code for the billing profile.
         currency:
           type: string
           nullable: true
-          description: ISO 4217 currency code (3-letter code) for the billing account.
+          description: ISO 4217 currency code (3-letter code) for the billing profile.
           pattern: ^[A-Z]{3}$
           example: USD
         organization_ids:
           type: array
           items:
             type: string
-          description: Array of organization IDs associated with this billing account.
+          description: Array of organization IDs associated with this billing profile.
         vendor:
           type: string
           nullable: true
-          description: The Vendor associated to the billing account.
+          description: The Vendor associated to the billing profile.
         created_at:
           type: string
           format: date-time
-          description: The timestamp when the billing account was created.
+          description: The timestamp when the billing profile was created.
         updated_at:
           type: string
           format: date-time
-          description: The timestamp when the billing account was last updated.
+          description: The timestamp when the billing profile was last updated.
     link:
       type: object
       properties:
@@ -25167,9 +26910,9 @@ components:
           description: The URL of the linked resource.
       required:
         - href
-    billing_account_with_links:
+    billing_profile_with_links:
       allOf:
-        - $ref: '#/components/schemas/billing_account'
+        - $ref: '#/components/schemas/billing_profile'
         - type: object
           properties:
             _links:
@@ -25180,7 +26923,7 @@ components:
                   $ref: '#/components/schemas/link'
               required:
                 - self
-    billing_account_list:
+    billing_profile_list:
       type: object
       properties:
         count:
@@ -25189,8 +26932,8 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/billing_account_with_links'
-          description: Array of billing accounts.
+            $ref: '#/components/schemas/billing_profile_with_links'
+          description: Array of billing profiles.
         _links:
           type: object
           description: HAL links for pagination.
@@ -25223,18 +26966,18 @@ components:
     profile:
       type: object
       properties:
+        billing_profile_id:
+          type: string
+          description: ID of the associated billing profile.
         billing_account_id:
           type: string
           description: ID of the associated billing account.
-        billing_entity_id:
-          type: string
-          description: ID of the associated billing entity.
         salesforce_id:
           type: string
           description: Salesforce account ID.
         name_line:
           type: string
-          description: Display name of the account.
+          description: Display name of the profile.
         billing_contact:
           type: string
           description: Email address for billing communications.
@@ -25244,7 +26987,7 @@ components:
         currency:
           type: string
           nullable: true
-          description: ISO 4217 currency code (3-letter code) for the billing account.
+          description: ISO 4217 currency code (3-letter code) for the billing profile.
           pattern: ^[A-Z]{3}$
           example: USD
         company_name:
@@ -25302,9 +27045,9 @@ components:
           additionalProperties:
             type: string
             description: A map of field names to their corresponding error messages.
-    account_addons:
+    profile_addons:
       type: object
-      description: The list of available and current add-ons of a billing account.
+      description: The list of available and current add-ons of a billing profile.
       properties:
         available:
           type: object
@@ -25335,6 +27078,62 @@ components:
               description: Available upgrade options for support.
               items:
                 type: string
+    payment_source:
+      type: object
+      description: The payment source
+      properties:
+        type:
+          description: The type of the payment source.
+          type: string
+          example: credit-card
+        type_label:
+          description: The type of the payment source, prettified.
+          type: string
+          example: Card
+        payment_category:
+          description: The category of payment method (card, bank_debit...).
+          type: string
+          example: card
+        name:
+          description: The name of the customer.
+          type: string
+        number:
+          description: The partially sanitized number of the payment source (credit card number, or an iban number).
+          type: string
+          example: XXXX-XXXX-XXXX-1234
+        data:
+          description: The data object for a particular source type. Different source types will have different schemas for the data property.
+          type: object
+    prepayment:
+      type: object
+      description: Prepayment info for a billing profile.
+      properties:
+        balance:
+          type: object
+          description: Prepayment balance available in complex format
+          properties:
+            formatted:
+              type: string
+              description: Formatted balance.
+            amount:
+              type: number
+              description: The balance amount.
+            currency_code:
+              type: string
+              description: The balance currency code.
+            currency_symbol:
+              type: string
+              description: The balance currency symbol.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date the prepayment balance was last updated.
+        sufficient:
+          type: boolean
+          description: Indicates if the prepayment balance is sufficient to cover upcoming order.
+        fallback:
+          type: string
+          description: Fallback payment method
     formatted_cost:
       type: object
       description: Formatted cost object.
@@ -25387,7 +27186,7 @@ components:
           description: The type of the owner object.
           type: string
           enum:
-            - billing_account
+            - billing_profile
             - organization
         invoice_date:
           description: The invoice date.
@@ -25425,38 +27224,12 @@ components:
               $ref: '#/components/schemas/link'
             list-invoices:
               $ref: '#/components/schemas/link'
-            billing-account:
+            billing-profile:
               $ref: '#/components/schemas/link'
             billing-dunning:
               $ref: '#/components/schemas/link'
           required:
             - self
-    payment_source:
-      type: object
-      description: The payment source
-      properties:
-        type:
-          description: The type of the payment source.
-          type: string
-          example: credit-card
-        type_label:
-          description: The type of the payment source, prettified.
-          type: string
-          example: Card
-        payment_category:
-          description: The category of payment method (card, bank_debit...).
-          type: string
-          example: card
-        name:
-          description: The name of the customer.
-          type: string
-        number:
-          description: The partially sanitized number of the payment source (credit card number, or an iban number).
-          type: string
-          example: XXXX-XXXX-XXXX-1234
-        data:
-          description: The data object for a particular source type. Different source types will have different schemas for the data property.
-          type: object
     invoice_detail:
       type: object
       description: The invoice object.
@@ -25534,7 +27307,7 @@ components:
           description: The project ID associated with the line item.
     payment:
       type: object
-      description: Prepayment transaction for a billing account.
+      description: Payment transaction for a billing profile.
       properties:
         invoice_id:
           type: string
@@ -25547,7 +27320,7 @@ components:
           description: Whether the transactions was successful or a failure.
         amount:
           type: object
-          description: The prepayment balance in complex format.
+          description: The payment balance in complex format.
           properties:
             formatted:
               type: string
@@ -25563,18 +27336,21 @@ components:
               description: The balance currency symbol.
         created:
           type: string
+          format: date-time
           description: Time the transaction was created.
         updated:
           type: string
+          format: date-time
           description: Time the transaction was last updated.
           nullable: true
         expire_date:
           type: string
+          format: date-time
           description: The expiration date of the transaction (deposits only).
           nullable: true
     billing_alert_config:
       type: object
-      description: The alert configuration for a billing account.
+      description: The alert configuration for a billing profile.
       properties:
         id:
           type: string
@@ -25617,9 +27393,9 @@ components:
             mode:
               type: string
               description: The mode of alert.
-    account_dunning_actions:
+    billing_profile_dunning_actions:
       type: object
-      description: The list of scheduled dunning actions (if any) for a billing account.
+      description: The list of scheduled dunning actions (if any) for a billing profile.
       properties:
         items:
           type: array
@@ -25693,8 +27469,8 @@ components:
         id:
           description: The ID of the discount.
           type: integer
-        billing_account:
-          description: The ULID of the billing account the discount applies to.
+        billing_profile_id:
+          description: The ULID of the billing profile the discount applies to.
           type: string
         type:
           description: The machine name of the discount type.
@@ -25770,7 +27546,7 @@ components:
           nullable: true
     billing_user_permissions:
       type: array
-      description: The billing account permissions.
+      description: The billing profile permissions.
       items:
         type: string
         enum:
@@ -25779,10 +27555,10 @@ components:
     billing_user:
       type: object
       properties:
-        billing_account_id:
+        billing_profile_id:
           type: string
           format: ulid
-          description: The ID of the billing account.
+          description: The ID of the billing profile.
         user_id:
           type: string
           format: uuid
@@ -25798,7 +27574,7 @@ components:
         created_at:
           type: string
           format: date-time
-          description: The date and time when the user was added to the billing account.
+          description: The date and time when the user was added to the billing profile.
         updated_at:
           type: string
           format: date-time
@@ -25825,7 +27601,7 @@ components:
                   description: The HTTP method to use.
             delete:
               type: object
-              description: Link for removing the current user from the billing account.
+              description: Link for removing the current user from the billing profile.
               properties:
                 href:
                   type: string
@@ -25838,7 +27614,7 @@ components:
       properties:
         vouchers_total:
           type: string
-          description: The total voucher credit given to the account.
+          description: The total voucher credit given to the billing profile.
         vouchers_applied:
           type: string
           description: The part of total voucher credit applied to invoices.
@@ -25970,39 +27746,39 @@ components:
         message:
           type: string
           description: Additional validation information, if applicable.
-    billing_entity:
+    billing_account:
       type: object
       properties:
         id:
           type: string
-          description: The unique identifier for the billing entity.
+          description: The unique identifier for the billing account.
         owner_id:
           type: string
-          description: The owner ID associated with the billing entity.
+          description: The owner ID associated with the billing account.
         email:
           type: string
           format: email
-          description: The contact email for the billing entity.
+          description: The contact email for the billing account.
         salesforce_id:
           type: string
-          description: The Salesforce ID associated with the billing entity.
+          description: The Salesforce ID associated with the billing account.
         bp_account_id:
           type: integer
           nullable: true
           description: The Billing Platform account ID.
         country:
           type: string
-          description: The country code for the billing entity.
+          description: The country code for the billing account.
         vendor:
           type: string
           nullable: true
-          description: The Vendor associated to the billing entity.
+          description: The Vendor associated to the billing account.
         name:
           type: string
-          description: The name of the billing entity.
+          description: The name of the billing account.
         legal_name:
           type: string
-          description: The legal name of the billing entity.
+          description: The legal name of the billing account.
         tax_number:
           type: string
           description: Tax identification number (VAT/GST/etc).
@@ -26016,9 +27792,9 @@ components:
             - individual
             - corporation
             - government
-    billing_entity_with_links:
+    billing_account_with_links:
       allOf:
-        - $ref: '#/components/schemas/billing_entity'
+        - $ref: '#/components/schemas/billing_account'
         - type: object
           properties:
             _links:
@@ -26029,22 +27805,22 @@ components:
                   $ref: '#/components/schemas/link'
               required:
                 - self
-    billing_entity_payload:
+    billing_account_payload:
       type: object
       properties:
         country:
           type: string
-          description: The country code for the billing entity.
+          description: The country code for the billing account.
         vendor:
           type: string
           nullable: true
-          description: The Vendor associated to the billing entity.
+          description: The Vendor associated to the billing account.
         name:
           type: string
-          description: The name of the billing entity.
+          description: The name of the billing account.
         legal_name:
           type: string
-          description: The legal name of the billing entity.
+          description: The legal name of the billing account.
         tax_number:
           type: string
           description: Tax identification number (VAT/GST/etc).
@@ -26058,6 +27834,70 @@ components:
             - individual
             - corporation
             - government
+    estimation_item:
+      type: object
+      description: An estimation item containing product quantity and pricing information
+      properties:
+        amount:
+          type: number
+          description: The numeric price
+        currency_code:
+          type: string
+          description: The currency code of the price
+        formatted:
+          type: string
+          description: The price formatted with currency symbol
+        quantity:
+          type: number
+          description: The quantity of the product estimated
+        current_usage_formatted:
+          type: string
+          description: The current usage or quantity formatted with units, if available
+        label:
+          type: string
+          description: The product name or label
+    price:
+      type: object
+      description: A price object
+      properties:
+        amount:
+          type: number
+          description: The numeric price
+        currency_code:
+          type: string
+          description: The currency code of the price
+        formatted:
+          type: string
+          description: The price formatted with currency symbol
+    project_estimate:
+      description: The project estimation object.
+      type: object
+      properties:
+        resources:
+          type: array
+          description: Estimates for individual project resource components
+          items:
+            $ref: '#/components/schemas/estimation_item'
+        resource_total:
+          $ref: '#/components/schemas/price'
+        usage:
+          type: array
+          description: Estimates for individual project usage components
+          items:
+            $ref: '#/components/schemas/estimation_item'
+        usage_total:
+          $ref: '#/components/schemas/price'
+        discounts:
+          type: array
+          description: Estimates for individual project discount components
+          items:
+            $ref: '#/components/schemas/estimation_item'
+        discount_total:
+          $ref: '#/components/schemas/price'
+        plan:
+          $ref: '#/components/schemas/price'
+        total:
+          $ref: '#/components/schemas/price'
     AcceptedResponse:
       type: object
       properties:
@@ -37274,10 +39114,6 @@ components:
           type: string
           format: ulid
           description: The ID of the organization.
-        billing_account_id:
-          type: string
-          format: ulid
-          description: The ID of the billing account.
         payment_method_id:
           type: string
           description: The ID of the payment method.
@@ -37421,9 +39257,9 @@ components:
         netsuite_id:
           type: string
           description: '[Internal] The Netsuite ID.'
-        billing_account_id:
+        billing_profile_id:
           type: string
-          description: The Billing Account ID.
+          description: The Billing Profile ID.
         billing_legacy:
           type: boolean
           description: Whether the account is billed with the legacy system.
@@ -37718,6 +39554,59 @@ components:
         options:
           type: object
           description: The unit prices of the options.
+    FlexCalcObject:
+      type: object
+      description: A fixed to flexible price estimate object.
+      properties:
+        components:
+          type: object
+          description: Various subtotal pricing components.
+          additionalProperties:
+            type: object
+            $ref: '#/components/schemas/PriceObject'
+        plan:
+          allOf:
+            - type: object
+              description: The monthly price of the plan.
+            - $ref: '#/components/schemas/PriceObject'
+        resources_total:
+          allOf:
+            - type: object
+              description: The monthly price of project resources.
+            - $ref: '#/components/schemas/PriceObject'
+        total:
+          allOf:
+            - type: object
+              description: The total monthly price.
+            - $ref: '#/components/schemas/PriceObject'
+        additionalProperties:
+          allOf:
+            - type: object
+              description: Other allocated resource, usage, or discount estimations.
+            - $ref: '#/components/schemas/PriceObject'
+    PriceObject:
+      type: object
+      properties:
+        formatted:
+          type: string
+          description: The price formatted appropriately with currency.
+        amount:
+          type: number
+          description: The price as a numeric quantity.
+        currency_code:
+          type: string
+          description: The three-character currency code.
+        currency_symbol:
+          type: string
+          description: The symbol associated with the currency.
+        quantity:
+          type: number
+          description: The quantity used for the estimation.
+          nullable: true
+        weight:
+          type: number
+          description: Relative positioning of this property.
+          nullable: true
     CapsObject:
       type: object
       description: '[Internal] An environment cap object.'
@@ -38445,6 +40334,8 @@ components:
           $ref: '#/components/schemas/DataCenterZone'
         carbon_intensity:
           $ref: '#/components/schemas/DataCenterCarbonIntensity'
+        carbon_intensity_source:
+          $ref: '#/components/schemas/DataCenterCarbonIntensitySource'
         green:
           $ref: '#/components/schemas/DataCenterGreen'
         created_at:
@@ -38515,10 +40406,10 @@ components:
           allOf:
             - $ref: '#/components/schemas/EdgeeProjectID'
           nullable: true
-        billing_account_id:
+        billing_profile_id:
           type: string
           allOf:
-            - $ref: '#/components/schemas/BillingAccountID'
+            - $ref: '#/components/schemas/BillingProfileID'
           nullable: true
         created_at:
           $ref: '#/components/schemas/CreatedAt'
@@ -39216,12 +41107,10 @@ components:
           $ref: '#/components/schemas/RegionPrivate'
         endpoint:
           $ref: '#/components/schemas/RegionEndpoint'
-        code:
-          $ref: '#/components/schemas/RegionCode'
         provider:
           $ref: '#/components/schemas/RegionProvider'
         datacenter:
-          $ref: '#/components/schemas/RegionDataCenter'
+          $ref: '#/components/schemas/RegionDatacenter'
         envimpact:
           $ref: '#/components/schemas/RegionEnvImpact'
         compliance:
@@ -39390,8 +41279,11 @@ components:
       type: string
       description: The environment impact zone of the data center.
     DataCenterCarbonIntensity:
-      type: integer
+      type: number
       description: The environment impact carbon intensity of the data center.
+    DataCenterCarbonIntensitySource:
+      type: string
+      description: The source of the carbon intensity data for the data center.
     DataCenterGreen:
       type: boolean
       description: The environment impact green of the data center.
@@ -39467,8 +41359,8 @@ components:
     EdgeeProjectID:
       description: '[Internal] The project id of the edgee service.'
       type: string
-    BillingAccountID:
-      description: '[Internal] The billing account related to the project.'
+    BillingProfileID:
+      description: '[Internal] The billing profile related to the project.'
       type: string
     OptionsType:
       type: string
@@ -39487,13 +41379,10 @@ components:
       type: object
     OptionsRegions:
       type: object
-      additionalProperties: false
     Sellables:
       type: object
-      additionalProperties: false
     Settings:
       type: object
-      additionalProperties: false
     PlanTitles:
       type: object
       description: Map of plan IDs to their human-readable titles.
@@ -39542,15 +41431,53 @@ components:
     RegionProvider:
       type: object
       description: Information about the region provider.
-    RegionDataCenter:
+      properties:
+        name:
+          type: string
+          description: The name of the cloud provider.
+        logo:
+          type: string
+          description: The logo of the cloud provider (base64 encoded SVG).
+      additionalProperties: false
+    RegionDatacenter:
       type: object
       description: Information about the region provider data center.
+      properties:
+        name:
+          type: string
+          description: The name/identifier of the data center.
+        label:
+          type: string
+          description: The human-readable label of the data center.
+        location:
+          type: string
+          description: The physical location of the data center.
+      additionalProperties: false
     RegionEnvImpact:
       type: object
       description: Information about the region provider's environmental impact.
+      properties:
+        zone:
+          type: string
+          description: The geographical zone code for carbon intensity.
+        carbon_intensity:
+          type: number
+          description: The carbon intensity value.
+        carbon_intensity_source:
+          type: string
+          description: The source of the carbon intensity data.
+        green:
+          type: boolean
+          description: Indicator whether the data center uses green energy.
+      additionalProperties: false
     RegionCompliance:
       type: object
       description: Information about the region's compliance.
+      properties:
+        hipaa:
+          type: boolean
+          description: Indicator whether or not this region is HIPAA compliant.
+      additionalProperties: false
     RegionHipaa:
       type: boolean
       description: Indicator whether or not this region is HIPAA compliant.
@@ -39589,6 +41516,10 @@ components:
       type: string
       format: date-time
       description: The date and time when the resource was last updated.
+    GrantedAt:
+      type: string
+      format: date-time
+      description: The date and time when the access was granted.
     BooleanFilter:
       type: object
       properties:
@@ -39617,13 +41548,9 @@ components:
           type: string
           description: The title of the project.
         granted_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was granted.
+          $ref: '#/components/schemas/GrantedAt'
         updated_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was last updated.
+          $ref: '#/components/schemas/UpdatedAt'
         _links:
           type: object
           properties:
@@ -39677,13 +41604,9 @@ components:
         permissions:
           $ref: '#/components/schemas/ProjectPermissions'
         granted_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was granted.
+          $ref: '#/components/schemas/GrantedAt'
         updated_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was last updated.
+          $ref: '#/components/schemas/UpdatedAt'
         _links:
           type: object
           properties:
@@ -39734,44 +41657,6 @@ components:
           - production:admin
           - production:contributor
           - production:viewer
-    Health:
-      type: object
-      required:
-        - mysql
-        - redis
-        - clickhouse
-      properties:
-        mysql:
-          type: object
-          properties:
-            status:
-              type: string
-              enum:
-                - UP
-                - DOWN
-          required:
-            - status
-        redis:
-          type: object
-          properties:
-            status:
-              type: string
-              enum:
-                - UP
-                - DOWN
-          required:
-            - status
-        clickhouse:
-          type: object
-          properties:
-            status:
-              type: string
-              enum:
-                - UP
-                - DOWN
-          required:
-            - status
-      additionalProperties: false
     ProjectFacets:
       type: object
       description: Facets for filtering options.
@@ -40075,12 +41960,6 @@ components:
       required: true
       schema:
         type: string
-    id:
-      name: filter[id]
-      in: query
-      description: Machine name of the region.
-      schema:
-        type: string
     env_name:
       name: envName
       in: path
@@ -40115,18 +41994,6 @@ components:
       required: false
       schema:
         type: string
-    subscription_status:
-      name: filter[status]
-      in: query
-      description: 'The status of the subscription. '
-      schema:
-        type: string
-        enum:
-          - active
-          - provisioning
-          - provisioning failure
-          - suspended
-          - deleted
     subscription_plan:
       name: plan
       in: query
@@ -40405,16 +42272,18 @@ components:
         type: string
         example: d81c8ee2-44b3-429f-b944-a33ad7437690
         format: uuid
-    BillingAccountID:
-      $ref: '#/components/parameters/billing_account_id'
+    BillingProfileID:
+      $ref: '#/components/parameters/billing_profile_id'
     BillingInvoiceID:
       $ref: '#/components/parameters/billing_invoice_id'
     Country:
       $ref: '#/components/parameters/country'
-    billing_account_id:
+    CurrencyQuery:
+      $ref: '#/components/parameters/currency_query'
+    billing_profile_id:
       in: path
-      name: billing_account_id
-      description: The ID of the billing account.
+      name: billing_profile_id
+      description: The ID of the billing profile.
       required: true
       schema:
         type: string
@@ -40440,11 +42309,25 @@ components:
       required: true
       schema:
         type: string
-    billing_entity_id:
+    billing_account_id:
       in: path
-      name: billing_entity_id
-      description: The ID of the billing entity.
+      name: billing_account_id
+      description: The ID of the billing account.
       required: true
+      schema:
+        type: string
+    project_id:
+      in: path
+      name: project_id
+      description: The project ID.
+      required: true
+      schema:
+        type: string
+    currency_query:
+      in: query
+      name: currency
+      description: The currency code.
+      required: false
       schema:
         type: string
     organizationID:
@@ -40561,49 +42444,7 @@ components:
       required: true
       schema:
         type: string
-    project_id:
-      name: filter[project_id]
-      in: query
-      description: Allows filtering by `project_id` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    project_title:
-      in: query
-      name: filter[project_title]
-      description: Allows filtering by `project_title` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    region:
-      in: query
-      name: filter[region]
-      description: Allows filtering by `region` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    updated_at:
-      in: query
-      name: filter[updated_at]
-      description: Allows filtering by `updated_at` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/DateTimeFilter'
-    subscription_sort:
-      in: query
-      name: sort
-      description: |
-        Allows sorting by a single field.<br>
-        Use a dash ("-") to sort descending.<br>
-        Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
-      schema:
-        type: string
-        example: '-updated_at'
-    page_size:
+    PageSize:
       in: query
       name: page[size]
       description: Determines the number of items to show.
@@ -40612,31 +42453,40 @@ components:
         minimum: 1
         maximum: 100
         default: null
-    page_before:
+    PageBefore:
       in: query
       name: page[before]
       description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
       schema:
         type: string
-    page_after:
+    PageAfter:
       in: query
       name: page[after]
       description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
       schema:
         type: string
-    from:
+    PageSizeAccess:
+      in: query
+      name: page[size]
+      description: Determines the number of items to show.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: null
+    TimeRangeFrom:
       in: query
       name: from
       description: The start of the time frame for the query. Inclusive.
       schema:
         $ref: '#/components/schemas/DateTimeFilter'
-    to:
+    TimeRangeTo:
       in: query
       name: to
       description: The end of the time frame for the query. Exclusive.
       schema:
         $ref: '#/components/schemas/DateTimeFilter'
-    interval:
+    TimeRangeInterval:
       in: query
       name: interval
       description: The interval by which the query groups the results. of the time frame for the query. Exclusive.
@@ -40646,6 +42496,22 @@ components:
           - day
           - month
           - year
+    FilterUpdatedAt:
+      in: query
+      name: filter[updated_at]
+      description: Allows filtering by `updated_at` using one or more operators.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/DateTimeFilter'
+    FilterCreatedAt:
+      in: query
+      name: filter[created_at]
+      description: Allows filtering by `created_at` using one or more operators.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/DateTimeFilter'
   securitySchemes:
     BearerAuth:
       type: http
@@ -40699,7 +42565,8 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Error'
-  examples: {}
+    NoContent:
+      description: No Content
 x-tagGroups:
   - name: Organization Administration
     tags:

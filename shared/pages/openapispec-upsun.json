@@ -667,6 +667,44 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/can-afford": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Checks if the user can afford the requested resources.",
+        "operationId": "can-afford-subscription",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "resources": {
+                    "description": "A map of resource keys to quantities (both strings).",
+                    "type": "object",
+                    "additionalProperties": {}
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proposed resource change is affordable."
+          },
+          "402": {
+            "description": "Proposed change is not affordable."
+          }
+        }
+      }
+    },
     "/profiles": {
       "get": {
         "tags": [
@@ -10912,51 +10950,19 @@
             }
           },
           {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           },
           {
-            "in": "query",
-            "name": "filter[created_at]",
-            "description": "Allows filtering by `created_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterCreatedAt"
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -11192,7 +11198,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -11216,13 +11222,13 @@
             "$ref": "#/components/parameters/OrganizationID"
           },
           {
-            "$ref": "#/components/parameters/from"
+            "$ref": "#/components/parameters/TimeRangeFrom"
           },
           {
-            "$ref": "#/components/parameters/to"
+            "$ref": "#/components/parameters/TimeRangeTo"
           },
           {
-            "$ref": "#/components/parameters/interval"
+            "$ref": "#/components/parameters/TimeRangeInterval"
           }
         ],
         "responses": {
@@ -11264,13 +11270,13 @@
             "$ref": "#/components/parameters/ProjectID"
           },
           {
-            "$ref": "#/components/parameters/from"
+            "$ref": "#/components/parameters/TimeRangeFrom"
           },
           {
-            "$ref": "#/components/parameters/to"
+            "$ref": "#/components/parameters/TimeRangeTo"
           },
           {
-            "$ref": "#/components/parameters/interval"
+            "$ref": "#/components/parameters/TimeRangeInterval"
           }
         ],
         "responses": {
@@ -11309,34 +11315,80 @@
             "$ref": "#/components/parameters/OrganizationID"
           },
           {
-            "$ref": "#/components/parameters/subscription_status"
+            "name": "filter[status]",
+            "in": "query",
+            "description": "The status of the subscription. ",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "requested",
+                "active",
+                "failed",
+                "suspended",
+                "deleted"
+              ]
+            }
           },
           {
-            "$ref": "#/components/parameters/id"
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Allows filtering by subscription `id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/project_id"
+            "name": "filter[project_id]",
+            "in": "query",
+            "description": "Allows filtering by `project_id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/project_title"
+            "name": "filter[project_title]",
+            "in": "query",
+            "description": "Allows filtering by `project_title` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/region"
+            "name": "filter[region]",
+            "in": "query",
+            "description": "Allows filtering by `region` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/updated_at"
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           },
           {
-            "$ref": "#/components/parameters/page_size"
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "$ref": "#/components/parameters/page_before"
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "$ref": "#/components/parameters/page_after"
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
-            "$ref": "#/components/parameters/subscription_sort"
+            "name": "sort",
+            "in": "query",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
           }
         ],
         "responses": {
@@ -11347,6 +11399,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "items": {
                       "type": "array",
                       "items": {
@@ -11356,7 +11412,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -11594,7 +11651,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -11645,31 +11702,13 @@
             }
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -11689,6 +11728,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "regions": {
                       "type": "array",
                       "items": {
@@ -11698,7 +11741,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -11873,31 +11917,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -11926,7 +11952,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -11970,7 +11997,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12028,7 +12055,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12057,31 +12084,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -12110,7 +12119,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -12151,6 +12161,7 @@
                       "description": "If the specified user is not a member of the project's organization, add it automatically."
                     }
                   },
+                  "additionalProperties": false,
                   "required": [
                     "user_id",
                     "permissions"
@@ -12162,7 +12173,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12237,7 +12248,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12259,7 +12270,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12296,31 +12307,13 @@
             }
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -12349,7 +12342,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -12386,6 +12380,7 @@
                       "$ref": "#/components/schemas/ProjectPermissions"
                     }
                   },
+                  "additionalProperties": false,
                   "required": [
                     "project_id",
                     "permissions"
@@ -12397,7 +12392,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12472,7 +12467,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12494,7 +12489,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12523,31 +12518,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -12576,7 +12553,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -12623,7 +12601,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -12681,7 +12659,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -13999,6 +13977,18 @@
         },
         "type": "object"
       },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
       "OrganizationInvitation": {
         "title": "OrganizationInvitation",
         "type": "object",
@@ -14329,41 +14319,6 @@
             "website": "https://platform.sh",
             "consented_at": "2010-04-19T10:00:00Z",
             "consent_method": "opt-in"
-          }
-        }
-      },
-      "Error": {
-        "description": "",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "type": "number"
-          },
-          "detail": {
-            "type": "object"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "title": "",
-        "x-examples": {
-          "example-1": {
-            "status": "Invalid input",
-            "message": "This field is required.",
-            "code": 400,
-            "detail": {
-              "field": [
-                "This field is required."
-              ]
-            },
-            "title": "Bad Request"
           }
         }
       },
@@ -27147,9 +27102,9 @@
             "type": "string",
             "description": "The vendor."
           },
-          "billing_account_id": {
+          "billing_profile_id": {
             "type": "string",
-            "description": "The Billing Account ID."
+            "description": "The Billing Profile ID."
           },
           "billing_legacy": {
             "type": "boolean",
@@ -28791,14 +28746,11 @@
           "endpoint": {
             "$ref": "#/components/schemas/RegionEndpoint"
           },
-          "code": {
-            "$ref": "#/components/schemas/RegionCode"
-          },
           "provider": {
             "$ref": "#/components/schemas/RegionProvider"
           },
           "datacenter": {
-            "$ref": "#/components/schemas/RegionDataCenter"
+            "$ref": "#/components/schemas/RegionDatacenter"
           },
           "envimpact": {
             "$ref": "#/components/schemas/RegionEnvImpact"
@@ -28947,25 +28899,73 @@
         "type": "string",
         "description": "Link to the region API endpoint."
       },
-      "RegionCode": {
-        "type": "string",
-        "description": "The code of the region"
-      },
       "RegionProvider": {
         "type": "object",
-        "description": "Information about the region provider."
+        "description": "Information about the region provider.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the cloud provider."
+          },
+          "logo": {
+            "type": "string",
+            "description": "The logo of the cloud provider (base64 encoded SVG)."
+          }
+        },
+        "additionalProperties": false
       },
-      "RegionDataCenter": {
+      "RegionDatacenter": {
         "type": "object",
-        "description": "Information about the region provider data center."
+        "description": "Information about the region provider data center.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name/identifier of the data center."
+          },
+          "label": {
+            "type": "string",
+            "description": "The human-readable label of the data center."
+          },
+          "location": {
+            "type": "string",
+            "description": "The physical location of the data center."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionEnvImpact": {
         "type": "object",
-        "description": "Information about the region provider's environmental impact."
+        "description": "Information about the region provider's environmental impact.",
+        "properties": {
+          "zone": {
+            "type": "string",
+            "description": "The geographical zone code for carbon intensity."
+          },
+          "carbon_intensity": {
+            "type": "number",
+            "description": "The carbon intensity value."
+          },
+          "carbon_intensity_source": {
+            "type": "string",
+            "description": "The source of the carbon intensity data."
+          },
+          "green": {
+            "type": "boolean",
+            "description": "Indicator whether the data center uses green energy."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionCompliance": {
         "type": "object",
-        "description": "Information about the region's compliance."
+        "description": "Information about the region's compliance.",
+        "properties": {
+          "hipaa": {
+            "type": "boolean",
+            "description": "Indicator whether or not this region is HIPAA compliant."
+          }
+        },
+        "additionalProperties": false
       },
       "MetricsMetadata": {
         "type": "object",
@@ -29017,6 +29017,11 @@
         "format": "date-time",
         "description": "The date and time when the resource was last updated."
       },
+      "GrantedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the access was granted."
+      },
       "TeamProjectAccess": {
         "type": "object",
         "properties": {
@@ -29039,14 +29044,10 @@
             "description": "The title of the project."
           },
           "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
+            "$ref": "#/components/schemas/GrantedAt"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
+            "$ref": "#/components/schemas/UpdatedAt"
           },
           "_links": {
             "type": "object",
@@ -29121,14 +29122,10 @@
             "$ref": "#/components/schemas/ProjectPermissions"
           },
           "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
+            "$ref": "#/components/schemas/GrantedAt"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
+            "$ref": "#/components/schemas/UpdatedAt"
           },
           "_links": {
             "type": "object",
@@ -29581,14 +29578,6 @@
           "type": "string"
         }
       },
-      "id": {
-        "name": "filter[id]",
-        "in": "query",
-        "description": "Machine name of the region.",
-        "schema": {
-          "type": "string"
-        }
-      },
       "subscription_id": {
         "name": "subscriptionId",
         "in": "path",
@@ -29605,21 +29594,6 @@
         "required": false,
         "schema": {
           "type": "string"
-        }
-      },
-      "subscription_status": {
-        "name": "filter[status]",
-        "in": "query",
-        "description": "The status of the subscription. ",
-        "schema": {
-          "type": "string",
-          "enum": [
-            "active",
-            "provisioning",
-            "provisioning failure",
-            "suspended",
-            "deleted"
-          ]
         }
       },
       "subscription_plan": {
@@ -29907,56 +29881,7 @@
           "type": "string"
         }
       },
-      "project_id": {
-        "name": "filter[project_id]",
-        "in": "query",
-        "description": "Allows filtering by `project_id` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "project_title": {
-        "in": "query",
-        "name": "filter[project_title]",
-        "description": "Allows filtering by `project_title` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "region": {
-        "in": "query",
-        "name": "filter[region]",
-        "description": "Allows filtering by `region` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "updated_at": {
-        "in": "query",
-        "name": "filter[updated_at]",
-        "description": "Allows filtering by `updated_at` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/DateTimeFilter"
-        }
-      },
-      "subscription_sort": {
-        "in": "query",
-        "name": "sort",
-        "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
-        "schema": {
-          "type": "string",
-          "example": "-updated_at"
-        }
-      },
-      "page_size": {
+      "PageSize": {
         "in": "query",
         "name": "page[size]",
         "description": "Determines the number of items to show.",
@@ -29967,7 +29892,7 @@
           "default": null
         }
       },
-      "page_before": {
+      "PageBefore": {
         "in": "query",
         "name": "page[before]",
         "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
@@ -29975,7 +29900,7 @@
           "type": "string"
         }
       },
-      "page_after": {
+      "PageAfter": {
         "in": "query",
         "name": "page[after]",
         "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
@@ -29983,7 +29908,18 @@
           "type": "string"
         }
       },
-      "from": {
+      "PageSizeAccess": {
+        "in": "query",
+        "name": "page[size]",
+        "description": "Determines the number of items to show.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": null
+        }
+      },
+      "TimeRangeFrom": {
         "in": "query",
         "name": "from",
         "description": "The start of the time frame for the query. Inclusive.",
@@ -29991,7 +29927,7 @@
           "$ref": "#/components/schemas/DateTimeFilter"
         }
       },
-      "to": {
+      "TimeRangeTo": {
         "in": "query",
         "name": "to",
         "description": "The end of the time frame for the query. Exclusive.",
@@ -29999,7 +29935,7 @@
           "$ref": "#/components/schemas/DateTimeFilter"
         }
       },
-      "interval": {
+      "TimeRangeInterval": {
         "in": "query",
         "name": "interval",
         "description": "The interval by which the query groups the results. of the time frame for the query. Exclusive.",
@@ -30010,6 +29946,26 @@
             "month",
             "year"
           ]
+        }
+      },
+      "FilterUpdatedAt": {
+        "in": "query",
+        "name": "filter[updated_at]",
+        "description": "Allows filtering by `updated_at` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "FilterCreatedAt": {
+        "in": "query",
+        "name": "filter[created_at]",
+        "description": "Allows filtering by `created_at` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
         }
       }
     },
@@ -30094,9 +30050,11 @@
             }
           }
         }
+      },
+      "NoContent": {
+        "description": "No Content"
       }
-    },
-    "examples": {}
+    }
   },
   "x-tagGroups": [
     {
