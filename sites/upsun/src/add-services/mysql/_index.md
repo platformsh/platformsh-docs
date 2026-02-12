@@ -677,11 +677,9 @@ Each has its own credentials, prefixed with the relationship name, you can use t
 
 ## Configure the database
 
-For MariaDB 10.1 and later and Oracle MySQL 8.0 and later, you can set some configuration properties
-(equivalent to using a `my.cnf` file).
+For MariaDB 10.1 and later, you can configure the database by adding the properties below to the `.services.<SERVICE_NAME>.configuration.properties` key. This method is equivalent to using a using a `my.cnf` file.
 
-In your settings, add the `properties` key to the `configuration` key.
-It offers the following properties:
+**Note**: At this time, these properties can be configured on MariaDB/MySQL databases only. They cannot be configured for Oracle MySQL databases.  
 
 | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
 |---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
