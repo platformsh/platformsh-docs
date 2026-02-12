@@ -10,7 +10,7 @@ You can manage redirection rules on your {{% vendor/name %}} projects in two dif
 
 {{% note theme="info" title="Route limits" %}}
 
-Please note that the maximum size of the routes document is 128 KB, which should fit around 300 different routes. [Read more about route limits here.](/define-routes.html#route-limits) 
+The routes document (the decoded `$PLATFORM_ROUTES` JSON) has a maximum size of 128&nbsp;KB, typically allowing for about 300 routes.<BR>It intentionally excludes the `redirects` property, which defines [partial redirects](#partial-redirects). See [route limits](/define-routes.html#route-limits) for details.
 
 {{% /note %}}
 
@@ -28,7 +28,7 @@ The default HTTP status code for Whole-route redirects is `301`. See [Specify a 
 
 ## Partial redirects
 
-In the [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file you can also add partial redirect rules to existing routes:
+You can add partial redirect rules to existing routes in the [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file, as shown below. Each environment supports up to 50,000 redirects. The `redirects` property is intentionally excluded from the routes document.
 
 ```yaml {configFile="app"}
 routes:
