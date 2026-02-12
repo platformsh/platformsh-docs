@@ -16,6 +16,14 @@ Examples of read-heavy applications include:
 - **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify data will result in an SQL error.
 {{< /note >}}
 
+## Supported versions
+
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="mariadb-replica" status="supported" >}}
+
 ### Read-only vs. external replicas
 Read-only replicas are used primarily to improve application performance by distributing database read requests from read-heavy applications.  
 
@@ -53,9 +61,9 @@ services:
           default_schema: main
           privileges:
               main: admin
-          replicator:
-            privileges:
-              main: replication
+        replicator:
+          privileges:
+            main: replication
 
   db-replica1:
     type: mariadb-replica:<VERSION>
@@ -67,7 +75,7 @@ services:
           default_schema: main
           privileges:
             main: admin
-      relationships:
+    relationships:
       primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 
   db-replica2:
@@ -80,7 +88,7 @@ services:
           default_schema: main
           privileges:
             main: admin
-      relationships:
+    relationships:
       primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 ```
 

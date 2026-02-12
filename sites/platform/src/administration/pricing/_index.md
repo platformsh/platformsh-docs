@@ -186,16 +186,16 @@ You can contact your Customer Success Manager to add DDoS surge protection to yo
 Agencies have access to several partner levels with many perks.
 
 * Agency partner levels: Registered, Bronze, Silver, Gold, Platinum, and Diamond
-* Free user licenses: Silver and above
+* Free user licenses: Registered, Bronze, Silver, Gold, Platinum, and Diamond
 * Free development plan: Gold and above
 * Access to an agency-speciﬁc Small plan price: Bronze and above
 * Agency discounts for plans depending on the combination of the account tier and agency partner level:
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
   |-------------------|------------|--------|--------|------|----------|---------|
-  | User license      | –          | –      | Free   | Free | Free     | Free    |
+  | User license      | Free       | Free   | Free   | Free | Free     | Free    |
   | Development plan  | –          | –      | –      | Free | Free     | Free    |
-  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Professional tier | –          | 10%    | 10%    | 10%  | 10%      | 10%     |
   | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
   | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
   | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |

@@ -68,12 +68,13 @@ In particular, to expose a variable as its own environment variable,
 
 Variables have several Boolean options you can set in the Console or the CLI:
 
-| Option    | CLI flag            | Default | Description                                                                                                                                            |
-|-----------|---------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| JSON      | `--json`            | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`).                                                                        |
-| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
-| Runtime   | `--visible-runtime` | `true`  | Whether the variable is available at runtime.                                                                                                          |
-| Build     | `--visible-build`   | `true`  | Whether the variable is available at build time.                                                                                                       |
+| Option              | CLI flag              | Default | Description                                                                                                                                            |
+|---------------------|-----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| JSON                | `--json`              | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`).                                                                        |
+| Sensitive           | `--sensitive`         | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
+| Runtime             | `--visible-runtime`   | `true`  | Whether the variable is available at runtime.                                                                                                          |
+| Build               | `--visible-build`     | `true`  | Whether the variable is available at build time.                                                                                                       |
+| Application scope   | `--app-scope`         | —       | Limits the variable visibility to specific apps. By default, the variable is available across all applications.                |
 
 So if you want the `foo` variable to be visible at build time but hidden during runtime,
 you can set it by running the following command:
@@ -88,9 +89,21 @@ For example, to make the `foo` variable visible at runtime and hidden during the
 ```bash
 {{% vendor/cli %}} variable:update foo --visible-build false --visible-runtime true
 ```
+#### Limiting variables to specific applications
 
-Note that for changes to project variables to have effect,
-you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
+If you want the `foo` variable to be available only to certain applications, you can limit its scope using the `--app-scope` option:
+
+```bash
+upsun variable:create --level project --name foo --value bar --app-scope frontend1,frontend2
+```
+
+Where `frontend1` and `frontend2` are the names of your applications.
+
+{{< note theme="Info" >}}
+
+Note that for changes to project variables to have effect, you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
+
+{{< /note >}}
 
 ## Create environment-specific variables
 
