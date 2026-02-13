@@ -103,7 +103,7 @@ title= Automated update
 {{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
-[Compare the {{% vendor/name %}} tiers](https://upsun.com/fixed-pricing/) on our pricing page,
+[Compare the {{% vendor/name %}} tiers](https://upsun.com/pricing-fixed/) on our pricing page,
 or [contact our Sales team](https://upsun.com/contact-us/) for more information.
 
 {{< /note >}}
