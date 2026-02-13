@@ -21,7 +21,7 @@ If you need more information, have any questions, or you think you have the perf
 
 ### Key features
 
--   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://upsun.com/fixed-pricing/)
+-   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://upsun.com/pricing-fixed/)
 -   **Dedicated hosts:** Each DG3 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader and adding, upgrading or removing services on their own
@@ -68,7 +68,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Storage increase responsibility** | Shared responsibility with Upsun Fixed | Self-service |
 | **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | No: a running Cron task will block a deployment until it is complete |
 | **Sync and merge functionalities** | Yes on all branches | Yes on all branches |
-| **SLA** | 99.99% with [Enterprise or Elite](https://upsun.com/fixed-pricing/) | 99.9% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)|
+| **SLA** | 99.99% with [Enterprise or Elite](https://upsun.com/pricing-fixed/) | 99.9% with [Enterprise or Elite](https://upsun.com/pricing-fixed/)|
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services are replicated across all 3| A single container is deployed per runtimes and per services |
 | **Resources allocation** | Resources are deployed on all 3 nodes | Resources are spread through one container with fixed sizes after deployment |
@@ -79,7 +79,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Automated backup** | Yes | Yes |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | No |
-| **Custom domains name** | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers |
+| **Custom domains name** | On all branches for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers | On all branches for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers |
 
 #### Available services
 
@@ -143,7 +143,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | Available only on Dedicated Environments for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers |
+| **Custom domains name** | Available only on Dedicated Environments for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers | On all branches for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features

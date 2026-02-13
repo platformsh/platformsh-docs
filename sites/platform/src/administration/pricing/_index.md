@@ -7,7 +7,7 @@ layout: single
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
-Full pricing information is available at https://upsun.com/fixed-pricing/.
+Full pricing information is available at https://upsun.com/pricing-fixed/.
 The resources listed there are for [production environments](#production-environments).
 
 You can switch between plans freely, adding or removing resources, including [extras](#extras).
@@ -41,7 +41,7 @@ Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](/domains/steps/_index.md).
 
 The production environment has more resources than the project's preview environments.
-See the main [pricing page](https://upsun.com/fixed-pricing/) for the resources available per plan for Production environments.
+See the main [pricing page](https://upsun.com/pricing-fixed/) for the resources available per plan for Production environments.
 
 ### Preview environments
 
