@@ -199,13 +199,13 @@ Security and other patches are applied automatically.
 | [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
 | [Elixir](/languages/elixir.html)             | `elixir`        | 1.19<br/>1.18<br/>1.17                          |
 | [Go](/languages/go.html)                     | `golang`        | 1.25<br/>1.24                                   |
-| [Java](/languages/java.html)                 | `java`          | 25                                       |
+| [Java](/languages/java.html)                 | `java`          | 25                                              |
 | [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20                         |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20                                |
 | [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
-| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2                     |
-| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11 |
-| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3                     |
+| [PHP](/languages/php.html)                   | `php`           | 8.5<br/8.4<br/>8.3<br/>8.2                      |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11                          |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 4.0<br/>3.4<br/>3.3                             |
 
 
 ### PHP extensions and Python packages {#php-extensions-and-python-packages}
