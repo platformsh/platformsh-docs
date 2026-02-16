@@ -260,7 +260,7 @@ You can optionally enable email notifications:
 
 - **Email me 5 days before each maintenance event**
 
-When enabled, Upsun sends a reminder email ahead of the scheduled maintenance. Depending on your organization setup, the email is sent to the project owner or the organization owner.
+When enabled, {{% vendor/name %}} sends a reminder email ahead of the scheduled maintenance. Depending on your organization setup, the email is sent to the project owner or the organization owner.
 
 {{< note theme="info" >}}
 
