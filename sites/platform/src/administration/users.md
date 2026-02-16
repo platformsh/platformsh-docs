@@ -213,7 +213,7 @@ By default, such users have no [organization permissions](#organization-permissi
 You can also have organization users who aren't part of any projects.
 
 Users who are a part of an organization with the **List projects** permission can see all projects in that organization at the organization's URL,
-which takes the form `https://console.{{% vendor/urlraw "host" %}}/{{< variable "ORGANIZATION_NAME" >}}`.
+which takes the form `{{< vendor/urlraw "console" >}}{{< variable "ORGANIZATION_NAME" >}}`.
 They can only access projects they've been explicitly invited to.
 For more information on project access control, see how to [manage project users](#manage-project-users).
 
