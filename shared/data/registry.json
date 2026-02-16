@@ -135,7 +135,13 @@
         "7.5",
         "7.2",
         "6.8",
-        "6.5"
+        "6.5",
+        "5.4",
+        "5.2",
+        "2.4",
+        "1.7",
+        "1.4",
+        "0.90"
       ],
       "supported": [
         "7.10"
@@ -191,11 +197,12 @@
     "runtime": false,
     "type": "elasticsearch-enterprise",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "8.19",
+      "deprecated": [
         "8.5",
         "7.17"
+      ],
+      "supported": [
+        "8.19"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -306,7 +313,9 @@
         "1.13",
         "1.12",
         "1.11",
-        "1.10"
+        "1.10",
+        "1.9",
+        "1.8"
       ],
       "supported": [
         "1.25"
