@@ -33,6 +33,7 @@ The versions displayed below are currently supported but can only be added separ
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
+- 7.10
 - 7.9
 - 7.7
 - 7.6
