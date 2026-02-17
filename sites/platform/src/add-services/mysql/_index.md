@@ -689,7 +689,9 @@ Each has its own credentials you can use to connect to the given database.
 
 For MariaDB 10.1 and later, you can configure the database by adding the properties below to the `.services.<SERVICE_NAME>.configuration.properties` key. This method is equivalent to using a using a `my.cnf` file.
 
-**Note**: At this time, these properties can be configured on MariaDB/MySQL databases only. They cannot be configured for Oracle MySQL databases.  
+{{% note theme="info" %}} 
+**At this time, these properties can be configured on MariaDB/MySQL databases only.** They cannot be configured for Oracle MySQL databases.
+{{% /note %}}  
 
 | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
 |---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
