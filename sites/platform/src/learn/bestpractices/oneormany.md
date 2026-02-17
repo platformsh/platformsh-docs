@@ -71,7 +71,7 @@ In a clustered application, you can have one of the following configurations:
 
 {{< note >}}
 
-Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://upsun.com/fixed-pricing/).
+Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://upsun.com/pricing-fixed/).
 
 {{< /note >}}
 

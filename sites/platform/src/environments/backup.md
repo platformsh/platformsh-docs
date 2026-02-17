@@ -75,7 +75,7 @@ The number of available backups for Production environments depends on your sche
 
 Note that [backup retention](/security/data-retention.md#grid-backups) also depends on your schedule.
 
-The schedules available to you depend on your [tier](https://upsun.com/fixed-pricing/).
+The schedules available to you depend on your [tier](https://upsun.com/pricing-fixed/).
 
 | Tier             | Default schedule | Possible upgrade |
 | ---------------- | ---------------- | ---------------- |
@@ -118,7 +118,7 @@ Automated backups are only available for production environments.
 If you're on a [development plan](/administration/pricing/_index.md#development-plans),
 all your environments are [development environments](/glossary/_index.md#environment-type).
 This includes your future production environment.
-If you want to enable automated backups for it, [upgrade to a non-development plan](https://upsun.com/fixed-pricing/).
+If you want to enable automated backups for it, [upgrade to a non-development plan](https://upsun.com/pricing-fixed/).
 
 {{< /note >}}
 

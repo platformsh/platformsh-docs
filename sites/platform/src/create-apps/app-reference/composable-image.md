@@ -207,9 +207,9 @@ Security and other patches are applied automatically.
 | [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
 | [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20                         |
 | [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
-| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2                     |
+| [PHP](/languages/php.html)                   | `php`           | 8.5<br/>8.4<br/>8.3<br/>8.2                     |
 | [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11 |
-| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3                     |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 4.0<br/>3.4<br/>3.3                     |
 
 
 ### PHP extensions and Python packages {#php-extensions-and-python-packages}
