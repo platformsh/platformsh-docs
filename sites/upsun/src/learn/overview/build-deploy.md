@@ -208,7 +208,7 @@ As soon as your deployment type is switched from manual to automatic, all curren
 
 A maintenance window lets you choose when {{% vendor/name %}} can apply platform updates that may require a short downtime. This helps keep your environments secure and reliable while minimizing disruption to your users.
 
-If you don’t define a maintenance window, we can’t guarantee that your environments will receive critical updates on time. In addition, some features (such as (Zero-Downtime Deployments)[#zero-downtime-deployments]) may not be available without a configured maintenance window.
+If you don’t define a maintenance window, we can’t guarantee that your environments will receive critical updates on time. In addition, some features, such as (Zero-Downtime Deployments)[#zero-downtime-deployments], may not be available without a configured maintenance window.
 
 {{< note theme="tip" >}}
 
