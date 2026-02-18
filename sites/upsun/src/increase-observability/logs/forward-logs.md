@@ -215,55 +215,6 @@ Note that if your endpoint URL includes a `PORT`, that can also be included in t
 Once you've [added the service](../../add-services/_index.md),
 to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
-### Excluding services from HTTP log forwarding
-
-All log forwarding integrations support an `excluded_services` property. This allows you to prevent logs from specific applications or services (including workers) from being forwarded to an external logging provider.
-
-This is useful for reducing noise, limiting log volume, or excluding non-critical services. The exclusion list is defined at the project level and applies to all environments.
-
-#### Supported integrations
-
-The `excluded_services` property is supported by all log forwarder types, including:
-
-- Syslog
-- Sumologic
-- Splunk
-- HTTP log forwarding
-- New Relic
-- OTLP
-
-#### Excluding apps or services
-
-By default, logs from all apps and services are forwarded. To exclude specific services, define them using `excluded_services`:
-
-```yaml {configFile="app"}
-logs_forwarders:
-  - type: httplog
-    endpoint: https://logs.example.com
-    excluded_services:
-      - cache
-      - debug-worker
-```
-In this example, logs from the `cache` service and the `debug-worker` worker are not forwarded.
-
-{{< note theme="note" >}}
-Note that the same exclusion list applies to all environments. If a listed app or service does not exist in an environment, it is silently ignored. No error is raised.
-{{< /note >}}
-
-{{< note theme="info" >}}
-`excluded_services` removes the specified apps or services from log forwarding while all other apps and services continue to forward logs as normal. Note that these exclusions apply globally across environments.
-{{< /note >}}
-
-### Naming consistency
-
-When defining exclusions, you can list:
-
-- Apps (for example - `app`, `api`)
-- Services (for example - `cache`, `database`)
-- Workers (for example - `debug-worker`)
-
-Make sure to use the `service` or `app` name **exactly as defined in your project configuration**.
-
 ## Log levels
 
 Your app may output logs with distinct severity levels.
