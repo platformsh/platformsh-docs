@@ -43,7 +43,7 @@ The following premium versions are supported:
 
 {{< note >}}
 
-Please note that the above versions only apply to Dedicated Gen 2. As of now, there are **no supported versions** on Grid. 
+Please note that the above versions only apply to Dedicated Gen 2. As of now, there are **no supported Premium versions** on Grid. 
 
 {{< /note >}}
 
