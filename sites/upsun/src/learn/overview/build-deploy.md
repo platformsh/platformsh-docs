@@ -286,6 +286,8 @@ To configure a maintenance window:
 1. Go to **Project settings**.
 2. Select **Maintenance window**.
 
+![Find the Maintenance window in the Project settings](/images/ZDD/maintenance-window.png)
+
 From there, you can:
 
 - Enable the maintenance window
