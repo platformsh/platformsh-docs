@@ -204,6 +204,87 @@ As soon as your deployment type is switched from manual to automatic, all curren
 
 {{< /note >}}
 
+## Maintenance window
+
+A maintenance window lets you choose when {{% vendor/name %}} can apply platform updates that may require a short downtime. This helps keep your environments secure and reliable while minimizing disruption to your users.
+
+If you don’t define a maintenance window, we can’t guarantee that your environments will receive critical updates on time. In addition, some features (such as [Zero-Downtime Deployments](#zero-downtime-deployments)), may not be available without a configured maintenance window.
+
+{{< note theme="tip" >}}
+
+Note that maintenance windows are configured per project.
+
+{{< /note >}}
+
+## What happens during a maintenance window
+
+During your scheduled maintenance window, {{% vendor/name %}} may perform operations such as:
+
+- Applying base image updates (minor updates)
+- Restarting environemnts when required
+
+These operations may require brief downtime.
+
+{{< note theme="info" >}}
+
+If no updates are pending at the time of your scheduled window, {{% vendor/name %}} may skip the maintenance operation, depending on what is required.
+
+{{< /note >}}
+
+## How scheduling works
+
+When you enable a maintenance window, you define the following scheduling types:
+
+- **Repeat every**  
+  - Every 2 weeks  
+  - Every 4 weeks  
+
+- **Repeat on**  
+  - One day per week
+
+- **Time**  
+  - The time of day (in your project’s timezone)
+
+Based on this configuration, {{% vendor/name %}} calculates the next upcoming maintenance date. The next scheduled event is displayed in the user interface.
+
+{{< note theme="note" >}}
+
+If a runtime update requires downtime, it will be performed during your maintenance window to avoid unexpected interruptions. Your regular deployments continue to run normally outside of that window.
+
+{{< /note >}}
+
+## Rescheduling (snooze)
+
+If a maintenance event is scheduled and you need to postpone it, you can reschedule it.
+
+Rescheduling rules:
+
+- You can reschedule the maintenance event multiple times, as long as it remains within the permitted timeframe.
+- The new date must fall within the allowable window displayed in the Console.
+- You have a five-day rescheduling window. This means you can move the maintenance to any available date within five days of the original scheduled date, provided it stays within the timeframe shown in the Console.
+
+{{< note theme="info" >}}
+
+After you reschedule an event within the five-day window, further rescheduling for that event is blocked.
+
+{{< /note >}}
+
+## Where to configure the maintenance window
+
+The Maintenance Window is not a default feature and therefore needs to be configured and enabled. To configure a maintenance window:
+
+1. Go to **Project settings**.
+2. Select **Maintenance window**.
+
+![Find the Maintenance window in the Project settings](/images/ZDD/maintenance-window.png)
+
+From there, you can:
+
+- Enable the maintenance window
+- Choose the recurrence (2 weeks or 4 weeks), weekday(s), and time
+
+Note that once the maintenance window is enabled, it cannot be manually disabled. 
+
 ## Zero Downtime Deployments
 ## What is Zero Downtime?
 
