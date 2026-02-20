@@ -7,7 +7,7 @@ layout: single
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
-Full pricing information is available at https://upsun.com/fixed-pricing/.
+Full pricing information is available at https://upsun.com/pricing-fixed/.
 The resources listed there are for [production environments](#production-environments).
 
 You can switch between plans freely, adding or removing resources, including [extras](#extras).
@@ -41,7 +41,7 @@ Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](/domains/steps/_index.md).
 
 The production environment has more resources than the project's preview environments.
-See the main [pricing page](https://upsun.com/fixed-pricing/) for the resources available per plan for Production environments.
+See the main [pricing page](https://upsun.com/pricing-fixed/) for the resources available per plan for Production environments.
 
 ### Preview environments
 
@@ -186,16 +186,16 @@ You can contact your Customer Success Manager to add DDoS surge protection to yo
 Agencies have access to several partner levels with many perks.
 
 * Agency partner levels: Registered, Bronze, Silver, Gold, Platinum, and Diamond
-* Free user licenses: Silver and above
+* Free user licenses: Registered, Bronze, Silver, Gold, Platinum, and Diamond
 * Free development plan: Gold and above
 * Access to an agency-speciﬁc Small plan price: Bronze and above
 * Agency discounts for plans depending on the combination of the account tier and agency partner level:
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
   |-------------------|------------|--------|--------|------|----------|---------|
-  | User license      | –          | –      | Free   | Free | Free     | Free    |
+  | User license      | Free       | Free   | Free   | Free | Free     | Free    |
   | Development plan  | –          | –      | –      | Free | Free     | Free    |
-  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Professional tier | –          | 10%    | 10%    | 10%  | 10%      | 10%     |
   | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
   | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
   | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |

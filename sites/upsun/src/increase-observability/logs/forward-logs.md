@@ -5,7 +5,7 @@ weight: 10
 banner:
     type: observability-suite
 ---
-
+<!-- vale off -->
 You might use a service to analyze logs from various parts of your fleet.
 You might want to consolidate all your logs in one place that everyone has access to
 without needing to grant them access to each project individually.
@@ -320,3 +320,4 @@ func main() {
 ```
 
 {{< /codetabs >}}
+<!-- vale on -->

@@ -45,7 +45,7 @@ title=Using the CLI
 title=Using Git
 +++
 
-1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **Code {{< icon chevron >}}**.
+1. In the [Console]({{% vendor/urlraw "console" %}}), open your project and click **Code {{< icon chevron >}}**.
 2. Click **Git**.
 3. To copy the command, click **{{< icon copy >}} Copy**.
    The command is similar to the following:
@@ -116,7 +116,7 @@ title=Using the CLI
 title=In the Console
 +++
 
-1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **{{< icon settings >}}**.
+1. In the [Console]({{% vendor/urlraw "console" %}}), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}**.
 3. Click **Variables** and access your variable's values and settings.
 4. Store the data somewhere secure on your computer.

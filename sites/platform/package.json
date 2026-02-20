@@ -42,7 +42,7 @@
     "alpinejs": "^3.11.1",
     "asciinema-player": "^3.0.1",
     "autoprefixer": "^10.4.13",
-    "axios": "^1.8.2",
+    "axios": "^1.13.5",
     "express": "^4.22.1",
     "fs-extra": "^11.1.1",
     "js-yaml": "^4.1.1",

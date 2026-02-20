@@ -82,7 +82,7 @@ A best practice is to first back up your environment and export the data.
 
 To prevent data loss after completing either of these actions, follow these steps:
 
-1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service or make an error in your `config.yaml` file and need to revert your entire environment, the backup enables you to do so. 
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so. 
 1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
 1. Change the service type in your [service configuration](/add-services/_index.md):
     - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
@@ -687,11 +687,11 @@ Each has its own credentials you can use to connect to the given database.
 
 ## Configure the database
 
-For MariaDB 10.1 and later and Oracle MySQL 8.0 and later, you can set some configuration properties
-(equivalent to using a `my.cnf` file).
+For MariaDB 10.1 and later, you can configure the database by adding the properties below to the `.services.<SERVICE_NAME>.configuration.properties` key. This method is equivalent to using a using a `my.cnf` file.
 
-In your settings, add the `properties` key to the `configuration` key.
-It offers the following properties:
+{{% note theme="info" %}} 
+**At this time, these properties can be configured on MariaDB/MySQL databases only.** They cannot be configured for Oracle MySQL databases.
+{{% /note %}}  
 
 | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
 |---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -13,7 +13,7 @@ You'll also find important details about billing cycles, invoice eligibility, an
 
 This page is _not_ meant to be your primary resource for the exact costs of certain features.
 
-The official {{% vendor/name %}} [Pricing page](https://upsun.com/fixed-pricing/) should always be considered the primary source of pricing details.
+The official {{% vendor/name %}} [Pricing page](https://upsun.com/pricing-fixed/) should always be considered the primary source of pricing details.
 
 {{< /note >}}
 
@@ -91,7 +91,7 @@ The **billing cycle** refers to the period between invoices. You will be billed 
 ## Further resources
 
 ### Pricing
-- [{{% vendor/name %}} prices](https://upsun.com/fixed-pricing/)
+- [{{% vendor/name %}} prices](https://upsun.com/pricing-fixed/)
 
 ### Terms and conditions
 - [Legal terms of service](https://upsun.com/trust-center/legal/tos/)
