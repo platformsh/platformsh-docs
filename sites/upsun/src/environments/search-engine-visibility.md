@@ -1,7 +1,7 @@
 ---
 title: Manage search indexing for an environment
 sidebarTitle: Manage search indexing
-description: Learn how to configure search indexing to ensure only your live production site is visible in search results.
+description: Learn how to set up search indexing so only your live production site appears in search results.
 ---
 
 When you have preview environments,
@@ -41,21 +41,20 @@ If you're concerned about access, set up [HTTP access control](/environments/htt
 
 ## How it's done
 
-When the **Hide from search engines** is enabled,
+When **Hide from search engines** is enabled,
 search engines are turned away from environments by including a `X-Robots-Tag` header:
 
 ```txt
 X-Robots-Tag: noindex, nofollow
 ```
 
-That tells search engine indexers to not index these sites and not traverse links from these sites.
-This helps keep non-Production sites out of search engine indexes.
+This header instructs search engine indexers to not index these sites and not traverse links from these sites, keeping non-production sites out of search engine indexes.
 
-It's automatically on for all `{{% vendor/cli %}}.site` domains, and it's automatically off for production environments with a custom domain.
+By default, this setting is enabled for all `{{% vendor/cli %}}.site` domains, and is disabled for production environments with a custom domain.
 
 ## Alternative method
 
-You can also send instructions to search engine indexers by using a `robots.txt` file.
+You can also instruct search engine indexers by using a `robots.txt` file.
 Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
 Control either with the [`location` section of your app configuration](/create-apps/image-properties/web.md#locations).
 
