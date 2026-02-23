@@ -79,6 +79,19 @@ applications:
 
 ### Supported Nix channels
 
+{{% note theme="info" %}}
+
+Nix releases new channels a few times per year. Channels that were fully supported can quickly become deprecated. With Composable Images, you are responsible for: 
+
+ - Keeping your Nix channel up to date  
+ - Ensuring requested runtimes and packages are available and current
+
+Unlike [Single Runtime Images](/create-apps/app-reference/single-runtime-image.md), which receive automatic minor and security updates, Composable Images require proactive maintenance. We recommend reviewing your configuration at least twice per year to upgrade the Nix channel and any runtimes or packages you rely on.
+
+See [Which image type should I use?](/create-apps/app-reference.html#which-image-type) for a quick comparison of [Single Runtime](/create-apps/app-reference/single-runtime-image.md) vs Composable Images.
+
+{{% /note %}}
+
 Upsun supports the following Nix channel versions:
 
 - `{{% latest composable %}}`
