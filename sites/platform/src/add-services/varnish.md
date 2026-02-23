@@ -29,6 +29,27 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
+## Deprecated versions
+
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="varnish" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="varnish" status="deprecated" environment="dedicated-gen-2" >}}</td>
+        </tr>
+    </tbody>
+</table>
+
 ## How it works
 
 All incoming requests go through the [standard router](/define-routes/_index.md).
