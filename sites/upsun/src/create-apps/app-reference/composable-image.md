@@ -183,7 +183,7 @@ See the [`stack` configuration example](#example-stack-configuration) above, whi
 
 If a PHP runtime is the first declared (or _primary_) runtime in the app:
   - The PHP-FPM service starts automatically.
-  - You can configure the PHP-FPMP service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
+  - You can configure the PHP-FPM service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
 
     The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys.
 
