@@ -101,11 +101,29 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on an {{% vendor/name %}} environment isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
-| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on an {{% vendor/name %}} environment isn’t possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `prune-branches` | `true`  | Whether to automatically delete {{% vendor/name %}} environments that don’t match any remote branch. **Important:** When first enabled, this immediately deletes all pre-existing environments that don’t have a corresponding remote branch. Only affects standard branch environments; merge request environments are not deleted. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
+
+{{< note theme="warning" title="Automatic environment deletion" >}}
+
+When you create or update a source integration with `prune-branches: true` (the default), the system automatically synchronizes your {{% vendor/name %}} environments with your remote repository branches.
+
+**This means:**
+- Pre-existing {{% vendor/name %}} environments that don’t match any remote branch are **automatically deleted** during the initial integration setup
+- Only environments with local deployment targets (standard branch environments) are affected
+- Merge request environments are **not affected** by this pruning
+- Environments matching remote branches are preserved and updated with `has_remote: true`
+- The master/main environment is always preserved if it exists remotely
+
+**To prevent automatic deletion:**
+Set `prune-branches: false` when creating the integration using the `--prune-branches=false` flag with the CLI, or disable the **Prune branches** option in the Console.
+
+This feature ensures your {{% vendor/name %}} environments stay in sync with your repository, automatically cleaning up stale branches. If you have many local environments that don’t match remote branches, consider reviewing or backing them up before enabling the integration.
+
+{{< /note >}}
 
 To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 

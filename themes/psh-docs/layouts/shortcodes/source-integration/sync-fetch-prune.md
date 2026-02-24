@@ -6,8 +6,14 @@ An integration from {{ $type }} to {{ .Site.Params.vendor.name }} establishes th
 - {{ .Site.Params.vendor.name }} is a mirror of that repository - provisioning infrastructure according to configuration, and orchestrating environments according to the branch structure of the {{ $type }} repository
 
 Actions that take place on {{ .Site.Params.vendor.name }} don't affect commits on {{ $type }}.
-Because of this, the {{ $type }} integration enables both `fetch-branches` (track branches on {{ $type }}) and `prune-branches` (delete branches that don't exist on {{ $type }}) by default.
+Because of this, the {{ $type }} integration enables both `fetch-branches` (track branches on {{ $type }}) and `prune-branches` (automatically delete {{ .Site.Params.vendor.name }} environments that don't exist on {{ $type }}) by default.
 You can change these settings but it is recommend to keep them.
+
+**Important:** When `prune-branches` is enabled, environment synchronization happens automatically during:
+- Initial integration setup (first fetch from {{ $type }})
+- Subsequent webhook triggers when branches are deleted on {{ $type }}
+
+This means that when you first create the integration, any pre-existing {{ .Site.Params.vendor.name }} environments without matching {{ $type }} branches are immediately deleted.
 
 When enabled by default, you are limited by design as to what actions can be performed within the context of a {{ .Site.Params.vendor.name }} project with a {{ $type }} integration:
 
