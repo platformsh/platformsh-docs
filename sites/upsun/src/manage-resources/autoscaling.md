@@ -19,11 +19,11 @@ Autoscaling works through [horizontal scaling](/manage-resources/adjust-resource
 - **Product tiers:** Available for all Upsun Flex environments  
 - **Environments:** Configurable per environment - across development, staging, and production
 
-{{< note theme="info" title="Know your app first">}}
+{{% note theme="info" title="Know your app first" %}}
 Autoscaling is quick to set up: you can [enable it in a few clicks](#enable-autoscaling) from your environment’s **Configure resources** tab. However, it’s important to understand your app’s typical performance before turning it on. 
 
 Tools like [Blackfire](https://www.blackfire.io/) can help you identify where your app consumes CPU or memory, so you can set realistic thresholds that reflect your traffic patterns. Blackfire can also help you spot whether autoscaling is likely to benefit your app or if a fixed setup with tuned [vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) like CPU/RAM would serve you better.
-{{< /note >}}
+{{% /note %}}
 
 ## When to use autoscaling
 
@@ -39,7 +39,7 @@ A retail app sees traffic jump fivefold every Friday evening and during holiday 
 ### Example: When autoscaling might not be needed
 An internal dashboard with predictable, low usage may not benefit from autoscaling. In this case, a fixed number of instances and tuned vertical resources (CPU/RAM) can be more cost-effective and stable.
 
-{{< note theme="info" title="Scale databases and resources">}}
+{{% note theme="info" title="Scale databases and resources" %}}
 
 To vertically scale CPU, RAM, or disk, or horizontally scale applications and workers (manually), see:  
 
@@ -47,7 +47,7 @@ To vertically scale CPU, RAM, or disk, or horizontally scale applications and wo
 - [Resource initialization](/manage-resources/resource-init.html)
 - [Horizontal scaling (manual)](/manage-resources/adjust-resources.html#horizontal-scaling)
 - [Vertical scaling](/manage-resources/adjust-resources.html#vertical-scaling)
-{{< /note >}}
+{{% /note %}}
 
 ## Autoscaling availability
 
@@ -98,11 +98,11 @@ There are two different thresholds that your CPU and memory utilization operate 
 
 To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. This can also be configured or kept to the [default](#default-settings) waiting period before any additional scaling starts. 
 
-{{< note theme="warning" title="Combined triggers" >}}
+{{% note theme="warning" title="Combined triggers"  %}}
 
 If both CPU and memory triggers are enabled, either one can initiate scaling. A global cooldown applies after each scaling event, but in rare cases, combined triggers may interact unexpectedly. For example, CPU scaling up followed by memory scaling down. Adjust thresholds and cooldowns carefully to avoid oscillation.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ### Default settings
@@ -114,14 +114,14 @@ Autoscaling continuously monitors the configured **trigger** across your app’s
 - **Cooldown window:** 5 minutes between scaling actions
 - **Instance limits:** 1–8 per environment (region-dependent) 
 
-  {{< note theme="info" title="Instance limits and counts">}}
+  {{% note theme="info" title="Instance limits and counts" %}}
 
   - **Default instance limits are typically 1–8 instances per environment**, but the exact values depend on the region. Some regions may have higher or lower defaults. The scaling settings in your project always reflect the limits for the region where it runs.  
   - **When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes to apps are disabled.** [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
   - **To understand how an application's instances are distributed**, you can view the 
   instance details in the project's `/run/peers.json` file. To learn more, see [View application instance details](/manage-resources/adjust-resources.md#view-application-instance-details) in the "Resource configuration" topic.
 
-  {{< /note >}}
+  {{% /note %}}
 
 
 
@@ -159,11 +159,11 @@ This option is useful for workloads where caching or in-memory data handling det
 | Memory above 80% for 5 minutes | Scale up: Add one instance |
 | Memory below 30% for 5 minutes | Scale down: Remove one instance |
 
-{{< note theme="warning" title="Understand your app’s memory profile" >}}
+{{% note theme="warning" title="Understand your app’s memory profile"  %}}
 High memory usage doesn’t always mean your app needs more instances. Linux systems use available memory for caching and buffering, so 90–100% usage can be normal even under stable conditions. Before using memory-based autoscaling, profile your application’s typical memory behavior to avoid unnecessary scaling and extra cost.
 
 Tools such as [Blackfire](https://www.blackfire.io/) or system-level metrics in your [Application metrics dashboard](/increase-observability/application-metrics.html) can help you understand what “normal” looks like for your app.
-{{< /note >}}
+{{% /note %}}
 
 #### Configure memory triggers
 1. Open your project in the Console.  
@@ -185,12 +185,12 @@ For example, you might configure:
 - **Evaluation period** — Time CPU must stay above or below a threshold before action (1–60 minutes)
 - **Cooldown window** — Wait time before any subsequent scaling action (default: 5 minutes)
 
-{{< note theme="info" title="Manual instance scaling">}}
+{{% note theme="info" title="Manual instance scaling" %}}
 
 When autoscaling is enabled, manual instance scaling is disabled. Autoscaling manages instance counts within the min/max guardrails you define.
 {{% view-instance-details %}}
 
-{{< /note >}}
+{{% /note %}}
 
 ## Enable Autoscaling
 
@@ -226,14 +226,14 @@ You can also [configure notifications for alerts](/administration/billing/monito
 
 For example, by setting up an activity script on `environment.alert`, you can automatically send yourself an email, a Slack message, or another type of custom notification.
 
-{{< note theme="info" title="Metric resources">}}
+{{% note theme="info" title="Metric resources" %}}
 
 If you're looking to keep track of your infrastructure and application metrics see:
 
 - [Infrastructure metrics](/increase-observability/metrics.html)
 - [Application metrics](/increase-observability/application-metrics.html)
 
-{{< /note >}}
+{{% /note %}}
 
 ## Billing and cost impact
 
@@ -243,14 +243,14 @@ Added instances are deployed automatically without downtime.
 
 To control costs, avoid overly aggressive settings (e.g. very short evaluation periods).
 
-{{< note theme="info" title="Metric resources">}}
+{{% note theme="info" title="Metric resources" %}}
 
 If you're looking to keep track of your billing see:
 
 - [Monitor billing](/administration/billing/monitor-billing.html)
 - [Pricing overview](https://www.upsun.com/pricing/)
 
-{{< /note >}}
+{{% /note %}}
 
 ## Best practices for autoscaling
 
@@ -274,13 +274,13 @@ Autoscaling gives you flexibility and resilience, but to get the best results it
 - **Job continuity**: Cron jobs remain bound to their starting container and are **not** interrupted by scaling, so plan instances accordingly.
 
 
-{{< note theme="tip" title="Supported services and actions">}}
+{{% note theme="tip" title="Supported services and actions" %}}
 
 Autoscaling **does not** currently support queues or background worker services. 
 
 Scaling down to zero instances is also **not supported**. Use minimum instance counts to define your baseline availability.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ## Related documentation

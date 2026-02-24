@@ -24,12 +24,12 @@ That is, the only copy of your codebase you'd like to deploy is on your local co
 
 Click **Start from scratch** from the **Deploy with Git** option.
 
-{{< note theme="info" title="Git integrations">}}
+{{% note theme="info" title="Git integrations" %}}
 This guide does not specifically address integrating an {{% vendor/name %}} project with a third party repository such as one on GitHub, even though the **Connect repository** option is available at this stage.
 
 For now, continue to work locally.
 Third party integrations will be addressed at the end of this guide.
-{{< /note >}}
+{{% /note %}}
 
 Add details about your project, such as:
 
@@ -56,9 +56,9 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 {{% vendor/cli %}} project:create
 ```
 
-{{< note theme="info" title="Default branches" >}}
+{{% note theme="info" title="Default branches"  %}}
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`, the default production branch is set to `main`. Change it if your default branch is different (_e.g._: `master`).
-{{< /note >}}
+{{% /note %}}
 
 Then, you are asked if you want to set the local remote to your new project. Enter **Yes (y)**.
 
@@ -67,12 +67,12 @@ Your local source code is automatically linked to your newly created {{% vendor/
 In this guide, you will push your local repository to {{% vendor/name %}}.
 That is, the only copy of your codebase you'd like to deploy is on your local computer.
 
-{{< note theme="info" title="Git integrations">}}
+{{% note theme="info" title="Git integrations" %}}
 This guide does not specifically address integrating an {{% vendor/name %}} project with a third party repository such as one on GitHub, even though you will notice the **Connect repository** option available at this stage.
 
 For now, continue to work locally.
 Third party integrations will be addressed at the end of this guide.
-{{< /note >}}
+{{% /note %}}
 
 So long as you chose `y` (yes) to the question `Set the new project <projectName> as the remote for this repository?` during the `project:create` command, your local project is already integrated to the {{% vendor/name %}} project.
 

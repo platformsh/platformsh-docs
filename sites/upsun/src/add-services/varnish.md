@@ -109,14 +109,14 @@ The file MUST include:
 
 The logic varies based on whether you have one or more apps.
 
-{{< note >}}
+{{% note  %}}
 
 Misconfigured VCL files can result in incorrect and confusing behavior that's hard to debug.
 {{% vendor/name %}} doesn't help with VCL configuration options beyond the basic connection logic documented here.
 
 You can see any compilation errors with the [stats endpoint](#stats-endpoint).
 
-{{< /note >}}
+{{% /note %}}
 
 #### Example VCL template with one app
 
@@ -302,9 +302,9 @@ The following example shows how to set up purging.
    }
    ```
 
-  {{< note theme="info" >}}
+  {{% note theme="info"  %}}
   The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
-  {{< /note >}}
+  {{% /note %}}
 
 3. Set up cache purging to suit your needs.
    The following cURL call gives an example of how this can work:

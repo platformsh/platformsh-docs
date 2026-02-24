@@ -6,12 +6,12 @@ description: |
     Complete the last required steps to successfully deploy Flask on {{% vendor/name %}}.
 ---
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before using the materials below.
 
-{{< /note >}}
+{{% /note %}}
 
 For Flask to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to make a few changes to your {{% vendor/name %}} configuration.

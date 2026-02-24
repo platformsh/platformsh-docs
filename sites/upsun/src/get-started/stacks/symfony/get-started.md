@@ -11,12 +11,12 @@ This guide provides instructions for deploying, and working with, Symfony on {{%
 
 {{% guides/requirements name="Symfony" %}}
 
-{{< note >}}
+{{% note  %}}
 
 The Symfony CLI wraps the [{{% vendor/name %}} CLI](/administration/cli/_index.md) with added features related to Symfony.
 So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfony {{% vendor/cli %}}:<command>` in all of your commands.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Create your Symfony app
 
@@ -31,7 +31,7 @@ cd {{< variable "PROJECT_NAME" >}}
 The `--demo` flag pulls the [Symfony Demo skeleton](https://github.com/symfony/demo).</br>
 The `--{{% vendor/cli %}}` flag automatically generates the {{% vendor/name %}} configuration file.
 
-{{< note >}}
+{{% note  %}}
 
 Alternatively, you can deploy an **existing Symfony project**.
 To do so, follow these steps:
@@ -52,7 +52,7 @@ To do so, follow these steps:
    git commit -m "Add {{% vendor/name %}} configuration"
    ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Create your {{% vendor/name %}} project
 
@@ -64,7 +64,7 @@ symfony {{% vendor/cli %}}:create --title PROJECT_TITLE --set-remote
 
 The `--set-remote` flag sets the new project as the remote for this repository.
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 You can link any repository to an existing {{% vendor/name %}} project using the following command:
 
@@ -72,7 +72,7 @@ You can link any repository to an existing {{% vendor/name %}} project using the
 symfony {{% vendor/cli %}}:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## 3. Deploy your project
 
@@ -89,7 +89,7 @@ To go back to displaying the logs, run `symfony {{% vendor/cli %}}:activity:log`
 
 Congratulations, your first Symfony app has been deployed on {{% vendor/name %}}!
 
-{{< note title="Tip" theme="info" >}}
+{{% note title="Tip" theme="info"  %}}
 
 Now that your app is deployed in production mode,
 you can define a custom domain for your live website.
@@ -100,7 +100,7 @@ or run the following command:
 symfony {{% vendor/cli %}}:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Make changes to your project
 

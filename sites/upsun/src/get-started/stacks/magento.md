@@ -14,7 +14,7 @@ You can also **check out the [{{% vendor/name %}} demo app](https://console.upsu
 
 {{% guides/requirements name="Drupal" %}}
 
-{{< note title="Authentication" theme="info" >}}
+{{% note title="Authentication" theme="info"  %}}
 You will not need Adobe Commerce authentication keys for this process but if you would like to learn how to set them up if you want to adjust the Composer repository to https://repo.magento.com/, visit [Adobe Commerce Authentication](https://experienceleague.adobe.com/en/docs/commerce-on-cloud/user-guide/develop/authentication-keys).
 
 {{</ note >}}
@@ -112,11 +112,11 @@ All other services will be using their [default container profiles](/manage-reso
 Once your project is deployed, you may need to [adjust your resources](/manage-resources/adjust-resources.html) and [adjust the container profiles](/manage-resources/adjust-resources.html#adjust-a-container-profile) of your other services.
 
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Please note that the deployment after configuring resources may take up to 25 minutes.
 
-{{< /note >}}
+{{% /note %}}
 
 ## View your log
 

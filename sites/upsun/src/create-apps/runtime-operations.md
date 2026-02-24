@@ -130,7 +130,7 @@ after the initial deployment of your app or after a redeployment.
 You can also trigger it when you need to fetch content from your backend
 but want to avoid going through the whole {{% vendor/name %}} [build and deploy processes](/learn/overview/build-deploy.md) again.
 
-{{< note >}}
+{{% note  %}}
 
 The following examples assume that the frontend and backend containers are included in the same environment.
 This isn’t necessary for the commands to run successfully.<BR>
@@ -140,7 +140,7 @@ If you don’t want to include a build within a mount (especially if your data s
 you can use [source operations](../create-apps/source-operations.md) to achieve a similar effect,
 but through generating a new commit.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< codetabs >}}
 +++

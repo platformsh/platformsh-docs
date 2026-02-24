@@ -11,10 +11,10 @@ Examples of read-heavy applications include:
 - Reporting or analytics jobs
 - Background jobs that frequently query data
 
-{{< note theme="info" title="Note" >}}
+{{% note theme="info" title="Note"  %}}
 - **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
 - **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify data will result in an SQL error.
-{{< /note >}}
+{{% /note %}}
 
 ## Supported versions
 
@@ -36,10 +36,10 @@ Other common use cases for read-only replicas include:
 ### Replica scope and sharing services {#replica-scope-sharing-services}
 MariaDB services (which provide access to databases and replicas) defined in a project cannot be accessed by or shared with applications in other projects. 
 
-{{< note theme="info" title="Important" >}}
+{{% note theme="info" title="Important"  %}}
 - **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
 - **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify a replica's data will result in an SQL error.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Configure the primary and replica services 
 

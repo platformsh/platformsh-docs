@@ -352,13 +352,13 @@ they can’t be reused across environments and only allow your app to connect to
 
 A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
-{{< note >}}
+{{% note  %}}
 
 When you create an index on Elasticsearch,
 don't specify the `number_of_shards` or `number_of_replicas` settings in your Elasticsearch API call.
 These values are set automatically based on available resources.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Authentication
 

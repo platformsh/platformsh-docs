@@ -82,9 +82,9 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 | [Kotlin and Spring](https://devcenter.upsun.com/posts/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
 | [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
 
-{{< note version="2" >}}
+{{% note version="2"  %}}
 While the table above shows examples for {{% vendor/psh_ref %}} rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
-{{< /note >}}
+{{% /note %}}
 
 ## Accessing services
 

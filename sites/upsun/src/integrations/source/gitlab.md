@@ -10,11 +10,11 @@ keywords:
 {{% source-integration/intro source="GitLab" %}}
 {{% source-integration/requirements source="GitLab" %}}
 
-{{< note theme="note" >}}
+{{% note theme="note"  %}}
 
 If your GitLab instance is not accessible from the public internet, configure a [GitLab CI/CD pipeline](#optional-use-a-gitlab-cicd-pipeline) that pushes code to {{% vendor/name %}} and manages environments via the {{% vendor/name %}} API. This method provides full deployment control while keeping your GitLab instance isolated. 
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Generate a token
 
@@ -29,7 +29,7 @@ For the integration to work, your GitLab user needs push access to the repositor
 
 Copy the token.
 
-{{< note >}}
+{{% note  %}}
 
 To create a project access token, you need to have a [sufficient GitLab license tier](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html).
 If you don't see **Access Tokens** under **Settings**, upgrade your GitLab tier.
@@ -37,7 +37,7 @@ Alternatively, you can create a [personal access token](https://docs.gitlab.com/
 but that's attached to a specific user rather than the project as a whole
 and grants more permissions.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Enable the integration
 
@@ -141,14 +141,14 @@ Instead, [set up a push-based GitLab CI/CD pipeline](https://devcenter.upsun.com
 - Clean up environments when branches or MRs are removed
 - Keep your GitLab instance fully private
 
-{{< note theme="tip" title="Detailed walkthrough" >}}
+{{% note theme="tip" title="Detailed walkthrough"  %}}
 
 For a detailed tutorial of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
 
 You can also find a complete working example of how this works in the {{% vendor/name %}} [GitHub snippets repository](https://github.com/upsun/snippets/tree/main/examples/gitlab-ci).
 
 
-{{< /note >}}
+{{% /note %}}
 
 
 

@@ -32,11 +32,11 @@ first activate it.
    At this point, the data and code from the backup are restored to ensure a consistent state.
    The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
 
-   {{< note theme="warning" title="Warning" >}}
+   {{% note theme="warning" title="Warning"  %}}
 
    {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
-   {{< /note >}}
+   {{% /note %}}
 
 3. Depending on your needs, you can do the following:
 

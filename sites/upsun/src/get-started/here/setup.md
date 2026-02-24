@@ -3,7 +3,7 @@ title: Setup
 weight: 5
 ---
 
-{{< note theme="info" title="Got code?" >}}
+{{% note theme="info" title="Got code?"  %}}
 In order to follow along with this guide, you need a local project.
 While the guide has been written to accommodate the following stacks, it is not limited to just those listed and are here only as examples.
 
@@ -36,7 +36,7 @@ While the guide has been written to accommodate the following stacks, it is not 
 - [Django installation guide](https://docs.djangoproject.com/en/5.0/intro/tutorial01/)
 </details>
 
-{{< /note >}}
+{{% /note %}}
 
 {{% guides/requirements %}}
 
@@ -59,7 +59,7 @@ git commit -m "Initial commit."
 This guide assumes that your repository's default branch is `main`.
 Your Git configuration may result in different default branches (like `master`), so please run `git branch -M main` before proceeding.
 
-{{< note theme="info" title="Don't commit dependencies" >}}
+{{% note theme="info" title="Don't commit dependencies"  %}}
 
 Whether you're migrating your own project, or testing {{% vendor/name %}} with a starter project, **never commit your app's dependencies**.
 Make sure you ignore directories containing dependencies by updating your `.gitignore` file.
@@ -77,6 +77,6 @@ echo "env" >> .gitignore
 git add .gitignore && git commit -m "Update .gitignore to ignore deps."
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 {{< guide-buttons previous="Back" type="*" next="Create a project" nextLink="/get-started/here/create-project" type="*" >}}

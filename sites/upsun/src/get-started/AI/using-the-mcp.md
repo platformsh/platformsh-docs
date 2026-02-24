@@ -35,11 +35,11 @@ To enable write operations, include the following header in your MCP configurati
 }
 ```
 
-{{< note theme="warning" title="Security Implications">}}
+{{% note theme="warning" title="Security Implications" %}}
 
 Enable write operations **only** if you understand the associated security implications and trust your AI assistant to modify infrastructure resources.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Architecture
 
@@ -64,13 +64,13 @@ It uses HTTP POST for client-to-server messages with optional Server-Sent Events
 - Connect your AI assistant or any MCP-compatible client.
 - Begin managing {{% vendor/name %}} resources using natural language commands.
 
-{{< note theme="info" title="Select your preferred client">}}
+{{% note theme="info" title="Select your preferred client" %}}
 
 The {{% vendor/name %}} MCP server works with all major AI development environments. 
 
 **Choose your preferred client from the list below:**
 
-{{< /note >}}
+{{% /note %}}
 
 <details>
 <summary><b>Install in Cursor</b></summary>

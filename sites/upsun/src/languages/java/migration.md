@@ -25,10 +25,10 @@ To run a Java application at {{% vendor/name %}} you need:
   * [GitLab](/integrations/source/gitlab.md)
   * The default Git repository provided by {{% vendor/name %}}
 
-{{< note >}}
+{{% note  %}}
 A container application can't be bigger than **8 GB** of memory.
 For more details, see [tuning](/languages/java/tuning.md).
-{{< /note >}}
+{{% /note %}}
 
 ## Monolith/Single Application
 
@@ -54,11 +54,11 @@ applications:
 3. [The commands key defines the command to launch the application](create-apps/image-properties/web.md#web-commands). For example,  `java -jar file.jar`.
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. For example, `java -jar jar --port=$PORT`.
 
-{{< note >}}
+{{% note  %}}
 
 Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/image-properties/mounts.md).
 
-{{< /note >}}
+{{% /note %}}
 
 ### Route
 
@@ -83,17 +83,17 @@ applications:
 ```
 1. It defines the application will link in the route. For example,`"myapp:http"`.
 
-{{< note version="1" >}}
+{{% note version="1"  %}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
 At runtime that limit depends on your plan and configuration.
 A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://support.platform.sh/hc/en-us/community/posts/16439676899474) configuration.
-{{< /note >}}
+{{% /note %}}
 
-{{< note version="2" >}}
+{{% note version="2"  %}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
 At runtime that limit depends on [the resources you have defined for your application container](/manage-resources.md) using `{{% vendor/cli %}} resources:set`.
 A stateless application can be scaled horizontally to multiple application instances with `{{% vendor/cli %}} resources:set` or by using Varnish in a [load balancer](https://support.platform.sh/hc/en-us/community/posts/16439676899474) configuration.
-{{< /note >}}
+{{% /note %}}
 
 ## Microservices
 
@@ -115,12 +115,12 @@ You have the option to use several languages in microservices. If you're using J
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
-{{< note >}}
+{{% note  %}}
 You can load balance to some or [all applications in the project cluster](https://support.platform.sh/hc/en-us/community/posts/16439662235026).
 
 While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Access to managed services
 
@@ -178,9 +178,9 @@ This sets environment variables with names your app needs and the values from [`
 | [Spring Data JPA](https://support.platform.sh/hc/en-us/community/posts/16439669562130) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/tree/master/spring-jpa) |
 | [Payara JPA](https://support.platform.sh/hc/en-us/community/posts/16439658290194) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
-{{< note version="2" >}}
+{{% note version="2"  %}}
 While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
-{{< /note >}}
+{{% /note %}}
 
 To reduce the number of lines in the application file and to make it cleaner,
 you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).

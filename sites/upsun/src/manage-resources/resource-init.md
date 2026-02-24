@@ -137,7 +137,7 @@ For example, to use the `minimum` strategy for your deployment, run the followin
 {{% vendor/cli %}} push --resources-init=minimum
 ```
 
-{{< note >}}
+{{% note  %}}
 
 Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
 
@@ -145,7 +145,7 @@ Alternatively, you can use the official Git syntax for [push options](/environme
 git push {{% vendor/cli %}} -o resources.init=minimum
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 Note that you can specify a different resource initialization strategy for each of your deployments.
 
@@ -158,12 +158,12 @@ title= With a source integration
 If you're using a [source integration](/integrations/_index.md),
 you can use the `--resources-init` flag to specify a resource initialization strategy.
 
-{{< note >}}
+{{% note  %}}
 
 Once a resource initialization strategy is specified for your source integration,
 it applies to **all** the deployments you launch through that source integration.
 
-{{< /note >}}
+{{% /note %}}
 #### **When creating a new source integration**
 To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
 include the `--resources-init` flag in your source integration options.</br>

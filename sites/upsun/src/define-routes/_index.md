@@ -84,11 +84,11 @@ routes:
 ```
 This enables sticky routing at the router level.
 
-{{< note theme="note" title="Note">}}
+{{% note theme="note" title="Note" %}}
 
 Because the routing uses IP hashing, scaling your environment up or down can change the hash distribution, causing requests to be routed to different containers. For production workloads that require persistent sessions, use an external session store (for example, [Redis](/add-services/redis.md)), or design your app to be stateless.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Trailing slashes
 

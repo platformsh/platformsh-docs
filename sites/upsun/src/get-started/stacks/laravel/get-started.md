@@ -73,7 +73,7 @@ To create a project on {{% vendor/name %}}, run the following command from withi
 
 The `--set-remote` flag sets the new project as the remote for this repository.
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 You can link any repository to an existing {{% vendor/name %}} project using the following command:
 
@@ -81,7 +81,7 @@ You can link any repository to an existing {{% vendor/name %}} project using the
 {{% vendor/cli %}} project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## 3. Deploy your project
 
@@ -98,11 +98,11 @@ To go back to displaying the logs, run `{{% vendor/cli %}} activity:log`.
 
 Congratulations, your first Laravel app has been deployed on {{% vendor/name %}}!
 
-{{< note title="Tip" theme="info" >}}
+{{% note title="Tip" theme="info"  %}}
 
 Now that your app is deployed in production mode,
 you can [set up a custom domain](/domains/steps/_index.md).
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Configure write access
 

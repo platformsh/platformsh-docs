@@ -104,7 +104,7 @@ The HTTP cache doesn't support a complete cache flush, but you can invalidate th
 
 Turns the cache on or off for a route.
 
-{{< note title="none">}}
+{{% note title="none" %}}
 **Type:** Boolean
 
 **Required:** Yes
@@ -112,7 +112,7 @@ Turns the cache on or off for a route.
 **Values**
 * `true`: enable the cache for this route [default, but only if the `cache` key isn't actually specified]
 * `false`: disable the cache for this route
-{{< /note >}}
+{{% /note %}}
 
 ### `headers`
 
@@ -129,12 +129,12 @@ routes:
         headers: ["Accept"]
 ```
 
-{{< note title="none">}}
+{{% note title="none" %}}
 **Type:** List
 
 **Values:**
 * `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
-{{< /note >}}
+{{% /note %}}
 
 #### Header behaviors
 
@@ -207,12 +207,12 @@ The `default_ttl` only applies to **non-static responses**, that is, those gener
 To set a cache lifetime for static resources configure that in your [app configuration](/create-apps/image-properties/web.md#locations).
 All static assets have a Cache-Control header with a max age defaulting to 0 (which is the default for `expires`).
 
-{{< note title="none">}}
+{{% note title="none" %}}
 **Type:** integer
 
 **Values:**
 * `0`: Do not cache [default]. This prevents caching, _unless_ the response specifies a `Cache-Control` header value.
-{{< /note >}}
+{{% /note %}}
 
 ## Debugging
 
@@ -258,9 +258,9 @@ And the following routes are **not** cached:
 -   `https://{default}/foo/`
 -   `https://{default}/foo/baz/`
 
-{{< note >}}
+{{% note  %}}
 Regular expressions in routes are **not** supported.
-{{< /note >}}
+{{% /note %}}
 
 ### Allowing only specific cookies
 

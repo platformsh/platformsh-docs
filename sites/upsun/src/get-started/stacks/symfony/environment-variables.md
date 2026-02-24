@@ -13,13 +13,13 @@ more [infrastructure environment variables](#symfony-environment-variables) rela
 As Symfony relies heavily on environment variables to configure application services (such as the database or the mailer DSN),
 the Symfony integration automatically defines [environment variables for all the services](#service-environment-variables) connected to your app.
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 The code that defines these additional environment variables is part of the open-source [Symfony CLI tool](https://symfony.com/download).
 Check the code for [infrastructure](https://github.com/symfony-cli/symfony-cli/blob/main/envs/remote.go#L139)
 and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#L110) environment variables on GitHub.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Symfony environment variables
 
@@ -51,12 +51,12 @@ The Symfony integration exposes more environment variables:
   Note that the build cache directory is persisted between builds but **isn't** deployed.
   It’s a good place to store build artifacts, such as downloaded files that can be reused between builds.
 
-  {{< note title="Tip">}}
+  {{% note title="Tip" %}}
 
   This directory is shared by **all** builds on **all** branches.
   Make sure your [build hook](/get-started/stacks/symfony/integration.md#hooks) accounts for that.
 
-  {{< /note >}}
+  {{% /note %}}
 
   If you need to clear the build cache directory, run the `symfony {{% vendor/cli %}}:project:clear-build-cache` command.
 
@@ -77,7 +77,7 @@ The Symfony integration exposes more environment variables:
 
   When several routes match a rule, the first one wins, the user order is kept. There's no preference regarding protocols.
 
-  {{< note title="Tip">}}
+  {{% note title="Tip" %}}
 
    If you have a multi-app project containing several publicly reachable apps,
    you might need to determine the current application endpoint (for webhooks for example)
@@ -86,7 +86,7 @@ The Symfony integration exposes more environment variables:
    In this case, you can use an additional `SYMFONY_APPLICATION_DEFAULT_ROUTE_*` set of environment variables.
    The same rules are applied to determine their value, but only routes matching the current application are evaluated.
 
-  {{< /note >}}
+  {{% /note %}}
 
 ## Service environment variables
 
@@ -118,12 +118,12 @@ For example, you could have a `DATABASE_URL` environment variable.
 Most environment variable names are derived from the relationship and service names.
 But some are defined based on Symfony conventions, such as [`MAILER_DSN`](#emails).
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Environment variables aren't exposed when the build hook script is running
 as services aren't available during the [build process](/learn/overview/build-deploy.md#the-build).
 
-{{< /note >}}
+{{% /note %}}
 
 ### Emails
 
@@ -168,12 +168,12 @@ The [MySQL/MariaDB](/add-services/mysql.html) configuration is exposed via the f
 - `DATABASE_USERNAME`: The database username
 - `DATABASE_PASSWORD`: The database password
 
-{{< note title="Tip">}}
+{{% note title="Tip" %}}
 
 The database version and a default charset are included in the database URL.
 To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
 
-{{< /note >}}
+{{% /note %}}
 
 ### PostgreSQL
 
@@ -191,12 +191,12 @@ The [PostgreSQL](/add-services/postgresql.html) configuration is exposed via the
 - `DATABASE_USERNAME`: The database username
 - `DATABASE_PASSWORD`: The database password
 
-{{< note title="Tip">}}
+{{% note title="Tip" %}}
 
 The database version and a default charset are included in the database URL.
 To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment variables respectively.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Redis
 

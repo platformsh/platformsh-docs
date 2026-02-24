@@ -51,9 +51,9 @@ However, the structure of the configuration file remains similar to the followin
 If you want more information on the structure of this configuration file, see the dedicated [YAML page](/learn/overview/yaml/_index.md).
 {{% /note %}}
 
-{{< note theme="info" title="Committing variables" >}}
+{{% note theme="info" title="Committing variables"  %}}
 {{% get-started/environment-note %}}
-{{< /note >}}
+{{% /note %}}
 
 Commit your new files:
 
@@ -69,9 +69,9 @@ Push up to your {{% vendor/name %}} project:
 
 {{% vendor/name %}} now reads your configuration files, begins building your application image and allocates resources to your various containers.
 
-{{< note >}}
+{{% note  %}}
 By default, {{% vendor/name %}} uses default resources for each of your services/apps. You can [adjust these resources](/get-started/here/set-resources.md).
-{{< /note >}}
+{{% /note %}}
 
 ## Errors on first push
 

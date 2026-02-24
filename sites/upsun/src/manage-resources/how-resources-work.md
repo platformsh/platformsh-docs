@@ -41,11 +41,11 @@ However, if you experience prolonged or recurring performance issues that may be
 
 If you require fully consistent and isolated performance, we recommend using our [Guaranteed Resources](/manage-resources/guaranteed-resources) offering, which provides [dedicated CPU allocations](#guaranteed-cpu) and eliminates variability from shared usage.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
  It should be noted that projects are always kept **strictly isolated** from each other. This behaviour applies to both [Fixed and Flex](/administration/organizations.md#fixed-and-flex-organizations) projects.
 
-{{< /note >}}
+{{% /note %}}
 
 **Best for:**  
 - Containers in development/staging environments  

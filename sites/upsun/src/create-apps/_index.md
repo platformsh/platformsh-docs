@@ -111,11 +111,11 @@ This approach supports any file type and offers some CPU optimization, especiall
 
 ## Comprehensive example
 
-{{< note title="PHP specifics" theme="info" >}}
+{{% note title="PHP specifics" theme="info"  %}}
 
 Unlike other runtimes, most PHP applications do not have a start command. There is a daemon running configured to work automatically with the web server. More often than not there will be a single entry-point a "front-controller". In the case of PHP the `passthru` property is a string with the location of the front-controller rather than a boolean.
 
-{{< /note >}}
+{{% /note %}}
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 

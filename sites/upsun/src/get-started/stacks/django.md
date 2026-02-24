@@ -8,12 +8,12 @@ description: |
     Complete the last required steps to successfully deploy Django on {{% vendor/name %}}.
 ---
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
-{{< /note >}}
+{{% /note %}}
 
 For Django to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to make a few changes to your {{% vendor/name %}} configuration.
@@ -31,12 +31,12 @@ export DJANGO_SECRET_KEY="$PLATFORM_PROJECT_ENTROPY"
 export DJANGO_ALLOWED_HOSTS=".{{< vendor/urlraw "hostname" >}}"
 ```
 
-{{< note theme="warning" title="Warning" >}}
+{{% note theme="warning" title="Warning"  %}}
 
 Not all Django apps allow for configuration in this way.
 See the following sections to see how other common settings should be set on {{% vendor/name %}}.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Configure `ALLOWED_HOSTS`
 

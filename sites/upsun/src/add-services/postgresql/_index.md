@@ -20,12 +20,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 {{< image-versions image="postgresql" status="supported" environment="grid" >}}
 
-{{< note >}}
+{{% note  %}}
 
 You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
 For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
 
-{{< /note >}}
+{{% /note %}}
 
 {{% deprecated-versions %}}
 
@@ -481,10 +481,10 @@ As with exporting, you can also specify a specific environment to use and a spec
 {{% vendor/cli %}} sql --relationship postgresql -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
-{{< note >}}
+{{% note  %}}
 Importing a database backup is a destructive operation. It overwrites data already in your database.
 Taking a backup or a database export before doing so is strongly recommended.
-{{< /note >}}
+{{% /note %}}
 
 ## Sanitizing data
 
@@ -754,12 +754,12 @@ extensions not listed here.
 * `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
 * `xml2` - XPath querying and XSLT
 
-{{< note >}}
+{{% note  %}}
 
 You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
 For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Notes
 
@@ -773,19 +773,19 @@ PostgreSQL 10 and later include an upgrade utility that can convert databases fr
 
 The utility can't upgrade PostgreSQL 9 versions, so upgrades from PostgreSQL 9.3 to 9.6 aren't supported. Upgrade straight to version 11 instead.
 
-{{< note >}}
+{{% note  %}}
 
 Make sure you first test your migration on a separate branch.
 
 Also, be sure to take a backup of your production environment **before** you merge this change.
 
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="warning" title="Warning">}}
+{{% note theme="warning" title="Warning" %}}
 
 Downgrading isn't supported. If you need to downgrade, dump to SQL, remove the service, recreate the service, and import your dump.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Upgrade to PostgreSQL 12 with the `postgis` extension
 

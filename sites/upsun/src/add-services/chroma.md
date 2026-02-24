@@ -175,11 +175,11 @@ routes:
     upstream: "chroma:http"
 ```
 
-{{< note theme="warning" title="Exposing Chroma">}}
+{{% note theme="warning" title="Exposing Chroma" %}}
 
 Be mindful that exposing Chroma publicly can be sensitive from a security standpoint.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Other resources
 

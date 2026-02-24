@@ -19,11 +19,11 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 {{< cli-installation >}}
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Authenticate
 

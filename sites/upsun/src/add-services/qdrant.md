@@ -41,11 +41,11 @@ applications:
 
 The example above is using a `HIGH_MEMORY` container. You can refer to the [Container profiles documentation](/manage-resources/adjust-resources.html#advanced-container-profiles) for more information.
 
-{{< note theme="info" title="Available versions">}}
+{{% note theme="info" title="Available versions" %}}
 In order to run Qdrant as a standalone application without building it from source, the configuration relies on the [Composable image](/create-apps/app-reference/composable-image.html). Each [Nix](https://nix.dev/reference/glossary#term-Nix) release (channel) comes with specific package versions. You can check which Qdrant version is available on a specific release on the [Nix packages search](https://search.nixos.org/packages?show=qdrant&query=qdrant).
 
 **This is especially important as Qdrant client librairies must use the same minor version `(x.y.*)` as the server.**
-{{< /note >}}
+{{% /note %}}
 
 ### 2. Add the required Qdrant configuration
 
@@ -262,11 +262,11 @@ routes:
     upstream: "qdrant:http"
 ```
 
-{{< note theme="warning" title="Exposing Qdrant">}}
+{{% note theme="warning" title="Exposing Qdrant" %}}
 
 Be mindful that exposing Qdrant publicly can be sensitive from a security standpoint.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Other resources
 

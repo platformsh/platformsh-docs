@@ -31,12 +31,12 @@ This flexibility allows you to optimize performance and costs.
 You can also scale horizontally if your apps are struggling with high load, or if you're expecting a traffic spike,
 by adding more instances for your apps and workers.
 
-{{< note >}}
+{{% note  %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 You can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Vertical scaling {#vertical-scaling} 
 
@@ -56,13 +56,13 @@ you can use the {{% vendor/name %}} CLI interactive prompts, or run commands man
 
 Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
 
-{{< note >}}
+{{% note  %}}
 
 For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
 you may need to set the resources again.
 
-{{< /note >}}
+{{% /note %}}
 
 After you've set resources, your environment is redeployed,
 which causes a short downtime.
@@ -113,11 +113,11 @@ title= From the Console
    ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
 3. For each app and service, select a CPU & RAM combination, and enter the amount of disk/storage you want to allocate.
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   {{< note >}}
+   {{% note  %}}
    The values from the **CPU & RAM** menu depend on the [container profile](#advanced-container-profiles) of each instance.</br>
    If you deploy several instances of your app, the selected CPU & RAM combination isn't divided between those instances.
    Each instance benefits from the full, selected CPU & RAM.
-   {{< /note >}}
+   {{% /note %}}
 4. Click **Save**.</br>
    You environment is redeployed, which causes a short downtime.
 
@@ -128,11 +128,11 @@ title= From the Console
 For apps and workers, you can also define how many instances you want to deploy.
 To do so, follow these steps:
 
-{{< note >}}
+{{% note  %}}
 
 When you have several instances of an app, the {{% vendor/name %}} router randomly distributes requests to available instances.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< codetabs >}}
 
@@ -202,10 +202,10 @@ title= From the Console
    ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
 1. For each of your apps and workers, select the number of instances you want to deploy.
    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   {{< note >}}
+   {{% note  %}}
    If you deploy several instances of your app, the [selected CPU & RAM combination](#vertical-scaling) isn't divided between those instances.
    Each instance benefits from the full, selected CPU & RAM.
-   {{< /note >}}
+   {{% /note %}}
 1. Click **Save**.</br>
    Your environment is redeployed.
    If you've only made changes to the number of instances for your apps and workers,
@@ -214,11 +214,11 @@ title= From the Console
 {{< /codetabs >}}
 
 
-{{< note theme="info" title="Autoscaling">}}
+{{% note theme="info" title="Autoscaling" %}}
 
 {{% vendor/name %}} provides [**native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.
 
-{{< /note >}}
+{{% /note %}}
 
 ## View application instance details {#view-application-instance-details}
 {{% vendor/name %}} maintains a real-time indexed list of an application's instances and their IP addresses in the project's `/run/peers.json` file. You might view this read-only file to gain insight into how your application instances are distributed. Upsun maintains this file whether you scale instances manually or have autoscaling enabled.

@@ -36,7 +36,7 @@ Upsun has deprecated version 2.0 due to performance inconsistencies identified u
 <!-- vale off -->
 ### Migration options {#migration-options}
 
-{{< note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}" >}}
+{{% note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}"  %}}
 
 Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
@@ -47,7 +47,7 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 
 - **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
-{{< /note >}}
+{{% /note %}}
 <!-- vale on -->
 
 **Option 1: Manual migration to version {{% latest \"network-storage\" %}}**<br>
@@ -306,12 +306,12 @@ applications:
         type: network-storage:{{% latest "network-storage" %}}
    ```
 
-   {{< note >}}
+   {{% note  %}}
 
    Make sure you [allocate enough disk space](/manage-resources/adjust-resources.md#vertical-scaling) to your `network-storage` service
    for your existing files with some buffer.
 
-   {{< /note >}}
+   {{% /note %}}
 
 2. Add a new `service` mount, named `new-uploads`:
 

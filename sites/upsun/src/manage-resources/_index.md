@@ -17,6 +17,6 @@ keywords:
 
 To understand how resources work on {{% vendor/name %}} and learn more about your options, visit the [how resources work](/manage-resources/how-resources-work.html) page.
 
-{{< /note >}}
+{{% /note %}}
 
 

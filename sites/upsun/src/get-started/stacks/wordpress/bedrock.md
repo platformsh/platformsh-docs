@@ -6,20 +6,20 @@ description: |
     Complete the last required steps to successfully deploy Bedrock-based WordPress on Upsun using Bedrock.
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before using the following materials.
 
-{{< /note >}}
+{{% /note %}}
 
 For WordPress to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="WordPress" %}}
 
-{{< note theme="info" title="Assumptions" >}}
+{{% note theme="info" title="Assumptions"  %}}
 
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
@@ -29,7 +29,7 @@ The instructions on this page were designed based on the following assumptions:
 - You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that
   while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Configure your root location
 
@@ -295,9 +295,9 @@ as follows:
 The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
 on your individual requirements.
 
-{{< note theme="info">}}
+{{% note theme="info" %}}
 When uncommenting, pay attention to the indentation and make sure that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
-{{< /note >}}
+{{% /note %}}
 
 ## Further resources
 - [All example files (`.environment`, `.upsun/config.yaml`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-bedrock)

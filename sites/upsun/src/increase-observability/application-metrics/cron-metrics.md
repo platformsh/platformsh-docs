@@ -61,7 +61,7 @@ Click a bar to open the detailed execution log, where you can inspect errors or 
 - **Correlate with metrics**: Combine this view with [application metrics](/increase-observability/application-metrics.html) to identify performance bottlenecks.  
 - **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/create-apps/image-properties/crons.md).  
 
-{{< note theme="info" title="Investigate consistently high durations" >}}
+{{% note theme="info" title="Investigate consistently high durations"  %}}
 If you notice that your Cron job runtimes are consistently increasing, this may indicate:
 
 - Growing data volumes,
@@ -70,7 +70,7 @@ If you notice that your Cron job runtimes are consistently increasing, this may 
 
 Use profiling tools like [Blackfire](/increase-observability/application-metrics/blackfire.html) to identify and resolve performance issues.
 
-{{< /note >}}
+{{% /note %}}
 
 ## When to check Cron execution history
 

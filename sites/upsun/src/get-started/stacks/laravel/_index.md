@@ -8,14 +8,14 @@ description: |
   Complete the last required steps to successfully deploy Laravel on {{% vendor/name %}}.
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
-{{< /note >}}
+{{% /note %}}
 
-{{< get-started/steps >}}
+{{% get-started/steps %}}
 
 ## Further resources
 

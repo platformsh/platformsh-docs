@@ -6,20 +6,20 @@ description: |
     Complete the last required steps to successfully deploy WordPress on Upsun.
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
 These resources provide all the core concepts and common commands you need to know before using the following materials.
 
-{{< /note >}}
+{{% /note %}}
 
 For WordPress to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="WordPress" %}}
 
-{{< note theme="info" title="Assumptions" >}}
+{{% note theme="info" title="Assumptions"  %}}
 
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
@@ -28,7 +28,7 @@ The instructions on this page were designed based on the following assumptions:
 - You do not have a `composer.json` file, or are comfortable making changes to your existing version.
 - You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add required files
 
@@ -81,12 +81,12 @@ applications:
               allow: false
 ```
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 If you're migrating your site, you may already have a `composer.json` file.
 You may even have generated your own instead of starting from the Upsun Fixed template version.</br>
 If so, you may also have added a [`wordpress-install-dir` property](https://github.com/johnpbloch/wordpress-core-installer?tab=readme-ov-file#usage) for `extras` in your `composer.json` file.</br>
 In this case, set `root:` to the name of the directory where you are installing WordPress.
-{{< /note >}}
+{{% /note %}}
 
 ## 3. Set up a location for uploads
 
@@ -142,10 +142,10 @@ To set one up, follow these steps:
            source_path: "uploads"
    ```
 
-   {{< note theme="info" >}}
+   {{% note theme="info"  %}}
    If you have designated a different directory through the `wordpress-install-dir` property in your `composer.json` file, update the
    mount location accordingly.
-   {{< /note >}}
+   {{% /note %}}
 
 ## 4. Install the WP-CLI
 To ensure we are able to perform tasks later in the deployment stage (e.g. updating the database, flushing cache, etc.)
@@ -165,10 +165,10 @@ applications:
         wp-cli/wp-cli-bundle: "^2.4"
 ```
 
-{{< note >}}
+{{% note  %}}
 It is possible the `dependencies` section is commented out. When uncommenting, pay attention to the indentation and that
 the `dependencies` key aligns with other sibling keys (e.g. `build`, `hooks`, etc.)
-{{< /note >}}
+{{% /note %}}
 
 ## 5. Install dependencies during the build hook
 
@@ -292,7 +292,7 @@ export UPSTREAM_URLS="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICA
 export DOMAIN_CURRENT_SITE="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app)) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')"
 ```
 <!-- @todo figure out the full expression for 1.5
-{{< note >}}
+{{% note  %}}
 If you decide to change the version of PHP to 8.1, the PHP 8.1 image ships with `jq` version 1.5. The jq function
 `map_values()` was not added until version 1.6. For version 1.5, you can simulate the function by using the [array
 unpack operator](https://jqlang.org/manual/v1.5/#.[]), feeding the results to your select function, and wrapping all of
@@ -301,7 +301,7 @@ it as an array. For example, the `jq` expression for `UPSTREAM_URLS` for v1.5 of
 ```bash {location=".environment"}
 export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.type == "upstream" and .upstream == $app )] | keys')
 ```
-{{< /note >}}
+{{% /note %}}
 
 -->
 
@@ -343,9 +343,9 @@ as follows:
 The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
 on your individual requirements.
 
-{{< note theme="info">}}
+{{% note theme="info" %}}
 When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
-{{< /note >}}
+{{% /note %}}
 
 ## Further resources
 

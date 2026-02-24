@@ -8,11 +8,11 @@ description: Manage user access and permissions across all your projects and org
 {{% vendor/name %}} offers fine-grained and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
-{{< note title="Available add-on" >}}
+{{% note title="Available add-on"  %}}
 
 The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/security/mfa.md) and [single sign-on](/administration/security/sso.md). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Manage project access
 
@@ -242,14 +242,14 @@ As an organization owner or an organization user with the **Manage users** permi
   See all projects in an organization, even those the user can't access.
 
 
-{{< note >}}
+{{% note  %}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
 Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission.
 That is, they are able to see all organization projects once given billing rights.
 
-{{< /note >}}
+{{% /note %}}
 
 Users without any of these permissions can only access [projects where they're users](#project-roles).
 They can't access or manage the rest of the organization.
@@ -267,11 +267,11 @@ A user is considered a viewer only if **all** of the following are true:
 - They are **not** an admin or contributor on any project  
 - They do **not** have team-level access that grants admin permissions  
 
-{{< note >}}
+{{% note  %}}
 
 If any of these conditions are not met, the user is counted as an **admin** for billing.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ### Add a user to an organization

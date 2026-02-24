@@ -331,13 +331,13 @@ they can’t be reused across environments and only allow your app to connect to
 
 A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
-{{< note >}}
+{{% note  %}}
 
 When you create an index on OpenSearch,
 don't specify the `number_of_shards` or `number_of_replicas` settings in your OpenSearch API call.
 These values are set automatically based on available resources.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Authentication
 
@@ -440,11 +440,11 @@ opensearch:
       - alerting
 ```
 
-{{< note title="Different names used" theme="warning" >}}
+{{% note title="Different names used" theme="warning"  %}}
 
 It should be noted that **these names may differ to what they are commonly known as in the [OpenSearch docs](https://opensearch.org/docs/latest/).** To help your understanding of what each plugin does, please click each plugin for a link to the corresponding GitHub repositories.
 
-{{< /note >}}
+{{% /note %}}
 
 
 | Plugin                                                                                                    | Description                                                                                         | 1     | 2   | 3   |

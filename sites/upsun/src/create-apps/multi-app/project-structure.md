@@ -45,7 +45,7 @@ The `gatsby` app is built from the `gatsby` directory.</br>
 The `mercure` app is built from the `mercure` directory.</br>
 They all have different configurations for how they serve the files. For more details, see the [complete example file](https://github.com/platformsh-templates/bigfoot-multiapp/blob/multiapp-monolith/.platform/applications.yaml).
 
-{{< note >}}
+{{% note  %}}
 
 The `{{% vendor/configdir %}}` directory is located at the root, separate from your apps.
 It contains all the needed configuration files to set up the routing, services and behavior of each app.
@@ -55,7 +55,7 @@ you need to [change the source root of each app](#change-the-source-root-of-your
 To build multiple apps from the repository root, set `source.root` to `/`.
 This allows you to control all your apps in one place and even build multiple apps from the same source code.
 
-{{< /note >}}
+{{% /note %}}
 
 To allow your apps to communicate with each other, define [relationships](/create-apps/multi-app/relationships.md).
 
@@ -219,14 +219,14 @@ The Java app's code base includes only the files within the `languagetool` direc
 
 In this case, your `{{< vendor/configfile "apps" >}}` file must contain 2 entries, one for the `main` app and second one for the `languagetool` app.
 
-{{< note >}}
+{{% note  %}}
 
 The `{{% vendor/configdir %}}` directory is located at the root, separate from your apps.
 It contains all the needed configuration files to set up the routing, services and behavior of each app.
 Since the code base of the `languagetool` app lives in a different directory (`languagetool/`),
 you need to [change the source root](#change-the-source-root-of-your-app) of the `languagetool` app.
 
-{{< /note >}}
+{{% /note %}}
 
 Once your repository is organized, you can use a configuration similar to the following:
 
@@ -285,12 +285,12 @@ Your `.gitmodules` file would define all the submodules like this:
 	url = https://github.com/platformsh-templates/bigfoot-multiapp-mercure.git
 ```
 
-{{< note >}}
+{{% note  %}}
 
 In this case, and any other case where your app configuration files are kept outside of the app directory,
 make sure you [change the source root](#change-the-source-root-of-your-app) for each of your apps.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Change the source root of your app
 

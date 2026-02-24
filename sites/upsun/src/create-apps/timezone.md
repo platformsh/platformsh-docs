@@ -18,13 +18,13 @@ The different timezones on {{% vendor/name %}} are the following:
 | Cron timezone        | [Set a cron timezone](#set-a-cron-timezone) if you want your crons to run in a specific timezone instead of the app runtime timezone (or instead of the container timezone if no app runtime timezone is set on your project). <BR>The cron timezone only affects your cron jobs.                          | Yes         |
 | Log timezone         | The timezone for all {{% vendor/name %}} logs (UTC).      | No           |
 
-{{< note >}}
+{{% note  %}}
 
 Each {{% vendor/name %}} project also has a **project timezone** that only affects [automated backups](/environments/backup.md#automated-backups).
 By default, the project timezone is based on the [region](../development/regions.md) where your project is hosted.
 You can [change it from the Console](../projects/change-project-timezone.md) at any time.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Set an app runtime timezone
 

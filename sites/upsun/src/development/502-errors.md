@@ -5,11 +5,11 @@ weight: 16
 description: Diagnose and resolve common 502 errors that may prevent your {{% vendor/name %}} app from starting or running correctly.
 ---
 
-{{< note >}}
+{{% note  %}}
 
 If you'd like to learn more about troubleshooting your application, visit the [troubleshoot development](/development/troubleshoot/) page.
 
-{{< /note >}}
+{{% /note %}}
 
 When deploying an application on {{% vendor/name %}}, it's essential that your app's startup process is correctly configured to ensure smooth operation.
 
@@ -26,11 +26,11 @@ These show what happened during build and deploy. You can view them by using the
 ```bash
 upsun log deploy
 ```
-{{< note >}}
+{{% note  %}}
 
 Note that the Deploy logs will only populate if the deploy hook runs as part of your deployment.
 
-{{< /note >}}
+{{% /note %}}
 
 Deploy logs are especially helpful if you're running migrations or provisioning services - issues with database credentials, missing tables, or failed connections often appear here.
 
@@ -67,13 +67,13 @@ upsun ssh 'echo $PORT'
 ```
 If your app is hardcoded to listen on a specific port like 3000 or 8000, it won't work --- it needs to use the dynamic port assigned by {{% vendor/name %}}. It should also be noted that **this command can only be run in a local session**, not in the app container (in a terminal session).
 
-{{< note >}}
+{{% note  %}}
 
 Please note that if the [$PORT](/development/variables/use-variables.html#use-provided-variables) is empty, you will need to check if `web.upstream.socket_family`is set to `tcp`.
 
 You may see a 502 error if your application isn’t [listening at the same place](/create-apps/image-properties/web.md#where-to-listen) that the runtime is sending requests.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Step 3: Review recent activity
 
@@ -102,11 +102,11 @@ This is especially useful for:
 -   Checking if writable directories are correctly mounted
 -   Testing internal service connections and inspecting the filesystem
 
-{{< note title="Bonus step" theme="info" >}}
+{{% note title="Bonus step" theme="info"  %}}
 
 You can also manually run your `start` command to debug why your app might be failing. This is because some output about issues in standard output (`stdout`) don't always appear in the logs.
 
-{{< /note >}}
+{{% /note %}}
 
 To confirm mount points are correctly defined and available, run:
 

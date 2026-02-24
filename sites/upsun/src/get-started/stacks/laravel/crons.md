@@ -67,12 +67,12 @@ applications:
             php artisan schedule:work
 ```
 
-{{< note title="Warning" theme="warning" >}}
+{{% note title="Warning" theme="warning"  %}}
 
 Web and worker containers don't share mount targets.
 You can't share files between those containers using the filesystem.
 To share data between containers, use [services](/add-services/_index.md).
 
-{{< /note >}}
+{{% /note %}}
 
 {{< guide-buttons previous="Back" next="Manage observability with Blackfire" nextLink="/get-started/stacks/laravel/blackfire.md" type="*" >}}

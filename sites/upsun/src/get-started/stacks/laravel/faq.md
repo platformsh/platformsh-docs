@@ -51,11 +51,11 @@ In your `config/logging.php` file, add or update the following configuration:
 ],
 ```
 
-{{< note theme="warning" title="Warning">}}
+{{% note theme="warning" title="Warning" %}}
 
 If you log deprecations, make sure you **also** log them on `stderr`.
 
-{{< /note >}}
+{{% /note %}}
 
 ## What's this "`Oops! An Error Occurred`" message about?
 

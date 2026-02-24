@@ -54,11 +54,11 @@ title=In the Console
 
 {{< /codetabs >}}
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Machine users with an email address under your single sign-on (SSO) domain can be excluded from the SSO enforcement rule so they aren’t required to authenticate through your identity provider. See the [SSO documentation](/administration/security/sso.md#service-users) for more information.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ## 2. Create an API token
@@ -119,13 +119,13 @@ see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-no
 You can run automated tasks on an app container using the {{% vendor/name %}} CLI.
 To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Once you add the token as an environment variable,
 anyone with [SSH access](../../development/ssh/_index.md) can read its value.
 Make sure your [machine user has only the necessary permissions](#1-create-a-machine-user).
 
-{{< /note >}}
+{{% /note %}}
 
 {{< codetabs >}}
 +++

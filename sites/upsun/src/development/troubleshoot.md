@@ -42,7 +42,7 @@ Run the following command:
 
 The redeploy takes place after any scheduled activities (either *Running* or *Pending*).
 
-{{< note >}}
+{{% note  %}}
 
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
@@ -51,9 +51,9 @@ See [more about hooks](../create-apps/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
+{{% note theme="info" title="Is there a way to redeploy the production environment without knowing its name?"  %}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
 You can use the CLI, along with the [environment type distinction](/glossary.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
@@ -64,7 +64,7 @@ To do so, run the following command:
 {{% vendor/cli %}} redeploy -e $({{% vendor/cli %}} environment:list --type production --pipe)
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ### Manually trigger builds
 
@@ -118,11 +118,11 @@ If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/tr
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-{{< note theme="tip" title="502 errors" version="1" >}}
+{{% note theme="tip" title="502 errors" version="1"  %}}
 
 For troubleshooting tips specifically for 502 errors, please head to the [502 errors resolution guide](/development/502-errors).
 
-{{< /note >}}
+{{% /note %}}
 
 If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable.
 
@@ -165,11 +165,11 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 - Use [sizing hints](/languages/php/fpm.md) to reduce the number of PHP workers, which will help lower the memory footprint.
 - Add [additional resources](/manage-resources.md) using the `upsun resources:set` command to allocate more memory.
 
-{{< note >}}
+{{% note  %}}
 
 For more troubleshooting tips specifically for PHP, please head to the [PHP troubleshoot page](/languages/php/troubleshoot.md).
 
-{{< /note >}}
+{{% /note %}}
 
 #### 7. Project created but not pushed
 - **Solution**: If a project is created but hasn’t been pushed, it can result in a 502 error.

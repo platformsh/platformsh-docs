@@ -278,9 +278,9 @@ Set up a script by following these steps:
     sanitize_organization_data $ORGANIZATION
     ```
 
-{{< note >}}
+{{% note  %}}
 You can find the organization identifier for a specific project, within the {{% vendor/name %}} console, by clicking on your name, and then on “Settings”, in the top right corner.
-{{< /note >}}
+{{% /note %}}
 
 
 4.  [Option] Commit your changes by running the following command:

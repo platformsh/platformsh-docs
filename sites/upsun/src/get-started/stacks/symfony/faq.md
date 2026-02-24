@@ -54,11 +54,11 @@ If you use Monolog, add the following configuration to your `config/packages/pro
             type: buffer
 ```
 
-{{< note theme="warning" title="Warning">}}
+{{% note theme="warning" title="Warning" %}}
 
 If you log deprecations, make sure you **also** log them on `stderr`.
 
-{{< /note >}}
+{{% /note %}}
 
 ## What's this "Oops! An Error Occurred" message about?
 

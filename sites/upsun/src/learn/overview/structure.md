@@ -4,13 +4,13 @@ weight: 2
 description: "Learn about how your {{% vendor/name %}} environments are structured and which files control that structure."
 ---
 
-{{< note version="1" >}}
+{{% note version="1"  %}}
 
 This page describes how things work on Grid projects.
 
 For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](/dedicated-gen-2/overview/_index.md).
 
-{{< /note >}}
+{{% /note %}}
 
 Each environment you deploy on {{% vendor/name %}} is built as a set of containers.
 Each container is an isolated instance with specific resources.

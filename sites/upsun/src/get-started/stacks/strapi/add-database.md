@@ -223,7 +223,7 @@ git commit -am "Add a new service"
 git push origin upgrade-db
 ```
 
-{{< note theme="info">}}
+{{% note theme="info" %}}
 If you are using {{% vendor/name %}} as your primary remote, you can use the `{{% vendor/cli %}} branch` and `{{% vendor/cli %}} push` commands directly.
 If instead you had already set up an integration to GitHub, GitLab or Bitbucket, make sure to open a pull/merge request to judge the revision.
-{{< /note >}}
+{{% /note %}}

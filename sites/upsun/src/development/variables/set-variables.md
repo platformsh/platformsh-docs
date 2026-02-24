@@ -99,11 +99,11 @@ upsun variable:create --level project --name foo --value bar --app-scope fronten
 
 Where `frontend1` and `frontend2` are the names of your applications.
 
-{{< note theme="Info" >}}
+{{% note theme="Info"  %}}
 
 Note that for changes to project variables to have effect, you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Create environment-specific variables
 

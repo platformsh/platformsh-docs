@@ -189,13 +189,13 @@ title=From the Console
 
 {{< /codetabs >}}
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Once you add the API token as an environment variable,
 anyone with [SSH access](/development/ssh/_index.md) can read its value.
 Make sure you carefully check your [user access on this project](/administration/users.md#manage-project-users).
 
-{{< /note >}}
+{{% /note %}}
 
 2. Add a build hook to your app configuration to install the CLI as part of the build process:
 
@@ -233,11 +233,11 @@ applications:
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
 
-{{< note theme="warning">}}
+{{% note theme="warning" %}}
 If you have enabled a [source integration](/integrations/source.html), and have enabled `--fetch-branches` on that
 integration, merging on {{% vendor/name %}} is not possible. Therefore, the `sync` command in the example above would
 fail.
-{{< /note >}}
+{{% /note %}}
 
 ## 3. Configure notifications about dependency updates
 
@@ -250,7 +250,7 @@ After you've defined a source operation to [update your dependencies on your pro
 you can configure an activity script
 to receive notifications every time a dependency update is triggered.
 
-{{< note title="Example" >}}
+{{% note title="Example"  %}}
 
 You want to get notified of every dependency update
 through a message posted on a Slack channel.
@@ -315,7 +315,7 @@ To do so, follow these steps:
 Anytime a dependency is updated via a source operation,
 the activity script now reports it to Slack.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Notifications through a webhook
 

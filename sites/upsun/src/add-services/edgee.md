@@ -33,11 +33,11 @@ Edgee is available as an add-on, offering two flexible plans designed to suit yo
 
 Pricing is usage-based, determined by the number of requests, events tracked, and type of additional components required. Our predictable pricing model includes all features, technical support, and continuous updates — with no hidden costs.
 
-{{< note theme="info" title="Learn more">}}
+{{% note theme="info" title="Learn more" %}}
 [Contact our Sales team](https://upsun.com/contact-us/) to learn more or request a quote.
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="note" title="FAQ">}}
+{{% note theme="note" title="FAQ" %}}
 For more information, read the FAQ posted on the [Edgee website here](https://www.edgee.cloud/docs/introduction/faq). 
-{{< /note >}}
+{{% /note %}}
 <!-- vale on -->

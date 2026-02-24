@@ -31,11 +31,11 @@ To access a Blackfire environment, each project user needs a Blackfire account.
 When a project user doesn't already have a Blackfire account,
 a new one is automatically created using the user's {{< vendor/name >}} credentials.
 
-{{< note >}}
+{{% note  %}}
 If you're using a [Content Delivery Network (CDN)](../../domains/cdn/_index.md),
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
-{{< /note >}}
+{{% /note %}}
 
 ### Automated integration
 
@@ -53,10 +53,10 @@ User access settings are replicated from the {{< vendor/name >}} Console to Blac
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.
 
-{{< note >}}
+{{% note  %}}
 To trigger the synchronization of changes to users and their access levels,
 you need to redeploy the environment.
-{{< /note >}}
+{{% /note %}}
 
 ### Blackfire monitoring
 

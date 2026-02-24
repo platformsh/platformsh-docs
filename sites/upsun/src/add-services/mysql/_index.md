@@ -23,11 +23,11 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-{{< note theme="info" title="" >}}
+{{% note theme="info" title=""  %}}
 - Both `mariadb` and `mysql` service types use MariaDB.\
   They behave identically, so the information on this page applies to both of them.
 - The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-{{< /note >}}
+{{% /note %}}
 
 | **`mariadb` / `mysql`** | **`oracle-mysql`** |
 |-------------------------|--------------------|
@@ -605,11 +605,11 @@ services:
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
-{{< note >}}
+{{% note  %}}
 
 Removing a schema from the list of `schemas` on further deployments results in the deletion of the schema.
 
-{{</note >}}
+{{% /note %}}
 
 
 ### Multiple databases example
@@ -855,14 +855,14 @@ As with exporting, you can specify a specific environment and a specific databas
 {{% vendor/cli %}} sql --relationship {{< variable "RELATIONSHIP_NAME" >}} -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
-{{< note >}}
+{{% note  %}}
 
 Importing a database backup is a destructive operation.
 It overwrites data already in your database.
 It's best to run it against an empty database.
 If not, make a backup or do a database export before importing.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Sanitizing data
 

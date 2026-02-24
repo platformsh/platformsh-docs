@@ -7,12 +7,12 @@ description: |
     Complete the last required steps to successfully deploy Next.js on {{% vendor/name %}}.
 ---
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
-{{< /note >}}
+{{% /note %}}
 
 {{% guides/requirements name="Next.js" %}}
 
@@ -36,18 +36,18 @@ To create your Next.js app, follow these steps.
    git commit -m "Init Next.js application."
    ```
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 You can view the running app locally by running `npm run dev`.
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Create a new project
 
 To create a project on {{% vendor/name %}},
 follow these steps.
 
-{{< note title="Remember" >}}
+{{% note title="Remember"  %}}
 After creating your {{% vendor/name %}} project, copy your new **project ID** for later use.
-{{< /note >}}
+{{% /note %}}
 
 {{< codetabs >}}
 +++
@@ -59,7 +59,7 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 {{% vendor/cli %}} project:create
 ```
 
-{{< note >}}
+{{% note  %}}
 
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`,
 you are asked if you want to set the local remote to your new project. Enter **Yes (y)**.
@@ -69,7 +69,7 @@ through the creation of a `.{{% vendor/cli %}}/local/project.yaml`.
 This file contains the corresponding `<projectId>` for the {{% vendor/name %}} CLI to use,
 and sets a Git remote to `{{% vendor/cli %}}`.
 
-{{< /note >}}
+{{% /note %}}
 
 <--->
 +++
@@ -107,14 +107,14 @@ title=Using the Console
    It also creates a new `.{{% vendor/cli %}}/local/project.yaml` file that contains the `<projectId>`
    for the `{{% vendor/cli %}}` CLI to use.
 
-   {{< note theme="info" title="Tip" >}}
+   {{% note theme="info" title="Tip"  %}}
 
    If you forget your `<projectId>`, run the following command and find your project in the list:
 
    ```bash {location="Terminal"}
    {{% vendor/cli %}} project:list
    ```
-   {{< /note >}}
+   {{% /note %}}
 
 {{< /codetabs >}}
 
@@ -142,7 +142,7 @@ title=GitHub repository
 {{% vendor/name %}} provides a [Github integration](integrations/source/github.md) that allows your {{% vendor/name %}} project to be fully integrated with your Github repository.
 This enables you, as a developer, to use a normal Git workflow (`git add . && git commit -m "message" && git push`) to deploy your environment—with no need to connect to the {{% vendor/name %}} Console.
 
-{{< note >}}
+{{% note  %}}
 Make sure you complete the following steps before adding a [Github integration](integrations/source/github.md):
 
 1. Create a Git repository in your own organization following the relevant
@@ -158,7 +158,7 @@ Make sure you complete the following steps before adding a [Github integration](
     git add . && git commit -m "init next.js"
     git push origin
     ```
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 
@@ -281,7 +281,7 @@ or [amend those default container resources](/manage-resources/adjust-resources.
 
 Et voilà, your Next.js application is live!
 
-{{< note title="Tip" theme="info" >}}
+{{% note title="Tip" theme="info"  %}}
 
 Each environment has its own domain name.
 To open the URL of your new environment, run the following command:
@@ -289,7 +289,7 @@ To open the URL of your new environment, run the following command:
    ```bash {location="Terminal"}
    {{% vendor/cli %}} environment:url --primary
    ```
-{{< /note >}}
+{{% /note %}}
 
 ## 6. Make changes to your project
 

@@ -3,13 +3,13 @@ title: Hosting Model Context Protocal (MCP) Servers
 weight: -50
 ---
 
-{{< note theme="info" title="Connect to the {{% vendor/name %}} MCP Server">}}
+{{% note theme="info" title="Connect to the {{% vendor/name %}} MCP Server" %}}
 
 The {{% vendor/name %}} Model Context Protocol (MCP) Server allows users to perform infrastructure operations, monitor environments, and manage resources using natural language commands. 
 
 **You can set up the {{% vendor/name %}} MCP Server with this [step-by-step guide]( /get-started/ai/using-the-mcp.md).**
 
-{{< /note >}}
+{{% /note %}}
 
 **Model Context Protocol (MCP)** is a standard interface that allows large
 language models (LLMs) to communicate with external tools and data sources.

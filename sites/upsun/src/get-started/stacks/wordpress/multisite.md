@@ -6,13 +6,13 @@ description: |
     Complete the last required steps to successfully deploy a WordPress Multisite on Upsun.
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
 These resources provide all the core concepts and common commands you need to know before using the following materials.
 
-{{< /note >}}
+{{% /note %}}
 
 You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully
 deploy and operate.
@@ -23,7 +23,7 @@ Please note that these changes must only be made **after completing the
 
 {{% guides/requirements name="WordPress" %}}
 
-{{< note theme="info" title="Assumptions" >}}
+{{% note theme="info" title="Assumptions"  %}}
 
 There are many ways you can set up a
 [WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/)
@@ -40,7 +40,7 @@ all configuration below.
 `wp` if you set up a Bedrock-based site)
 - You know if you are creating a
 [subdirectory-based multisite or a sub/multi-domain based multisite](https://developer.wordpress.org/advanced-administration/multisite/prepare-network/#types-of-multisite-network).
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add rewrite rules to your root location
 
@@ -123,10 +123,10 @@ applications:
 {{< /codetabs >}}
 <!-- vale on -->
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 If you followed the Bedrock guide and decided to change the default name of the directory where WordPress is installed
 (`wp`), then you will need to update both the rules and `passthru` keys accordingly.
-{{< /note >}}
+{{% /note %}}
 
 ## 2. Update the database during the deploy hook
 
@@ -150,10 +150,10 @@ applications:
         wp package update upsun/wp-ms-dbu
 ```
 
-{{< note theme="info">}}
+{{% note theme="info" %}}
 If you created your site based on the WordPress Vanilla guide, only add the lines above that start with `wp package`
 (i.e. skip the `composer install` line).
-{{< /note >}}
+{{% /note %}}
 
 To instruct the package to update your database with the relevant domains for the preview environment, locate the
 `deploy` section and update it as follows:
@@ -308,10 +308,10 @@ Adding `define('WP_ALLOW_MULTISITE', true);` will enable the **Network Setup** i
 menu item to go to the **Create a Network of WordPress Sites** screen. Follow the instructions on this screen and click
 the **Install** button. You can ignore the instructions on the resulting screen.
 
-{{< note >}}
+{{% note  %}}
 Alternatively, you can access a terminal session in the app container (`{{% vendor/cli %}} ssh`), and use
 `wp core multisite-convert` to install the multisite.
-{{< /note >}}
+{{% /note %}}
 
 ## 6. Final change to `wp-config.php` / application.php
 Return to your wp-config.php / application.php file and change

@@ -48,12 +48,12 @@ To open the URL of your new environment, run the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:url --primary
 ```
-{{< note title="Warnings" theme="warning">}}
+{{% note title="Warnings" theme="warning" %}}
 If your environment is inactive, you need to [activate it](/environments/deactivate-environment.md#reactivate-an-environment) first, using the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:activate
 ```
-{{< /note >}}
+{{% /note %}}
 
 ## 5. Iterate
 Iterate by changing the code, committing, and deploying.
@@ -69,9 +69,9 @@ git pull {{% vendor/cli %}} main
 git fetch --prune
 ```
 
-{{< note >}}
+{{% note  %}}
 Deploying after a merge is fast because the image built for the feature environment is reused for the targeted environment.
-{{< /note >}}
+{{% /note %}}
 
 ## 6. Keep your branch up to date
 For a long running development branch, to keep the code up-to-date with the `main` branch, use `git merge main` or `git rebase main`.

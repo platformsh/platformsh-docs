@@ -52,7 +52,7 @@ You can specify the Redis client in your `.environment` file:
 export REDIS_CLIENT="phpredis"
 ```
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 If using `phpredis`, make sure you add `redis` in the list of PHP `runtime` extensions in your `{{< vendor/configfile "app" >}}`:
 
@@ -65,7 +65,7 @@ applications:
         - redis
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## 3. Store the Laravel cache in Redis
 

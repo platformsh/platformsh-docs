@@ -6,20 +6,20 @@ description: |
     Complete the last required steps to successfully deploy Vanilla WordPress on Upsun.
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before using the following materials.
 
-{{< /note >}}
+{{% /note %}}
 
 For WordPress to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="WordPress" %}}
 
-{{< note theme="info" title="Assumptions" >}}
+{{% note theme="info" title="Assumptions"  %}}
 
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
@@ -29,7 +29,7 @@ while using the Getting Started guide you named the project `myapp`, which you w
 configuration below.
 - You are currently in the same directory where you created your project during the Getting Started guide.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add required files
 
@@ -64,9 +64,9 @@ download a zip archive from WordPress.org, or use `curl` to download a tarball:
     path: /app/wordpress/
     color: true
    ```
-    {{< note theme="info" >}}
+    {{% note theme="info"  %}}
 If you changed the name of the directory at step 4 you'll need to update the `path` property above to match.
-    {{< /note >}}
+    {{% /note %}}
 
 7. Add all the files from the steps above to your repository
    ```bash location="Terminal"
@@ -111,11 +111,11 @@ If you changed the name of the directory at step 4 you'll need to update the `pa
                   expires: 1w
     ```
 
-    {{< note theme="info" >}}
+    {{% note theme="info"  %}}
 
 If you changed the name of the directory at step 1.4 you'll need to update the `root` property to match for both locations.
 
-    {{< /note >}}
+    {{% /note %}}
 
 3. Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
    To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md). To do so,
@@ -134,9 +134,9 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           source_path: "uploads"
     ```
 
-    {{< note theme="info">}}
+    {{% note theme="info" %}}
 When uncommenting, pay attention to the indentation and that the `mounts` key aligns with other sibling keys (e.g. `relationships`, `web`, etc.)
-    {{< /note >}}
+    {{% /note %}}
 
 
 4. Once the images for our application have been built, there are a few key tasks that must be completed before our
@@ -228,12 +228,12 @@ applications:
             wp-cli/wp-cli-bundle: "^2.4"
     ```
 
-    {{< note theme="info" >}}
+    {{% note theme="info"  %}}
 
 It is possible the `dependencies` section is commented out. When uncommenting, pay attention to the indentation and that
 the `dependencies` key aligns with other sibling keys (e.g. `build`, `hooks`, etc.)
 
-    {{< /note >}}
+    {{% /note %}}
 
 
 8. Add and commit your changes.
@@ -306,9 +306,9 @@ as follows:
 The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
 on your individual requirements.
 
-  {{< note theme="info">}}
+  {{% note theme="info" %}}
 When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
-  {{< /note >}}
+  {{% /note %}}
 
 ## Further resources
 - [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)

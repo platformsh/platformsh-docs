@@ -67,11 +67,11 @@ You can now access the `/telescope` endpoint of your app.
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/telescope-dashboard.png "0.5")
 
-{{< note theme="tip" >}}
+{{% note theme="tip"  %}}
 
 Telescope uses a gate defined in `TelescopeServiceProvider.php` to authorize access to the dashboard.
 Check that the logic here matches your needs.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< guide-buttons previous="Back" next="FAQ" nextLink="/get-started/stacks/laravel/faq.md" type="*" >}}

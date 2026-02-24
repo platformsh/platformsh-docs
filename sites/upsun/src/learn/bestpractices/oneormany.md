@@ -35,11 +35,11 @@ keep your apps in separate projects.
 {{% vendor/name %}} provides the automation to deploy multiple projects from the same code base,
 which makes their maintenance effortless.
 
-{{< note >}}
+{{% note  %}}
 
 By design, {{% vendor/name %}} doesn't allow your app to access services in another project through HTTP.
 
-{{< /note >}}
+{{% /note %}}
 
 So separate projects are appropriate in the following cases:
 

@@ -217,7 +217,7 @@ To use `nvm`, follow these steps:
             fi
             ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
     ```
-   {{< note >}}
+   {{% note  %}}
 
    Instead of using a symlink between your cache and application directories,
    you might need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
@@ -227,7 +227,7 @@ To use `nvm`, follow these steps:
    rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
    ```
 
-   {{< /note >}}
+   {{% /note %}}
 
 4. Use the cache directory and install based on the variables if not present:
 

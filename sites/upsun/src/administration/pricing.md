@@ -6,14 +6,14 @@ description: Understand how {{% vendor/name %}} pricing works.
 
 {{% vendor/name %}} offers flexible, predictable [pricing](https://upsun.com/pricing/) for organizations and projects.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 This page is meant to provide some context for how the pricing model relates to technical work on {{% vendor/name %}}.
 It is _not_ meant to be your primary resource for the exact costs of certain features.
 
 The official {{% vendor/name %}} [Pricing page](https://upsun.com/pricing/) should always be considered the primary source of pricing details.
 
-{{< /note >}}
+{{% /note %}}
 
 In general, there are four main dimensions that determine the cost of work on {{% vendor/name %}}.
 

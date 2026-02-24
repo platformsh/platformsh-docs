@@ -76,7 +76,7 @@ Horizon handles jobs that are populated by the queue.
 If you need to customize how Horizon works (queues, processes, etc.),
 see the official [Laravel Horizon documentation](https://laravel.com/docs/master/horizon#main-content).
 
-{{< note title="Warning" theme="warning" >}}
+{{% note title="Warning" theme="warning"  %}}
 
 Web and worker containers don't share mount targets.
 You can't share files between those containers using the filesystem.
@@ -84,7 +84,7 @@ To share data between containers, use [services](/add-services/_index.md).
 
 See more information on [workers](/create-apps/image-properties/workers.md).
 
-{{< /note >}}
+{{% /note %}}
 
 Note that you can customize the resources of your Horizon worker container from the {{% vendor/name %}} Console.
 

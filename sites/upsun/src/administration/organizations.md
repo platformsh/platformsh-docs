@@ -159,20 +159,20 @@ If they aren't yet, [add them](/administration/users.md#add-a-user-to-an-organiz
 Ideal for workloads that have consistent resource requirements with stable and predictable usage.
 Users can select a plan with predefined CPU and Memory resources. You can not adjust these resources, nor scale them automatically. To increase capacity, you’ll need to upgrade to a higher plan.
 
-{{< note theme="note" title="Fixed resources">}}
+{{% note theme="note" title="Fixed resources" %}}
 
 **Fixed:** Resource from the plan is applied to the production environment. For preview, the user has the default small size for all containers.
 
-{{< /note >}}
+{{% /note %}}
 
 ### What is an Upsun Flex organization?
 Ideal for workloads that evolve over time or have dynamic resource requirements. Flex will suit most use cases. Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
 
-{{< note theme="info" title="Flex resources">}}
+{{% note theme="info" title="Flex resources" %}}
 
 **Flex:** Users can customize resources per container (per app or service) for **all** environments.
 
-{{< /note >}}
+{{% /note %}}
 
 ### What can you do?
 When creating a new organization, users will be able to select the organization type from a drop-down option based on their preference. Once the organization is created, users can manage their organizations like they do today.

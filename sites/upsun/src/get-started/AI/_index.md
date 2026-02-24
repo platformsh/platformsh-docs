@@ -9,12 +9,12 @@ layout: single
 agents, and services. You can deploy AI workloads using any supported runtime
 and integrate with various LLM APIs and services.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before
 using the following materials.
-{{< /note >}}
+{{% /note %}}
 
 ## AI applications and services
 
@@ -41,12 +41,12 @@ and any other HTTP-based API service
 and custom implementations
 - **Integration**: REST APIs, WebSockets, and event-driven architectures
 
-{{< note theme="info" title="API flexibility" >}}
+{{% note theme="info" title="API flexibility"  %}}
 Upsun supports integration with **any** LLM service that provides an HTTP API.
 The services listed above are just popular examples. You can integrate with
 self-hosted models, specialized AI services, or any custom API endpoint that
 follows standard HTTP protocols.
-{{< /note >}}
+{{% /note %}}
 
 ## Get started
 

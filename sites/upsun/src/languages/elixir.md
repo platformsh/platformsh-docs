@@ -48,9 +48,9 @@ String.to_integer(System.get_env("PORT") || "8888")
 
 Some of the environment variables are in JSON format and are base64 encoded. You would need to import a JSON parsing library such as [JSON](https://hexdocs.pm/json/readme.html) or [Poison](https://hexdocs.pm/poison/api-reference.html) to read those. (There is an example for doing this to decode the `PLATFORM_RELATIONSHIPS` environment variable in the section [below](#accessing-services-manually).)
 
-{{< note title="Tip">}}
+{{% note title="Tip" %}}
 Remember `config/prod.exs` is evaluated at **build time** and has no access to runtime configuration. Use `config/releases.exs` to configure your runtime environment.
-{{< /note >}}
+{{% /note %}}
 
 ## Building and running the application
 
@@ -80,11 +80,11 @@ applications:
         mix do deps.get --only prod, deps.compile, compile
 ```
 
-{{< note >}}
+{{% note  %}}
 
 That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
-{{< /note >}}
+{{% /note %}}
 
 Assuming `mix.exs` is present at your app root and your build hook matches the above,
 you can then start it from the `web.commands.start` directive.

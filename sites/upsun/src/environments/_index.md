@@ -278,11 +278,11 @@ which allows you to push changes to your environment and trigger the following a
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.
 
-{{< note >}}
+{{% note  %}}
 
 You can't use push options if you have a [source integration](/integrations/source/_index.md) set up.
 
-{{< /note >}}
+{{% /note %}}
 
 The following example shows how, through a single `push`,
 you can activate your environment, set a title for it,

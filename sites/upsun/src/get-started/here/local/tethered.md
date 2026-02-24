@@ -22,12 +22,12 @@ This methodology has several advantages:
 - It ensures that you are using the same versions of all services on your local
   machine and in production.
 
-{{< note theme="warning" title="Warning">}}
+{{% note theme="warning" title="Warning" %}}
 
 Never use this method on the **main** environment as changes made on your local
 machine will impact production data.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ## 1. Start your local Server

@@ -3,13 +3,13 @@ title: Proxy routes
 description: Pass requests to a location outside your {{% vendor/name %}} project using proxy routes.
 ---
 
-{{< note theme="warning" title="Warning">}}
+{{% note theme="warning" title="Warning" %}}
 
 Only use this feature to address edge cases where you need to proxy to another, outside project.</br>
 **Do not use this for internal routing.**</br>
 To expose your app to the outside world, see [how to define routes](../define-routes/_index.md).
 
-{{< /note >}}
+{{% /note %}}
 
 Sometimes you want your app to pass requests on to a different {{% vendor/name %}} project.
 Basic redirects only work within the same project, so use proxy routes for routes elsewhere.

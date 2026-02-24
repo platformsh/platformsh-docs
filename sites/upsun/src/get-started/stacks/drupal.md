@@ -8,7 +8,7 @@ description: |
     Complete the last required steps to successfully deploy Drupal on {{% vendor/name %}}.
 ---
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
@@ -20,7 +20,7 @@ It should also be noted that this guide works for the following variations of Dr
 
 - [CMS](https://new.drupal.org/docs/drupal-cms/get-started/install-drupal-cms)
 
-{{< /note >}}
+{{% /note %}}
 
 
 For Drupal to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
@@ -320,7 +320,7 @@ git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
 upsun push -y
 ```
 
-{{< note title="Snippets" theme="info" >}}
+{{% note title="Snippets" theme="info"  %}}
 You can also find all the snippets described in this post on GitHub
 - [Drupal 11](https://github.com/upsun/snippets/tree/main/examples/drupal11)
 {{</ note >}}

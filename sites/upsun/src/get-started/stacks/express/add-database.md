@@ -184,9 +184,9 @@ When satisfied with your changes, merge them to the main branch:
 {{% vendor/cli %}} merge
 ```
 
-{{< note >}}
+{{% note  %}}
 You can [adjust your project resources](/manage-resources/adjust-resources.md) at any time.
-{{< /note >}}
+{{% /note %}}
 
 ## 5. Remove the feature branch
 
@@ -199,10 +199,10 @@ git pull {{% vendor/cli %}} main
 git fetch --prune
 ```
 
-{{< note >}}
+{{% note  %}}
 When the `environment:delete` CLI command is run, the CLI suggests you deactivate and delete your `add-mysql-database` environment.
 Make sure you opt in.
-{{< /note >}}
+{{% /note %}}
 
 ## Tips & Tricks
 

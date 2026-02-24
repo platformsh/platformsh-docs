@@ -111,11 +111,11 @@ When manual deployment is enabled in an environment, the following actions are q
 | **Environment Settings** | `environment.update.http_access`, `smtp`, `restrict_robots` |
 
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 To restart your application without applying staged changes, run `upsun redeploy` or click **Redeploy** in the Console.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ### Change deployment type {#change-deployment-type}
@@ -198,11 +198,11 @@ POST /projects/{projectId}/environments/{environmentId}/deploy
 
 {{< /codetabs >}}
 
-{{< note theme="tip" >}}
+{{% note theme="tip"  %}}
 
 As soon as your deployment type is switched from manual to automatic, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Zero Downtime Deployments
 ## What is Zero Downtime?
@@ -233,11 +233,11 @@ Instead of stopping services before updating, a temporary copy of your applicati
 
 ![The duplicate of your original application is removed](/images/ZDD/ZDD-2.jpg "0.4")
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 During a zero-downtime deployment, the original app and its clone run simultaneously short period (a few seconds to a couple of minutes).
 
 **You are billed for extra resources while both app versions active.** If your app’s deployment phase takes longer and uses more resources, expect proportionally higher costs.
-{{< /note >}}
+{{% /note %}}
 
 ### Deployment strategies
 #### Stop-start (default)
@@ -330,18 +330,18 @@ With ZDD, you can plan for smooth reconnection:
 ## Zero Downtime Troubleshooting
 
 This section covers two common scenarios and how to resolve them.
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 If the last deployment failed, you can only use the default stop-start strategy.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ### Application is slow to start
 
 If your application takes longer to become responsive, traffic might be [switched back to your original application](#how-zero-downtime-works) before it’s fully ready. This can cause temporary errors immediately after deployment.
 
-{{< note theme="info" title="Use a post_start command">}}
+{{% note theme="info" title="Use a post_start command" %}}
 
 You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port.
 
@@ -359,7 +359,7 @@ web:
 
 **For more information about the `post_start` command, visit [web commands](/create-apps/image-properties/web.md#post_start).**
 
-{{< /note >}}
+{{% /note %}}
 
 ### Deployment fails midway
 

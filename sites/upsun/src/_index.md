@@ -69,7 +69,7 @@ ready to deploy your own custom code in a chosen framework. The **Frameworks**
 section is a collection of framework-specific how-to guides - from best
 practices to configuration, local development, and more.
 
-{{< frameworks-landing >}}
+{{% frameworks-landing %}}
 
 ### Reference
 

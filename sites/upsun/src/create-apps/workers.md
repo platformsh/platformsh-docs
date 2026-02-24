@@ -50,9 +50,9 @@ sv stop app
 sv start app
 ```
 
-{{< note >}}
+{{% note  %}}
 Use `systemctl` whenever possible. If you’re using `sv` command line, it’s worth upgrading to a [recent runtime version](/create-apps/app-reference/single-runtime-image.html#types) for better support.
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 
@@ -261,13 +261,13 @@ The `mail` instance is a worker that isn't web-accessible.
 - It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
   It has no access to MySQL.
 
-{{< note >}}
+{{% note  %}}
 
 {{% vendor/name %}} automatically allocates [default resources](/manage-resources/resource-init.md) to each instance,
 unless you [define a different resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
 You can also [adjust resources](/manage-resources/adjust-resources.md) after your project has been deployed.
 
-{{< /note >}}
+{{% /note %}}
 
 For example, if you want the `web` instance to have a large upload space
 and the `queue` instance to have a small amount of scratch space for temporary files,
