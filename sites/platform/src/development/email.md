@@ -10,11 +10,11 @@ You can configure your {{% vendor/name %}} environments to send emails via an SM
 Emails aren't guaranteed to be deliverable and you can't white-label them.
 The SMTP proxy is intended as a zero-configuration, best-effort service.
 
-{{< note >}}
+{{% note  %}}
 
 All preview environments are limited to 12,000 email credits per calendar month.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Turn on outgoing email
 
@@ -114,7 +114,7 @@ When sending emails from your project, **use a mail address that is on the same 
 
 Also, **make sure to test with real email addresses**. If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation. Make sure your test emails are deliverable.
 
-{{< /note >}}
+{{% /note %}}
 
 ## 5. Send email from your app
 

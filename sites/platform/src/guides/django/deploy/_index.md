@@ -13,11 +13,11 @@ It includes examples for working with Django on all of the major package manager
 
 {{% guides/starting-point name="Django" templateRepo="django4" initExample=true %}}
 
-{{< note >}}
+{{% note  %}}
 
 This guide is written for Django 4, but should apply almost exactly the same for other versions.
 
-{{< /note >}}
+{{% /note %}}
 
 {{% guides/requirements %}}
 

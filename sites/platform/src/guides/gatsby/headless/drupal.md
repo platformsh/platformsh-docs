@@ -55,13 +55,13 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 ## Deploy and post-install
 
-{{< guides/gatsby/headless-postinstall name="Drupal">}}
+{{% guides/gatsby/headless-postinstall name="Drupal" %}}
 
 After you have completed the installation, you need to enable the JSON API and Gatsby related modules
 and then set up aliases for your articles using `pathauto`.
 For detailed instructions, see the template's [post-installation instructions](https://github.com/platformsh-templates/gatsby-drupal#user-content-post-install).
 
-{{< /guides/gatsby/headless-postinstall >}}
+{{% /guides/gatsby/headless-postinstall %}}
 
 ## Next steps
 

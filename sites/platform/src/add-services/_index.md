@@ -52,13 +52,13 @@ The top-level key is a custom service name (``<SERVICE_NAME>``: in the example, 
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
-{{< note >}}
+{{% note  %}}
 
 Changing the service name is interpreted as creating an entirely new service.
 This **removes all data in that service**.
 Always back up your data before changing existing services in your `{{< vendor/configfile "services" >}}` file.
 
-{{< /note >}}
+{{% /note %}}
 
 #### Service options
 

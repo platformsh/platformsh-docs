@@ -25,10 +25,10 @@ To run a Java application at {{% vendor/name %}} you need:
   * [GitLab](/integrations/source/gitlab.md)
   * The default Git repository provided by {{% vendor/name %}}
 
-{{< note >}}
+{{% note  %}}
 A container application can't be bigger than **8 GB** of memory.
 For more details, see [tuning](/languages/java/tuning.md).
-{{< /note >}}
+{{% /note %}}
 
 ## Monolith/Single Application
 
@@ -53,11 +53,11 @@ web:
 3. The [`<APP_NAME>.web.commands`](/create-apps/image-properties/web.md) property defines the command to launch the application(/create-apps/image-properties/web.md). Example:  `java -jar file.jar`
 4. The [`<APP_NAME>.web.commands.start`](/create-apps/image-properties/web.html#start) property indicates the port on which the application runs through the `PORT` environment. Consider including this when your app follows the port bind principle. Example: `java -jar jar --port=$PORT`
 
-{{< note >}}
+{{% note  %}}
 
 Be aware that after the build, it creates a read-only system. Use the [`mount` property to create a writable folder](/create-apps/image-properties/mounts.md).
 
-{{< /note >}}
+{{% /note %}}
 
 ### Route
 
@@ -71,11 +71,11 @@ Be aware that after the build, it creates a read-only system. Use the [`mount` p
 ```
 1. It defines the application will link in the route, e.g.: `"myapp:http"`
 
-{{< note >}}
+{{% note  %}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
 At runtime that limit depends on your plan and configuration.
 A stateless application can be scaled horizontally to multiple application instances using Varnish in a [load balancer](https://support.platform.sh/hc/en-us/community/posts/16439676899474) configuration.
-{{< /note >}}
+{{% /note %}}
 
 ## Microservices
 
@@ -97,9 +97,9 @@ You have the option to use several languages in microservices. If you're using J
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
-{{< note >}}
+{{% note  %}}
 You can load balance to some or [all applications in the project cluster](https://support.platform.sh/hc/en-us/community/posts/16439662235026).
-{{< /note >}}
+{{% /note %}}
 
 ## Access to managed services
 

@@ -206,7 +206,7 @@ Staging
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary/_index.md#environment-type)) that haven't been redeployed in 14 days.
 
-{{< note >}}
+{{% note  %}}
 
 If you're on a development plan,
 all your environments are preview environments that can be paused automatically.
@@ -214,7 +214,7 @@ This includes your future production environment.
 To prevent your production environment from being paused automatically,
 [upgrade to a non-development plan](https://upsun.com/pricing-fixed/).
 
-{{< /note >}}
+{{% /note %}}
 
 You can pause (and resume) an environment manually at any time.
 
@@ -294,11 +294,11 @@ which allows you to push changes to your environment and trigger the following a
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.
 
-{{< note >}}
+{{% note  %}}
 
 You can't use push options if you have a [source integration](/integrations/source/_index.md) set up.
 
-{{< /note >}}
+{{% /note %}}
 
 The following example shows how, through a single `push`,
 you can activate your environment, set a title for it,

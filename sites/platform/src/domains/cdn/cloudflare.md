@@ -44,14 +44,14 @@ through the TLS protocol.
 It also ensures that requests can't be sent directly to the origin server ({{% vendor/name %}}).
 Instead, requests must transit through Cloudflare first.
 
-{{< note >}}
+{{% note  %}}
 mTLS is only compatible with environments where you have attached domains you own, meaning:
 
 - Your production environment
 - Each preview environment where you have [attached a custom domain](/domains/steps/custom-domains-preview-environments.html)
 
 Therefore, mTLS is **not** compatible with preview environments created by a [source code integration](/integrations/source/_index.md).
-{{< /note >}}
+{{% /note %}}
 
 If you can't use mTLS, you can still take the following measures to protect your site from on-path attacks:
 

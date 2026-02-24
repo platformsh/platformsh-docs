@@ -55,7 +55,7 @@ Also, you need to declare `hostingWPCOM: false` as you don't pull data from a Wo
 
 WordPress comes with an initial "Hello world" article, and it isn't necessary to add any more content to the site.
 
-{{< /guides/gatsby/headless-postinstall >}}
+{{% /guides/gatsby/headless-postinstall %}}
 
 ## Next steps
 

@@ -6,10 +6,10 @@ description: |
 
 {{% vendor/name %}} supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 
-{{< note >}}
+{{% note  %}}
 The Tideways upstream is available as a plugin on {{% vendor/name %}}:
 * [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
-{{< /note >}}
+{{% /note %}}
 
 ## Get Started
 

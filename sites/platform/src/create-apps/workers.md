@@ -52,9 +52,9 @@ sv stop app
 sv start app
 ```
 
-{{< note >}}
+{{% note  %}}
 Use `systemctl` whenever possible. If you’re using `sv` command line, it’s worth upgrading to a [recent runtime version](/create-apps/app-reference/single-runtime-image.html#types) for better support.
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 

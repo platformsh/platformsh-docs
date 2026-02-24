@@ -9,9 +9,9 @@ description: |
 
 To activate Elasticsearch and then have it accessed by the Spring application already in {{% vendor/name %}}, it is necessary to modify two files.
 
-{{< note >}}
+{{% note  %}}
 This guide only covers the *addition* of a service configuration to an existing Spring project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add the Elasticsearch service
 
@@ -36,11 +36,11 @@ export SPRING_ELASTICSEARCH_REST_URIS="http://${ES_HOST}:${ES_PORT}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 {{% spring-common-props %}}
 
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Connect to Elasticsearch
 

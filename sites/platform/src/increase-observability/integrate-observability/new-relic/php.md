@@ -22,9 +22,9 @@ Add a new environment level variable to give your application a recognizable nam
 {{% vendor/cli %}} variable:create --level environment --environment {{< variable "ENVIRONMENT_NAME" >}} --visible-build false --inheritable false --json false --sensitive true --enabled true --visible-runtime true php:newrelic.appname --value {{< variable "APP_NAME" >}}
 ```
 
-{{< note >}}
+{{% note  %}}
 Repeat these two steps for every environment you want to monitor, making sure you give them different application names, matching the ones you entered in the New Relic interface.
-{{< /note >}}
+{{% /note %}}
 
 ## Enable the New Relic extension
 

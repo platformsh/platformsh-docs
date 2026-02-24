@@ -41,11 +41,11 @@ The following premium versions are supported:
 - 8.8
 - 8.19
 
-{{< note >}}
+{{% note  %}}
 
 Please note that the above versions only apply to Dedicated Gen 2. As of now, there are **no supported Premium versions** on Grid. 
 
-{{< /note >}}
+{{% /note %}}
 
 <!-- 
 | Grid  | Dedicated Gen 2 |
@@ -304,13 +304,13 @@ highlight=python
 
 {{< /codetabs >}}
 
-{{< note >}}
+{{% note  %}}
 
 When you create an index on Elasticsearch,
 don't specify the `number_of_shards` or `number_of_replicas` settings in your Elasticsearch API call.
 These values are set automatically based on available resources.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Authentication
 

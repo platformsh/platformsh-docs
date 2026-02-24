@@ -24,7 +24,7 @@ You need:
 You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Valkey service](../drupal/deploy/customize.md#settingsphp).
 If you installed Drupal with a template, this file is already present in your project.
 
-{{< note >}}
+{{% note  %}}
 
 By default, Valkey is an ephemeral service.
 This means that the Valkey storage isn't persistent
@@ -34,7 +34,7 @@ or when the service hits its memory limit.
 To solve this, {{% vendor/name %}} recommends that you change the [service type](../../add-services/valkey.md#service-types)
 to [persistent Valkey](../../add-services/valkey.md#persistent-valkey) (`valkey-persistent`).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Add a Valkey service
 

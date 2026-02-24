@@ -17,8 +17,8 @@ You can open a [support ticket](/learn/overview/get-support.html#create-a-suppor
 
 Join us on our {{< vendor/url "discord" "Discord" >}} server! We have a dedicated [feedback channel](https://discord.com/channels/1121795479785721957/1284195722299834510) where you can share your ideas and discuss them with our community and team members.
 
-{{< note title="We love to hear from you!" theme="info" >}}
+{{% note title="We love to hear from you!" theme="info"  %}}
 
 Your input helps us make our platform even better. Thank you for contributing.
 
-{{< /note >}}
+{{% /note %}}

@@ -373,7 +373,7 @@ To upgrade from a 1.x version to 2.3 or later,
 change the service version in your `{{< vendor/configfile "services" >}}` file and push your project.
 Any existing data you had in your 1.x system is automatically upgraded for you into the 2.3+ system.
 
-{{< note >}}
+{{% note  %}}
 
 During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
@@ -381,4 +381,4 @@ Previous credentials can't be retained.
 
 You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) or by running `{{< vendor/cli >}} relationships`.
 
-{{< /note >}}
+{{% /note %}}

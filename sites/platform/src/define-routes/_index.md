@@ -87,11 +87,11 @@ routes:
 ```
 This enables sticky routing at the router level.
 
-{{< note theme="note" title="Note">}}
+{{% note theme="note" title="Note" %}}
 
 Because the routing uses IP hashing, scaling your environment up or down can change the hash distribution, causing requests to be routed to different containers. For production workloads that require persistent sessions, use an external session store (for example, [Redis](/add-services/redis.md)), or design your app to be stateless.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Trailing slashes
 
@@ -184,7 +184,7 @@ https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 
 Note that the `example.com` prefix isn't part of the generated URL.
 
-{{< note title="Previous behavior" >}}
+{{% note title="Previous behavior"  %}}
 
 Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
 
@@ -216,7 +216,7 @@ The generated URL for the `feature` environment was:
 https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ### `{all}`
 
@@ -280,7 +280,7 @@ So if you want to use a wildcard route and protect it with HTTPS,
 you need to provide a [custom TLS certificate](/domains/steps/tls.md).
 
 {{% version/only "1" %}}
-{{< note >}}
+{{% note  %}}
 
 In projects created before November 2017, the `.` in subdomains was replaced with a triple hyphen (`---`).
 It was switched to preserve `.` to simplify SSL handling and improve support for longer domains.
@@ -288,7 +288,7 @@ If your project was created before November 2017, it still uses `---` to the lef
 To switch to dotted-domains, [contact support](/learn/overview/get-support.md).
 Doing so may change the domain name that your production domain name should `CNAME` to.
 
-{{< /note >}}
+{{% /note %}}
 {{% /version/only %}}
 
 ## Route identifiers

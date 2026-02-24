@@ -27,12 +27,12 @@ The *build* hook and dependencies might not vary but,
 as these containers are independent, they can be customized the same way using common properties.
 The values defined for the main container are used as default values.
 
-{{< note title="Tip">}}
+{{% note title="Tip" %}}
 
 When the container is running in the context of a worker, the
 `SYMFONY_IS_WORKER` environment variable is defined and set to `1`.
 
-{{< /note >}}
+{{% /note %}}
 
 The ``commands.start`` key is required.
 It specifies the command you can use to launch the application worker.
@@ -40,12 +40,12 @@ If the command specified by the ``start`` key terminates, it's restarted automat
 
 For more information, see [Workers](/create-apps/image-properties/workers.md).
 
-{{< note title="Warning">}}
+{{% note title="Warning" %}}
 
 Web and worker containers don't share mounts targets.
 So you can't share files between those containers using the filesystem.
 To share data between containers, use [services](/add-services/_index.md).
 
-{{< /note >}}
+{{% /note %}}
 
 {{< guide-buttons previous="Back" next="Cron jobs" >}}

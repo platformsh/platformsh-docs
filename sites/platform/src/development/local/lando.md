@@ -9,11 +9,11 @@ weight: 3
 Lando works with most services supported by {{% vendor/name %}} [except for](https://docs.lando.dev/plugins/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
 See a list of [supported services](https://docs.lando.dev/plugins/platformsh/config.html#services-yaml).
 
-{{< note >}}
+{{% note  %}}
 
 {{% local-dev/lando-plugin-note %}}
 
-{{< /note >}}
+{{% /note %}}
 
 For a complete reference, consult the following resources:
 
@@ -56,14 +56,14 @@ Otherwise, access the directory with your project.
 
 Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% variable "API_TOKEN" %}}</code> and follow the instructions provided by the interactive prompt.
 
-{{< note >}}
+{{% note  %}}
 
 If for some reason you get an error using the {{% vendor/name %}} recipe,
 be sure to
 [install the latest version of the {{% vendor/name %}} plugin](https://docs.lando.dev/plugins/platformsh/getting-started.html#custom-installation)
 and run the command again.
 
-{{< /note >}}
+{{% /note %}}
 
 <--->
 
@@ -105,11 +105,11 @@ Access your app and services by opening the according URLs in your browser.
 
 ## Troubleshooting
 
-{{< note >}}
+{{% note  %}}
 
 {{% local-dev/lando-plugin-note %}}
 
-{{< /note >}}
+{{% /note %}}
 
 - Make sure that the [{{% vendor/name %}} configuration files](/learn/overview/structure.md) are present in your local repository.
 - Check that your [services](https://docs.lando.dev/plugins/platformsh/config.html#services-yaml) are supported by Lando.

@@ -44,7 +44,7 @@ mercure:
   ...
 ```
 
-{{< note >}}
+{{% note  %}}
 
 You don't need to define a route for each app in the repository.
 If an app isn't specified, then it isn't accessible to the web.
@@ -52,7 +52,7 @@ One good example of defining an app with no route is when you [use Git submodule
 
 You can also achieve the same thing by defining the app as a [`worker`](/create-apps/image-properties/workers.md).
 
-{{< /note >}}
+{{% /note %}}
 
 Depending on your needs, you could configure the router container
 [using subdomains](#define-routes-using-subdomains) or using [subdirectories](#define-routes-using-subdirectories).
@@ -75,12 +75,12 @@ So if your default domain is `example.com`, that means:
 - `https://mercure.example.com/` is served by your Mercure Rocks app (`mercure`).
 - `https://example.com/` is served by your Symfony frontend app (`api`).
 
-{{< note >}}
+{{% note  %}}
 
 Using a subdomain might [double your network traffic](https://www.nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Define routes using subdirectories
 

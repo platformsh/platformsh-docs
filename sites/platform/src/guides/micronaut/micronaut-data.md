@@ -9,9 +9,9 @@ description: |
 
 [Micronaut Data](https://micronaut-projects.github.io/micronaut-data/latest/guide/) is a database access toolkit that uses Ahead of Time (AoT) compilation to pre-compute queries for repository interfaces that are then executed by a thin, lightweight runtime layer.
 
-{{< note >}}
+{{% note  %}}
 This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add a SQL database service
 
@@ -39,9 +39,9 @@ export DATASOURCES_DEFAULT_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${DA
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 Environment variable names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Connect to the service
 

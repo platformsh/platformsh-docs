@@ -20,10 +20,10 @@ It may happen that the version of the PhpRedis extension available for your PHP 
 isn't compatible with your app and upgrading your app isn't feasible.
 If so, use the following script as an alternative to download and compile a precise version of the extension.
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 Do *not* use this approach unless you really need to.
 Using the provided PhpRedis extension is preferred in the majority of cases.
-{{< /note >}}
+{{% /note %}}
 
 To ease the installation of a customer version of PhpRedis, use a [PhpRedis install script](https://github.com/platformsh/snippets/blob/main/src/install-phpredis.sh).
 Invoke this script from your build hook, specifying a version.

@@ -22,7 +22,7 @@ just attach it to the custom production domain it replaces.
 If you have multiple custom production domains,
 you need to select which one you're replacing.
 
-{{< note title="Example" >}}
+{{% note title="Example"  %}}
 
 You have two environments, a production environment and a staging environment.
 You've added the `example.com` custom domain to your production environment.
@@ -34,7 +34,7 @@ to its corresponding custom production domain `example.com`.
 You can then access your staging environment through `staging.example.com`,
 and still access your production environment through `example.com`.
 
-{{< /note >}}
+{{% /note %}}
 
 If you have multiple custom domains on your production environment,
 when you set up a custom domain on a preview environment,
@@ -51,13 +51,13 @@ You need:
 
 - A Grid project on which you have **admin rights** <BR>
 
-  {{< note theme="warning" >}}
+  {{% note theme="warning"  %}}
 
   If you have a {{% names/dedicated-gen-2 %}} project,
   currently you can only add a custom domain to the dedicated environments of your project (production and staging).
   To do so, [contact Support](https://console.upsun.com/-/users/~/tickets/open).
 
-  {{< /note >}}
+  {{% /note %}}
 
   If you use a [Managed Fastly](/domains/cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom domains for preview environments.
@@ -71,13 +71,13 @@ This limit doesn't include the production environment,
 and you can increase it without charge.
 To do so, [contact Support](/learn/overview/get-support.md).
 
-{{< note >}}
+{{% note  %}}
 
 If you delete a custom production domain,
 all of the attached custom domains for preview environments are deleted too.
 You need to rebuild the affected preview environments for the deletion to be complete.
 
- {{< /note >}}
+ {{% /note %}}
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
 all of the custom domains set up on preview environments are automatically removed.
@@ -102,12 +102,12 @@ title=Using the CLI
 2. [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
    In particular, make sure your DNS record points to the target of your preview environment.
 
-   {{< note >}}
+   {{% note  %}}
 
    Using the target of your production environment to configure your DNS provider is technically possible,
    but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
 
-   {{< /note >}}
+   {{% /note %}}
 
 3. Run a command similar to the following:
 
@@ -139,21 +139,21 @@ title=In the Console
 7.  [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to the target of your preview environment.
 
-{{< note >}}
+{{% note  %}}
 
 Using the target of your production environment to configure your DNS provider is technically possible,
 but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 
-{{< note >}}
+{{% note  %}}
 
 You can’t update a custom domain when it's used on a preview environment.
 You can only delete it and create a new one as a replacement.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Example
 

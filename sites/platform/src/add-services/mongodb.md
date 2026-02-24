@@ -76,13 +76,13 @@ Previous non-Enterprise versions are available in your projects (and are listed 
 but they're at their [end of life](https://www.mongodb.com/support-policy/legacy)
 and are no longer receiving security updates from upstream.
 
-{{< note title="Warning" theme="Warning">}}
+{{% note title="Warning" theme="Warning" %}}
 
 Downgrades of MongoDB aren't supported.
 MongoDB updates its own data files to a new version automatically but can't downgrade them.
 If you want to experiment with a later version without committing to it use a preview environment.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Deprecated versions
 
@@ -501,11 +501,11 @@ For example, if you are running a 4.2 image, you must upgrade first to 4.4 and t
 For more details on upgrading and how to handle potential application backward compatibility issues,
 see the [MongoDB release notes](https://www.mongodb.com/docs/manual/release-notes/).
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Make sure you first test your migration on a separate branch.
 
 Also, be sure to take a backup of your production environment **before** you merge this change.
-{{< /note >}}
+{{% /note %}}
 
 Downgrading isn't supported. If you want, for whatever reason, to downgrade you should create a mongodump, remove the service, recreate the service, and import your dump.

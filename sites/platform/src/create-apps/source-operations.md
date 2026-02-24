@@ -225,13 +225,13 @@ title=From the Console
 
 {{< /codetabs >}}
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Once you add the API token as an environment variable,
 anyone with [SSH access](/development/ssh/_index.md) can read its value.
 Make sure you carefully check your [user access on this project](/administration/users.md#manage-project-users).
 
-{{< /note >}}
+{{% /note %}}
 
 2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 

@@ -19,11 +19,11 @@ open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
 [contact sales](https://upsun.com/contact-us/).
 
-{{< note theme="Info" >}}
+{{% note theme="Info"  %}}
 {{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="note" title="Monitor CDN metrics">}}
+{{% note theme="note" title="Monitor CDN metrics" %}}
 
 You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). This will help you monitor your monthly bandwidth and requests consumption. 
 
@@ -37,13 +37,13 @@ In this summary, you will find specific details about:
 
 This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="info" title="Set up traffic alerts">}}
+{{% note theme="info" title="Set up traffic alerts" %}}
 
 You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#monthly-traffic-alerts).
 
-{{< /note >}}
+{{% /note %}}
 
 ## How Managed Fastly works
 
@@ -53,13 +53,13 @@ The Fastly CDN must be provisioned and managed by {{% vendor/name %}}. Features 
 
 Once enabled, Fastly operates as the first point of contact for all HTTP requests, allowing requests to be cached, filtered, transformed, or blocked entirely at the edge.
 
-{{< note theme="info" title="Feature dependencies">}}
+{{% note theme="info" title="Feature dependencies" %}}
 
 - The {{% vendor/name %}} WAF requires the {{% vendor/name %}} Managed Fastly CDN.
 - Customers cannot attach the WAF to an existing third-party Fastly service.
 - Advanced Fastly features such as virtual patching and per-project logging require a configurable Fastly workspace.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Domain control validation
 

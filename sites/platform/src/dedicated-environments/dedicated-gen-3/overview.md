@@ -9,13 +9,13 @@ description:  "Designed to cater to the needs of organizations that build demand
 
 ---
 
-{{< note theme="note" title="Limited access phase">}}
+{{% note theme="note" title="Limited access phase" %}}
 
 Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
 
 If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://upsun.com/contact-us/) our team.
 
-{{< /note >}}
+{{% /note %}}
 
 {{% description %}}
 
@@ -29,11 +29,11 @@ If you need more information, have any questions, or you think you have the perf
 -   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary/_index.md#control-plane) from the service versions, so the OS and services can be upgraded independently
 -   **Better staging:** Dedicated Gen 3 comes with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Existing Grid and Dedicated Gen 2 projects cannot be migrated to Dedicated Gen 3.
 
-{{< /note >}} 
+{{% /note %}} 
 
 ### Dedicated Gen 3 vs Grid
 
@@ -158,19 +158,19 @@ The default configuration for Dedicated clusters is to launch them into a single
 -   Network traffic between AZs is billed, whereas intra-AZ traffic isn’t. Launching Dedicated clusters across multiple AZs leads to higher costs and decreased performance.
 If you prefer the peace of mind of hosting across multiple AZs, you can request a different configuration.
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Upsun is responsible for meeting the Premium Uptime SLA (99.99% guaranteed uptime SLA), so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
 
-{{< /note >}} 
+{{% /note %}} 
 
 ##### SFTP 
 
 In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. However, write access is restricted to the mounts declared in your YAML config files. SSH public key based authentication is also supported on the SFTP account.
 
-{{< /note >}}
+{{% /note %}}
 

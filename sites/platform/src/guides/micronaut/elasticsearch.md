@@ -9,9 +9,9 @@ description: |
 
 Micronaut provides two ways of accessing Elasticsearch: via the lower level `RestClient` or via the `RestHighLevelClient`. To initialize Elasticsearch in your project's cluster so that it can be accessed by a Micronaut application, it is necessary to modify two files.
 
-{{< note >}}
+{{% note  %}}
 This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add the Elasticsearch service
 
@@ -36,9 +36,9 @@ export ELASTICSEARCH_HTTPHOSTS="http://${ES_HOST}:${ES_PORT}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 Environment variable names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Connect to Elasticsearch
 

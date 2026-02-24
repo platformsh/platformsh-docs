@@ -24,7 +24,7 @@ You need:
 You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](/guides/drupal/deploy/customize.md#settingsphp).
 If you installed Drupal with a template, this file is already present in your project.
 
-{{< note >}}
+{{% note  %}}
 
 By default, Redis is an ephemeral service.
 This means that the Redis storage isn't persistent
@@ -34,7 +34,7 @@ or when the service hits its memory limit.
 To solve this, {{% vendor/name %}} recommends that you change the [service type](/add-services/redis.md#service-types)
 to [persistent Redis](/add-services/redis.md#persistent-redis) (`redis-persistent`).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Add a Redis service
 

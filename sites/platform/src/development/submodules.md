@@ -64,12 +64,12 @@ When you run `git push`, you can see the output of the logs:
   ...
 ```
 
-{{< note >}}
+{{% note  %}}
 
 If your submodule contains an independent app,
 see [how to configure it properly](create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Update submodules
 
@@ -89,24 +89,24 @@ Submodule path 'gatsby': checked out '012ab16b05f474278ad0f9916e1cb94fc9df5ba4'
 Submodule path 'mercure': checked out '94ccae5055983004aa8ab2c17b1daabd0c0a4927'
 ```
 
-{{< note >}}
+{{% note  %}}
 
 To specify which submodule needs to be updated, replace `[submodule]` with your submodule path.
 
-{{< /note >}}
+{{% /note %}}
 
 <--->
 +++
 title= Automated update
 +++
 
-{{< note theme="warning" title="Tier availability" version="1" >}}
+{{% note theme="warning" title="Tier availability" version="1"  %}}
 
 This feature is available for **Elite** and **Enterprise** customers.
 [Compare the {{% vendor/name %}} tiers](https://upsun.com/pricing-fixed/) on our pricing page,
 or [contact our Sales team](https://upsun.com/contact-us/) for more information.
 
-{{< /note >}}
+{{% /note %}}
 
 Automate your submodule updates using a [source operation](create-apps/source-operations).
 To do so, follow these steps:
@@ -235,7 +235,7 @@ To fix this, follow these steps:
    submodules in your submodule, then add the public key to those repositories as well. This allows your
    {{% vendor/name %}} project to pull the repository from the remote Git service.
 
-{{< note >}}
+{{% note  %}}
 
 Deploy keys only grant access to a single repository,
 which can cause issues when attempting to pull several repositories to the same server.
@@ -245,7 +245,7 @@ If your server needs access to multiple repositories, follow these steps:
    with access rights to each of the private repositories.
 2. Attach the deploy key to your machine user.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Removing submodules
 

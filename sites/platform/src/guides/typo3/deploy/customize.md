@@ -36,13 +36,13 @@ You can see this line in context of the full file in the [configuration](#enviro
 $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
 ```
 
-{{< note >}}
+{{% note  %}}
 The suggested timeout of three seconds above may end up being too short
 if your TYPO3 instance performs external requests other than to itself as described here.
 If the instance makes long requests,
 such as when synchronizing data as a part of a TYPO3 Scheduler task with an external API,
 it's best instead to place these operations in workers.
-{{< /note >}}
+{{% /note %}}
 
 You still need to enable the `pixelant/pxa-lpeh` extension,
 which you can do by running the command:
@@ -154,7 +154,7 @@ but its purpose is to retrieve the root domain
 this is a hashed placeholder domain generated from the environment)
 from the environment variable `PLATFORM_ROUTES`.
 
-{{< note >}}
+{{% note  %}}
 
 The above `base` configuration only includes the production case (running on {{% vendor/name %}})
 or at least exporting a `PLATFORM_ROUTES_MAIN` environment variable to match during local development.
@@ -171,7 +171,7 @@ baseVariants:
     condition: 'applicationContext == "Production"'
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## Environment
 

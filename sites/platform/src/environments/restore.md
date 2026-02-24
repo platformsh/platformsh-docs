@@ -82,7 +82,7 @@ title=In the Console
 The data is restored and your backed-up environment is deployed.
 This deployment uses the built app, including variables, from when the backup was taken.
 
-{{< note theme="warning" title="Warning" >}}
+{{% note theme="warning" title="Warning"  %}}
 
 The code is also initially restored, but {{% vendor/name %}} doesn't modify your Git repository.
 So any future (re)deployments use the current Git repository to build the environment.
@@ -92,7 +92,7 @@ use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
 See [how backup and restore works on {{% vendor/name %}}](/environments/backup.md#how-backup-and-restore-works).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Restore to a different environment
 
@@ -114,6 +114,6 @@ You can restore backups to a different environment than they were created on usi
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} --branch-from={{% variable "PARENT_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
 
-{{< note theme="info" title="Source integration issue" >}}
+{{% note theme="info" title="Source integration issue"  %}}
 If you have enabled [Source Integration](/integrations/source.md) for your project and you restore a backup into an environment that does not correspond to any Git branch in your repository, Source Integration will automatically delete the environment immediately after it is created. We strongly recommend that you first create the environment by creating a corresponding Git branch in your repository before restoring a backup to this environment.
-{{< /note >}}
+{{% /note %}}

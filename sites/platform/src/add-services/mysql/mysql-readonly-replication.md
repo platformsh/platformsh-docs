@@ -11,11 +11,11 @@ Examples of read-heavy applications include:
 - Reporting or analytics jobs
 - Background jobs that frequently query data
 
-{{< note theme="info" title="Note" >}}
+{{% note theme="info" title="Note"  %}}
 - **To prevent data loss or interruptions** during replication, you must configure the disk size for each replica. The replica service does not inherit the disk size of the primary database. The replica disk size must at least match the primary service's disk capacity. See the example below. 
 - **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
 - **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify data will result in an SQL error.
-{{< /note >}}
+{{% /note %}}
 
 ## Supported versions
 

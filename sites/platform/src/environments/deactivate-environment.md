@@ -6,13 +6,13 @@ description: See how to deactivate environments you aren't using.
 If you have environments you aren't using, you may want to deactivate them to save resources for what you need.
 To deactivate an environment, you need to be an admin for the project or the given environment.
 
-{{< note >}}
+{{% note  %}}
 
 Your default environment is protected.
 It can't be deactivated through the Console or the CLI.
 To change which environment is the default, see how to [rename the default branch](/environments/default-environment.md).
 
-{{< /note >}}
+{{% /note %}}
 
 Deactivating the project results in the following:
 

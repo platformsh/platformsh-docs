@@ -9,13 +9,13 @@ build:
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported, storage limits, backups, restores and supported languages and frameworks."
 ---
 
-{{< note theme="note" title="Limited access phase">}}
+{{% note theme="note" title="Limited access phase" %}}
 
 Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
 
 If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://upsun.com/contact-us/) our team.
 
-{{< /note >}}
+{{% /note %}}
 
 Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#providers-and-regions) are supported and [storage limits](#storage).
 
@@ -49,17 +49,17 @@ On Grid, all project branches are deployed into that same Grid region. On DG3, t
 
 While HA environments connected to a DG3 cluster **can** deploy multiple instances of applications and services, they **cannot** dynamically change the number of those instances (for example, from 1 to 3 or 3 to 1).
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 Existing non-HA projects cannot be converted to HA projects and vice-versa. HA projects must be created as HA.
 
-{{< /note >}}
+{{% /note %}}
 
-{{< note >}}
+{{% note  %}}
 
 The `PLATFORM_CLUSTER` environment variable isn't yet available on {{% names/dedicated-gen-3 %}}. If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Providers and regions
 

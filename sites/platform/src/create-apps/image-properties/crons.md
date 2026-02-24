@@ -26,13 +26,13 @@ The following table shows the properties for each job:
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
 
-{{< note >}}
+{{% note  %}}
 
 The use of the `cmd` key is now deprecated in favor of the `commands`key.</br>
 Make sure you set your new cron jobs using the `commands` key,
 and update your existing cron jobs to ensure continuity.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Cron commands
 

@@ -9,9 +9,9 @@ description: |
 
 To activate MongoDB and then have it accessed by the Micronaut application already in {{% vendor/name %}}, it is necessary to modify two files.
 
-{{< note >}}
+{{% note  %}}
 This guide only covers the *addition* of a MongoDB service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add the MongoDB service
 
@@ -43,9 +43,9 @@ export MONGO_URL="mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONG
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 Environment variable names are following the conversion rules of the [Micronaut Documentation](https://docs.micronaut.io/latest/guide/index.html).
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Connect to the service
 

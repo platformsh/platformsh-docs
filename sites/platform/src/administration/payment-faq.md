@@ -9,13 +9,13 @@ description: Learn about billing cycles, supported payment methods, accepted cur
 
 You'll also find important details about billing cycles, invoice eligibility, and our fraud protection measures.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 This page is _not_ meant to be your primary resource for the exact costs of certain features.
 
 The official {{% vendor/name %}} [Pricing page](https://upsun.com/pricing-fixed/) should always be considered the primary source of pricing details.
 
-{{< /note >}}
+{{% /note %}}
 
 ## What payment methods are available?
 
@@ -38,11 +38,11 @@ You can pay using the following card types:
 - Visa  
 - Local card types (e.g. Cartes Bancaires in France, Interac in Canada)
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Prepaid credit cards are **not accepted**.
 
-{{< /note >}}
+{{% /note %}}
 
 ## What payment types are accepted for direct debit?
 
@@ -58,11 +58,11 @@ Accepted direct debit payment types vary by region:
 
 You can update your billing details in the **Billing** tab of your account.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Please note that only an organization owner or an organization user with the Manage billing permission can edit billing information. Visit the [Organizations page](/administration/organizations) for more information.
 
-{{< /note >}}
+{{% /note %}}
 
 ## What currency can I pay in?
 

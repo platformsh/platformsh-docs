@@ -48,11 +48,11 @@ type: 'golang:{{% latest "golang" %}}'
 
 Even though you select a specific version of Go, starting in Go 1.21, the `go` command will automatically download and use a different toolchain version as requested by the `toolchain` directive in `go.mod`, or the `GOTOOLCHAIN` environmental variable (see [Go Toolchains](https://go.dev/doc/toolchain)).
 
-{{< note >}}
+{{% note  %}}
 
 Still, it is important to keep your chosen version of Go updated in your yaml configuration file. This will ensure that you are using the most up to date software for your projects.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Go modules
 

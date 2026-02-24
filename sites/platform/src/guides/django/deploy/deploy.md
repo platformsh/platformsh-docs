@@ -10,7 +10,7 @@ description: |
 
 {{% guides/data-migration /%}}
 
-{{< note >}}
+{{% note  %}}
 
 The example Django app used in this guide can be migrated solely by importing data into the database.
 Other forms of data, such as user uploads, also need to be migrated in the way described above.
@@ -18,7 +18,7 @@ Other forms of data, such as user uploads, also need to be migrated in the way d
 To see how to define directories that are writable at runtime, see the [mounts reference](/create-apps/image-properties/mounts.md).
 Then adjust the previous commands to upload files to them.
 
-{{< /note >}}
+{{% /note %}}
 
 Go forth and Deploy (even on Friday)!
 

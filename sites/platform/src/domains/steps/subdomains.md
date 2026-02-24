@@ -36,7 +36,7 @@ This ensures no other users can possibly add a subdomain of your domain to their
 Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
 as long as you don’t use wildcards records pointing at {{% vendor/name %}}.
 
-{{< note theme="warning" title="Apex domain cannot be re-added" >}}
+{{% note theme="warning" title="Apex domain cannot be re-added"  %}}
 
 If you don't remove the `TXT` record, restrictions apply on the apex domain.
 For example, you can't add the apex domain to another project until you remove the `TXT` record.
@@ -47,7 +47,7 @@ account if you need to add the apex domain to another project*.
 
 You can see an error like `YOUR_APEX_DOMAIN is a root domain`.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Bypass locked domains
 

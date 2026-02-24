@@ -137,9 +137,9 @@ Next, reload the replica instance for the changes to take effect.
 
 You need to set up an SSH tunnel from the replica server to the primary, tunneled through the application.
 
-{{< note >}}
+{{% note  %}}
 The SSH tunnel is interrupted every time the environment redeploys. For replication to continue you must set up an auto-restart for the tunnel. There are many ways to do so that are out of the scope of this documentation.
-{{< /note >}}
+{{% /note %}}
 
 You can set up an SSH tunnel using one of the following methods:
 - Manually using SSH. Using this method makes it easier to set up an auto-restart for the tunnel. Consult the SSH documentation for details on setting up the tunnel and the auto-restart.

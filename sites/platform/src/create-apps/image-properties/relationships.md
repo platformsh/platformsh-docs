@@ -18,21 +18,21 @@ However, some services allow you to define multiple databases, cores, and/or per
 In these cases, you can't rely on default endpoints.
 Instead, you can explicitly define multiple endpoints when setting up your relationships.
 
-{{< note >}}
+{{% note  %}}
 App containers don't have a default endpoint like services.
 To connect your app to another app in your project,
 you need to explicitly define the `http` endpoint as the endpoint to connect both apps.</br>
 For more information, see how to [define relationships between your apps](/create-apps/multi-app/relationships.md).
-{{< /note >}}
+{{% /note %}}
 
-{{< note title="Availability" theme="info">}}
+{{% note title="Availability" theme="info" %}}
 
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
 (`Relationship 'SERVICE_NAME' of application 'myapp' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images.
 If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
-{{< /note >}}
+{{% /note %}}
 
 To define a relationship between your app and a service:
 
@@ -81,7 +81,7 @@ relationships:
   elasticsearch:
 ```
 
-{{< note title="Tip" theme="info" >}}
+{{% note title="Tip" theme="info"  %}}
 
 An even quicker way to define many relationships is to use the following single-line configuration:
 
@@ -103,7 +103,7 @@ where
   disk: 256
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 <--->
 
@@ -163,7 +163,7 @@ relationships:
 
 {{< /codetabs >}}
 
-{{< note theme="info" title="Legacy" >}}
+{{% note theme="info" title="Legacy"  %}}
 
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
@@ -181,7 +181,7 @@ relationships:
 
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
 
-{{< /note >}}
+{{% /note %}}
 
 
 

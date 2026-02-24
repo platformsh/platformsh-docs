@@ -111,11 +111,11 @@ When manual deployment is enabled in an environment, the following actions are q
 | **Environment Settings** | `environment.update.http_access`, `smtp`, `restrict_robots` |
 
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Manual deployment is available for **development**, **staging** and **production** environments.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ### Change deployment type
@@ -204,11 +204,11 @@ POST /projects/{projectId}/environments/{environmentId}/deploy
 
 {{< /codetabs >}}
 
-{{< note theme="tip" >}}
+{{% note theme="tip"  %}}
 
 As soon as your deployment type is switched from manual to automatic, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
 
-{{< /note >}}
+{{% /note %}}
 
 
 ## Deployment philosophy

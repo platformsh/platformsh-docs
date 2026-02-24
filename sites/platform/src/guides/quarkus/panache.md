@@ -11,9 +11,9 @@ Hibernate ORM is a JPA implementation and offers you the full breadth of an Obje
 
 To activate Hibernate Panache and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files.
 
-{{< note >}}
+{{% note  %}}
 This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
-{{< /note >}}
+{{% /note %}}
 
 ## 1. Add a SQL database service
 
@@ -41,9 +41,9 @@ export QUARKUS_HTTP_PORT="${PORT}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 Environment variables names are following the conversion rules of [Eclipse MicroProfile](https://github.com/eclipse/microprofile-config/blob/master/spec/src/main/asciidoc/configsources.asciidoc#user-content-default-configsources).
-{{< /note >}}
+{{% /note %}}
 
 ## 4. Connect to the service
 

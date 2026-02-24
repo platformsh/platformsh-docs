@@ -5,10 +5,10 @@ weight: -100
 description: Schedule tasks for your Laravel app.
 ---
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 The use of workers requires a [Medium plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project)
 or greater.
-{{< /note >}}
+{{% /note %}}
 
 Laravel offers a very convenient and flexible way of scheduling tasks. A large set of [helper functions](https://laravel.com/docs/scheduling#schedule-frequency-options) help you schedule commands and jobs.
 
@@ -42,10 +42,10 @@ workers:
     disk: 256
 ```
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 By default, [workers inherit all top level properties](/create-apps/workers.md#inheritance) from the parent application.
 You may need to override certain properties in the worker configuration above depending on your application.
-{{< /note >}}
+{{% /note %}}
 
 {{< guide-buttons previous="Back" next="Manage observability with Blackfire" >}}
 

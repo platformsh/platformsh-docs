@@ -13,12 +13,12 @@ This guide provides instructions for deploying, and working with, Symfony on {{%
 
 {{% guides/requirements name="Symfony" %}}
 
-{{< note >}}
+{{% note  %}}
 
 The Symfony CLI wraps the [{{% vendor/name %}} CLI](/administration/cli/_index.md) with added features related to Symfony.
 So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfony cloud:<command>` in all of your commands.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Create your Symfony app
 
@@ -33,7 +33,7 @@ cd {{< variable "PROJECT_NAME" >}}
 The `--demo` flag pulls the [Symfony Demo skeleton](https://github.com/symfony/demo).</br>
 The `--cloud` flag automatically generates the {{% vendor/name %}} configuration files.
 
-{{< note >}}
+{{% note  %}}
 
 Alternatively, you can deploy an **existing Symfony project**.
 To do so, follow these steps:
@@ -54,7 +54,7 @@ To do so, follow these steps:
    git commit -m "Add {{% vendor/name %}} configuration"
    ```
 
-{{< /note >}}
+{{% /note %}}
 
 {{% vendor/name %}} manages the entire infrastructure of your project,
 from code to services (such as databases, queues, or search engines),
@@ -71,7 +71,7 @@ symfony cloud:create --title PROJECT_TITLE --set-remote
 
 The `--set-remote` flag sets the new project as the remote for this repository.
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 You can link any repository to an existing {{% vendor/name %}} project using the following command:
 
@@ -79,7 +79,7 @@ You can link any repository to an existing {{% vendor/name %}} project using the
 symfony project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ## Deploy your project
 
@@ -89,14 +89,14 @@ To deploy your project, run the following command:
 symfony cloud:push
 ```
 
-{{< note title="Tip" >}}
+{{% note title="Tip"  %}}
 
 During deployment, the logs from the {{% vendor/name %}} API are displayed in your terminal so you can monitor progress.
 To stop the display of the logs **without interrupting the deployment**,
 use `CTRL+C` in your terminal.
 To go back to displaying the logs, run `symfony cloud:activity:log`.
 
-{{< /note >}}
+{{% /note %}}
 
 Congratulations, your first Symfony app has been deployed on {{% vendor/name %}}!
 
@@ -175,11 +175,11 @@ To make changes to your project, follow these steps:
    symfony cloud:push
    ```
 
-   {{< note >}}
+   {{% note  %}}
 
    Deploying to production was fast because the image built for the `feat-a` environment was reused.
 
-   {{< /note >}}
+   {{% /note %}}
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
    You can also keep the data in sync with the production environment by using `symfony cloud:env:sync`.

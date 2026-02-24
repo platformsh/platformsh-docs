@@ -36,12 +36,12 @@ For more backup options and examples, see how to [export data from an SQL databa
 To transfer data into either the Staging or Production environment,
 download data from your Development environment to your local system and from there to your Production/Staging environment.
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Be aware that synchronizing files is a destructive operation that overwrites data.
 [Back up your Staging/Production files first](#back-up-your-files).
 
-{{< /note >}}
+{{% /note %}}
 
 1. To download data from your Development environment to your local system, adapt the following command:
 
@@ -60,12 +60,12 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 To synchronize a database into either the Staging or Production environment,
 export the database from your Development environment to your local system and from there to your Staging/Production environment.
 
-{{< note theme="warning" >}}
+{{% note theme="warning"  %}}
 
 Be aware that this is a destructive operation that overwrites data.
 [Back up your Staging/Production database first](#back-up-your-database).
 
-{{< /note >}}
+{{% /note %}}
 
 To synchronize your database:
 

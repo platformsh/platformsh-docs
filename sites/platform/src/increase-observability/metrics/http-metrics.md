@@ -7,11 +7,11 @@ The HTTP metrics dashboard provides {{< vendor/name >}} users with network-relat
 Those insights are designed to help them better understand the state of their
 applications.
 
-{{< note theme="info" title="No CDN data">}}
+{{% note theme="info" title="No CDN data" %}}
 
 It should be noted that the data being fed to the HTTP metrics dashboard **does not include CDN**.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Grid support
 
@@ -56,12 +56,12 @@ time of the top-10 most impactful URLs during a given time frame.
 This graph helps identify potential trouble spots, understand user behavior, and
 prioritize areas for optimization.
 
-{{< note >}}
+{{% note  %}}
 For security and privacy reasons, all URLs undergo the following sanitization measures:
 - All query parameters (`?param=value`) are sanitized to prevent leakage of sensitive information.
 - URLs exceeding 2048 characters are truncated to adhere to security best practices.
 - Specific sensitive URL paths are proactively scrubbed and anonymized.
-{{< /note >}}
+{{% /note %}}
 
 ## Limits
 Note that the following data retention limits apply when using the HTTP metrics dashboard:

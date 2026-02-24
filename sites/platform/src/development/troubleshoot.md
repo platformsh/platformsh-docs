@@ -42,7 +42,7 @@ Run the following command:
 
 The redeploy takes place after any scheduled activities (either *Running* or *Pending*).
 
-{{< note >}}
+{{% note  %}}
 
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
@@ -51,9 +51,9 @@ See [more about hooks](/create-apps/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
-{{< /note >}}
+{{% /note %}}
 
-{{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
+{{% note theme="info" title="Is there a way to redeploy the production environment without knowing its name?"  %}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
 You can use the CLI, along with the [environment type distinction](/glossary/_index.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
@@ -64,7 +64,7 @@ To do so, run the following command:
 {{% vendor/cli %}} redeploy -e $({{% vendor/cli %}} environment:list --type production --pipe)
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ### Manually trigger builds
 

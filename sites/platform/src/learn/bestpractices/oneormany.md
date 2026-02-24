@@ -35,11 +35,11 @@ keep your apps in separate projects.
 {{% vendor/name %}} provides the automation to deploy multiple projects from the same code base,
 which makes their maintenance effortless.
 
-{{< note >}}
+{{% note  %}}
 
 By design, {{% vendor/name %}} doesn't allow your app to access services in another project through HTTP.
 
-{{< /note >}}
+{{% /note %}}
 
 So separate projects are appropriate in the following cases:
 
@@ -69,11 +69,11 @@ In a clustered application, you can have one of the following configurations:
 - Multiple [`{{< vendor/configfile "app" >}}` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
 - A single app that spawns one or more [worker instances](/create-apps/image-properties/workers.md) that run background processes
 
-{{< note >}}
+{{% note  %}}
 
 Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://upsun.com/pricing-fixed/).
 
-{{< /note >}}
+{{% /note %}}
 
 With a clustered application, you often don't need multiple service instances.
 The [MySQL, MariaDB](/add-services/mysql/_index.md),

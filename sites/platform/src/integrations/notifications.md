@@ -122,12 +122,12 @@ If you are already have a Slack app, you can jump to [enabling notifications](#2
     ```
 6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel.
 
-{{< note theme="info" title="Bot users v. Slack apps">}}
+{{% note theme="info" title="Bot users v. Slack apps" %}}
 Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via _bot users_ and their associated API tokens.
 As of June 2024, Slack has deprecated bot users, and integrations must be configured using Slack apps as described above.
 
 If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement.
-{{< /note >}}
+{{% /note %}}
 
 ### PagerDuty notifications
 

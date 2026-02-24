@@ -34,11 +34,11 @@ The production branch of your Git repository is designated for production and a 
 
 Any defined users or environment variables are also propagated to the Dedicated Gen 2 cluster.
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environments like there is between the grid-based development branches.
 
-{{< /note >}} 
+{{% /note %}} 
 
 Production data may still be replicated to the development environment [manually](https://fixed.docs.upsun.com/administration/cli/reference.html#environmentsynchronize). Deployments of other branches don’t trigger rebuilds of the Dedicated Gen 2 cluster Environments.
 
@@ -53,11 +53,11 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 -   The deploy hook is run on one, and only one, of the three servers.
 -   The cluster is opened to allow new requests.
 <!-- vale off -->
-{{< note title="Note" theme="Note" >}}
+{{% note title="Note" theme="Note"  %}}
 
 Note that hooks still run without containers. For example, [commands like `pre_start`](/create-apps/image-properties/web.md#web-commands) and other hooks run directly on the app docroot or worker service.
 
-{{< /note >}}
+{{% /note %}}
 <!-- vale on -->
 The deploy usually takes approximately 30-90 seconds, although that is dependent on how your deploy hook has been configured.
 
@@ -73,11 +73,11 @@ The default storage for Dedicated Gen 2 contracts is 50GB per environment (produ
 
 A project may have up to six users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the development environment and the Dedicated Gen 2 cluster.
 
-{{< note title="Note" theme="info" >}}
+{{% note title="Note" theme="info"  %}}
 
 While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary/_index.md#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Memory
 

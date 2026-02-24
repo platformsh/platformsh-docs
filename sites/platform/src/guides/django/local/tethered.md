@@ -5,9 +5,9 @@ description: Connect a locally running Django server directly to active services
 sectionBefore: Supported environments
 ---
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 {{% ddev/local-note name="Django" link="/guides/django/local/ddev" %}}
-{{< /note >}}
+{{% /note %}}
 
 To test changes locally, you can connect your locally running Django server
 to service containers on an active {{% vendor/name %}} environment.

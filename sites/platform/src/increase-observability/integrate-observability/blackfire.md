@@ -20,13 +20,13 @@ you can achieve the following goals:
 Blackfire is installed natively on {{% vendor/name %}} and [works integrally with the {{% vendor/name %}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
 
-{{< note >}}
+{{% note  %}}
 
 Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
 To learn more, [contact Sales](https://upsun.com/contact-us/).
 All customers can also subscribe to Blackfire separately.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Set up Blackfire
 

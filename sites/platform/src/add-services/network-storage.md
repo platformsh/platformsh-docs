@@ -7,14 +7,14 @@ The Network Storage service provides a shared [mount](/create-apps/image-propert
 
 Your apps can use any combination of `local` and `service` mounts.
 
-{{< note >}}
+{{% note  %}}
 
 Writing to network mounts is slightly slower than to local mounts, though the difference 
 is usually negligible. The slower performance becomes more noticeable during high-volume 
 sequential file creation, such as rapidly creating many small files. In such cases, a 
 local mount is more effective.
 
-{{< /note >}}
+{{% /note %}}
 
 This service is the {{% vendor/name %}} network storage implementation, not the version of a third-party application.
 
@@ -71,7 +71,7 @@ Upsun has deprecated version 2.0 due to performance inconsistencies identified u
 <!-- vale off -->
 ### Migration options {#migration-options}
 
-{{< note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}" >}}
+{{% note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}"  %}}
 
 Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
@@ -82,7 +82,7 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 
 - **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
-{{< /note >}}
+{{% /note %}}
 <!-- vale on -->
 
 **Option 1: Manual migration to version {{% latest \"network-storage\" %}}**<br>

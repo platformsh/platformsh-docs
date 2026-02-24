@@ -19,13 +19,13 @@ you can choose from two offers:
 
 To view a list of all the features included in each offer, see the following table.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Links to the official [Fastly Next-Gen WAF documentation](https://docs.fastly.com/products/fastly-next-gen-waf) are provided for reference only.
 The offers described on this page have been designed specifically for {{% vendor/name %}} customers.
 Included features may present limitations compared to those advertised by Fastly to their direct customers.
 
-{{< /note >}}
+{{% /note %}}
 
 | Capability                                                                                                                                          | Basic offer     | Basic configurable offer          |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------|
@@ -95,11 +95,11 @@ Actions define what happens when a rule matches (allow/log apply to the configur
 - Allow the request
 - Log the request for analysis
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 The Basic Next-Gen WAF offer operates in block-only mode.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Thresholds
 
@@ -113,11 +113,11 @@ Virtual patches are temporary WAF rules provided by Fastly to block known CVEs a
 - Buy time while application dependencies are patched
 - Do not replace proper application updates
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Virtual patching is available only in the Basic Configurable Next-Gen WAF tier.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Scope and Limitations
 
@@ -131,11 +131,11 @@ The Fastly Next-Gen WAF mitigates many common web-based attacks, including parts
 
 Some attacks are mitigated at the CDN network layer, while others require identifiable patterns that can be enforced via WAF or rate-limiting rules.
 
-{{< note theme="info" title="No automatic challenges">}}
+{{% note theme="info" title="No automatic challenges" %}}
 
 {{% vendor/name %}}’s Fastly Next-Gen WAF does not provide automatic CAPTCHA or JavaScript challenges. Traffic is evaluated using rule-based signals, thresholds, and actions configured during onboarding or [via Support](/learn/overview/get-support.md).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Configuration and enablement
 

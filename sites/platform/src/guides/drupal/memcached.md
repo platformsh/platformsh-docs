@@ -156,12 +156,12 @@ composer require drupal/memcache
 
 Then commit the resulting changes to your `composer.json` and `composer.lock` files.
 
-{{< note >}}
+{{% note  %}}
 
 You need to commit and deploy your code before continuing, then enable the module.
 The Memcache module must be enabled before it's configured in the `settings.platformsh.php` file.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Configuration
 
@@ -175,7 +175,7 @@ For instance, you may want to consider using Memcache for locking as well as con
 
 The example below is intended as a "most common case" and has been tested with version `8.x-2.3` of the Memcache module.
 
-{{< note >}}
+{{% note  %}}
 
 If you don't already have the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file,
 you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
@@ -189,7 +189,7 @@ if (!$platformsh->inRuntime()) {
 }
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ```php
 <?php

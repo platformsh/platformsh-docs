@@ -31,11 +31,11 @@ open a [support ticket](/learn/overview/get-support.md).
 
 ### Configuration options
 
-{{< note >}}
+{{% note  %}}
 
 Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your production or staging environments. However, **for a small set of projects**, this isn't supported yet.
 
-{{< /note >}}
+{{% /note %}}
 
 If your project doesn't support PHP configuration through a `php.ini` file,
 you can still change all PHP options that can be changed at runtime.
@@ -61,11 +61,11 @@ So you can keep Xdebug always on and not worry about performance issues as it's 
 
 1. Open a [support ticket](/learn/overview/get-support.md).
 
-{{< note >}}
+{{% note  %}}
 
 Staging and Production environments have separate keys.
 
-{{< /note >}}
+{{% /note %}}
 
 2. Set that key in the Xdebug helper for your browser. Whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
 

@@ -44,13 +44,13 @@ or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 See [Alternate start commands](/languages/php/_index.md#alternate-start-commands) in the PHP topic.
 
 
-{{< note >}}
+{{% note  %}}
 
 Do not run a `start` process in the background by using `&` syntax.
 The {{% vendor/name %}} supervisor interprets that syntax as the command terminating and starts another copy, creating a loop that continues until the container crashes.
 Run the command as usual and allow the {{% vendor/name %}} supervisor to manage it.
 
-{{< /note >}}
+{{% /note %}}
 
 ### `post_start` command {#post_start}
 You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port. 

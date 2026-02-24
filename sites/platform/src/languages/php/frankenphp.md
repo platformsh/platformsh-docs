@@ -62,23 +62,23 @@ With Stateful execution in Worker mode, the application is booted once. It remai
 
 These issues do not occur in stateless PHP-FPM setups.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Aplications not explicitly designed for long-running workers may require manual state resets between requests, careful handling of static properties and global variables, explicit cleanup logic and auditing of caching and service lifecycles.
 
 Tools like [Laravel Octane](https://laravel.com/docs/master/octane) or the [Symfony FrankenPHP Runtime](https://github.com/php-runtime/frankenphp-symfony) are designed to manage this environment safely. They often serve clones of the application or reset the container state between requests to prevent variables from leaking.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Observability and profiling
 
 FrankenPHP is well supported by [Blackfire](/increase-observability/integrate-observability/blackfire.html), making it easy to profile and monitor performance in both Classic and Worker modes.
 
-{{< note version="1" >}}
+{{% note version="1"  %}}
 
 See the [Blackfire](https://docs.blackfire.io/php/integrations/frankenphp) documentation for FrankenPHP integration.
 
-{{< /note >}}
+{{% /note %}}
 
 ## Configuration
 

@@ -40,9 +40,9 @@ public class HibernateApp {
 }
 ```
 
-{{< note >}}
+{{% note  %}}
 You can use the same MySQL driver for MariaDB as well if you wish to do so.
-{{< /note >}}
+{{% /note %}}
 
 ### MariaDB
 

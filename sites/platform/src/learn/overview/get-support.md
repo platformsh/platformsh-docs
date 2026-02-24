@@ -23,12 +23,12 @@ or [open a new ticket]({{% vendor/urlraw "console" %}}-/users/~/tickets/open).
 
 Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
-{{< /note >}}
+{{% /note %}}
 
 <!-- vale off -->
 ## Discord

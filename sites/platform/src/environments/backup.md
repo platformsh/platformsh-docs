@@ -31,11 +31,11 @@ To work with an [inactive environment](/glossary/_index.md#inactive-environment)
    At this point, the data and code from the backup are restored to ensure a consistent state.
    The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
 
-   {{< note theme="warning" title="Warning" >}}
+   {{% note theme="warning" title="Warning"  %}}
 
    {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
-   {{< /note >}}
+   {{% /note %}}
 
 3. Depending on your needs, you can do the following:
 
@@ -111,7 +111,7 @@ The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
 
-{{< note >}}
+{{% note  %}}
 
 Automated backups are only available for production environments.
 
@@ -120,7 +120,7 @@ all your environments are [development environments](/glossary/_index.md#environ
 This includes your future production environment.
 If you want to enable automated backups for it, [upgrade to a non-development plan](https://upsun.com/pricing-fixed/).
 
-{{< /note >}}
+{{% /note %}}
 
 ## Live backups
 

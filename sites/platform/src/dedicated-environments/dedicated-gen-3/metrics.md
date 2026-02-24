@@ -86,8 +86,8 @@ You can reallocate your existing resources if other containers have resources th
 
 If you have multiple containers in a burst state, review your configuration or plan size.
 
-{{< note theme="warning" title="Burst state">}}
+{{% note theme="warning" title="Burst state" %}}
 
 Resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded. Usage that crosses _100%_ will mean that you have crossed into a **burst** state.
 
-{{< /note >}}
+{{% /note %}}

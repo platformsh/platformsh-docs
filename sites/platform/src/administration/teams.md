@@ -51,13 +51,13 @@ title=Using the CLI
 4. If your team has viewer rights on the project, define its role on each type of environment.
 5. Enter `Y` to confirm.
 
-{{< note >}}
+{{% note  %}}
 To view a list of all the existing teams in your organization, run the following command:
 
 ```bash
 {{% vendor/cli %}} team:list -o {{< variable "ORGANIZATION_NAME" >}}
 ```
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 
@@ -222,7 +222,7 @@ title=Using the CLI
 3. Enter the user's email address.
 4. Enter `Y` to confirm.
 
-{{< note >}}
+{{% note  %}}
 To view a list of all the users on a team, follow these steps:
 
 1. Run the following command:
@@ -233,7 +233,7 @@ To view a list of all the users on a team, follow these steps:
 
 2. Select the team whose users you want to display.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 
@@ -296,10 +296,10 @@ title=Using the Console
 5. Click **Edit team**.
 6. Click **+ Add projects**.
 7. Select **All projects**, or choose individual projects from the dropdown.
-   {{< note >}}
+   {{% note  %}}
    **All projects** refers to all existing projects.
    Any future project you create will need to be added to the team manually.
-   {{< /note >}}
+   {{% /note %}}
 8. Click **Add to team**.
 
 </br>
@@ -313,10 +313,10 @@ title=Using the Console
 5. Select the **TEAMS** tab in the **Access** list view.
 6. Click **+Add to projects**.
 7. Select **All teams**, or choose individual teams from the dropdown.
-   {{< note >}}
+   {{% note  %}}
    **All teams** refers to all existing teams.
    Any future team you create will need to be added to the project manually.
-   {{< /note >}}
+   {{% /note %}}
 8. Click **Add to team**.
 
 <--->
@@ -333,7 +333,7 @@ title=Using the CLI
 3. Select the project you want the team to access.
 4. Enter `Y` to confirm.
 
-{{< note >}}
+{{% note  %}}
 To view a list of all the projects added to a team, follow these steps:
 
 1. Run the following command:
@@ -343,7 +343,7 @@ To view a list of all the projects added to a team, follow these steps:
    ```
 2. Select the team whose projects you want to display.
 
-{{< /note >}}
+{{% /note %}}
 
 {{< /codetabs >}}
 

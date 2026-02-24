@@ -78,19 +78,19 @@ hooks:
     symfony-deploy
 ```
 
-{{< note title="Warning" >}}
+{{% note title="Warning"  %}}
 
 As each hook is executed as a single script, a hook is considered as failed only if the final command fails.
 To have your hooks fail on the first failed command, start your scripts with `set -e`.
 
-{{< /note >}}
+{{% /note %}}
 
 For more information, see [Hooks](/create-apps/hooks/hooks-comparison.md).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
 see the [{{% vendor/name %}} philosophy](/learn/overview/philosophy.md).
 
-{{< note title="Tip">}}
+{{% note title="Tip" %}}
 
 During the `deploy` or `post_deploy` hooks, you can execute actions for a specific environment type only.
 To do so, in your `{{< vendor/configfile "app" >}}`file,
@@ -104,7 +104,7 @@ hooks:
     fi
 ```
 
-{{< /note >}}
+{{% /note %}}
 
 ### symfony-build
 
@@ -193,12 +193,12 @@ variables:
     redis: 5.3.2
 ```
 
-{{< note >}}
+{{% note  %}}
 
 The source code is cached between builds so compilation is skipped if it's already been done.
 Changing the source of downloads or the version invalidates this cache.
 
-{{< /note >}}
+{{% /note %}}
 
 ### Advanced Node configuration
 

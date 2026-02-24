@@ -11,9 +11,9 @@ but should you wish to do so there are a few additional modifications you need t
 
 ## Place WordPress core into a subdirectory
 
-{{< note >}}
+{{% note  %}}
 If starting from scratch, you can skip to the section covering [`wp-config.php`](#wp-configphp) below.
-{{< /note >}}
+{{% /note %}}
 
 Keeping WordPress core up-to-date is made much easier when it resides in a subdirectory of your repository
 and it makes the recommended transition to using Composer simpler.
@@ -21,9 +21,9 @@ It also makes defining WordPress as a submodule possible if you choose to do so.
 
 Place all code for WordPress core into a subdirectory called `wordpress`, including your `wp-config.php` file.
 
-{{< note >}}
+{{% note  %}}
 You can name the WordPress core subdirectory whatever you would like - the most common being `wp`, `web`, and `wordpress`. `wordpress` has been chosen for {{% vendor/name %}} templates and guides because it is often the default install location for [composer-flavored versions of WordPress](/guides/wordpress/deploy/_index.md), and naming it `wordpress` now in your project will make [migrating to use Composer](/guides/wordpress/composer/migrate.md) later on straightforward. If naming the directory something other than `wordpress`, make sure to update the `web.locations["/"].root` attribute to match in your `{{< vendor/configfile "app" >}}` file, as well as any other `root` attribute there.
-{{< /note >}}
+{{% /note %}}
 
 ### Core, themes, and plugins can also be submodules
 

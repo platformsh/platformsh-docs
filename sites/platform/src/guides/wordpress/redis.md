@@ -131,7 +131,7 @@ Each plugin requires slightly different configuration.
 Place the code for your chosen plugin in the `wp-config.php` file,
 somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
 
-{{< note >}}
+{{% note  %}}
 
 The following examples assume you are using the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app).
 

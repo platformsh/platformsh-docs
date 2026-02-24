@@ -9,12 +9,12 @@ description: See what PHP extensions are available with each PHP version on {{% 
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for {{% vendor/name %}} containers.
 
-{{< note version="1" theme="warning" title="Warning" >}}
+{{% note version="1" theme="warning" title="Warning"  %}}
 
 The information on this page applies to Grid plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-environments/dedicated-gen-2/environment-differences.md#extensions).
 
-{{< /note >}}
+{{% /note %}}
 
 You can define the PHP extensions you want to enable or disable:
 

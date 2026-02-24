@@ -11,12 +11,12 @@ TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way 
 
 This guide assumes you are using the well-supported Composer flavor of TYPO3.
 
-{{< note >}}
+{{% note  %}}
 
 If you have a TYPO3 site that's not using Composer,
 there's a useful guide in the TYPO3 documentation for [migrating a TYPO3 project to composer](https://docs.typo3.org/m/typo3/guide-installation/master/en-us/MigrateToComposer/Index.html).
 
-{{< /note >}}
+{{% /note %}}
 
 {{% guides/starting-point name="TYPO3" templateRepo="typo3" composerLink="https://github.com/TYPO3/TYPO3.CMS.BaseDistribution" initExample=true %}}
 

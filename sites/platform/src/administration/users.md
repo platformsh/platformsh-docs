@@ -238,14 +238,14 @@ As an organization owner or an organization user with the **Manage users** permi
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
 
-{{< note theme="info" >}}
+{{% note theme="info"  %}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
 Users with the **Manage billing** (`billing`) or **Manage Plans** (`plans`) permission automatically are granted **List projects** (`projects:list`) permission.
 That is, they are able to see all organization projects once given billing or plans rights.
 
-{{< /note >}}
+{{% /note %}}
 
 Users without any of these permissions can only access [projects where they're users](#project-roles).
 They can't access or manage the rest of the organization.
