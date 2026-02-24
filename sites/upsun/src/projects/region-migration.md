@@ -7,8 +7,6 @@ description: See how to change the region your project is in and why you might w
 To host your project data, {{% vendor/name %}} offers several [regions](../development/regions.md).
 You specify a region when you create a project.
 
-You can also change the project's region after it's created.
-
 ## Why migrate between regions
 
 - Different data centers are located in different geographic areas.
