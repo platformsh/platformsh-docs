@@ -1,5 +1,5 @@
 ---
-title: Converting from Upsun Fixed (formerly Platform.sh)
+title: from Upsun Fixed (formerly Platform.sh)
 description: Learn how to configure your Upsun Fixed app to work on an Upsun Flex project so that it's deployment-ready.
 weight: 1
 keywords:

@@ -1,19 +1,23 @@
 ---
-title: Converting from other provider
-description: Learn how to migrate your app, hosted on another provider to work on an Upsun Flex project so that it's deployment-ready.
+title: from another provider
+description: Learn how to migrate your app, hosted on another provider to work on an {{% vendor/name %}} project so that it's deployment-ready.
 weight: 2
 keywords:
   - "set remote"
 ---
 
+This guide will walk you through migrating your app to {{% vendor/name %}}, step by step. 
+No prior experience with {{% vendor/name %}} is needed—each step is explained simply, with examples and troubleshooting tips.
+
 ## Before you begin
 
 You need:
 
-- A Upsun account.
+- Understand main [Up{{% vendor/name %}}sun concepts](/learn/overview.md)
+- A {{% vendor/name %}} account.
   If you don't already have one, [register for a trial account](https://auth.upsun.com/register).
   You can sign up with an email address or an existing GitHub, Bitbucket, or Google account.
-  If you choose one of these accounts, you can set a password for your Upsun account later.
+  If you choose one of these accounts, you can set a password for your {{% vendor/name %}} account later.
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 
 Follow the steps below to begin the migration of your project.
@@ -65,23 +69,23 @@ TBD
 {{< /codetabs >}}
 
 ## 2. Clone your Git repository locally
-As a start, you need to clone your source code locally to make it Upsun ready.
+As a start, you need to clone your source code locally to make it {{% vendor/name %}} ready.
 
 ```bash {location="Terminal"}
 git clone <REPOSITORY_URL> your-app-directory
 cd your-app-directory
 ```
 
-## 3. Initialize Upsun configuration
+## 3. Initialize {{% vendor/name %}} configuration
 
 {{% vendor/name %}} project needs a `.upsun/config.yaml` file to configure what's served.
 
-{{% vendor/name %}} provides a [CLI `project:init` command](/administration/cli/init.html) to initialize the configuration.
+{{% vendor/name %}} provides a [CLI `project:init` command](/administration/cli/init.html).
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:init --ai
 ```
-The init command auto-detects the required runtime and stack in use, using AI, and generates initial `.upsun/config.yaml`.
+This command initializes your {{% vendor/name %}} project configuration. It detects your app’s requirements and creates a config file for you.
 
 ## 4. Create a new {{% vendor/name %}} project
 
@@ -299,7 +303,7 @@ TBD
 Then create corresponding environment variables: 
 
 ```bash {location="Terminal"}
-# Review and set in Upsun with env: prefix for standard environment variables 
+# Review and set in {{% vendor/name %}} with env: prefix for standard environment variables 
 {{% vendor/cli %}} variable:create --level environment --name env:{{< variable "KEY" >}} --value {{< variable "VALUE" >}}
 # Or for project-wide variables
 {{% vendor/cli %}} variable:create --level project --name env:{{< variable "KEY" >}} --value {{< variable "VALUE" >}}
@@ -403,7 +407,7 @@ After any errors are fixed, a push creates a new environment.
 
 
 ## 11. Test your production environment
-When your Upsun project is successfuly deployed: 
+When your {{% vendor/name %}} project is successfuly deployed: 
 
 - **Verify service connections**: 
   - Check database connectivity 
@@ -413,7 +417,7 @@ When your Upsun project is successfuly deployed:
   - Compare performance to Heroku baseline 
   - Test autoscaling behavior if configured 
   - Verify resource allocation meets requirements
-  - Example on how to use Gatling to load testing on your Upsun project
+  - Example on how to use Gatling to load testing on your {{% vendor/name %}} project
 - **Review logs and metrics**:
 
 ```bash {location="Terminal"}
@@ -526,7 +530,6 @@ Then, you will need to add `CNAME` in your DNS records to point to the default u
 
 You can either invite individual users to your project, or create teams, and then invite users in teams (recommanded).
 
-
 ### Create a team and invite users in a team
 We recommand to create a team and invite individual users in this team, as you would be able to manage access at the team level, instead of one-by-one users.
 
@@ -564,7 +567,7 @@ To invite individual users on a project, use the following CLI command:
 {{% vendor/cli %}} user:add --role viewer,production:viewer,staging:contributor,development:admin {{< variable "USER_EMAIL_ADDRESS" >}}
 ```
 
-## 16. Monitor your application
+## 17. Monitor your application
 TODO: Blackfire ? 
 
 
