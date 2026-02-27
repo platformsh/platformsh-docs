@@ -254,7 +254,13 @@ applications:
 
 Please refer to [supported mount type](/create-apps/image-properties/mounts.md#define-a-mount) for more information about mount types.
 
-## 8. Optional: Define a resource initialization strategy
+## 8. Define routes
+
+If you are migrating a [multi-application project](/create-apps/multi-app.md), or want to customize how your application is served,
+you need to [configure routes](/define-routes.md). 
+
+
+## 9. Optional: Define a resource initialization strategy
 
 By default, when you first deploy your project,
 {{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md) to each of your containers.
@@ -263,7 +269,7 @@ define your own [resource initialization strategy](/manage-resources/resource-in
 
 Alternatively, you can [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
-## 9. Optional: Add environment variables
+## 10. Optional: Add environment variables
 
 If your app requires [Environment variables] to build properly, [add them to your environment](/development/variables/set-variables.md).
 
@@ -311,7 +317,7 @@ Then create corresponding environment variables:
 {{% vendor/cli %}} variable:create --app-scope myapp --name env:{{< variable "KEY" >}} --value {{< variable "VALUE" >}}
 ```
 
-## 10. Push your changes
+## 11. Push your changes
 
 The way to push your code to {{% vendor/name %}} depends on
 whether you're hosting your code with a third-party service using a [source integration](/integrations/source/_index.md).
@@ -406,7 +412,7 @@ After any errors are fixed, a push creates a new environment.
 {{< /codetabs >}}
 
 
-## 11. Test your production environment
+## 12. Test your production environment
 When your {{% vendor/name %}} project is successfuly deployed: 
 
 - **Verify service connections**: 
@@ -433,11 +439,11 @@ When your {{% vendor/name %}} project is successfuly deployed:
 If your application is deployed without error but you get a 502 error when loading your application, [have a look on the Troubleshoot page](/development/troubleshoot.md). 
 {{% /note %}}
 
-## 12. Optional maintenance mode
+## 13. Optional maintenance mode
 
 Please enable maintenance mode (if available in your app).
 
-## 13. Import data
+## 14. Import data
 
 Once you have an environment, you can import the data from your actual project.
 The exact process to import them may depend on the service you use.
@@ -483,7 +489,7 @@ For SQL databases, for example, you can use a version of this command:
 
 For any potential more details, see the [specific service](/add-services/_index.md).
 
-## 14. Import files
+## 15. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
 You can upload such files to [mounts you created](/create-apps/image-properties/mounts.md).
@@ -514,7 +520,7 @@ Then, to upload your files, run a command similar to the following:
 
 Alternatively, you can upload to your mounts using a different [SSH method](/development/file-transfer.md#transfer-files-using-an-ssh-client).
 
-## 15. Configure your Domain and update DNS records
+## 16. Configure your Domain and update DNS records
 
 Configure your domain, using either the CLI or the Console
 ```bash {location="Terminal"}
@@ -526,7 +532,7 @@ Then, you will need to add `CNAME` in your DNS records to point to the default u
 {{% vendor/cli %}} environment:url
 ```
 
-## 16. Invite teams and users
+## 17. Invite teams and users
 
 You can either invite individual users to your project, or create teams, and then invite users in teams (recommanded).
 
@@ -567,7 +573,7 @@ To invite individual users on a project, use the following CLI command:
 {{% vendor/cli %}} user:add --role viewer,production:viewer,staging:contributor,development:admin {{< variable "USER_EMAIL_ADDRESS" >}}
 ```
 
-## 17. Monitor your application
+## 18. Monitor your application
 TODO: Blackfire ? 
 
 
