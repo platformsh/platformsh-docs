@@ -20,10 +20,9 @@ title=Using the Console
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Settings**.
-4. Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
-5. Click **Save**.
+1. Near the upper left of the page, click the organization name and then click **Settings**.
+1. Edit the fields as needed. To edit the organization URL, edit the **Organization path** field. 
+1. Click **Save**.
 
 <--->
 +++
@@ -56,8 +55,8 @@ title=Using the Console
 +++
 
 1. Navigate to the organization you want to manage (or a project in it).
-1. Open the user menu (your name or profile picture).
-1. Click **Billing**.
+1. Near the upper left of the page, click the organization name and then click **Billing**.
+
 
 {{< /codetabs >}}
 

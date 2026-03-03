@@ -12,7 +12,7 @@ Dedicated Generation 2 consists of two parts: a development environment and a De
 
 ### Key features
 
--   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://upsun.com/fixed-pricing/)
+-   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://upsun.com/pricing-fixed/)
 -   **Dedicated hosts:** Each DG2 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Isolation:** On DG2, services run as processes on the base operating system (OS)
@@ -49,7 +49,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Cron tasks interrupted by deploys**                  | Yes: a deploy will terminate a running Cron task                                      | No: a running Cron task will block a deployment until it is complete                  |
 | **Log exports**                                        | Managed by Upsun Fixed with Rsyslog exports and Fastly log exports                    | Log forwarding feature and Fastly log export also available                           |
 | **Sync and merge functionalities**                     | Only on development environments                                                      | Yes on all branches                                                                   |
-| **SLA**                                                | 99.99% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)                   | 99.9% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)                    |
+| **SLA**                                                | 99.99% with [Enterprise or Elite](https://upsun.com/pricing-fixed/)                   | 99.9% with [Enterprise or Elite](https://upsun.com/pricing-fixed/)                    |
 | **Infrastructure**                                     | Dedicated 3 node cluster                                                              | Containers with dedicated resources on top of a shared redundant infrastructure       |
 | **Functioning**                                        | 3 nodes are running all applications and services and are replicated                  | A single container is deployed per runtimes and per services                          |
 | **Resources allocation**                               | Resources deployed on 3 nodes                                                         | Resources are spread through the container with fixed sizes after deployment          |
@@ -59,7 +59,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Split Architecture**                                 | Yes                                                                                   | No                                                                                    |
 | **Storage**                                            | Local disks are accessed either locally or via glusterfs                              | 100 GB self service max (can be extended upon request)                                |
 | **Automated backup**                                   | Yes                                                                                   | Yes                                                                                   |
-| **Custom domains name**                                | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers |
+| **Custom domains name**                                | On all branches for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers | On all branches for [Enterprise or Elite](https://upsun.com/pricing-fixed/) customers |
 | **MongoDB**                                            | Yes                                                                                   | Standalone service container                                                          |
 | **web.commands.post_start**                            | No                                                                                    | Self-service via YAML config files                                                    |
 

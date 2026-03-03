@@ -13,13 +13,13 @@ description: |
 
 If you're experiencing issues related to the proper functioning of the {{% vendor/name %}} infrastructure, application container software, build processes, have found possible bugs, have general questions or wish to submit a feature request, open a support ticket:
 
-1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+1. [Open the Console]({{% vendor/urlraw "console" %}}).
 1. In the upper right-hand corner, click **Help** and select **Support** from the menu.
 1. In the **Support tickets** section, click **New ticket**.
 1. Complete the **Create a ticket** form and then click **Submit**.
 
-Or use these shortcuts to [access all support tickets](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets)
-or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+Or use these shortcuts to [access all support tickets]({{% vendor/urlraw "console" %}}-/users/~/tickets)
+or [open a new ticket]({{% vendor/urlraw "console" %}}-/users/~/tickets/open).
 
 Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
 
@@ -45,7 +45,7 @@ on how to get the most out of {{% vendor/name %}}.
 ## Contact Sales
 
 If you have questions about pricing or need help figuring out if {{% vendor/name %}} is the right solution for your team,
-get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
+get in touch with [Sales]({{% vendor/urlraw "sales" %}}).
 
 ## Delete your account
 
@@ -57,7 +57,7 @@ Deleting your {{% vendor/company_name %}} account automatically deletes any link
 
 {{% /note %}}
 
-1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+1. [Open the Console]({{% vendor/urlraw "console" %}}).
 2. Open the user menu (your name or profile picture) and select **My Profile**.
 3. Click **Delete account**.
 4. Check that the pre-filled information is correct and click **Submit**.

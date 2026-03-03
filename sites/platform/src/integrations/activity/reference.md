@@ -439,7 +439,7 @@ The following example shows the full activity response to a cron job:
         "environments": 3,
         "storage": 5120,
         "included_users": 1,
-        "subscription_management_uri": "https://console.{{< vendor/urlraw "host" >}}-/users/abcd12345/billing/plan/12345678",
+        "subscription_management_uri": "{{< vendor/urlraw "console" >}}-/users/abcd12345/billing/plan/12345678",
         "restricted": false,
         "suspended": false,
         "user_licenses": 1

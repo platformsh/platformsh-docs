@@ -52,8 +52,6 @@
           npm run build
           ./build_docs.sh
 
-
-
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
