@@ -13,7 +13,7 @@ No prior experience with {{% vendor/name %}} is needed—each step is explained 
 
 You need:
 
-- Understand main [Up{{% vendor/name %}}sun concepts](/learn/overview.md)
+- Understand main [{{% vendor/name %}} concepts](/learn/overview.md)
 - A {{% vendor/name %}} account.
   If you don't already have one, [register for a trial account](https://auth.upsun.com/register).
   You can sign up with an email address or an existing GitHub, Bitbucket, or Google account.
