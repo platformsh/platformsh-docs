@@ -1,0 +1,62 @@
+<?php
+
+/*
+with rdkafka PHP extension installed, you can use the RdKafka\Producer class to produce messages to a Kafka topic:
+applications:
+  app:
+    type: php:8.5
+    runtime:
+      extensions:
+        - rdkafka
+*/
+
+declare(strict_types=1);
+
+try {
+    $host = getenv('KAFKA_HOST') ?: getenv('KAFKA_IP');
+    $port = getenv('KAFKA_PORT');
+
+    if (!$host || !$port) {
+        throw new RuntimeException('Kafka environment variables not available.');
+    }
+
+    $broker = sprintf('%s:%s', $host, $port);
+
+    $conf = new RdKafka\Conf();
+    $conf->set('bootstrap.servers', $broker); // <-- important
+
+    $producer = new RdKafka\Producer($conf);
+
+    $topic = $producer->newTopic('test');
+
+    $topic->produce(
+        RD_KAFKA_PARTITION_UA, // let Kafka choose the partition
+        0,
+        'Hello, World!'
+    );
+
+    // Serve delivery reports / internal queue
+    $producer->poll(0);
+
+    // Wait for delivery
+    $timeoutMs = 10000;
+    $start = microtime(true);
+
+    while ($producer->getOutQLen() > 0) {
+        $producer->poll(100);
+
+        if ((microtime(true) - $start) * 1000 > $timeoutMs) {
+            break;
+        }
+    }
+
+    $result = $producer->flush($timeoutMs);
+
+    if ($result !== RD_KAFKA_RESP_ERR_NO_ERROR) {
+        throw new RuntimeException('Unable to flush messages (not delivered within timeout).');
+    }
+
+    echo "Message delivered.\n";
+} catch (\Throwable $e) {
+    print $e->getMessage();
+}
