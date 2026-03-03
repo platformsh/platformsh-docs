@@ -13,7 +13,7 @@ Autoscaling is a feature that automatically adjusts how many instances of your a
 
 ## What is autoscaling?
 
-Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application/worker instances depending on resource usage. If CPU or [memory](#memory-based-autoscaling) utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
+Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application/worker instances depending on resource usage. If CPU or [memory](#memory-based-triggers) utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
 
 - **Scope:** Available for applications and workers  
 - **Product tiers:** Available for all Upsun Flex environments  
