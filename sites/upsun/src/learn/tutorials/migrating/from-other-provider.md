@@ -17,7 +17,7 @@ No prior experience with {{% vendor/name %}} is needed—each step is explained 
 
 You need:
 
-- Understand main [{{% vendor/name %}} concepts](/learn/overview.md)
+- An understanding of the main [{{% vendor/name %}} concepts](/learn/overview.md)
 - A {{% vendor/name %}} account.
   If you don't already have one, [register for a trial account](https://auth.upsun.com/register).
   You can sign up with an email address or an existing GitHub, Bitbucket, or Google account.
@@ -26,7 +26,7 @@ You need:
 
 Follow the steps below to begin the migration of your project.
 
-## 1. Audit your data from your actual project
+## 1. Audit your data from your current project
 Before migrating, make sure you have access to:
 
 - Your source code
@@ -121,7 +121,7 @@ title=from Heroku
 
 <--->
 +++
-title=from vercel
+title=from Vercel
 +++
 
 **Project structure & build**
@@ -133,7 +133,7 @@ title=from vercel
 
 **Routing & edge behavior (must map cleanly)**
 
-- **Rewrites/redirects/headers** (`vercel.json` / `next.config`): including regex rules and priority order.
+- **Rewrites/redirects/headers** (`Vercel.json` / `next.config`): including regex rules and priority order.
 - **Middleware usage** (Next.js middleware): what it does (auth, geo, A/B, rewrites).
 - **Edge Functions** vs **Serverless Functions**: which endpoints run where and why.
 - **Regional settings**: functions/edge regions and latency expectations.
@@ -272,9 +272,9 @@ before switching any production traffic.
 ### Configure your services
 In your {{% vendor/name %}} project, you can add as many services as you need.
 
-List your actual services in use and add them in the configuration, following the corresponding [Service page](/add-services/#available-services).
+List your current services in use and add them in the configuration, following the corresponding [Service page](/add-services/#available-services).
 
-As an example, if your actual project is using [PostgreSQL](/add-services/postgresql.md) and [Redis](add-services/redis.md), 
+As an example, if your current project is using [PostgreSQL](/add-services/postgresql.md) and [Redis](add-services/redis.md), 
 edit your `.upsun/config.yaml` file and add the following:
 
 {{< codetabs >}}
@@ -331,7 +331,7 @@ You need to declare your services in the `services` top YAML key and add a [`rel
 title=from DIY
 +++
 
-Find out how your actual application is started 
+Find out how your current application is started 
 and convert it to an {{% vendor/name %}} configuration. 
 
 - how you start your runtime should go in the `myapp.web.commands.start`
@@ -386,7 +386,7 @@ applications:
 
 <--->
 +++
-title=from vercel
+title=from Vercel
 +++
 
 Applications deployed on Vercel often rely on serverless functions and edge features.
@@ -502,7 +502,7 @@ Extract existing environment variables in your project:
 title=from DIY
 +++
 
-Ssh to your server and Use the `env` CLI command to list all your existing environment variable:
+SSH to your server and Use the `env` CLI command to list all your existing environment variable:
 ```bash {location="Terminal"}
 ssh <YOUR-SERVER-IP>
 env # it displays your environment variables
@@ -521,19 +521,19 @@ heroku config # it displays your environment variables
 
 <--->
 +++
-title=from vercel
+title=from Vercel
 +++
 
 List your Vercel environment variables using the CLI:
 
 ```bash {location="Terminal"}
-vercel env ls # it displays your environment variables
+Vercel env ls # it displays your environment variables
 ```
 
 You can retrieve the value of a variable with:
 
 ```bash {location="Terminal"}
-vercel env pull
+Vercel env pull
 ```
 This command writes environment variables to a `.env` file locally.
 
@@ -562,7 +562,7 @@ If you aren't, your repository is hosted in {{% vendor/name %}}
 and you can use the CLI or just Git itself.
 
 {{% note theme="info" %}}
-At this stage, we assume you already commit updated files (mainly `.upsun/config.yaml`) in your Git history, using: 
+At this stage, ensure you've already committed your updated files (mainly `.upsun/config.yaml`) in your Git history, using: 
 ```bash {location="Terminal"}
 git add .upsun/config.yaml 
 git commit -m "Add Upsun configuration file"
@@ -648,7 +648,7 @@ After any errors are fixed, a push creates a new environment.
 {{< /codetabs >}}
 
 {{% note theme="info" %}}
-If your application is deployed without error but you get a 502 error when loading your application, [have a look on the Troubleshoot page](/development/troubleshoot.md). 
+If your application is deployed without error but you get a 502 error when loading your application, [refer to the Troubleshoot page](/development/troubleshoot.md). 
 {{% /note %}}
 
 ## 12. Test your production environment
@@ -658,7 +658,7 @@ When your {{% vendor/name %}} project is successfully deployed:
   - Check database connectivity 
   - Verify cache operations 
   - Test background worker execution
-**Load testing**: Run a load test against your {{% vendor/name %}} environment 
+- **Load testing**: Run a load test against your {{% vendor/name %}} environment 
   before switching DNS to validate performance under realistic traffic. 
   Tools like [k6](https://k6.io), [Locust](https://locust.io), or 
   [Gatling](https://gatling.io) can be used for this purpose.
@@ -715,7 +715,7 @@ pg_restore -f database.sql --no-owner --clean --if-exists latest.dump
 
 <--->
 +++
-title=from vercel
+title=from Vercel
 +++
 
 If your Vercel project uses an external database (for example Supabase, Neon, or PlanetScale),
@@ -834,14 +834,14 @@ To create a team, you can either use the Console or the CLI:
 {{% vendor/cli %}} team:create --role viewer,production:viewer,staging:contributor,development:admin --label "My team"
 ```
 
-To invite a user in a team, you can either use the Console or the CLI, and provide its user ID (if existing user) or its email address (we will send him an invitation):
+To invite a user to a team, you can either use the Console or the CLI, and provide the user ID (if existing user) or the email address (we will send him an invitation):
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} team:user:add {{< variable "USER_EMAIL_ADDRESS_OR_ID" >}}
 ```
 
 {{% note theme="info" %}}
-Each user invited in a team inherit team's role.
+Each user invited in a team inherits the team's role.
 {{% /note %}}
 
 ### Invite users
