@@ -37,7 +37,7 @@ Before migrating, make sure you have access to:
 
 {{< codetabs >}}
 +++
-title=from DIY
+title=from Self-Managed
 +++
 
 **Runtime & build**
@@ -328,7 +328,7 @@ You need to declare your services in the `services` top YAML key and add a [`rel
 
 {{< codetabs >}}
 +++
-title=from DIY
+title=from Self-Managed
 +++
 
 Find out how your current application is started 
@@ -499,7 +499,7 @@ Extract existing environment variables in your project:
 
 {{< codetabs >}}
 +++
-title=from DIY
+title=from Self-Managed
 +++
 
 SSH to your server and Use the `env` CLI command to list all your existing environment variable:
@@ -688,7 +688,7 @@ The exact process depends on the database engine you use.
 
 {{< codetabs >}}
 +++
-title=from DIY
+title=from Self-Managed
 +++
 
 Depending on the database engine you're using, download a dump of your database into a SQL file locally
