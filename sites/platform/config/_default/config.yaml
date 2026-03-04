@@ -10,7 +10,7 @@ themesdir: '../../themes'
 
 timeout: 60s
 
-uglyurls: true
+uglyURLs: true
 pygmentsUseClasses: true
 
 # Language settings
