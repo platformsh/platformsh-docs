@@ -2,6 +2,7 @@
 title: Infrastructure metrics
 weight: 5
 description: See all of the live infrastructure metrics available to give you an overview of resource usage.
+aliases: ["/increase-observability/metric.html"]
 ---
 
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
@@ -53,7 +54,7 @@ you might want to consider:
 
 * [Optimizing your code](/increase-observability/_index.md) (if possible)
 * Changing your [app size](/create-apps/image-properties/size.md)
-  or [service size](/add-services/_index.md#size)
+  or [service size](/add-services/#size)
 * [Increasing your plan](/administration/pricing/_index.md)
 
 ## Time intervals

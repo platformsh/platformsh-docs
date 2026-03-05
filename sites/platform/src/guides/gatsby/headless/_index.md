@@ -5,6 +5,7 @@ description: |
     You can use {{% vendor/name %}}'s multi-app configuration to deploy Gatsby alongside a backend CMS, pulling content into Gatsby during builds.
 weight: -100
 toc: true
+aliases: ["/guides/gatsby/headless.html"]
 ---
 
 ## Background

@@ -13,7 +13,7 @@ Variables set in your app configuration have the lowest precedence,
 meaning they're overridden by any conflicting values provided elsewhere.
 
 All variables set in your app configuration must have a prefix.
-Some [prefixes have specific meanings](/development/variables/_index.md#variable-prefixes).
+Some [prefixes have specific meanings](/development/variables/#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
 All other variables are available in

@@ -4,6 +4,7 @@ layout: single
 weight: 70
 description: |
     All you need to know about working locally with an {{% vendor/name %}} project.
+aliases: ["/get-started/here/local.html"]
 ---
 
 A significant amount of work developing your app takes place locally rather than on an active {{% vendor/name %}} environment.

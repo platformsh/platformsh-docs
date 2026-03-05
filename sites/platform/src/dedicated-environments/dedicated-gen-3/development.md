@@ -21,7 +21,7 @@ Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated G
 
 ## Cluster infrastructure 
 
-Clusters can be imagined as a mini-Grid region that has no [Ceph](/glossary/_index.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
+Clusters can be imagined as a mini-Grid region that has no [Ceph](/glossary/#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
 
 For more information about the Dedicated clusters, visit [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md#cluster-infrastructure).
 

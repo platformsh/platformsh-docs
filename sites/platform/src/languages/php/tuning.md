@@ -77,7 +77,7 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured the [same way as PHP](/languages/php/_index.md#customize-php-settings).
+OPcache needs to be tuned before production usage and can be configured the [same way as PHP](/languages/php/#customize-php-settings).
 
 Let the app run for a while before tuning OPcache
 since the preload script may change some of the configuration.

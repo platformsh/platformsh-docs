@@ -243,7 +243,7 @@ applications:
 
 ## 5. Configure the web server
 
-[Configure the web server](/create-apps/_index.md#configure-whats-served) running in front of your app to define how your app handles dynamic requests.
+[Configure the web server](/create-apps/#configure-whats-served) running in front of your app to define how your app handles dynamic requests.
 To do so, in your app configuration, locate the section dedicated to the web server:
 
 ```yaml {configFile="app"}

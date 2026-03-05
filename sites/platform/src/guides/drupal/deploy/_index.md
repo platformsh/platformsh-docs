@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
     Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Drupal.
+aliases: ["/guides/drupal/deploy.html"]
 ---
 
 Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal on {{% vendor/name %}}, the recommended way is to use Composer, the PHP package management suite.

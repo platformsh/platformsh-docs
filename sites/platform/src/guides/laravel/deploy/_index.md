@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
   Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Laravel.
+aliases: ["/guides/laravel/deploy.html"]
 ---
 
 [Laravel](https://laravel.com) is an open-source PHP Framework.

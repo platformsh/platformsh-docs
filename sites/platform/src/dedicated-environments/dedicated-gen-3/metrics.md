@@ -79,7 +79,7 @@ If you have a container in a prolonged burst state, you might want to consider:
 
 * [Optimizing your code](/increase-observability/_index.md)
 * Changing your [app size](/create-apps/image-properties/size.md)
-  or [service size](/add-services/_index.md#size)
+  or [service size](/add-services/#size)
 * [Increasing your plan](/administration/pricing/_index.md)
 
 You can reallocate your existing resources if other containers have resources they aren't using.

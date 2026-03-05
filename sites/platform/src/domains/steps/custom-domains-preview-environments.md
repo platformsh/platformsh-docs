@@ -7,14 +7,14 @@ banner:
     type: tiered-feature
 ---
 
-[Preview environments](/glossary/_index.md#preview-environment) in your project can't use the custom domain [set up on your production environment](/domains/steps/_index.md).<br/>
+[Preview environments](/glossary/#preview-environment) in your project can't use the custom domain [set up on your production environment](/domains/steps/_index.md).<br/>
 By default and for each preview environment,
 {{% vendor/name %}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
 you can add a custom domain to each of your preview environments
-(`staging` or `development` [environment types](/glossary/_index.md#environment-type)).
+(`staging` or `development` [environment types](/glossary/#environment-type)).
 
 To do so, no need to modify your [routes configuration](/define-routes/_index.md).
 When you add a new custom domain for a preview environment,
@@ -99,7 +99,7 @@ title=Using the CLI
    {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
-2. [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
+2. [Configure your DNS provider](/domains/steps/#2-configure-your-dns-provider).
    In particular, make sure your DNS record points to the target of your preview environment.
 
    {{% note  %}}
@@ -136,7 +136,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](/domains/steps/#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to the target of your preview environment.
 
 {{% note  %}}
@@ -194,7 +194,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](/domains/steps/#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to `Dev`'s target.
 
 {{< /codetabs >}}

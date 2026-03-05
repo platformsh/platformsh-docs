@@ -6,6 +6,7 @@ toc: false
 keywords:
   - anonymize
   - anonymization
+aliases: ["/development/sanitize-db.html"]
 ---
 
 When working on a new feature on your website, you want to use a new branch.

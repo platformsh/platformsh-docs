@@ -112,7 +112,7 @@ The next build for each environment is likely to take longer as the cache rebuil
 In most cases, issues accessing a project are caused by missing permissions for a given user.
 For more information see how to [manage user permissions](../administration/users.md).
 
-If you are using the CLI, make sure that [you are authenticated](../administration/cli/_index.md#2-authenticate).
+If you are using the CLI, make sure that [you are authenticated](../administration/cli/#2-authenticate).
 
 If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
 
@@ -258,7 +258,7 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 ### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
-The database is created for you and can be found in the `"SERVICE_NAME"_"PATH"` [service environment variable](/development/variables/_index.md#service-environment-variables),
+The database is created for you and can be found in the `"SERVICE_NAME"_"PATH"` [service environment variable](/development/variables/#service-environment-variables),
 or in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 ## Storage

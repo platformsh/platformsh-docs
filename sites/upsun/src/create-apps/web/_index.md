@@ -1,5 +1,6 @@
 ---
 title: Configure what's served
+aliases: ["/create-apps/web.html"]
 ---
 
 How you should configure your web server depends a lot on what you want to serve.

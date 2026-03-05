@@ -6,6 +6,7 @@ partner: true
 weight: -60
 description: |
   Complete the last required steps to successfully deploy Symfony on {{% vendor/name %}}.
+aliases: ["/get-started/stacks/symfony.html"]
 ---
 
 {{% note title="Note" theme="info"  %}}

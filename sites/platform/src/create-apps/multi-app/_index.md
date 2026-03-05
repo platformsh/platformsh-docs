@@ -5,8 +5,9 @@ description: Create multiple apps within a single project, such as a CMS backend
 banner:
    title: Feature availability
    type: tiered-feature
-   body: This page applies to Grid projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://upsun.com/contact-us/).
+   body: This page applies to Grid projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://upsun.com/contact-us/).
 weight: 8
+aliases: ["/create-apps/multi-app.html"]
 ---
 
 {{% multi-app-intro %}}

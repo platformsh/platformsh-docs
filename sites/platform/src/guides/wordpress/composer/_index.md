@@ -5,6 +5,7 @@ layout: single
 sidebarTitle: "Why use Composer?"
 description: |
     This guide will give you a greater understanding for why{{% vendor/name %}} recommends using Composer to manage WordPress.
+aliases: ["/guides/wordpress/composer.html"]
 ---
 
 

@@ -43,7 +43,7 @@ By default, {{% vendor/name %}} allocates a container profile to each app and se
   Ideally you want to give databases the biggest part of your memory, and apps the biggest part of your CPU.
 
 The container profile and the [size of the container](#sizes) determine
-how much CPU and memory (in [MB](/glossary/_index.md#mb)) the container gets.
+how much CPU and memory (in [MB](/glossary/#mb)) the container gets.
 
 There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``HIGH_MEMORY``.
 

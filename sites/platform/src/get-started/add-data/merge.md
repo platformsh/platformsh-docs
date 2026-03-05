@@ -23,7 +23,7 @@ Add a database service (or choose [another service](/add-services/_index.md)) by
    This file holds the configuration for all services your app needs.
 
 2. Add a database in that file.
-   (If you need a different database service, you can choose from the [available services](/add-services/_index.md#available-services).
+   (If you need a different database service, you can choose from the [available services](/add-services/#available-services).
    Then change the `type` to fit your choice.)
 
    ```yaml {configFile="services"}

@@ -363,7 +363,7 @@ To make changes to your project, follow these steps:
 ### Documentation
 
 - [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
-- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
+- [Managing dependencies](/languages/nodejs/#dependencies)
 
 ### Community content
 

@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
     Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Gatsby.
+aliases: ["/guides/gatsby/deploy.html"]
 ---
 
 [Gatsby](https://www.gatsbyjs.com/) is an open source framework based on React that specializes in generating static websites from a variety of content sources.

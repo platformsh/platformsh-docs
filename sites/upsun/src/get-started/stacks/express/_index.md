@@ -6,6 +6,7 @@ weight: -100
 layout: single
 description: |
     Complete the last required steps to successfully deploy Express on {{% vendor/name %}}.
+aliases: ["/get-started/stacks/express.html"]
 ---
 
 {{% note title="Note" theme="info"  %}}
@@ -330,7 +331,7 @@ To make changes to your project, follow these steps:
 ### Documentation
 
 - [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
-- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
+- [Managing dependencies](/languages/nodejs/#dependencies)
 - [Add a database to Express](/get-started/stacks/express/add-database.md)
 
 ### Community content

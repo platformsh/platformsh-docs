@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{% note theme="info" title="Is there a way to redeploy the production environment without knowing its name?"  %}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary/_index.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary/#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -112,7 +112,7 @@ The next build for each environment is likely to take longer as the cache rebuil
 In most cases, issues accessing a project are caused by missing permissions for a given user.
 For more information see how to [manage user permissions](/administration/users.md).
 
-If you are using the CLI, make sure that [you are authenticated](/administration/cli/_index.md#2-authenticate).
+If you are using the CLI, make sure that [you are authenticated](/administration/cli/#2-authenticate).
 
 If you are using SSH, see how to [troubleshoot SSH access](/development/ssh/troubleshoot-ssh.md).
 
@@ -150,7 +150,7 @@ If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](/glossary/_index.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary/#drush)),
 you might encounter an error like the following:
 
 ```bash

@@ -23,7 +23,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](/create-apps/multi-app/_index.md).
 
-You can also skip directly to this [comprehensive example](/create-apps/_index.md#comprehensive-example) of a composable image configuration on the "Configure apps" page. This example includes all of the top-level properties listed in the table in the next section.
+You can also skip directly to this [comprehensive example](/create-apps/#comprehensive-example) of a composable image configuration on the "Configure apps" page. This example includes all of the top-level properties listed in the table in the next section.
 
 
 ## Top-level properties
@@ -49,7 +49,7 @@ To override any part of a property, you must provide the entire property.
 | [`stack`](#stack)              |  `runtimes` and/or  `packages` arrays                                                     | Yes      | No               | Specifies [{{% vendor/name %}}-supported `runtimes`](#supported-nix-packages) and extra [Nixpkgs `packages`](https://search.nixos.org/packages) beyond those in the `type` channel.                                                                                            |
 | [`size`](/create-apps/image-properties/size.md)             | A container size                                                         |          | Yes              | Amount of resources to allocate to the app; defaults to `AUTO` in production environments. Examples: `S`, `M`,`4XL`.                                                                                                                                                           |
 | [`relationships`](/create-apps/image-properties/relationships.md)    | A dictionary of relationships                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
-| [`disk`](/create-apps/image-properties/disk.md)             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available.                                                                      |
+| [`disk`](/create-apps/image-properties/disk.md)             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available.                                                                      |
 | [`mounts`](/create-apps/image-properties/mounts.md)           | A dictionary of mounts                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
 | [`web`](/create-apps/image-properties/web.md)              | A web instance                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
 | [`workers`](/create-apps/image-properties/workers.md)          | A worker instance                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
@@ -112,7 +112,7 @@ See the [example `stack` configuration](#example-stack-configuration) that follo
 {{% note title="Runtimes extensions or packages?" %}}
 Be sure you understand where to specify a runtime's additional components. For example:
 - **PHP**: Manage extensions by using the `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions` keys.<br>
-  - Note: In some scenarios, you might [add PHP settings](/languages/php/_index.md#customize-php-settings) via environment variables or `php.ini`.
+  - Note: In some scenarios, you might [add PHP settings](/languages/php/#customize-php-settings) via environment variables or `php.ini`.
 
 - **Python**: Install extra packages via the `stack.packages` key.<br>
 

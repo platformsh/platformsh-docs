@@ -5,6 +5,7 @@ layout: single
 keywords:
   - Bun runtime
   - bun runtime
+aliases: ["/languages/nodejs.html"]
 ---
 
 {{% composable/disclaimer %}}

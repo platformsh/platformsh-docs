@@ -353,7 +353,7 @@ To run cron jobs in a timezone other than UTC, set the `timezone` property as de
 
 ### Paused crons
 
-[Preview environments](/glossary/_index.md#preview-environment) are often used for a limited time and then abandoned.
+[Preview environments](/glossary/#preview-environment) are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,

@@ -2,6 +2,7 @@
 title: "Request features"
 weight: -14
 description: "We're always open to new and fresh ideas that can help improve our product. Learn how to make a feature request and engage with the {{% vendor/name %}} community here."
+aliases: ["/request-features.html"]
 ---
 
 {{% description %}}

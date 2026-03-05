@@ -5,7 +5,7 @@ keywords:
   - .environment
 ---
 
-To set variables, determine which [type of variable](/development/variables/_index.md#variable-types) to use.
+To set variables, determine which [type of variable](/development/variables/#variable-types) to use.
 Remember to take into account the order of precedence.
 All of the variables can also be [overridden via script](#set-variables-via-script).
 
@@ -16,7 +16,7 @@ These values are the same across all environments and present in the Git reposit
 which makes them a poor fit for API keys and other such secrets.
 
 They're better fits for uses such as configuration for consistent builds across every environment,
-including setting [PHP configuration values](/development/variables/_index.md#php-specific-variables).
+including setting [PHP configuration values](/development/variables/#php-specific-variables).
 
 Application variables are available at both build time and runtime.
 
@@ -60,9 +60,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](/development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](/development/variables/#top-level-environment-variables).
 
 ### Variable options
 
@@ -96,7 +96,7 @@ you need to [redeploy](/development/troubleshoot.md#force-a-redeploy) your envir
 
 Set variables for specific environments using [the Console](/administration/web/configure-environment.md#variables) or the CLI.
 Variables can be inherited or overridden from parent environments and project variables.
-See [more on overriding values](/development/variables/_index.md#overrides).
+See [more on overriding values](/development/variables/#overrides).
 
 {{< codetabs>}}
 +++
@@ -131,9 +131,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](/development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](/development/variables/#top-level-environment-variables).
 
 ### Environment variable options
 

@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
     Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy TYPO3.
+aliases: ["/guides/typo3/deploy.html"]
 ---
 
 TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way to deploy TYPO3 on {{% vendor/name %}} is by using Composer, the PHP package management suite.

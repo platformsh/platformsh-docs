@@ -8,6 +8,7 @@ keywords:
   - CLI
   - Command line interface
   - Terminal
+aliases: ["/administration/cli.html"]  
 ---
 
 {{% description %}}

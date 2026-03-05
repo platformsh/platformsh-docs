@@ -7,6 +7,7 @@ description: Learn what environments on {{% vendor/name %}} are and how to take 
 keywords:
   - Git push options
   - git push options
+aliases: ["/environments.html"]
 ---
 
 An {{% vendor/name %}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))

@@ -4,6 +4,7 @@ sidebarTitle: Get started
 weight: -130
 layout: single
 description: See how to get started deploying Django on {{% vendor/name %}}.
+aliases: ["/guides/django/deploy.html"]
 ---
 
 Django is a web application framework written in Python with a built-in ORM (Object-Relational Mapper).

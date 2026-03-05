@@ -66,11 +66,11 @@ Once enabled, Fastly operates as the first point of contact for all HTTP request
 When you request for a new domain to be added to your Fastly service,
 {{% vendor/name %}} [support](/learn/overview/get-support.md) provides you with a [`CNAME` record](/domains/steps/dns.md) for [domain control validation](/domains/troubleshoot.md#ownership-verification).
 To add this `CNAME` record to your domain settings,
-see how to [configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
+see how to [configure your DNS provider](/domains/steps/#2-configure-your-dns-provider).
 
 ### Transport Layer Security (TLS) certificates
 
-By default, Enterprise and Elite plans include two [TLS certificates](/glossary/_index.md#transport-layer-security-tls),
+By default, Enterprise and Elite plans include two [TLS certificates](/glossary/#transport-layer-security-tls),
 an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 

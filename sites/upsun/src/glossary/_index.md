@@ -1,6 +1,7 @@
 ---
 title: "Glossary"
 weight: -15
+aliases: ["/glossary.html"]
 ---
 
 ## Active environment
@@ -120,7 +121,7 @@ An endpoint is a named set of credentials to give access to other apps and servi
 
 An [environment](../environments/_index.md) is a standalone copy of your site,
 complete with code, data, and running services.
-Your production environment comes from the [default branch](../environments/_index.md#default-environment)
+Your production environment comes from the [default branch](../environments/#default-environment)
 and you can set up any other branch as a testing environment.
 
 ## Environment type

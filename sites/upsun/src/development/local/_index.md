@@ -4,6 +4,7 @@ weight: 4
 description: Set up a local development environment to test out changes to your app's code.
 sidebarTitle: "Local development"
 layout: single
+aliases: ["/development/local.html"]
 ---
 
 To make changes to your app's code and test them without affecting your production environment,

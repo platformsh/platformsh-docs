@@ -4,6 +4,7 @@ weight: -9
 layout: single
 description: |
   {{% vendor/name %}} provides a web console so you can interact with your projects and manage your environments.
+aliases: ["/administration/web.html"]  
 ---
 
 {{% description %}}

@@ -2,6 +2,7 @@
 title: "Java"
 description: Java is a general-purpose programming language, and one of the most popular in the world today. {{% vendor/name %}} supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
 layout: single
+aliases: ["/languages/java.html"]
 ---
 
 {{% composable/disclaimer %}}

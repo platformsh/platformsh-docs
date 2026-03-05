@@ -69,7 +69,7 @@ to learn about low disk space before it becomes an issue.
 `MySQL server has gone away` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
-One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/_index.md#configure-the-database).
+One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/#configure-the-database).
 
 ### Worker timeout
 
@@ -122,7 +122,7 @@ To **increase** `max_connections`, you can **either**:
 
 Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql/_index.md#configure-the-database)
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql/#configure-the-database)
    in your `.platform/services.yaml` file with an integer value.
    The default value of `16` is shown below to illustrate:
 

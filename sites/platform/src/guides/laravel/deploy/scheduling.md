@@ -6,7 +6,7 @@ description: Schedule tasks for your Laravel app.
 ---
 
 {{% note theme="warning"  %}}
-The use of workers requires a [Medium plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project)
+The use of workers requires a [Medium plan](/administration/pricing/#multiple-apps-in-a-single-project)
 or greater.
 {{% /note %}}
 
@@ -21,7 +21,7 @@ specified cron frequency are ignored and the related tasks aren't triggered.
 Due to this conflict, we suggest utilizing [workers](/create-apps/workers.md) to run both the scheduler and the queue
 systems (the [Laravel template](https://github.com/platformsh-templates/laravel) utilizes this method). In order to have
 enough resources to support these workers as well as services (e.g. MariaDB, Redis, etc), a
-**[Medium plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project) _or greater_ is required**.
+**[Medium plan](/administration/pricing/#multiple-apps-in-a-single-project) _or greater_ is required**.
 
 To use workers to handle scheduling and queues add the following to your {{< vendor/configfile "app" >}} file:
 

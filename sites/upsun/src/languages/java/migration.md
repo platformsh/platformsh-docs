@@ -13,8 +13,8 @@ It is common to have a Java application that you want to migrate to {{% vendor/n
 
 To run a Java application at {{% vendor/name %}} you need:
 
-* [A supported Java version](/languages/java/_index.md#supported-versions)
-* [A build management tool](/languages/java/_index.md#support-build-automation)
+* [A supported Java version](/languages/java/#supported-versions)
+* [A build management tool](/languages/java/#support-build-automation)
   * [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
   * [Maven](https://maven.apache.org/)
   * [Maven Wrapper](https://www.baeldung.com/maven-wrapper)
@@ -49,7 +49,7 @@ applications:
       commands:
         start: [3]
 ```
-1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
+1. [A Java version](/languages/java/#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar. For example, `mvn clean package`.
 3. [The commands key defines the command to launch the application](create-apps/image-properties/web.md#web-commands). For example,  `java -jar file.jar`.
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. For example, `java -jar jar --port=$PORT`.
@@ -139,7 +139,7 @@ The most common mechanisms are listed below.
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-Service credentials are available within the [service environment variables](/development/variables/_index.md#service-environment-variables), or the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+Service credentials are available within the [service environment variables](/development/variables/#service-environment-variables), or the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
@@ -151,7 +151,7 @@ Assuming the relationship `postgresql` is configured to grant access to a Postgr
 export DB_HOST="$POSTGRESQL_HOST"
 ```
 This sets environment variables with the names your app needs,
-and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+and the values from [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 
@@ -187,7 +187,7 @@ you have the option to move the variable environment to another file: a [`.envir
 
 **Example:**
 
-You can obtain relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+You can obtain relationship information through the [service environment variables](/development/variables/#service-environment-variables) themselves,
 or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 Say your application has a relationship named ``postgresql`` to a database service named `postgresql`:
 
@@ -207,7 +207,7 @@ export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
 This sets environment variables with the names your app needs,
-and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+and the values from [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 

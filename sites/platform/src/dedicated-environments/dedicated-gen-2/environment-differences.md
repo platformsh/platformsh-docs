@@ -5,12 +5,12 @@ sidebarTitle: "Environment differences"
 description: See the differences between your Production/Staging environments and your development environments (which are Grid environments).
 ---
 
-With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary/_index.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary/#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
-basic [syncs](/glossary/_index.md#sync) and [merges](/glossary/_index.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
+basic [syncs](/glossary/#sync) and [merges](/glossary/#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](/development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 

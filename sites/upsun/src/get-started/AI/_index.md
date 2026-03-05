@@ -2,7 +2,7 @@
 title: How to deploy AI
 weight: -50
 layout: single
-
+aliases: ["/get-started/ai.html"]
 ---
 <!-- vale off -->
 {{% vendor/name %}} provides powerful capabilities for hosting AI applications,

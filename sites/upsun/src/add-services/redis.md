@@ -38,7 +38,7 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+Here is example information available through the [service environment variables](/development/variables/#service-environment-variables) themselves,
 or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
@@ -48,7 +48,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 REDIS_USERNAME=
@@ -188,7 +188,7 @@ The example above leverages [default endpoint](/create-apps/image-properties/rel
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 
@@ -217,7 +217,7 @@ The example above leverages [explicit endpoint](/create-apps/image-properties/re
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 {{< /codetabs >}}
 
@@ -429,7 +429,7 @@ export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/#service-environment-variables) like ``REDIS_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
@@ -495,7 +495,7 @@ The example above leverages [default endpoint](/create-apps/image-properties/rel
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 
@@ -524,7 +524,7 @@ The example above leverages [explicit endpoint](/create-apps/image-properties/re
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 {{< /codetabs >}}
 
@@ -754,7 +754,7 @@ export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/#service-environment-variables) like ``REDIS_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.

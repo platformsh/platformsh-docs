@@ -117,7 +117,7 @@ see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-no
 ### Authenticate in an environment
 
 You can run automated tasks on an app container using the {{% vendor/name %}} CLI.
-To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
+To do so, set your API token as a [top-level environment variable](../../development/variables/#top-level-environment-variables).
 
 {{% note theme="warning"  %}}
 

@@ -2,6 +2,7 @@
 title: "PostgreSQL (Database service)"
 weight: -10
 sidebarTitle: "PostgreSQL"
+aliases: ["/add-services/postgresql.html"]
 ---
 
 PostgreSQL is a high-performance, standards-compliant relational SQL database.
@@ -37,7 +38,7 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+Here is example information available through the [service environment variables](/development/variables/#service-environment-variables) themselves,
 or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
@@ -47,7 +48,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/#service-environment-variables) rather than hard-coding values.**
 
 ```bash
 POSTGRESQL_USERNAME=main
@@ -164,7 +165,7 @@ That is, it uses default endpoints behind the scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 
@@ -193,7 +194,7 @@ The example above leverages [explicit endpoint](/create-apps/image-properties/re
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 {{< /codetabs >}}
 
@@ -398,7 +399,7 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``DATABASE_URL`` can be used within the application to connect to the service.
 
-Note that ``DATABASE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``POSTGRESQL_HOST``, are environment-dependent.
+Note that ``DATABASE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/#service-environment-variables) like ``POSTGRESQL_HOST``, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
@@ -424,7 +425,7 @@ psql -U main -h postgresql.internal -p 5432
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.** 
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/#service-environment-variables) rather than hard-coding values.** 
 
 ## Exporting data
 

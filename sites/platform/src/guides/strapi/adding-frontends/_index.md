@@ -4,6 +4,7 @@ sidebarTitle: "Adding frontends"
 description: |
   You can use a multi-app configuration to deploy Strapi alongside a frontend application, pulling content from Strapi into the frontend during builds.
 weight: -70
+aliases: ["/guides/strapi/adding-frontends.html"]
 ---
 
 ## Background

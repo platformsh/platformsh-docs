@@ -4,6 +4,7 @@ weight: -200
 sectionBefore: Python
 description: |
   Everything you need to get started with Django, a Python framework for web development, on {{% vendor/name %}}.
+aliases: ["/guides/django.html"]
 ---
 
 Everything you need to get started with [Django](https://www.djangoproject.com/), a Python framework for web development, on {{% vendor/name %}}.

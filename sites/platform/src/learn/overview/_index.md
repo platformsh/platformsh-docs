@@ -3,6 +3,7 @@ title: "What is {{% vendor/name %}}?"
 weight: -220
 description: "Find out which problem {{% vendor/name %}} is trying to solve."
 layout: single
+aliases: ["/learn/overview.html"]
 ---
 
 {{% vendor/name %}} is a Cloud Application Platform built especially for continuous deployment.
@@ -49,6 +50,6 @@ Managing your full stack on {{% vendor/name %}} gives you the following unique f
 
 1. **Unified Environment:** All of your [services](/add-services/_index.md) (MySQL, Elasticsearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you [back up an environment](/environments/backup.md), you get a fully consistent snapshot of your whole application.
 2. **Multi-Services & Multi-App:** You can deploy [multiple applications](/create-apps/multi-app/_index.md) (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
-3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral [preview environments](/glossary/_index.md#preview-environment) that are a byte-level copy of production.
+3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral [preview environments](/glossary/#preview-environment) that are a byte-level copy of production.
 4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
 5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.

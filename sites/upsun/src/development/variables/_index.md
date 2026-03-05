@@ -6,6 +6,7 @@ description: |
 layout: single
 keywords:
   - environment variables
+aliases: ["/development/variables.html"]
 ---
 
 {{% description %}}
@@ -52,7 +53,7 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the [service environment variables](/development/variables/_index.md#service-environment-variables),
+  This information be read from the [service environment variables](/development/variables/#service-environment-variables),
   or the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.

@@ -2,6 +2,7 @@
 title: Increase observability
 weight: -75
 description: See how to increase observability for your {{% vendor/name %}} projects.
+aliases: ["/increase-observability.html"]
 ---
 
 Observability refers to the capability to evaluate the current state of an application and its architecture by analyzing metrics, traces and logs.

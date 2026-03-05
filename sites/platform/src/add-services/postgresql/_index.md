@@ -2,6 +2,7 @@
 title: "PostgreSQL (Database service)"
 weight: -10
 sidebarTitle: "PostgreSQL"
+aliases: ["/add-services/postgresql.html"]
 ---
 
 PostgreSQL is a high-performance, standards-compliant relational SQL database.

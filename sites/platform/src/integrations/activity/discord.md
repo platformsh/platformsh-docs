@@ -12,7 +12,7 @@ To use it, follow these steps:
   Copy the URL for the webhook.
 2. Replace `DISCORD_URL` in the following script with your webhook URL.
 3. Paste the code into a `.js` file.
-4. Add it as a new [script integration](/integrations/activity/_index.md#installing).
+4. Add it as a new [script integration](/integrations/activity/#installing).
 
    Specify which events should trigger it using the `--events` flag.
    Optionally specify environments with the `--environments` flag.

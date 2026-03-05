@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
     Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Spring.
+aliases: ["/guides/spring/deploy.html"]
 ---
 
 [Spring](https://start.spring.io/) is, in its own words, a cloud-native, (Linux) container-first framework for writing Java applications.

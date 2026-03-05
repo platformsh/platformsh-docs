@@ -46,7 +46,7 @@ This router maps incoming requests to the appropriate app container
 and provides basic caching of responses, unless configured otherwise.
 
 The router is configured in a `{{< vendor/configfile "routes" >}}` file.
-If you don't include configuration, a single [default route is deployed](/define-routes/_index.md#default-route-definition).
+If you don't include configuration, a single [default route is deployed](/define-routes/#default-route-definition).
 
 Read more about how to [define routes](/define-routes/_index.md).
 

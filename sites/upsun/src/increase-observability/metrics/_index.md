@@ -2,6 +2,7 @@
 title: Infrastructure metrics
 weight: 5
 description: See all of the live infrastructure metrics available to give you an overview of resource usage.
+aliases: ["/increase-observability/metrics.html"]
 ---
 
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.

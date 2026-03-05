@@ -3,6 +3,7 @@ title: Pricing
 weight: 3
 description: See the basics of the plans {{% vendor/name %}} offers and how to adjust them.
 layout: single
+aliases: ["/administration/pricing.html"]
 ---
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.

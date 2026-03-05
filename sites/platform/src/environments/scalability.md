@@ -70,4 +70,4 @@ On Split Architecture dedicated environments, additional web servers may be adde
 ## Manually scale Grid environments
 
 To increase the pool of resources available to your project,
-[upgrade your plan](/administration/pricing/_index.md#switch-plans) and redeploy your site.
+[upgrade your plan](/administration/pricing/#switch-plans) and redeploy your site.

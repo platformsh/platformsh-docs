@@ -44,7 +44,7 @@ The appropriate resources have been [allocated automatically](/create-apps/image
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
-Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#grid-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/#grid-environments).
 
 ### App container
 

@@ -9,9 +9,10 @@ banner:
      security certifications like PCI, SOC2, HIPAA, etc. please visit the
      [Trust Center](https://upsun.com/trust-center/).
 keywords:
-- pen-test
-- penetration test
-- load test
-- vulnerability
-- Intrusion Prevention System (IPS)
+  - pen-test
+  - penetration test
+  - load test
+  - vulnerability
+  - Intrusion Prevention System (IPS)
+aliases: ["/security.html"]
 ---

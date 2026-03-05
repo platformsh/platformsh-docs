@@ -76,7 +76,7 @@ Generated URLs for environments have the following pattern:
 {{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
 ```
 
-If you have a [default domain](../define-routes/_index.md#default) set up, the generated URL has the following pattern:
+If you have a [default domain](../define-routes/#default) set up, the generated URL has the following pattern:
 
 ```bash
 {{<variable "YOUR_DOMAIN" >}}.{{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site

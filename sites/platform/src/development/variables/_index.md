@@ -6,6 +6,7 @@ description: |
 layout: single
 keywords:
   - environment variables
+aliases: ["/development/variables.html"]
 ---
 
 {{% description %}}

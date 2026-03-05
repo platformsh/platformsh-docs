@@ -28,7 +28,7 @@ Assumptions:
 
 Set up a script by following these steps:
 
-1.  Retrieve service credentials from the [service environment variables](/development/variables/_index.md#service-environment-variables) to use the `psql` command interface.
+1.  Retrieve service credentials from the [service environment variables](/development/variables/#service-environment-variables) to use the `psql` command interface.
     Export these values to a [`.environment` file](../variables/set-variables.md#set-variables-via-script)
     or include them directly in the sanitization script.
 

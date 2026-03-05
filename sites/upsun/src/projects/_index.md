@@ -3,6 +3,7 @@ title: Manage projects
 weight: -75
 description: "Learn about projects on {{% vendor/name %}} are and how to configure them."
 toc: false
+aliases: ["/projects.html"]
 ---
 
 See how to manage projects within {{% vendor/name %}}.

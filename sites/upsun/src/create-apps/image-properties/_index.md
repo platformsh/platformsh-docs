@@ -3,6 +3,7 @@ title: "Image properties"
 sidebarTitle: "Image properties"
 weight: 4
 description: Details about image properties in the {{% vendor/name %}} config.yaml file
+aliases: ["/create-apps/image-properties.html"]
 ---
 
 **Note:** The properties below are available in **both** [single-runtime image](/create-apps/app-reference/single-runtime-image.md#) and [composable image](/create-apps/app-reference/composable-image.md#) types. 

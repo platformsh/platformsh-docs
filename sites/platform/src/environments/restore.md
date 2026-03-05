@@ -105,7 +105,7 @@ You can restore backups to a different environment than they were created on usi
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
 
-   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary/_index.md#branch).
+   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary/#branch).
    The new target environment will be an exact copy of the existing (parent) environment.
 
    To do so, use the `--branch-from` option to specify the parent of your new target environment:

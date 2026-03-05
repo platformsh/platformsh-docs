@@ -47,7 +47,7 @@ To do so, run the following command:
   --value '{"http-basic": {"{{< variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{< variable "USERNAME" >}}", "password": "{{< variable "PASSWORD" >}}"}}}'
 ```
 
-The [`env:` prefix](../../development/variables/_index.md#top-level-environment-variables) means that the variable is exposed
+The [`env:` prefix](../../development/variables/#top-level-environment-variables) means that the variable is exposed
 as its own Unix environment variable.
 The `--visible-runtime false` and `--visible-build true` flags mean the variable is available to Composer only during the build.
 

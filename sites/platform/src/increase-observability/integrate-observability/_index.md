@@ -2,6 +2,7 @@
 title: "Integrate observability"
 weight: 10
 description: Find an observability service to optimize your code.
+aliases: ["/increase-observability/integrate-observability.html"]
 ---
 
 As the **official {{% vendor/name %}} observability service**, 

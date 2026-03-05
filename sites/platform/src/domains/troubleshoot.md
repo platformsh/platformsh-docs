@@ -76,7 +76,7 @@ Generated URLs for environments have the following pattern:
 {{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
 ```
 
-If you have a [default domain](/define-routes/_index.md#default) set up, the generated URL has the following pattern:
+If you have a [default domain](/define-routes/#default) set up, the generated URL has the following pattern:
 
 ```bash
 {{<variable "YOUR_DOMAIN" >}}.{{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
@@ -151,7 +151,7 @@ A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/
 
 {{< /codetabs >}}
 
-Make sure that the [apex domain](/glossary/_index.md#apex-domain) and its `www` subdomain are both pointing where needed.
+Make sure that the [apex domain](/glossary/#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
 For more information, see how to [set up a custom domain](/domains/steps/_index.md).
 

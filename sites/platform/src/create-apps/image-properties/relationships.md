@@ -138,10 +138,10 @@ For more information on how to handle multiple databases, multiple cores,
 and/or different permissions with services that support such features,
 see each service's dedicated page:
 
- - [MariaDB/MySQL](/add-services/mysql/_index.md#multiple-databases) (multiple databases and permissions)
- - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
- - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
- - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
+ - [MariaDB/MySQL](/add-services/mysql/#multiple-databases) (multiple databases and permissions)
+ - [PostgreSQL](/add-services/postgresql/#multiple-databases) (multiple databases and permissions)
+ - [Redis](/add-services/redis/#multiple-databases) (multiple databases)
+ - [Solr](add-services/solr/#solr-6-and-later) (multiple cores)
  - [Vault KMS](add-services/vault.md#multiple-endpoints-configuration) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,

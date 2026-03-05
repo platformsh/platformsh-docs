@@ -5,7 +5,7 @@ keywords:
   - .environment
 ---
 
-To set variables, determine which [type of variable](/development/variables/_index.md#variable-types) to use.
+To set variables, determine which [type of variable](/development/variables/#variable-types) to use.
 Remember to take into account the order of precedence.
 All of the variables can also be [overridden via script](#set-variables-via-script).
 
@@ -16,7 +16,7 @@ These values are the same across all environments and present in the Git reposit
 which makes them a poor fit for API keys and other such secrets.
 
 They're better fits for uses such as configuration for consistent builds across every environment,
-including setting [PHP configuration values](/development/variables/_index.md#php-specific-variables).
+including setting [PHP configuration values](/development/variables/#php-specific-variables).
 
 Application variables are available at both build time and runtime.
 
@@ -60,9 +60,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](../../development/variables/#top-level-environment-variables).
 
 ### Variable options
 
@@ -109,7 +109,7 @@ Note that for changes to project variables to have effect, you need to [redeploy
 
 Set variables for specific environments using [the Console](../../administration/web/configure-environment.md#variables) or the CLI.
 Variables can be inherited or overridden from parent environments and project variables.
-See [more on overriding values](/development/variables/_index.md#overrides).
+See [more on overriding values](/development/variables/#overrides).
 
 {{< codetabs>}}
 +++
@@ -144,9 +144,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](../../development/variables/#top-level-environment-variables).
 
 ### Environment variable options
 
@@ -259,7 +259,7 @@ To solve the issue, remove the printed output from your `.environment` file.
 If your app needs different names for environment variable than those set by {{< vendor/name >}}, which is common for database connections,
 map the {{< vendor/name >}}'s variable names to those required by the application via a shell script.
 
-You can obtain relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+You can obtain relationship information through the [service environment variables](/development/variables/#service-environment-variables) themselves,
 or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 For example, if your application has a relationship named ``database`` to a database service named `mariadb`:
 
@@ -274,7 +274,7 @@ export APP_DATABASE_USER="${DATABASE_USERNAME}"
 ```
 
 This sets environment variables with the names your app needs,
-and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+and the values from [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 

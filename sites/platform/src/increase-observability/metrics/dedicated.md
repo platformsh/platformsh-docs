@@ -64,7 +64,7 @@ This reference project has a single PHP application and three services: MySQL, R
 
 The metrics below are for a single Production environment.
 
-Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#dedicated-gen-2-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/#dedicated-gen-2-environments).
 
 ![All of the metrics available for a {{% names/dedicated-gen-2 %}} environment](/images/metrics/DG2-how-to-read-metrics.png)
 

@@ -9,7 +9,7 @@ description: See all of the options for controlling your apps and how they're bu
 Use the `{{< vendor/configfile "app" >}}` file,
 located at the root of your Git repository, to configure the apps in a single-runtime image.
 
-See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
+See a [comprehensive example](/create-apps/#comprehensive-example) of a configuration in
 a `{{< vendor/configfile "app" >}}` file.
 
 [Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
@@ -116,8 +116,8 @@ Flavors are language-specific.
 
 See what the build flavor is for your language:
 
-- [Node.js](/languages/nodejs/_index.md#dependencies)
-- [PHP](/languages/php/_index.md#dependencies)
+- [Node.js](/languages/nodejs/#dependencies)
+- [PHP](/languages/php/#dependencies)
 
 In all languages, you can also specify a flavor of `none` to take no action at all
 (which is the default for any language other than PHP and Node.js).
@@ -145,7 +145,7 @@ They're installed before the `build` hook runs using a package manager for the l
 | Python 2 | `python` or `python2` | [Pip 2](https://packaging.python.org/tutorials/installing-packages/)                                               |
 | Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
 | Ruby     | `ruby`                | [Bundler](https://bundler.io/)                                                                                     |
-| Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/_index.md#use-yarn-as-a-package-manager))   |
+| Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/#use-yarn-as-a-package-manager))   |
 
 The format for package names and version constraints are defined by the specific package manager.
 

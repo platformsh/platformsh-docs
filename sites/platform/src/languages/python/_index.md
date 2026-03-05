@@ -2,6 +2,7 @@
 title: "Python"
 description: Get started creating Python apps on {{% vendor/name %}}.
 layout: single
+aliases: ["/languages/python.html"]
 ---
 
 {{% composable/disclaimer %}}

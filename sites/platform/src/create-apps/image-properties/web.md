@@ -41,7 +41,7 @@ On PHP containers, `start` is optional and defaults to starting PHP-FPM (`/usr/b
 You can set it explicitly on a PHP container to run a dedicated process,
 such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
-See [Alternate start commands](/languages/php/_index.md#alternate-start-commands) in the PHP topic.
+See [Alternate start commands](/languages/php/#alternate-start-commands) in the PHP topic.
 
 
 {{% note  %}}

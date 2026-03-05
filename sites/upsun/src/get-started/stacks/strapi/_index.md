@@ -5,6 +5,7 @@ weight: -90
 layout: single
 description: |
     Complete the last required steps to successfully deploy Strapi on {{% vendor/name %}}.
+aliases: ["/get-started/stacks/strapi.html"]
 ---
 
 {{% note title="Note" theme="info"  %}}
@@ -390,7 +391,7 @@ To make changes to your project, follow these steps:
 ### Documentation
 
 - [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
-- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
+- [Managing dependencies](/languages/nodejs/#dependencies)
 - [Add a database to Strapi](/get-started/stacks/strapi/add-database.md)
 
 ### Community content

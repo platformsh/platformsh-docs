@@ -72,7 +72,7 @@ it's generally not necessary to download data as it can be rebuilt from the prim
 
 For services designed to hold persistent data, see each service's page for instructions:
 
-- [MySQL](/add-services/mysql/_index.md#exporting-data)
+- [MySQL](/add-services/mysql/#exporting-data)
 - [PostgreSQL](/add-services/postgresql.md#exporting-data)
 - [MongoDB](/add-services/mongodb.md#exporting-data)
 - [InfluxDB](/add-services/influxdb.md#export-data)
@@ -83,8 +83,8 @@ Environment variables can contain critical information such as tokens or additio
 
 Environment variables can have different prefixes:
 
-- Variables beginning with `env:` are exposed [as Unix environment variables](/development/variables/_index.md#top-level-environment-variables).
-- Variables beginning with `php:` are interpreted [as `php.ini` directives](/development/variables/_index.md#php-specific-variables).
+- Variables beginning with `env:` are exposed [as Unix environment variables](/development/variables/#top-level-environment-variables).
+- Variables beginning with `php:` are interpreted [as `php.ini` directives](/development/variables/#php-specific-variables).
 
 All other variables are [part of `$PLATFORM_VARIABLES`](/development/variables/use-variables.md#use-provided-variables).
 

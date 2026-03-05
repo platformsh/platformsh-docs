@@ -68,7 +68,7 @@ routes:
 ```
 
 All traffic to your domain is then sent to your app.
-The `www` subdomain redirects to the [default domain](../define-routes/_index.md#default).
+The `www` subdomain redirects to the [default domain](../define-routes/#default).
 This also includes redirecting requests from HTTP to HTTPS.
 
 For more information, see how to [define routes](../define-routes/_index.md).

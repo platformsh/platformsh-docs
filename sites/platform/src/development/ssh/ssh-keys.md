@@ -19,7 +19,7 @@ A well-encrypted key is no substitute for regular key rotation.
 
 If you used GitHub to sign up for your {{% vendor/company_name %}} account
 your public keys from GitHub are automatically synced to your {{% vendor/company_name %}} account.
-So you can use them already with the CLI or to [connect to your app](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
+So you can use them already with the CLI or to [connect to your app](/development/ssh/#2-connect-to-an-app-with-ssh).
 
 ## Add SSH keys
 
@@ -60,7 +60,7 @@ If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
-If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
+If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/#1-authenticate-with-the-cli),
 generate a key and have it added to your {{% vendor/company_name %}} account automatically.
 
 1. In a terminal, run `{{% vendor/cli %}} ssh-key:add`.
@@ -82,7 +82,7 @@ Then you need to [add it to your {{% vendor/company_name %}} account](#2-add-an-
 
 Once you have the location of your public key, add it to your {{% vendor/company_name %}} account.
 
-If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
+If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/#1-authenticate-with-the-cli),
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):
 
 ```bash
@@ -92,7 +92,7 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 You can also add it in the Console,
 similar to this [video](https://fixed.docs.upsun.com/videos/management-console/add-ssh-mc.mp4).
 
-Now you are ready to use the key to [connect to an environment](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
+Now you are ready to use the key to [connect to an environment](/development/ssh/#2-connect-to-an-app-with-ssh).
 
 ### 3. Connect to your server with SSH keys
 

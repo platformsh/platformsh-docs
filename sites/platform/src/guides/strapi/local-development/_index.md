@@ -4,6 +4,7 @@ sidebarTitle: "Local development"
 weight: -80
 description: |
   Run your Strapi application deployed on {{% vendor/name %}} on your local machine
+aliases: ["/guides/strapi-local-development.html"]
 ---
 
 {{% vendor/name %}} provides support for locally running a Strapi application that has been deployed on {{% vendor/name %}} including its services.

@@ -3,6 +3,7 @@ title: Configure your project
 weight: 12
 layout: single
 description: Configure your project
+aliases: ["/get-started/here/configure.html"]
 ---
 
 ## Required files

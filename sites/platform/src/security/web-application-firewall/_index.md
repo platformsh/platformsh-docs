@@ -3,6 +3,7 @@ title: Web Application Firewall (WAF)
 description: "Find out which WAF options {{% vendor/name %}} offers to help protect your site."
 banner: 
     type: tiered-feature
+aliases: ["/security/web-application-firewall.html"]
 ---
 
 To protect your app from common security threats,

@@ -4,6 +4,7 @@ weight: -80
 layout: single
 # aliases:
 # - /get-started/_index.md
+aliases: ["/get-started/stacks.html"]
 ---
 
 {{% vendor/name %}} aims to provide sane defaults out-of-the-box, while exposing a high degree of flexibility when you are configuring your projects, environments, and applications.

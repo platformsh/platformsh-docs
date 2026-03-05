@@ -13,8 +13,8 @@ It is common to have a Java application that you want to migrate to {{% vendor/n
 
 To run a Java application at {{% vendor/name %}} you need:
 
-* [A supported Java version](/languages/java/_index.md#supported-versions)
-* [A build management tool](/languages/java/_index.md#support-build-automation)
+* [A supported Java version](/languages/java/#supported-versions)
+* [A build management tool](/languages/java/#support-build-automation)
   * [Gradle](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
   * [Maven](https://maven.apache.org/)
   * [Maven Wrapper](https://www.baeldung.com/maven-wrapper)
@@ -48,7 +48,7 @@ web:
   commands:
     start: [3]
 ```
-1. [A supported Java version](/languages/java/_index.md#supported-versions). Example: `java:{{% latest "java" %}}`
+1. [A supported Java version](/languages/java/#supported-versions). Example: `java:{{% latest "java" %}}`
 2. [Hooks](/create-apps/hooks.md) define what occurs when building the application. This build process typically generates an executable file such as an uber-jar. Example: `mvn clean package`
 3. The [`<APP_NAME>.web.commands`](/create-apps/image-properties/web.md) property defines the command to launch the application(/create-apps/image-properties/web.md). Example:  `java -jar file.jar`
 4. The [`<APP_NAME>.web.commands.start`](/create-apps/image-properties/web.html#start) property indicates the port on which the application runs through the `PORT` environment. Consider including this when your app follows the port bind principle. Example: `java -jar jar --port=$PORT`

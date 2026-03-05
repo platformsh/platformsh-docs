@@ -2,6 +2,7 @@
 title: Set up multiple apps in a single project
 sidebarTitle: Multiple apps
 description: Create multiple apps within a single project, such as a CMS backend connected to a frontend to display it.
+aliases: ["/create-apps/multi-app.html"]
 ---
 
 {{% multi-app-intro %}}

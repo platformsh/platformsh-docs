@@ -11,6 +11,7 @@ keywords:
   - "horizontal scaling"
   - "vertical scaling"
   - "scaling"
+aliases: ["/manage-resources.html"]  
 ---
 
 {{% note theme="note" title="Understand your resource options"%}}

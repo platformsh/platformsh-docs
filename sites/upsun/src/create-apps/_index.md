@@ -6,6 +6,7 @@ description: |
 layout: single
 keywords:
   - '{{% vendor/configfile "app" %}}'
+aliases: ["/create-apps.html"]
 ---
 
 {{% description %}}

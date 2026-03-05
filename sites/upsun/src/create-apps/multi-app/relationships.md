@@ -33,7 +33,7 @@ applications:
 ```
 
 Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.</br>
-The specific URL is always available through the [service environment variables](/development/variables/_index.md#service-environment-variables),
+The specific URL is always available through the [service environment variables](/development/variables/#service-environment-variables),
 or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables):
 
 {{< codetabs >}}

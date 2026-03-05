@@ -5,6 +5,7 @@ weight: -110
 layout: single
 description: |
   Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Strapi.
+aliases: ["/guides/strapi/deploy.html"]
 ---
 
 [Strapi](https://strapi.io) is an open-source headless CMS for building fast and manageable APIs written in JavaScript.

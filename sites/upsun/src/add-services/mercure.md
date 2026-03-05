@@ -39,7 +39,7 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 {{% vendor/name %}} generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+Here is example information available through the [service environment variables](/development/variables/#service-environment-variables) or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 
 {{< codetabs >}}
@@ -50,7 +50,7 @@ title= Service environment variables
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
 Relationship information can change when an app is redeployed or restarted, or the relationship is changed.
-Avoid hard-coding; use the [service environment variables](/development/variables/_index.md#service-environment-variables) to handle dynamic relationship changes.
+Avoid hard-coding; use the [service environment variables](/development/variables/#service-environment-variables) to handle dynamic relationship changes.
 
 ```bash
 MERCURE_PUBLIC=false
@@ -184,7 +184,7 @@ That is, it uses default endpoints behind the scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 <--->
 
@@ -213,7 +213,7 @@ The example above leverages [explicit endpoint](/create-apps/image-properties/re
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/#service-environment-variables).
 
 {{< /codetabs >}}
 
@@ -344,7 +344,7 @@ export MERCURE_QUERY="${$MERCURE_QUERY}"
 
 The ``.environment`` shown above in the ``myapp`` directory is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``MERCURE_HOST`` can be used within the application to connect to the service.
 
-Note that all [{{% vendor/name %}} service environment variables](/development/variables/_index.md#service-environment-variables) such as ``MERCURE_HOST`` are environment-dependent.
+Note that all [{{% vendor/name %}} service environment variables](/development/variables/#service-environment-variables) such as ``MERCURE_HOST`` are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 

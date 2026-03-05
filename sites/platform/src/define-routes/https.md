@@ -66,7 +66,7 @@ To enable HTTPS, add a routing configuration similar to the following:
   to: "https://{default}/"
 ```
 
-In this example, all traffic to your domain is routed to `myapp`. The `www` subdomain redirects to the [{default} domain](/define-routes/_index.md#default), and this includes redirecting requests from HTTP to HTTPS.
+In this example, all traffic to your domain is routed to `myapp`. The `www` subdomain redirects to the [{default} domain](/define-routes/#default), and this includes redirecting requests from HTTP to HTTPS.
 
 
 For more information, see how to [define routes](/define-routes/_index.md).

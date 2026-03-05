@@ -34,7 +34,7 @@ PostgreSQL services (which provide access to databases and replicas) defined in 
 The following code fragment defines two MariaDB services: a primary and a replica. You can use this fragment as a template by copying it into your `services.yaml` or `application.yaml` file. 
 
 Be sure to: 
-- Replace `<VERSION>` with the [supported PostgreSQL version](/add-services/postgresql/_index.md#supported-versions) that you need. Use the same version number for the primary and replica services.
+- Replace `<VERSION>` with the [supported PostgreSQL version](/add-services/postgresql/#supported-versions) that you need. Use the same version number for the primary and replica services.
 - **Important:** Use `replicator` as the endpoint name when you define the replica service. This is a special endpoint name that the replica service uses to connect to the database.
 
 ```yaml {configFile="services"}

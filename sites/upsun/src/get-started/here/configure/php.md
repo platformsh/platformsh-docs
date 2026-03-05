@@ -17,7 +17,7 @@ By default, {{% vendor/name %}} makes assumptions about how you want to build yo
 Namely, that you are managing your dependencies with Composer, and that the very first thing you'd like to run is a particular and common production flavor of `composer install`.
 
 This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail.
-Therefore, you can [disable this feature](/languages/php/_index.md#dependencies).
+Therefore, you can [disable this feature](/languages/php/#dependencies).
 
 ## Authenticated Composer
 
@@ -28,7 +28,7 @@ Packagist is the primary Composer repository for public PHP packages. But you ca
 {{% vendor/name %}} provides additional configuration possibilities to control:
 
 - [PHP-FPM runtime configuration](/create-apps/app-reference/single-runtime-image.md#runtime)
-- [PHP settings](/languages/php/_index.md#php-settings)
+- [PHP settings](/languages/php/#php-settings)
 
 ## Enabling/disabling extensions
 
@@ -41,7 +41,7 @@ See which [PHP extensions](/languages/php/extensions.md) are available for your 
 
 While PHP-FPM is the default behavior, {{% vendor/name %}} provides some support for different web servers by modifying the `web.commands.start` property:
 
-- [Alternate start commands](/languages/php/_index.md#alternate-start-commands)
+- [Alternate start commands](/languages/php/#alternate-start-commands)
 - [Swoole](/languages/php/swoole.html)
 
 ## Frameworks

@@ -3,6 +3,7 @@ title: Run a Laravel app on your local machine
 sidebarTitle: Local development
 weight: -80
 description: Run your Laravel app deployed on {{% vendor/name %}} on your local machine.
+aliases: ["/guides/laravel/local-development.html"]
 ---
 
 {{% vendor/name %}} provides support for locally running a Laravel app

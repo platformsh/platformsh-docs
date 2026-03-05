@@ -124,7 +124,7 @@ title= Without a source integration
 +++
 
 If you're not using a [source integration](/integrations/_index.md),
-you can use a [Git push option](/environments/_index.md#push-options) to specify a resource initialization strategy.
+you can use a [Git push option](/environments/#push-options) to specify a resource initialization strategy.
 To do so, run the following command:
 
 ```bash {location="Terminal"}
@@ -139,7 +139,7 @@ For example, to use the `minimum` strategy for your deployment, run the followin
 
 {{% note  %}}
 
-Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
+Alternatively, you can use the official Git syntax for [push options](/environments/#push-options):
 
 ```bash {location="Terminal"}
 git push {{% vendor/cli %}} -o resources.init=minimum

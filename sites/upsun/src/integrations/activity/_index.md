@@ -4,6 +4,7 @@ weight: -5
 description: |
   {{% vendor/name %}} supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
 layout: single
+aliases: ["/integrations/activity.html"]
 ---
 
 {{% description %}}
@@ -145,7 +146,7 @@ rather than firing on all activities and then filtering out undesired use cases 
 
 ## Activity script variables
 
-Some activities don't have access to [project and environment variables](/development/variables/_index.md#variable-types).
+Some activities don't have access to [project and environment variables](/development/variables/#variable-types).
 In this case, to avoid hardcoding sensitive variables (such as API tokens) and therefore prevent security breaches,
 add a variable to your activity script.
 

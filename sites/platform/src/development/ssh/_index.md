@@ -11,6 +11,7 @@ keywords:
 - multifactor authentication
 - sso
 sidebarTitle: Connect with SSH
+aliases: ["/development/ssh.html"]
 ---
 
 When you interact with a deployed environment, you need to guard your connection against unauthorized access.
@@ -65,7 +66,7 @@ except for any [mounts you've defined](/create-apps/image-properties/mounts.md).
 
 ## Connect to services
 
-To connect to a service, you need the [service credentials](/add-services/_index.md#connect-to-a-service).
+To connect to a service, you need the [service credentials](/add-services/#connect-to-a-service).
 Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [tunnel in your app](#use-an-app-tunnel).
 
 ### Use a direct tunnel
@@ -92,7 +93,7 @@ Save encoded tunnel details to the PLATFORM_RELATIONSHIPS variable using:
 ```
 
 Use the returned host (in this case `http://127.0.0.1:30000`) for your connection
-and fill in the details with the rest of your [service credentials](/add-services/_index.md#connect-to-a-service).
+and fill in the details with the rest of your [service credentials](/add-services/#connect-to-a-service).
 
 The `tunnel:open` command connects all relationships defined in your [app configuration](/create-apps/_index.md).
 
@@ -145,7 +146,7 @@ The host is everything after the `@` and the username is what's before it.
 In this case, the host is `ssh.us.{{< vendor/urlraw "host" >}}` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
 The host is the same for the entire project, while the username varies by environment.
 
-To connect to a service, fill in the details with the rest of your [service credentials](/add-services/_index.md#connect-to-a-service).
+To connect to a service, fill in the details with the rest of your [service credentials](/add-services/#connect-to-a-service).
 
 ## Alternative authentication methods
 

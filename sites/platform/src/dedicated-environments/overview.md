@@ -8,7 +8,7 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create an Upsun Fixed project, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
+When you create an Upsun Fixed project, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
 
 ## What is Dedicated?
 
@@ -20,7 +20,7 @@ In the diagram below, we can see that the Dedicated architecture provides three 
 
 Having three isolated hosts means that when one becomes unavailable, the others take over, so your site will always remain up and running. This differs from the Grid architecture, where a single host runs multiple projects from various customers simultaneously. 
 
-From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a [Ceph](/glossary/_index.md#ceph) storage dependency.
+From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a [Ceph](/glossary/#ceph) storage dependency.
 
 ![The grid architecture](/images/dedicated/grid-architecture.svg "0.50")
 

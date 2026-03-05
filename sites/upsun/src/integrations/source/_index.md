@@ -3,7 +3,8 @@ title: Source integrations
 weight: -4
 description: See how to maintain your code in a third-party repository that's linked to your {{% vendor/name %}} project.
 keywords:
-- "source integration"
+    - "source integration"
+aliases: ["/integrations/source.html"]
 ---
 
 You might want to keep your code in a third-party repository that's linked to your {{% vendor/name %}} project.

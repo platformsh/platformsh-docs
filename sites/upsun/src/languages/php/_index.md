@@ -2,6 +2,7 @@
 title: "PHP"
 description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
+aliases: ["/languages/php.html"]
 ---
 
 {{% note theme="info" %}}
@@ -140,7 +141,7 @@ applications:
 ```
 Adding a dependency to the [dependencies block](/create-apps/app-reference/single-runtime-image.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
-You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
+You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/#2-specify-any-global-dependencies).
 
 If you want to have more control over Composer or if you don't want to use Composer at all, adapt the [build flavor](#change-the-build-flavor).
 You can also use a [private, authenticated third-party Composer repository](/languages/php/composer-auth.md).
@@ -480,7 +481,7 @@ For example, to set the PHP memory limit to 256 MB on a specific environment, ru
     --no-interaction
 ```
 
-For more information, see how to use [PHP-specific variables](../../development/variables/_index.md#php-specific-variables).
+For more information, see how to use [PHP-specific variables](../../development/variables/#php-specific-variables).
 
 <--->
 

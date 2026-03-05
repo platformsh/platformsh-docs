@@ -4,6 +4,7 @@ weight: -60
 sidebarTitle: "MariaDB/MySQL"
 description: See how to configure a MariaDB/MySQL server to store your data.
 layout: single
+aliases: ["/add-services/mysql.html"]
 ---
 
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.

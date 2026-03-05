@@ -14,4 +14,5 @@ keywords:
 - load test
 - vulnerability
 - Intrusion Prevention System (IPS)
+aliases: ["/security.html"]
 ---

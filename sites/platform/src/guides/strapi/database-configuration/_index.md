@@ -4,6 +4,7 @@ sidebarTitle: "Database Configuration"
 weight: -90
 description: |
   Configure a preferred database for your Strapi application on {{% vendor/name %}}
+aliases: ["/guides/strapi/database-configuration.html"]
 ---
 
 Strapi requires a database in order for it to run successfully. It currently has support for the following database types:

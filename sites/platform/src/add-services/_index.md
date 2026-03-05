@@ -5,6 +5,7 @@ description: See how to add services such as databases, cache, and search engine
 layout: single
 keywords:
   - "services.yaml"
+aliases: ["/add-services.html"]
 ---
 
 {{% vendor/name %}} includes many services, so you don't have to subscribe to external cache or search engine services.
@@ -67,14 +68,14 @@ The following table presents the keys you can define for each service:
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `disk`          | `integer`  | For some services | The size in [MB](/glossary/_index.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
+| `disk`          | `integer`  | For some services | The size in [MB](/glossary/#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
 | `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](/increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/image-properties/relationships.md). The `endpoint_name` for apps is always `http`. |
 
 ##### Disk
 
-You configure the disk size in [MB](/glossary/_index.md#mb).
+You configure the disk size in [MB](/glossary/#mb).
 Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal.
 When checking available space, note whether it's reported in MB or MiB.
 
@@ -242,7 +243,7 @@ All services have their system timezone set to UTC by default.
 For some services, you can change the timezone for the running service
 (this doesn't affect the container itself and so logs are still in UTC).
 
-* [MySQL](/add-services/mysql/_index.md#service-timezone)
+* [MySQL](/add-services/mysql/#service-timezone)
 * [PostgreSQL](/add-services/postgresql.md#service-timezone)
 
 ## Connect to a service
@@ -310,7 +311,7 @@ Note that the information about the relationship can change when an app is redep
 
 ### 2. Open an SSH tunnel
 
-Open a single [SSH tunnel](/development/ssh/_index.md#connect-to-services) by running the following CLI command:
+Open a single [SSH tunnel](/development/ssh/#connect-to-services) by running the following CLI command:
 
 ```bash
 {{% vendor/cli %}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}

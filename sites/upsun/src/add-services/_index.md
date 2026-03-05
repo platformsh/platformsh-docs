@@ -5,6 +5,7 @@ description: See how to add services such as databases, cache, and search engine
 layout: single
 keywords:
   - services
+aliases: ["/add-services.html"]
 ---
 
 {{% vendor/name %}} includes many services, so you don't have to subscribe to external cache or search engine services.
@@ -228,7 +229,7 @@ All services have their system timezone set to UTC by default.
 For some services, you can change the timezone for the running service
 (this doesn't affect the container itself and so logs are still in UTC).
 
-* [MySQL](/add-services/mysql/_index.md#service-timezone)
+* [MySQL](/add-services/mysql/#service-timezone)
 * [PostgreSQL](/add-services/postgresql.md#service-timezone)
 
 ## Connect to a service
@@ -242,7 +243,7 @@ title=In an app
 +++
 
 Once a service is running and exposed via a relationship,
-its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-environment-variables),
+its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables/#service-environment-variables),
 in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 The available information is documented on each service's page, along with sample code for how to connect to it from your app.
 
@@ -295,11 +296,11 @@ The `url` property shows a full database connection that can be used from your a
 
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/#service-environment-variables) directly rather than hard coding any values.
 
 ### 2. Open an SSH tunnel
 
-Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
+Open a single [SSH tunnel](../development/ssh/#connect-to-services) by running the following CLI command:
 
 ```bash
 {{% vendor/cli %}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}

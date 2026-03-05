@@ -75,7 +75,7 @@ A project may have up to six users associated with it at no additional charge. A
 
 {{% note title="Note" theme="info"  %}}
 
-While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary/_index.md#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary/#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
 
 {{% /note %}}
 

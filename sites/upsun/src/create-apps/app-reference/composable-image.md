@@ -20,7 +20,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-You can also skip directly to this [comprehensive example](/create-apps/_index.md#comprehensive-example) of a composable image configuration in the "Configure apps" topic. This example includes all of the primary application properties listed in the table in the next section.
+You can also skip directly to this [comprehensive example](/create-apps/#comprehensive-example) of a composable image configuration in the "Configure apps" topic. This example includes all of the primary application properties listed in the table in the next section.
 
 ## Primary application properties {#primary-application-properties}
 
@@ -108,7 +108,7 @@ See the [example `stack` configuration](#example-stack-configuration) that follo
 {{% note title="Runtimes extensions or packages?" %}}
 Be sure you understand where to specify a runtime's additional components. For example:
 - **PHP**: Manage extensions by using the `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions` keys.<br>
-  - Note: In some scenarios, you might [add PHP settings](/languages/php/_index.md#customize-php-settings) via environment variables or `php.ini`.
+  - Note: In some scenarios, you might [add PHP settings](/languages/php/#customize-php-settings) via environment variables or `php.ini`.
 
 - **Python**: Install extra packages via the `stack.packages` key.<br>
 

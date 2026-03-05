@@ -3,6 +3,7 @@ title: Local development
 weight: -110
 description: |
     Sync {{% vendor/name %}} with your local environments to start contributing.
+aliases: ["/guides/django/local.html"]
 ---
 
 A significant amount of work developing Django takes place locally rather than on an active {{% vendor/name %}} environment.

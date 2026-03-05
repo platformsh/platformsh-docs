@@ -27,9 +27,9 @@ You can filter activities by type (such as merge, sync, or redeploy).
 
 Each environment offers ways to keep environments up to date with one another:
 
-* [{{< icon branch >}} **Branch**](/glossary/_index.md#branch) to create a new child environment.
-* [{{< icon merge >}} **Merge**](/glossary/_index.md#merge) to copy the current environment into its parent.
-* [{{< icon sync >}} **Sync**](/glossary/_index.md#sync)
+* [{{< icon branch >}} **Branch**](/glossary/#branch) to create a new child environment.
+* [{{< icon merge >}} **Merge**](/glossary/#merge) to copy the current environment into its parent.
+* [{{< icon sync >}} **Sync**](/glossary/#sync)
   to copy changes from its parent environment into the current environment.
 
 There are also additional options:
@@ -52,7 +52,7 @@ There are also additional options:
 
 ## Environment URL
 
-When you access an environment in the Console, you can view its URL. While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL. If this message isn't updated once your [default environment](/environments/_index.md#default-environment)'s information is loaded, follow these steps:
+When you access an environment in the Console, you can view its URL. While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL. If this message isn't updated once your [default environment](/environments/#default-environment)'s information is loaded, follow these steps:
 
 1. Check that [you have defined routes](/define-routes/_index.md) for your default environment.
 2. Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](/add-services/_index.md), and [routes](/define-routes/_index.md) configurations are correct.
@@ -72,7 +72,7 @@ Under **Environment name**, you can edit the name and type of your environment a
 
 ### Status
 
-Under **Status**, you can check whether or not your environment is [active](/glossary/_index.md#active-environment).
+Under **Status**, you can check whether or not your environment is [active](/glossary/#active-environment).
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 

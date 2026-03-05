@@ -285,7 +285,7 @@ You can access this UI with an SSH tunnel.
 To open a tunnel, follow these steps.
 
 1.
-   a) (On [grid environments](/glossary/_index.md#grid)) SSH into your app container with a flag for local port forwarding:
+   a) (On [grid environments](/glossary/#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672

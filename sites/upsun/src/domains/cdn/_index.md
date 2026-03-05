@@ -6,6 +6,7 @@ description: Improve performance for distributed end-users of your website with 
 layout: single
 keywords:
     - mTLS support
+aliases: ["/domains/cdn.html"]
 ---
 
 Using a CDN speeds up the delivery of your site's content to its users.

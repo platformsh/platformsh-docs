@@ -6,6 +6,7 @@ layout: single
 weight: -63
 description: |
   Complete the last required steps to successfully deploy Laravel on {{% vendor/name %}}.
+aliases: ["/get-started/stacks/laravel.html"]
 ---
 
 {{% note theme="info"  %}}

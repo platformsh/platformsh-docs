@@ -3,6 +3,7 @@ title: Set up a custom domain
 weight: 2
 description: Add a custom domain to your project once it's ready to go live.
 layout: single
+aliases: ["/domains/steps.html"]
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
@@ -17,7 +18,7 @@ You need:
 
 - A project that's ready to go live
 - A domain with access to its settings with the registrar
-- A registrar that allows `CNAME` records or [one of the alternatives](/domains/steps/dns.md) on [apex domains](/glossary/_index.md#apex-domain)
+- A registrar that allows `CNAME` records or [one of the alternatives](/domains/steps/dns.md) on [apex domains](/glossary/#apex-domain)
 - Optional: The [CLI](/administration/cli/_index.md) installed locally
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
 
@@ -27,7 +28,7 @@ see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* y
 ## Optional: Change your plan to a production plan
 
 If you are on a Development plan, you can't add a domain.
-You need to upgrade your subscription to a [production plan](/glossary/_index.md#production-plan).
+You need to upgrade your subscription to a [production plan](/glossary/#production-plan).
 
 To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](/administration/users.md#organization-permissions).
 
@@ -143,9 +144,9 @@ To configure your CDN and your domain name to point to your project:
    The address or `CNAME` record to use varies by CDN provider.
    Refer to the official documentation of your DNS provider and CDN provider.
 5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](/domains/troubleshoot.md#ownership-verification).
-6. [Disable the router cache](/domains/cdn/_index.md#disable-the-router-cache).
+6. [Disable the router cache](/domains/cdn/#disable-the-router-cache).
 7. Optional: For increased security and to prevent the CDN from being bypassed,
-   you can force all traffic to [go through the CDN](/domains/cdn/_index.md#prevent-direct-access-to-your-server).
+   you can force all traffic to [go through the CDN](/domains/cdn/#prevent-direct-access-to-your-server).
 8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes/_index.md).
 

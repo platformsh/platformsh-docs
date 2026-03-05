@@ -22,7 +22,7 @@ To properly configure your Cloudflare CDN,
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
 Then set up a [custom domain](/domains/steps/_index.md).
 To get the [DNS challenge to succeed](/domains/troubleshoot.md#ownership-verification),
-have your CDN point to your [project's target URL](/domains/steps/_index.md#1-get-the-target-for-your-project).
+have your CDN point to your [project's target URL](/domains/steps/#1-get-the-target-for-your-project).
 
 ## 3. Handle apex domains
 
@@ -57,7 +57,7 @@ If you can't use mTLS, you can still take the following measures to protect your
 
 1. [Enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).</br>
    Any communication between a client and Cloudflare or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
-   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary/_index.md#transport-layer-security-tls)
+   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary/#transport-layer-security-tls)
    was issued by a trusted certificate authority.
    This confirms the client is truly communicating with your {{% vendor/name %}} server.
 

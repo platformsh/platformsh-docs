@@ -3,6 +3,7 @@ title: "Choose an image type"
 weight: -19
 description: Configure your app and control how it's built and deployed on {{% vendor/name %}}.
 layout: single
+aliases: ["/create-apps/app-reference.html"]
 ---
 
 An _image_ represents the configuration of the container that contains the application (or service) that you want to deploy. 

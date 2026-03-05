@@ -3,6 +3,7 @@ title: Set up a custom domain
 weight: 2
 description: Add a custom domain to your project once it's ready to go live.
 layout: single
+aliases: ["/domains/steps.html"]
 ---
 
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
@@ -102,9 +103,9 @@ To configure your CDN and your domain name to point to your project:
    The address or `CNAME` record to use varies by CDN provider.
    Refer to the official documentation of your DNS provider and CDN provider.
 5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
-6. [Disable the router cache](../cdn/_index.md#disable-the-router-cache).
+6. [Disable the router cache](../cdn/#disable-the-router-cache).
 7. Optional: For increased security and to prevent the CDN from being bypassed,
-   you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-server).
+   you can force all traffic to [go through the CDN](../cdn/#prevent-direct-access-to-your-server).
 8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 

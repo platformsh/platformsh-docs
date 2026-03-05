@@ -52,7 +52,7 @@ There are also additional options:
 
 ## Environment URL
 
-When you access an environment in the Console, you can view its URL. While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL. If this message isn't updated once your [default environment](../../environments/_index.md#default-environment)'s information is loaded, follow these steps:
+When you access an environment in the Console, you can view its URL. While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL. If this message isn't updated once your [default environment](../../environments/#default-environment)'s information is loaded, follow these steps:
 
 1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
 2. Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.

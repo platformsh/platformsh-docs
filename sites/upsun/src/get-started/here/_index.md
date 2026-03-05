@@ -5,6 +5,7 @@ weight: -100
 layout: single
 # aliases:
 # - /get-started/_index.md
+aliases: ["/get-started/here.html"]
 ---
 
 Welcome to {{% vendor/name %}}!

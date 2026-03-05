@@ -21,7 +21,7 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-You configure the disk size in [MB](/glossary/_index.md#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
+You configure the disk size in [MB](/glossary/#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 If you need more storage to fit the sum of all `disk` keys, it is necessary to [switch plans](/administration/pricing.md#switch-plans). This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
 
