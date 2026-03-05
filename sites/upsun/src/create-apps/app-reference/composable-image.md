@@ -74,6 +74,19 @@ applications:
 
 ### Supported Nix channels
 
+{{% note theme="info" %}}
+
+Nix releases new channels a few times per year. Channels that were fully supported can quickly become deprecated. With Composable Images, you are responsible for: 
+
+ - Keeping your Nix channel up to date  
+ - Ensuring requested runtimes and packages are available and current
+
+Unlike [Single Runtime Images](/create-apps/app-reference/single-runtime-image.md), which receive automatic minor and security updates, Composable Images require proactive maintenance. We recommend reviewing your configuration at least twice per year to upgrade the Nix channel and any runtimes or packages you rely on.
+
+See [Which image type should I use?](/create-apps/app-reference.html#which-image-type) for a quick comparison of [Single Runtime](/create-apps/app-reference/single-runtime-image.md) vs Composable Images.
+
+{{% /note %}}
+
 Upsun supports the following Nix channel versions:
 
 - `{{% latest composable %}}`
@@ -170,7 +183,7 @@ See the [`stack` configuration example](#example-stack-configuration) above, whi
 
 If a PHP runtime is the first declared (or _primary_) runtime in the app:
   - The PHP-FPM service starts automatically.
-  - You can configure the PHP-FPMP service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
+  - You can configure the PHP-FPM service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
 
     The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys.
 

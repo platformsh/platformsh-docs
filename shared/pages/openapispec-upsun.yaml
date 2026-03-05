@@ -5586,7 +5586,7 @@ paths:
         - Blackfire Profiling
       summary: Get profile timeline data
       description: Returns timeline visualization data for a Blackfire profile, showing the execution flow over time.
-      operationId: profile_timeline
+      operationId: blackfire_profile_timeline
       parameters:
         - name: projectId
           in: path
@@ -5648,6 +5648,7 @@ paths:
                     description: Profile UUID
                     type: string
                     format: uuid
+                    example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                   data:
                     description: Timeline visualization data from the Blackfire API
                     required:
@@ -5675,7 +5676,9 @@ paths:
                           - python
                         example: php
                     type: object
+                    additionalProperties: false
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
   /projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/subprofiles:
@@ -5684,7 +5687,7 @@ paths:
         - Blackfire Profiling
       summary: Get profile subprofiles
       description: Returns subprofiles (child profiles) associated with a Blackfire profile.
-      operationId: profile_subprofiles
+      operationId: blackfire_profile_subprofiles
       parameters:
         - name: projectId
           in: path
@@ -5746,6 +5749,7 @@ paths:
                     description: Profile UUID
                     type: string
                     format: uuid
+                    example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                   data:
                     description: Subprofiles data from the Blackfire API
                     required:
@@ -5755,7 +5759,9 @@ paths:
                         description: Profile tree with context, metrics, recommendations, and child profiles
                         type: object
                     type: object
+                    additionalProperties: false
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
   /projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/profile:
@@ -5764,7 +5770,7 @@ paths:
         - Blackfire Profiling
       summary: Get profile details
       description: Returns full profile data including metrics, metadata, and recommendations.
-      operationId: profile_profile
+      operationId: blackfire_profile_profile
       parameters:
         - name: projectId
           in: path
@@ -5826,6 +5832,7 @@ paths:
                     description: Profile UUID
                     type: string
                     format: uuid
+                    example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                   data:
                     description: Full profile details from the Blackfire API
                     required:
@@ -5835,7 +5842,9 @@ paths:
                         description: Profile data including links, metadata, metrics, recommendations, and status information
                         type: object
                     type: object
+                    additionalProperties: false
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
   /projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/graph:
@@ -5844,7 +5853,7 @@ paths:
         - Blackfire Profiling
       summary: Get profile call graph
       description: Returns the call graph data for a Blackfire profile, showing function calls and their performance metrics.
-      operationId: profile_graph
+      operationId: blackfire_profile_graph
       parameters:
         - name: projectId
           in: path
@@ -5906,6 +5915,7 @@ paths:
                     description: Profile UUID
                     type: string
                     format: uuid
+                    example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                   data:
                     description: Call graph data from the Blackfire API
                     required:
@@ -5963,14 +5973,442 @@ paths:
                           - python
                         example: php
                     type: object
+                    additionalProperties: false
                 type: object
+                additionalProperties: false
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+  /projects/{projectId}/environments/{environmentId}/observability/profiles/recommendations:
+    get:
+      tags:
+        - Blackfire Profiling
+      summary: Get recommendation statistics
+      description: Returns recommendation statistics for the environment, optionally filtered by transaction. Proxied from the Blackfire API. Each recommendation includes the constraint details, occurrence count, and links to the latest profile and documentation.
+      operationId: blackfire_profiles_recommendations
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: from
+          in: query
+          description: Start of time range (Unix timestamp). Defaults to 2 weeks ago.
+          required: false
+          schema:
+            type: integer
+            example: 1704067200
+        - name: to
+          in: query
+          description: End of time range (Unix timestamp). Defaults to now.
+          required: false
+          schema:
+            type: integer
+            example: 1704326400
+        - name: transaction
+          in: query
+          description: Filter recommendations to a specific transaction name.
+          required: false
+          schema:
+            type: string
+            example: App\Controller\ProductController::list
+      responses:
+        '200':
+          description: Recommendation statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _project_id
+                  - _environment_id
+                  - _branch_machine_name
+                  - _agent
+                  - data
+                properties:
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main-bvxea6i
+                  _agent:
+                    description: Blackfire Agent UUID
+                    type: string
+                    format: uuid
+                    example: a38f69ca-3b56-4ea6-beac-272b2568164a
+                  data:
+                    description: Recommendation data from the Blackfire API
+                    required:
+                      - _from
+                      - _to
+                      - recommendations
+                      - total
+                    properties:
+                      _from:
+                        description: Start of time range (Unix timestamp)
+                        type: integer
+                        example: 1704067200
+                      _to:
+                        description: End of time range (Unix timestamp)
+                        type: integer
+                        example: 1704326400
+                      _transaction:
+                        description: Filtered transaction name (only present when transaction filter is applied)
+                        type: string
+                        example: App\Controller\ProductController::list
+                      recommendations:
+                        description: List of failing recommendations
+                        type: array
+                        items:
+                          required:
+                            - name
+                            - total
+                          properties:
+                            name:
+                              description: Recommendation constraint name
+                              type: string
+                              example: tests.symfony.kernel.secret_is_set
+                            constraint:
+                              description: Constraint details
+                              type: object
+                              nullable: true
+                            total:
+                              description: Number of profiles failing this recommendation
+                              type: integer
+                              example: 15
+                            _links:
+                              description: Navigation links
+                              required:
+                                - latest_profile
+                              properties:
+                                latest_profile:
+                                  required:
+                                    - href
+                                  properties:
+                                    href:
+                                      type: string
+                                      format: uri
+                                      example: https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
+                                  type: object
+                                  additionalProperties: false
+                              type: object
+                              additionalProperties: false
+                          type: object
+                          additionalProperties: false
+                      total:
+                        description: Total number of profiles with failing recommendations
+                        type: integer
+                        example: 42
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+              example:
+                _project_id: abc123def456
+                _environment_id: main
+                _branch_machine_name: main-bvxea6i
+                _agent: a38f69ca-3b56-4ea6-beac-272b2568164a
+                data:
+                  _from: 1704067200
+                  _to: 1704326400
+                  recommendations:
+                    - name: tests.symfony.kernel.secret_is_set
+                      constraint:
+                        id: tests.symfony.kernel.secret_is_set
+                        name: tests.symfony.kernel.secret_is_set
+                      total: 15
+                      _links:
+                        latest_profile:
+                          href: https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph?settings%5BtabPane%5D=recommendations
+                  total: 42
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                        example: The from timestamp must be in the past.
+                type: object
+                additionalProperties: false
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+  /projects/{projectId}/environments/{environmentId}/observability/profiles/automatic:
+    get:
+      tags:
+        - Blackfire Profiling
+      summary: List automatic profiling results
+      description: Returns a paginated list of automatic (APM-triggered) profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.
+      operationId: blackfire_profiles_list_automatic
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: transaction
+          in: query
+          description: Filter by transaction name (exact match).
+          required: false
+          schema:
+            type: string
+            example: App\Controller\ProductController::list
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+            default: null
+            minimum: 1
+        - name: limit
+          in: query
+          description: Number of profiles per page.
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 100
+            minimum: 1
+        - name: url
+          in: query
+          description: Wildcard search across URI, name, and transaction name.
+          required: false
+          schema:
+            type: string
+        - name: is_public
+          in: query
+          description: Filter to public profiles only when set to "true".
+          required: false
+          schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+      responses:
+        '200':
+          description: Automatic profiles retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _project_id
+                  - _environment_id
+                  - _branch_machine_name
+                  - _agent
+                  - data
+                properties:
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main-bvxea6i
+                  _agent:
+                    description: Blackfire Agent UUID
+                    type: string
+                    format: uuid
+                    example: a38f69ca-3b56-4ea6-beac-272b2568164a
+                  data:
+                    description: Automatic profiles data from the Blackfire API
+                    required:
+                      - profiles
+                      - page
+                      - pages
+                      - total
+                      - _links
+                    properties:
+                      profiles:
+                        description: List of automatic profiles
+                        type: array
+                        items:
+                          type: object
+                      page:
+                        description: Current page number
+                        type: integer
+                        example: 1
+                      pages:
+                        description: Total number of pages
+                        type: integer
+                        example: 3
+                      total:
+                        description: Total number of profiles
+                        type: integer
+                        example: 25
+                      _links:
+                        description: Pagination links
+                        required:
+                          - current
+                        properties:
+                          current:
+                            required:
+                              - href
+                              - page
+                            properties:
+                              href:
+                                type: string
+                                format: uri
+                                example: https://blackfire.io/web-api/profiles/envs/a38f69ca/apm?page=1
+                              page:
+                                type: integer
+                                example: 1
+                            type: object
+                            additionalProperties: false
+                          next:
+                            required:
+                              - href
+                              - page
+                            properties:
+                              href:
+                                type: string
+                                format: uri
+                                example: https://blackfire.io/web-api/profiles/envs/a38f69ca/apm?page=2
+                              page:
+                                type: integer
+                                example: 2
+                            type: object
+                            additionalProperties: false
+                        type: object
+                        additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+              example:
+                _project_id: abc123def456
+                _environment_id: main
+                _branch_machine_name: main-bvxea6i
+                _agent: a38f69ca-3b56-4ea6-beac-272b2568164a
+                data:
+                  profiles:
+                    - uuid: 4b5266a2-fd71-468b-bf05-87b342079cbf
+                      name: POST /api/cart
+                      metadata:
+                        Triggered by: apm
+                        Transaction Name: App\Controller\CartController::add
+                  page: 1
+                  pages: 3
+                  total: 25
+                  _links:
+                    current:
+                      href: https://blackfire.io/web-api/profiles/envs/a38f69ca/apm?page=1
+                      page: 1
+                    next:
+                      href: https://blackfire.io/web-api/profiles/envs/a38f69ca/apm?page=2
+                      page: 2
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                        example: The from timestamp must be in the past.
+                type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
   /projects/{projectId}/environments/{environmentId}/observability/http-metrics/overview:
     get:
       tags:
         - Http Traffic
-      summary: Get HTTP traffic overview with top URLs and time-series metrics
+      summary: Get HTTP traffic overview
       description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
       operationId: http_metrics_overview
       parameters:
@@ -6154,6 +6592,7 @@ paths:
                               type: integer
                               example: 62143
                           type: object
+                          additionalProperties: false
                       timelines:
                         description: Time-series HTTP traffic metrics
                         type: array
@@ -6201,6 +6640,7 @@ paths:
                                     format: float
                                     example: 378.45
                                 type: object
+                                additionalProperties: false
                             codes:
                               description: HTTP status code distribution
                               required:
@@ -6281,7 +6721,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -6289,6 +6731,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -6297,11 +6742,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips:
     get:
       tags:
         - Http Traffic
-      summary: Get HTTP traffic timeline grouped by IP addresses
+      summary: Get HTTP traffic timeline by IP
       description: 'Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.'
       operationId: http_metrics_timeline_ips
       parameters:
@@ -6537,6 +6983,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: GET
                     nullable: true
                   _methods_mode:
                     description: Method filter mode (1=additive, -1=subtractive)
@@ -6550,6 +6997,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: example.com
                     nullable: true
                   _domains_mode:
                     description: Domain filter mode (1=additive, -1=subtractive)
@@ -6563,6 +7011,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 2XX
                     nullable: true
                   _code_slots_mode:
                     description: Code slot filter mode (1=additive, -1=subtractive)
@@ -6576,6 +7025,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: '200'
                     nullable: true
                   _codes_mode:
                     description: Code filter mode (1=additive, -1=subtractive)
@@ -6589,6 +7039,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 0-100
                     nullable: true
                   _request_duration_slots_mode:
                     description: Request duration slot filter mode (1=additive, -1=subtractive)
@@ -6679,6 +7130,7 @@ paths:
                               type: integer
                               example: 62143
                           type: object
+                          additionalProperties: false
                       timelines:
                         description: Time-series HTTP traffic metrics grouped by IP
                         type: array
@@ -6723,6 +7175,7 @@ paths:
                                     example: 37.45
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                           type: object
                           additionalProperties: false
                     type: object
@@ -6767,7 +7220,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -6775,6 +7230,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -6783,11 +7241,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents:
     get:
       tags:
         - Http Traffic
-      summary: Get HTTP traffic timeline grouped by User Agents
+      summary: Get HTTP traffic timeline by user agent
       description: 'Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.'
       operationId: http_metrics_timeline_user_agents
       parameters:
@@ -7023,6 +7482,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: GET
                     nullable: true
                   _methods_mode:
                     description: Method filter mode (1=additive, -1=subtractive)
@@ -7036,6 +7496,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: example.com
                     nullable: true
                   _domains_mode:
                     description: Domain filter mode (1=additive, -1=subtractive)
@@ -7049,6 +7510,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 2XX
                     nullable: true
                   _code_slots_mode:
                     description: Code slot filter mode (1=additive, -1=subtractive)
@@ -7062,6 +7524,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: '200'
                     nullable: true
                   _codes_mode:
                     description: Code filter mode (1=additive, -1=subtractive)
@@ -7075,6 +7538,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 0-100
                     nullable: true
                   _request_duration_slots_mode:
                     description: Request duration slot filter mode (1=additive, -1=subtractive)
@@ -7165,6 +7629,7 @@ paths:
                               type: integer
                               example: 62143
                           type: object
+                          additionalProperties: false
                       timelines:
                         description: Time-series HTTP traffic metrics grouped by User Agent
                         type: array
@@ -7209,6 +7674,7 @@ paths:
                                     example: 47.45
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                           type: object
                           additionalProperties: false
                     type: object
@@ -7253,7 +7719,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -7261,6 +7729,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -7269,11 +7740,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls:
     get:
       tags:
         - Http Traffic
-      summary: Get HTTP traffic overview with top URLs and time-series metrics
+      summary: Get HTTP traffic timeline by URL
       description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
       operationId: http_metrics_timeline_urls
       parameters:
@@ -7510,6 +7982,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: GET
                     nullable: true
                   _methods_mode:
                     description: Method filter mode (1=additive, -1=subtractive)
@@ -7523,6 +7996,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: example.com
                     nullable: true
                   _domains_mode:
                     description: Domain filter mode (1=additive, -1=subtractive)
@@ -7536,6 +8010,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 2XX
                     nullable: true
                   _code_slots_mode:
                     description: Code slot filter mode (1=additive, -1=subtractive)
@@ -7549,6 +8024,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: '200'
                     nullable: true
                   _codes_mode:
                     description: Code filter mode (1=additive, -1=subtractive)
@@ -7562,6 +8038,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 0-100
                     nullable: true
                   _request_duration_slots_mode:
                     description: Request duration slot filter mode (1=additive, -1=subtractive)
@@ -7572,6 +8049,11 @@ paths:
                     nullable: true
                   data:
                     description: HTTP traffic data containing URL statistics and time-series information
+                    required:
+                      - kind
+                      - total
+                      - top_hits
+                      - timelines
                     properties:
                       kind:
                         description: The kind of grouping
@@ -7662,6 +8144,7 @@ paths:
                               type: integer
                               example: 62143
                           type: object
+                          additionalProperties: false
                       timelines:
                         description: Time-series HTTP traffic metrics
                         type: array
@@ -7709,6 +8192,7 @@ paths:
                                     format: float
                                     example: 378.45
                                 type: object
+                                additionalProperties: false
                             codes:
                               description: HTTP status code distribution
                               required:
@@ -7765,23 +8249,34 @@ paths:
                               - value: ERROR
                                 count: 2
                         additionalProperties:
+                          required:
+                            - distinct_values
+                            - type
+                            - values
                           properties:
                             distinct_values:
                               type: integer
+                              example: 5
                             type:
                               type: string
                               example: string
                             values:
                               type: array
                               items:
+                                required:
+                                  - value
+                                  - count
                                 properties:
                                   value:
                                     type: string
+                                    example: INFO
                                   count:
                                     type: integer
+                                    example: 297
                                 type: object
                                 additionalProperties: false
                           type: object
+                          additionalProperties: false
                       max_applicable_filters:
                         type: integer
                         example: 45
@@ -7827,7 +8322,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -7835,6 +8332,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -7843,11 +8343,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/resources/overview:
     get:
       tags:
         - Resources
-      summary: Get time-series resource metrics with statistical aggregations
+      summary: Get resource metrics overview
       description: 'Returns time-series resource utilization data for all services. Each timestamp includes per-service metrics: CPU (cores), memory (bytes), swap (bytes), pressure indicators (0.0-1.0), and per-mountpoint disk/inode usage. All metrics include statistical aggregations: min, max, avg, stddev, and percentiles (p50, p95-p99). Service names and mountpoint paths are dynamic. Aggregation values are nullable when insufficient data exists.'
       operationId: resources_overview
       parameters:
@@ -7924,6 +8425,7 @@ paths:
                   - _to
                   - _project_id
                   - _environment_id
+                  - _branch_machine_name
                   - data
                 properties:
                   _grain:
@@ -7946,6 +8448,10 @@ paths:
                     description: Environment identifier
                     type: string
                     example: main
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main-bvxea6i
                   data:
                     description: Array of timestamped data points, each containing resource metrics grouped by service name
                     type: array
@@ -8278,6 +8784,7 @@ paths:
                                     example: 1.78
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_limit:
                                 description: CPU limit in cores. Contains only max (nullable)
                                 properties:
@@ -8288,6 +8795,7 @@ paths:
                                     example: 2
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_used:
                                 description: 'Memory usage in bytes. Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8352,6 +8860,7 @@ paths:
                                     example: 712000000
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_limit:
                                 description: Memory limit in bytes. Contains only max (nullable)
                                 properties:
@@ -8362,6 +8871,7 @@ paths:
                                     example: 1073741824
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_used:
                                 description: 'Swap usage in bytes. Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8426,6 +8936,7 @@ paths:
                                     example: 4100000
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_limit:
                                 description: Swap limit in bytes. Contains only max (nullable)
                                 properties:
@@ -8436,6 +8947,7 @@ paths:
                                     example: 536870912
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_pressure:
                                 description: 'Memory pressure stall indicator (0.0-1.0). Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8490,6 +9002,7 @@ paths:
                                     example: 0.148
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_pressure:
                                 description: 'CPU pressure stall indicator (0.0-1.0). Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8544,6 +9057,7 @@ paths:
                                     example: 0.075
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               io_pressure:
                                 description: 'I/O pressure stall indicator (0.0-1.0). Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8598,6 +9112,7 @@ paths:
                                     example: 0.215
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               irq_pressure:
                                 description: 'IRQ pressure stall indicator (0.0-1.0). Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                 properties:
@@ -8652,6 +9167,7 @@ paths:
                                     example: 0.0099
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               mountpoints:
                                 description: 'Object with mountpoint paths as keys (dynamic, e.g., "", "/tmp", "/mnt"). Each mountpoint contains: disk_used, disk_limit, inodes_used, inodes_limit. All metrics except limits include min, max, avg, stddev, p50, p95-p99 aggregations (nullable).'
                                 type: object
@@ -8721,6 +9237,7 @@ paths:
                                           example: 3220000000
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     disk_limit:
                                       description: Disk limit in bytes. Contains only max (nullable)
                                       properties:
@@ -8731,6 +9248,7 @@ paths:
                                           example: 10737418240
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_used:
                                       description: 'Inode usage count. Includes statistical aggregations (all nullable): min, max, avg, stddev, p50, p95, p96, p97, p98, p99'
                                       properties:
@@ -8793,6 +9311,7 @@ paths:
                                           example: 51900
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_limit:
                                       description: Inode limit count. Contains only max (nullable)
                                       properties:
@@ -8802,10 +9321,15 @@ paths:
                                           example: 655360
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                   type: object
+                                  additionalProperties: false
                             type: object
+                            additionalProperties: false
                       type: object
+                      additionalProperties: false
                 type: object
+                additionalProperties: false
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
           content:
@@ -8844,7 +9368,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -8852,6 +9378,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -8860,11 +9389,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/resources/summary:
     get:
       tags:
         - Resources
-      summary: Get aggregated resource metrics per service instance
+      summary: Get resource metrics summary
       description: Returns per-instance resource statistics aggregated over the time range. Filter results using aggs[] (min, max, avg, stddev, p50, p95-p99) and types[] (cpu, memory, swap, disk, inodes, pressure metrics). Response grouped by service name then instance ID (e.g., "app.0", "database.1"). All aggregations nullable when insufficient data exists.
       operationId: resources_summary
       parameters:
@@ -8999,6 +9529,8 @@ paths:
                     example: main-bvxea6i
                   data:
                     description: Resource summary data organized by service and instance
+                    required:
+                      - services
                     properties:
                       services:
                         description: Resource metrics grouped by service name. Service names are dynamic and vary based on customer configuration (e.g., "admin-pipeline", "clickhouse", "app", "database"). Each service contains one or more instances with full statistical aggregations for all requested metric types.
@@ -9381,6 +9913,7 @@ paths:
                                     example: 1.78
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_limit:
                                 description: CPU limit in cores. Contains only max (nullable)
                                 properties:
@@ -9391,6 +9924,7 @@ paths:
                                     example: 2
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_used:
                                 description: Memory bytes used with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9455,6 +9989,7 @@ paths:
                                     example: 712000000
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_limit:
                                 description: Memory limit in bytes. Contains only max (nullable)
                                 properties:
@@ -9465,6 +10000,7 @@ paths:
                                     example: 1073741824
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_used:
                                 description: Swap bytes used with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9529,6 +10065,7 @@ paths:
                                     example: 4100000
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_limit:
                                 description: Swap limit in bytes. Contains only max (nullable)
                                 properties:
@@ -9539,6 +10076,7 @@ paths:
                                     example: 536870912
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_pressure:
                                 description: Memory pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9593,6 +10131,7 @@ paths:
                                     example: 0.148
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_pressure:
                                 description: CPU pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9647,6 +10186,7 @@ paths:
                                     example: 0.075
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               io_pressure:
                                 description: I/O pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9701,6 +10241,7 @@ paths:
                                     example: 0.215
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               irq_pressure:
                                 description: IRQ pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -9755,6 +10296,7 @@ paths:
                                     example: 0.0099
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               mountpoints:
                                 description: Disk usage statistics for filesystem mountpoints. Mountpoint paths are dynamic and vary based on service configuration (e.g., "" for root, "/tmp", "/mnt"). Each mountpoint provides disk and inode usage with statistical aggregations.
                                 type: object
@@ -9824,6 +10366,7 @@ paths:
                                           example: 3220000000
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     disk_limit:
                                       description: Disk limit in bytes. Contains only max (nullable)
                                       properties:
@@ -9834,6 +10377,7 @@ paths:
                                           example: 10737418240
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_used:
                                       description: Inodes used with statistical aggregations. Values may be null when insufficient data is available.
                                       properties:
@@ -9896,6 +10440,7 @@ paths:
                                           example: 51900
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_limit:
                                       description: Inode limit count. Contains only max (nullable)
                                       properties:
@@ -9905,8 +10450,11 @@ paths:
                                           example: 655360
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                   type: object
+                                  additionalProperties: false
                             type: object
+                            additionalProperties: false
                     type: object
                     additionalProperties: false
                 type: object
@@ -9947,7 +10495,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -9955,6 +10505,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -9963,11 +10516,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/resources/service/{service}:
     get:
       tags:
         - Resources
-      summary: Get time-series resource metrics for a specific service
+      summary: Get resource metrics by service
       description: Returns time-series resource data for one service. Each timestamp contains per-instance metrics. Filter results using aggs[] (min, max, avg, stddev, p50, p95-p99) and types[] (cpu, memory, swap, disk, inodes, pressure metrics). Response grouped by timestamp then instance ID (e.g., "app.0"). All aggregations nullable when insufficient data exists.
       operationId: resources_by_service
       parameters:
@@ -10191,6 +10745,7 @@ paths:
                                     example: 0.016
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_limit:
                                 description: CPU limit in cores. Contains only max (nullable)
                                 properties:
@@ -10201,6 +10756,7 @@ paths:
                                     example: 0.25
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_used:
                                 description: Memory bytes used with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10265,6 +10821,7 @@ paths:
                                     example: 128819200
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_limit:
                                 description: Memory limit in bytes. Contains only max (nullable)
                                 properties:
@@ -10275,6 +10832,7 @@ paths:
                                     example: 671088640
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_used:
                                 description: Swap bytes used with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10339,6 +10897,7 @@ paths:
                                     example: 0
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               swap_limit:
                                 description: Swap limit in bytes. Contains only max (nullable)
                                 properties:
@@ -10349,6 +10908,7 @@ paths:
                                     example: 536870912
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               memory_pressure:
                                 description: Memory pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10403,6 +10963,7 @@ paths:
                                     example: 0
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               cpu_pressure:
                                 description: CPU pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10457,6 +11018,7 @@ paths:
                                     example: 0.229667
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               io_pressure:
                                 description: I/O pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10511,6 +11073,7 @@ paths:
                                     example: 0
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               irq_pressure:
                                 description: IRQ pressure stall indicator (0.0-1.0) with statistical aggregations. Values may be null when insufficient data is available.
                                 properties:
@@ -10565,6 +11128,7 @@ paths:
                                     example: 0
                                     nullable: true
                                 type: object
+                                additionalProperties: false
                               mountpoints:
                                 description: Disk usage statistics for filesystem mountpoints. Mountpoint paths are dynamic and vary based on service configuration (e.g., "" for root, "/tmp", "/mnt"). Each mountpoint provides disk and inode usage with statistical aggregations.
                                 type: object
@@ -10634,6 +11198,7 @@ paths:
                                           example: 197959680
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     disk_limit:
                                       description: Disk limit in bytes. Contains only max (nullable)
                                       properties:
@@ -10644,6 +11209,7 @@ paths:
                                           example: 17169383424
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_used:
                                       description: Inodes used with statistical aggregations. Values may be null when insufficient data is available.
                                       properties:
@@ -10706,6 +11272,7 @@ paths:
                                           example: 2245
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                     inodes_limit:
                                       description: Inode limit count. Contains only max (nullable)
                                       properties:
@@ -10715,9 +11282,13 @@ paths:
                                           example: 8388608
                                           nullable: true
                                       type: object
+                                      additionalProperties: false
                                   type: object
+                                  additionalProperties: false
                             type: object
+                            additionalProperties: false
                       type: object
+                      additionalProperties: false
                 type: object
                 additionalProperties: false
         '400':
@@ -10758,7 +11329,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -10766,6 +11339,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -10774,11 +11350,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/server/caches:
     get:
       tags:
         - Blackfire Monitoring
-      summary: Get PHP server cache usage metrics with OPcache, APCu, and realpath cache statistics
+      summary: Get server cache metrics
       description: Returns time-series PHP cache usage ratios (0.0-1.0) for OPcache memory, OPcache interned strings buffer (ISB), APCu memory, realpath cache, and PCRE cache. Includes hit rate ratios (0.0-1.0) for APCu and OPcache. Data points may be sparse when metrics are unchanged. Filtered by agent ID and execution contexts (web, cli, etc.).
       operationId: blackfire_php_server_caches
       parameters:
@@ -10907,6 +11484,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: web
                     nullable: true
                   _contexts_mode:
                     description: Context filter mode (additive=include only, subtractive=exclude)
@@ -11046,7 +11624,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -11054,6 +11634,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -11062,11 +11645,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/server:
     get:
       tags:
         - Blackfire Monitoring
-      summary: Get server global monitoring metrics with alert evaluations and quota info
+      summary: Get server monitoring overview
       description: Returns time-series server monitoring data for the specified metrics (wall time, memory usage, peak memory usage, CPU load, stdout, requests per minute). Includes alert evaluations and APM quota usage. Data points contain metric values aggregated at the requested granularity.
       operationId: blackfire_server_global
       parameters:
@@ -11234,6 +11818,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: wt
                     example:
                       - wt
                       - rpms
@@ -11247,6 +11832,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: web
                     nullable: true
                   _contexts_mode:
                     description: Context filter mode (additive=include only, subtractive=exclude)
@@ -11338,21 +11924,25 @@ paths:
                               description: Memory usage in bytes
                               type: number
                               format: float
+                              example: 4521234
                               nullable: true
                             pmu:
                               description: Peak memory usage in bytes
                               type: number
                               format: float
+                              example: 6789012
                               nullable: true
                             load:
                               description: CPU load
                               type: number
                               format: float
+                              example: 0.45
                               nullable: true
                             stdout:
                               description: Standard output size
                               type: number
                               format: float
+                              example: 0
                               nullable: true
                             rpms:
                               description: Requests per minute
@@ -11361,6 +11951,7 @@ paths:
                               example: 672
                               nullable: true
                           type: object
+                          additionalProperties: false
                     type: object
                     additionalProperties: false
                 type: object
@@ -11437,7 +12028,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -11445,6 +12038,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -11453,11 +12049,12 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability/server/overview:
     get:
       tags:
         - Blackfire Monitoring
-      summary: Get server overview with transaction breakdown, percentiles, errors, and load distribution
+      summary: Get server overview
       description: Returns server overview data including transaction breakdown with impact scores, time-series percentile metrics with service-level breakdowns, HTTP error distribution, status code counts, server load distribution histogram, and available filter values. Supports extensive filtering by context, transaction, host, framework, runtime, HTTP method, status code, and more.
       operationId: blackfire_server_overview
       parameters:
@@ -11510,6 +12107,7 @@ paths:
             type: array
             items:
               type: string
+              example: overview
         - name: contexts[]
           in: query
           description: Filter by execution contexts
@@ -11777,15 +12375,6 @@ paths:
               - '1'
               - '-1'
             example: '1'
-        - name: url
-          in: query
-          description: Filter by URL pattern.
-          required: false
-          schema:
-            type: string
-            maxLength: 4096
-            minLength: 1
-            example: /api/v1/users
         - name: distribution_cost
           in: query
           description: Cost distribution dimension for server load distribution.
@@ -11796,19 +12385,19 @@ paths:
             enum:
               - wt
               - pmu
-        - name: dimension
+        - name: breakdown_dimension
           in: query
-          description: Dimension for percentile calculations.
-          required: false
+          description: Dimension for transaction breakdown calculations.
+          required: true
           schema:
             type: string
             enum:
               - wt
               - pmu
               - stdout
-        - name: table_filter
+        - name: sort
           in: query
-          description: Sort order for the transactions table.
+          description: Sort order for the transaction breakdown.
           required: false
           schema:
             type: string
@@ -11818,6 +12407,7 @@ paths:
               - total_requests
               - avg_wt
               - avg_pmu
+              - avg_stdout
               - total_errors
               - wt_96th_percentile
       responses:
@@ -11869,6 +12459,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: web
                     nullable: true
                   _contexts_mode:
                     description: Context filter mode (additive=include only, subtractive=exclude)
@@ -11882,6 +12473,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 0-50
                     nullable: true
                   _wt_slot_mode:
                     description: Wall-time slot filter mode (additive=include only, subtractive=exclude)
@@ -11895,6 +12487,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 0-1MB
                     nullable: true
                   _pmu_slot_mode:
                     description: Peak memory slot filter mode (additive=include only, subtractive=exclude)
@@ -11908,6 +12501,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: '200'
                     nullable: true
                   _http_status_codes_mode:
                     description: HTTP status code filter mode (additive=include only, subtractive=exclude)
@@ -11921,6 +12515,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: app.0
                     nullable: true
                   _hosts_mode:
                     description: Host filter mode (additive=include only, subtractive=exclude)
@@ -11934,6 +12529,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: api.example.com
                     nullable: true
                   _http_hosts_mode:
                     description: HTTP host filter mode (additive=include only, subtractive=exclude)
@@ -11947,6 +12543,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: symfony
                     nullable: true
                   _frameworks_mode:
                     description: Framework filter mode (additive=include only, subtractive=exclude)
@@ -11960,6 +12557,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: php
                     nullable: true
                   _languages_mode:
                     description: Language filter mode (additive=include only, subtractive=exclude)
@@ -11973,6 +12571,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: get
                     nullable: true
                   _methods_mode:
                     description: Method filter mode (additive=include only, subtractive=exclude)
@@ -11986,6 +12585,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: linux
                     nullable: true
                   _oss_mode:
                     description: OS filter mode (additive=include only, subtractive=exclude)
@@ -11999,6 +12599,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: 8.2.15
                     nullable: true
                   _runtimes_mode:
                     description: Runtime filter mode (additive=include only, subtractive=exclude)
@@ -12012,6 +12613,7 @@ paths:
                     type: array
                     items:
                       type: string
+                      example: App\Controller\ProductController::list
                     nullable: true
                   _transactions_mode:
                     description: Transaction filter mode (additive=include only, subtractive=exclude)
@@ -12020,37 +12622,37 @@ paths:
                       - additive
                       - subtractive
                     nullable: true
-                  _url:
-                    description: Applied URL filter value
-                    type: string
-                    nullable: true
                   _distribution_cost:
                     description: Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)
                     type: string
                     enum:
                       - wt
                       - pmu
-                  _dimension:
-                    description: Applied percentile dimension for calculations
+                  _breakdown_dimension:
+                    description: Applied dimension for transaction breakdown calculations
                     type: string
                     enum:
                       - wt
                       - pmu
                       - stdout
                     nullable: true
-                  _table_filter:
-                    description: Applied sort order for the transactions table
+                  _sort:
+                    description: Applied sort order for the transaction breakdown
                     type: string
                     enum:
                       - impact
                       - total_requests
                       - avg_wt
                       - avg_pmu
+                      - avg_stdout
                       - total_errors
                       - wt_96th_percentile
                     nullable: true
                   overview:
                     description: Overview data containing transaction breakdown and percentile time-series
+                    required:
+                      - transactions
+                      - percentiles
                     properties:
                       transactions:
                         description: Transaction breakdown sorted by impact
@@ -12133,7 +12735,7 @@ paths:
                             type: string
                             example: wt
                           data:
-                            description: Time-series percentile data points. May include dynamic average_<service> keys.
+                            description: Time-series percentile data points.
                             type: array
                             items:
                               required:
@@ -12147,105 +12749,127 @@ paths:
                                   description: 96th percentile value
                                   type: number
                                   format: float
+                                  example: 396547.94
                                   nullable: true
                                 percentiles_50:
                                   description: 50th percentile (median) value
                                   type: number
                                   format: float
+                                  example: 85234.12
                                   nullable: true
                                 average:
                                   description: Average value
                                   type: number
                                   format: float
+                                  example: 92395.49
                                   nullable: true
                                 average_extended:
                                   description: Extended average value
                                   type: number
                                   format: float
+                                  example: 95234.67
                                   nullable: true
                                 rpms:
                                   description: Requests per minute
                                   type: number
                                   format: float
+                                  example: 672
                                   nullable: true
                                 errors:
                                   description: Error count
                                   type: number
                                   format: float
+                                  example: 12
                                   nullable: true
                                 average_http:
                                   description: Average HTTP service time
                                   type: number
                                   format: float
+                                  example: 15234.5
                                   nullable: true
                                 average_amqp:
                                   description: Average AMQP service time
                                   type: number
                                   format: float
+                                  example: 1234.5
                                   nullable: true
                                 average_sql:
                                   description: Average SQL service time
                                   type: number
                                   format: float
+                                  example: 8234.5
                                   nullable: true
                                 average_redis:
                                   description: Average Redis service time
                                   type: number
                                   format: float
+                                  example: 234.5
                                   nullable: true
                                 average_mongodb:
                                   description: Average MongoDB service time
                                   type: number
                                   format: float
+                                  example: 3456.7
                                   nullable: true
                                 average_kafka:
                                   description: Average Kafka service time
                                   type: number
                                   format: float
+                                  example: 567.8
                                   nullable: true
                                 average_memcache:
                                   description: Average Memcache service time
                                   type: number
                                   format: float
+                                  example: 123.4
                                   nullable: true
                               type: object
+                              additionalProperties: false
                         type: object
                         additionalProperties: false
                     type: object
                     nullable: true
                     additionalProperties: false
                   percentiles:
-                    description: Aggregate percentile values across the time range. May include dynamic average_<service> keys and numeric keys (50, 96).
+                    description: Aggregate percentile values across the time range.
+                    required:
+                      - dimension
                     properties:
                       '50':
                         description: 50th percentile value (alias)
                         type: number
                         format: float
+                        example: 85234.12
                         nullable: true
                       '96':
                         description: 96th percentile value (alias)
                         type: number
                         format: float
+                        example: 396547.94
                         nullable: true
                       percentiles_50:
                         description: 50th percentile value
                         type: number
                         format: float
+                        example: 85234.12
                         nullable: true
                       percentiles_96:
                         description: 96th percentile value
                         type: number
                         format: float
+                        example: 396547.94
                         nullable: true
                       average:
                         description: Average value
                         type: number
                         format: float
+                        example: 92395.49
                         nullable: true
                       average_extended:
                         description: Extended average value
                         type: number
                         format: float
+                        example: 95234.67
                         nullable: true
                       dimension:
                         description: Dimension used
@@ -12253,8 +12877,11 @@ paths:
                         example: wt
                     type: object
                     nullable: true
+                    additionalProperties: false
                   http_errors:
                     description: HTTP error breakdown by transaction
+                    required:
+                      - data
                     properties:
                       data:
                         description: Error data grouped by transaction name. Keys are transaction names, values are arrays of error code/count pairs.
@@ -12281,6 +12908,8 @@ paths:
                     additionalProperties: false
                   http_status_codes:
                     description: HTTP status code distribution
+                    required:
+                      - data
                     properties:
                       data:
                         description: Status code counts
@@ -12341,6 +12970,9 @@ paths:
                     additionalProperties: false
                   filters:
                     description: Available filter values and their counts
+                    required:
+                      - fields
+                      - max_applicable_filters
                     properties:
                       fields:
                         description: Available filter fields with distinct values
@@ -12388,12 +13020,15 @@ paths:
                     additionalProperties: false
                   transaction:
                     description: Single transaction detail with percentile time-series
+                    required:
+                      - percentiles
                     properties:
                       percentiles:
                         description: Time-series percentile data for the transaction
                         type: object
                     type: object
                     nullable: true
+                    additionalProperties: false
                   traces:
                     description: Trace distribution data
                     type: object
@@ -12438,7 +13073,9 @@ paths:
                       type: array
                       items:
                         type: string
+                        example: The from timestamp must be in the past.
                 type: object
+                additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -12446,6 +13083,9 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - error
+                  - message
                 properties:
                   error:
                     type: string
@@ -12454,11 +13094,1758 @@ paths:
                     type: string
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
+                additionalProperties: false
+  /projects/{projectId}/environments/{environmentId}/observability/server/transactions-break-down:
+    get:
+      tags:
+        - Blackfire Monitoring
+      summary: Get server transaction breakdown
+      description: Returns transaction breakdown with impact scores, showing how each transaction contributes to overall resource consumption. Includes time-series data for top-hit transactions and aggregated metrics per transaction. Use breakdown_dimension to analyze by wall time (wt), memory (pmu), or stdout. Supports extensive filtering by context, transaction, host, framework, runtime, HTTP method, status code, and more.
+      operationId: blackfire_server_transactions_breakdown
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: from
+          in: query
+          description: Start timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704067200
+        - name: to
+          in: query
+          description: End timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704153600
+        - name: grain
+          in: query
+          description: Granularity of data points in seconds. Auto-calculated if omitted.
+          required: false
+          schema:
+            type: integer
+            example: 10
+        - name: breakdown_dimension
+          in: query
+          description: Dimension for transaction breakdown calculations.
+          required: true
+          schema:
+            type: string
+            enum:
+              - wt
+              - pmu
+              - stdout
+        - name: sort
+          in: query
+          description: Sort order for the transaction breakdown.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - impact
+              - total_requests
+              - avg_wt
+              - avg_pmu
+              - avg_stdout
+              - total_errors
+              - wt_96th_percentile
+        - name: breakdown_limit
+          in: query
+          description: Maximum number of transactions to return in the breakdown.
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 300
+            minimum: 1
+        - name: contexts[]
+          in: query
+          description: Filter by execution contexts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - web
+                - cli
+              example: web
+        - name: contexts_mode
+          in: query
+          description: Filter mode for contexts parameter. "1" (additive) includes only specified contexts. "-1" (subtractive, default) excludes specified contexts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: transactions[]
+          in: query
+          description: Filter by transaction names
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: App\Controller::index
+        - name: transactions_mode
+          in: query
+          description: Filter mode for transactions parameter. "1" (additive) includes only specified transactions. "-1" (subtractive, default) excludes specified transactions and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: wt_slots[]
+          in: query
+          description: Filter by wall-time distribution slots
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 0-50
+        - name: wt_slots_mode
+          in: query
+          description: Filter mode for wt_slots parameter. "1" (additive) includes only specified wt_slots. "-1" (subtractive, default) excludes specified wt_slots and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: pmu_slots[]
+          in: query
+          description: Filter by peak memory usage distribution slots
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 0-8
+        - name: pmu_slots_mode
+          in: query
+          description: Filter mode for pmu_slots parameter. "1" (additive) includes only specified pmu_slots. "-1" (subtractive, default) excludes specified pmu_slots and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: http_status_codes[]
+          in: query
+          description: Filter by HTTP status codes or ranges (e.g., 200, 5xx)
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: '200'
+        - name: http_status_codes_mode
+          in: query
+          description: Filter mode for http_status_codes parameter. "1" (additive) includes only specified http_status_codes. "-1" (subtractive, default) excludes specified http_status_codes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: http_hosts[]
+          in: query
+          description: Filter by HTTP hosts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: api.example.com
+        - name: http_hosts_mode
+          in: query
+          description: Filter mode for http_hosts parameter. "1" (additive) includes only specified http_hosts. "-1" (subtractive, default) excludes specified http_hosts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: hosts[]
+          in: query
+          description: Filter by server hosts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: frontend-0.prod
+        - name: hosts_mode
+          in: query
+          description: Filter mode for hosts parameter. "1" (additive) includes only specified hosts. "-1" (subtractive, default) excludes specified hosts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: frameworks[]
+          in: query
+          description: Filter by frameworks. Can be specified multiple times for multiple values (e.g., ?frameworks[]=symfony&frameworks[]=laravel). Use frameworks_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: symfony
+        - name: frameworks_mode
+          in: query
+          description: Filter mode for frameworks parameter. "1" (additive) includes only specified frameworks. "-1" (subtractive, default) excludes specified frameworks and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: languages[]
+          in: query
+          description: Filter by programming languages. Can be specified multiple times for multiple values (e.g., ?languages[]=php&languages[]=python). Use languages_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: php
+        - name: languages_mode
+          in: query
+          description: Filter mode for languages parameter. "1" (additive) includes only specified languages. "-1" (subtractive, default) excludes specified languages and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: methods[]
+          in: query
+          description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=get&methods[]=post). Use methods_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: get
+        - name: methods_mode
+          in: query
+          description: Filter mode for methods parameter. "1" (additive) includes only specified methods. "-1" (subtractive, default) excludes specified methods and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: runtimes[]
+          in: query
+          description: Filter by runtimes. Can be specified multiple times for multiple values (e.g., ?runtimes[]=PHP 8.4.17 (fpm-fcgi)). Use runtimes_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: PHP 8.4.17 (fpm-fcgi)
+        - name: runtimes_mode
+          in: query
+          description: Filter mode for runtimes parameter. "1" (additive) includes only specified runtimes. "-1" (subtractive, default) excludes specified runtimes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: oss[]
+          in: query
+          description: Filter by operating systems. Can be specified multiple times for multiple values (e.g., ?oss[]=Linux&oss[]=Darwin). Use oss_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: Linux
+        - name: oss_mode
+          in: query
+          description: Filter mode for oss parameter. "1" (additive) includes only specified operating systems. "-1" (subtractive, default) excludes specified operating systems and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: distribution_cost
+          in: query
+          description: Cost distribution dimension for server load distribution.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - wt
+              - pmu
+      responses:
+        '200':
+          description: Transaction breakdown retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _grain
+                  - _from
+                  - _to
+                  - _agent
+                  - _project_id
+                  - _environment_id
+                  - _branch_machine_name
+                  - _breakdown_dimension
+                  - _sort
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - transactions
+                  - top_hits_timeline
+                properties:
+                  _grain:
+                    description: Data granularity in seconds
+                    type: integer
+                    example: 5
+                  _from:
+                    description: Query start timestamp
+                    type: integer
+                    example: 1704067200
+                  _to:
+                    description: Query end timestamp
+                    type: integer
+                    example: 1704153600
+                  _agent:
+                    description: Blackfire Agent UUID
+                    type: string
+                    format: uuid
+                    example: a38f69ca-3b56-4ea6-beac-272b2568164a
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main-bvxea6i
+                  _contexts:
+                    description: Applied context filter values
+                    type: array
+                    items:
+                      type: string
+                      example: web
+                    nullable: true
+                  _contexts_mode:
+                    description: Context filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _transactions:
+                    description: Applied transaction filter values
+                    type: array
+                    items:
+                      type: string
+                      example: App\Controller\ProductController::list
+                    nullable: true
+                  _transactions_mode:
+                    description: Transaction filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _wt_slot:
+                    description: Applied wall-time slot filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 0-50
+                    nullable: true
+                  _wt_slot_mode:
+                    description: Wall-time slot filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _pmu_slot:
+                    description: Applied peak memory slot filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 0-1MB
+                    nullable: true
+                  _pmu_slot_mode:
+                    description: Peak memory slot filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _http_status_codes:
+                    description: Applied HTTP status code filter values
+                    type: array
+                    items:
+                      type: string
+                      example: '200'
+                    nullable: true
+                  _http_status_codes_mode:
+                    description: HTTP status code filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _http_hosts:
+                    description: Applied HTTP host filter values
+                    type: array
+                    items:
+                      type: string
+                      example: api.example.com
+                    nullable: true
+                  _http_hosts_mode:
+                    description: HTTP host filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _hosts:
+                    description: Applied host filter values
+                    type: array
+                    items:
+                      type: string
+                      example: app.0
+                    nullable: true
+                  _hosts_mode:
+                    description: Host filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _frameworks:
+                    description: Applied framework filter values
+                    type: array
+                    items:
+                      type: string
+                      example: symfony
+                    nullable: true
+                  _frameworks_mode:
+                    description: Framework filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _languages:
+                    description: Applied language filter values
+                    type: array
+                    items:
+                      type: string
+                      example: php
+                    nullable: true
+                  _languages_mode:
+                    description: Language filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _methods:
+                    description: Applied method filter values
+                    type: array
+                    items:
+                      type: string
+                      example: get
+                    nullable: true
+                  _methods_mode:
+                    description: Method filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _runtimes:
+                    description: Applied runtime filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 8.2.15
+                    nullable: true
+                  _runtimes_mode:
+                    description: Runtime filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _oss:
+                    description: Applied OS filter values
+                    type: array
+                    items:
+                      type: string
+                      example: linux
+                    nullable: true
+                  _oss_mode:
+                    description: OS filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _distribution_cost:
+                    description: Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)
+                    type: string
+                    enum:
+                      - wt
+                      - pmu
+                  _breakdown_dimension:
+                    description: Applied dimension for transaction breakdown calculations
+                    type: string
+                    enum:
+                      - wt
+                      - pmu
+                      - stdout
+                    nullable: true
+                  _sort:
+                    description: Applied sort order for the transaction breakdown
+                    type: string
+                    enum:
+                      - impact
+                      - total_requests
+                      - avg_wt
+                      - avg_pmu
+                      - avg_stdout
+                      - total_errors
+                      - wt_96th_percentile
+                    nullable: true
+                  _breakdown_limit:
+                    description: Maximum number of transactions returned
+                    type: integer
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit transactions
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
+                  transactions:
+                    description: Transaction breakdown data
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: List of transactions with metrics
+                        type: array
+                        items:
+                          required:
+                            - transaction
+                            - wt_96th_percentile
+                            - avg_wt
+                            - avg_pmu
+                            - avg_stdout
+                            - total_requests
+                            - total_requests_unnamed
+                            - total_errors
+                            - impact
+                            - top_hit
+                            - _links
+                          properties:
+                            transaction:
+                              description: Transaction name
+                              type: string
+                              example: App\Controller\ProductController::list
+                            wt_96th_percentile:
+                              description: 96th percentile wall time in microseconds
+                              type: number
+                              format: float
+                              example: 245123.5
+                            avg_wt:
+                              description: Average wall time in microseconds
+                              type: number
+                              format: float
+                              example: 89234.12
+                            avg_pmu:
+                              description: Average peak memory usage in bytes
+                              type: number
+                              format: float
+                              example: 4521234
+                            avg_stdout:
+                              description: Average stdout size in bytes
+                              type: number
+                              format: float
+                              example: 0
+                            total_requests:
+                              description: Total request count (float because APM may be sampled)
+                              type: number
+                              format: float
+                              example: 45231.5
+                            total_requests_unnamed:
+                              description: Unnamed requests count (float because APM may be sampled)
+                              type: number
+                              format: float
+                              example: 0
+                            total_errors:
+                              description: Total 5xx error count (float because APM may be sampled)
+                              type: number
+                              format: float
+                              example: 12.3
+                            impact:
+                              description: Impact score as percentage of total resource consumption
+                              type: number
+                              format: float
+                              example: 35.67
+                              nullable: true
+                            top_hit:
+                              description: Whether this transaction is included in the top hits timeline
+                              type: boolean
+                              example: true
+                            _links:
+                              description: HATEOAS navigation links for this transaction
+                              required:
+                                - top_spans
+                                - recommendations
+                                - automatic_profiles
+                              properties:
+                                top_spans:
+                                  description: Link to top spans filtered by this transaction
+                                  required:
+                                    - href
+                                  properties:
+                                    href:
+                                      type: string
+                                      format: uri
+                                      example: https://api.upsun.com/api/projects/abc123/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%3A%3Alist
+                                  type: object
+                                  additionalProperties: false
+                                recommendations:
+                                  description: Link to recommendations filtered by this transaction
+                                  required:
+                                    - href
+                                  properties:
+                                    href:
+                                      type: string
+                                      format: uri
+                                      example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/recommendations?transaction=App%5CController%3A%3Alist
+                                  type: object
+                                  additionalProperties: false
+                                automatic_profiles:
+                                  description: Link to automatic profiles filtered by this transaction
+                                  required:
+                                    - href
+                                  properties:
+                                    href:
+                                      type: string
+                                      format: uri
+                                      example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/automatic?transaction=App%5CController%3A%3Alist
+                                  type: object
+                                  additionalProperties: false
+                              type: object
+                              additionalProperties: false
+                          type: object
+                          additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit transactions
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series data points with per-transaction breakdown. Padded intervals without data will only contain timestamp.
+                        type: array
+                        items:
+                          required:
+                            - timestamp
+                          properties:
+                            timestamp:
+                              description: Data point timestamp (Unix timestamp in seconds)
+                              type: integer
+                              example: 1771435020
+                            _total_consumed:
+                              description: Total resource consumption for this interval (omitted for padded intervals)
+                              type: number
+                              format: float
+                              example: 1234567890.5
+                            _total_count:
+                              description: Total request count for this interval (omitted for padded intervals, float because APM may be sampled)
+                              type: number
+                              format: float
+                              example: 45231.5
+                            _transactions:
+                              description: Per-transaction metrics for this interval, keyed by transaction name (omitted for padded intervals)
+                              type: object
+                              additionalProperties:
+                                required:
+                                  - average
+                                  - count
+                                properties:
+                                  average:
+                                    description: Average value for the breakdown dimension
+                                    type: number
+                                    format: float
+                                    example: 89234.12
+                                  count:
+                                    description: Request count for this transaction in this interval (float because APM may be sampled)
+                                    type: number
+                                    format: float
+                                    example: 1523.5
+                                type: object
+                                additionalProperties: false
+                          type: object
+                          additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+              example:
+                _grain: 60
+                _from: 1771435023
+                _to: 1771440423
+                _agent: a38f69ca-3b56-4ea6-beac-272b2568164a
+                _contexts:
+                  - web
+                _contexts_mode: additive
+                _distribution_cost: wt
+                _project_id: abc123def456
+                _environment_id: main
+                _branch_machine_name: main-bvxea6i
+                _breakdown_dimension: wt
+                _sort: impact
+                _breakdown_limit: 200
+                _breakdown_top_hits:
+                  max_quantity: 15
+                  max_percentage: 98
+                transactions:
+                  data:
+                    - transaction: App\Controller\ProductController::list
+                      wt_96th_percentile: 245123.5
+                      avg_wt: 89234.12
+                      avg_pmu: 4521234
+                      avg_stdout: 0
+                      total_requests: 45231
+                      total_requests_unnamed: 0
+                      total_errors: 12
+                      impact: 35.67
+                      top_hit: true
+                      _links:
+                        top_spans:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CProductController%3A%3Alist
+                        recommendations:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist
+                        automatic_profiles:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CProductController%3A%3Alist
+                    - transaction: App\Controller\CartController::checkout
+                      wt_96th_percentile: 523456.2
+                      avg_wt: 245678.34
+                      avg_pmu: 8912345
+                      avg_stdout: 0
+                      total_requests: 12543
+                      total_requests_unnamed: 0
+                      total_errors: 45
+                      impact: 22.45
+                      top_hit: true
+                      _links:
+                        top_spans:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CCartController%3A%3Acheckout
+                        recommendations:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout
+                        automatic_profiles:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CCartController%3A%3Acheckout
+                    - transaction: App\Controller\UserController::profile
+                      wt_96th_percentile: 89234.1
+                      avg_wt: 34567.89
+                      avg_pmu: 2345678
+                      avg_stdout: 0
+                      total_requests: 8932
+                      total_requests_unnamed: 123
+                      total_errors: 2
+                      impact: 3.21
+                      top_hit: false
+                      _links:
+                        top_spans:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CUserController%3A%3Aprofile
+                        recommendations:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile
+                        automatic_profiles:
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CUserController%3A%3Aprofile
+                top_hits_timeline:
+                  data:
+                    - timestamp: 1771435020
+                      _total_consumed: 1234567890.5
+                      _total_count: 45231
+                      _transactions:
+                        App\Controller\ProductController::list:
+                          average: 89234.12
+                          count: 1523
+                        App\Controller\CartController::checkout:
+                          average: 245678.34
+                          count: 423
+                    - timestamp: 1771435080
+                      _total_consumed: 1345678901.2
+                      _total_count: 48532
+                      _transactions:
+                        App\Controller\ProductController::list:
+                          average: 92345.67
+                          count: 1678
+                        App\Controller\CartController::checkout:
+                          average: 234567.89
+                          count: 456
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                        example: The from timestamp must be in the past.
+                type: object
+                additionalProperties: false
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+        '499':
+          description: Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                  - message
+                properties:
+                  error:
+                    type: string
+                    example: Too much data fetched
+                  message:
+                    type: string
+                    example: Please reduce the time range or add more filters to narrow down the query
+                type: object
+                additionalProperties: false
+  /projects/{projectId}/environments/{environmentId}/observability/server/top-spans:
+    get:
+      tags:
+        - Blackfire Monitoring
+      summary: Get top spans
+      description: Returns the top spans aggregated across traces, sorted by impact or other metrics. Each span includes wall time, P96, call count, percentage of traces containing the span, and impact score. Supports filtering by context, transaction, host, framework, runtime, HTTP method/status, and service layer.
+      operationId: blackfire_server_top_spans
+      parameters:
+        - name: projectId
+          in: path
+          description: The unique identifier of the Upsun project
+          required: true
+          schema:
+            type: string
+            pattern: '[a-z0-9]+'
+            example: abc123def456
+        - name: environmentId
+          in: path
+          description: The environment identifier
+          required: true
+          schema:
+            type: string
+            pattern: .+
+            example: main
+        - name: from
+          in: query
+          description: Start timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704067200
+        - name: to
+          in: query
+          description: End timestamp for the time range (Unix timestamp in seconds)
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 1704153600
+        - name: grain
+          in: query
+          description: Granularity of data points in seconds. Auto-calculated if omitted.
+          required: false
+          schema:
+            type: integer
+            example: 10
+        - name: sort
+          in: query
+          description: Sort field for top spans.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - percentage
+              - p_96
+              - count
+              - wt
+              - exec-time
+              - impact
+        - name: contexts[]
+          in: query
+          description: Filter by execution contexts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - web
+                - cli
+              example: web
+        - name: contexts_mode
+          in: query
+          description: Filter mode for contexts parameter. "1" (additive) includes only specified contexts. "-1" (subtractive, default) excludes specified contexts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: transactions[]
+          in: query
+          description: Filter by transaction names
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: App\Controller::index
+        - name: transactions_mode
+          in: query
+          description: Filter mode for transactions parameter. "1" (additive) includes only specified transactions. "-1" (subtractive, default) excludes specified transactions and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: wt_slots[]
+          in: query
+          description: Filter by wall-time distribution slots
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 0-50
+        - name: wt_slots_mode
+          in: query
+          description: Filter mode for wt_slots parameter. "1" (additive) includes only specified wt_slots. "-1" (subtractive, default) excludes specified wt_slots and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: pmu_slots[]
+          in: query
+          description: Filter by peak memory usage distribution slots
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: 0-8
+        - name: pmu_slots_mode
+          in: query
+          description: Filter mode for pmu_slots parameter. "1" (additive) includes only specified pmu_slots. "-1" (subtractive, default) excludes specified pmu_slots and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: http_status_codes[]
+          in: query
+          description: Filter by HTTP status codes or ranges (e.g., 200, 5xx)
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: '200'
+        - name: http_status_codes_mode
+          in: query
+          description: Filter mode for http_status_codes parameter. "1" (additive) includes only specified http_status_codes. "-1" (subtractive, default) excludes specified http_status_codes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: http_hosts[]
+          in: query
+          description: Filter by HTTP hosts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: api.example.com
+        - name: http_hosts_mode
+          in: query
+          description: Filter mode for http_hosts parameter. "1" (additive) includes only specified http_hosts. "-1" (subtractive, default) excludes specified http_hosts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: hosts[]
+          in: query
+          description: Filter by server hosts
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: frontend-0.prod
+        - name: hosts_mode
+          in: query
+          description: Filter mode for hosts parameter. "1" (additive) includes only specified hosts. "-1" (subtractive, default) excludes specified hosts and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: frameworks[]
+          in: query
+          description: Filter by frameworks. Can be specified multiple times for multiple values (e.g., ?frameworks[]=symfony&frameworks[]=laravel). Use frameworks_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: symfony
+        - name: frameworks_mode
+          in: query
+          description: Filter mode for frameworks parameter. "1" (additive) includes only specified frameworks. "-1" (subtractive, default) excludes specified frameworks and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: languages[]
+          in: query
+          description: Filter by programming languages. Can be specified multiple times for multiple values (e.g., ?languages[]=php&languages[]=python). Use languages_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: php
+        - name: languages_mode
+          in: query
+          description: Filter mode for languages parameter. "1" (additive) includes only specified languages. "-1" (subtractive, default) excludes specified languages and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: methods[]
+          in: query
+          description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=get&methods[]=post). Use methods_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: get
+        - name: methods_mode
+          in: query
+          description: Filter mode for methods parameter. "1" (additive) includes only specified methods. "-1" (subtractive, default) excludes specified methods and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: runtimes[]
+          in: query
+          description: Filter by runtimes. Can be specified multiple times for multiple values (e.g., ?runtimes[]=PHP 8.4.17 (fpm-fcgi)). Use runtimes_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: PHP 8.4.17 (fpm-fcgi)
+        - name: runtimes_mode
+          in: query
+          description: Filter mode for runtimes parameter. "1" (additive) includes only specified runtimes. "-1" (subtractive, default) excludes specified runtimes and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: oss[]
+          in: query
+          description: Filter by operating systems. Can be specified multiple times for multiple values (e.g., ?oss[]=Linux&oss[]=Darwin). Use oss_mode to control inclusion/exclusion behavior.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: Linux
+        - name: oss_mode
+          in: query
+          description: Filter mode for oss parameter. "1" (additive) includes only specified operating systems. "-1" (subtractive, default) excludes specified operating systems and includes all others.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - '1'
+              - '-1'
+            example: '1'
+        - name: distribution_cost
+          in: query
+          description: Cost distribution dimension for server load distribution.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - wt
+              - pmu
+      responses:
+        '200':
+          description: Top spans retrieved successfully
+          content:
+            application/json:
+              schema:
+                required:
+                  - _grain
+                  - _from
+                  - _to
+                  - _agent
+                  - _project_id
+                  - _environment_id
+                  - _branch_machine_name
+                  - _sort
+                  - top_spans
+                  - advanced_filters
+                properties:
+                  _grain:
+                    description: Data granularity in seconds
+                    type: integer
+                    example: 5
+                  _from:
+                    description: Query start timestamp
+                    type: integer
+                    example: 1704067200
+                  _to:
+                    description: Query end timestamp
+                    type: integer
+                    example: 1704153600
+                  _agent:
+                    description: Blackfire Agent UUID
+                    type: string
+                    format: uuid
+                    example: a38f69ca-3b56-4ea6-beac-272b2568164a
+                  _project_id:
+                    description: Project identifier
+                    type: string
+                    example: abc123def456
+                  _environment_id:
+                    description: Environment identifier
+                    type: string
+                    example: main
+                  _branch_machine_name:
+                    description: Branch machine name
+                    type: string
+                    example: main-bvxea6i
+                  _contexts:
+                    description: Applied context filter values
+                    type: array
+                    items:
+                      type: string
+                      example: web
+                    nullable: true
+                  _contexts_mode:
+                    description: Context filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _transactions:
+                    description: Applied transaction filter values
+                    type: array
+                    items:
+                      type: string
+                      example: App\Controller\ProductController::list
+                    nullable: true
+                  _transactions_mode:
+                    description: Transaction filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _wt_slot:
+                    description: Applied wall-time slot filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 0-50
+                    nullable: true
+                  _wt_slot_mode:
+                    description: Wall-time slot filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _pmu_slot:
+                    description: Applied peak memory slot filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 0-1MB
+                    nullable: true
+                  _pmu_slot_mode:
+                    description: Peak memory slot filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _http_status_codes:
+                    description: Applied HTTP status code filter values
+                    type: array
+                    items:
+                      type: string
+                      example: '200'
+                    nullable: true
+                  _http_status_codes_mode:
+                    description: HTTP status code filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _http_hosts:
+                    description: Applied HTTP host filter values
+                    type: array
+                    items:
+                      type: string
+                      example: api.example.com
+                    nullable: true
+                  _http_hosts_mode:
+                    description: HTTP host filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _hosts:
+                    description: Applied host filter values
+                    type: array
+                    items:
+                      type: string
+                      example: app.0
+                    nullable: true
+                  _hosts_mode:
+                    description: Host filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _frameworks:
+                    description: Applied framework filter values
+                    type: array
+                    items:
+                      type: string
+                      example: symfony
+                    nullable: true
+                  _frameworks_mode:
+                    description: Framework filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _languages:
+                    description: Applied language filter values
+                    type: array
+                    items:
+                      type: string
+                      example: php
+                    nullable: true
+                  _languages_mode:
+                    description: Language filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _methods:
+                    description: Applied method filter values
+                    type: array
+                    items:
+                      type: string
+                      example: get
+                    nullable: true
+                  _methods_mode:
+                    description: Method filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _runtimes:
+                    description: Applied runtime filter values
+                    type: array
+                    items:
+                      type: string
+                      example: 8.2.15
+                    nullable: true
+                  _runtimes_mode:
+                    description: Runtime filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _oss:
+                    description: Applied OS filter values
+                    type: array
+                    items:
+                      type: string
+                      example: linux
+                    nullable: true
+                  _oss_mode:
+                    description: OS filter mode (additive=include only, subtractive=exclude)
+                    type: string
+                    enum:
+                      - additive
+                      - subtractive
+                    nullable: true
+                  _distribution_cost:
+                    description: Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)
+                    type: string
+                    enum:
+                      - wt
+                      - pmu
+                  _sort:
+                    description: Applied sort field for top spans
+                    type: string
+                    enum:
+                      - percentage
+                      - p_96
+                      - count
+                      - wt
+                      - exec-time
+                      - impact
+                    nullable: true
+                  top_spans:
+                    description: Top spans aggregated data
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: List of top spans with metrics
+                        type: array
+                        items:
+                          required:
+                            - id
+                            - label
+                            - percentage
+                            - wt
+                            - p_96
+                            - count
+                            - request_wt
+                            - metrics
+                            - service_name
+                            - impact
+                          properties:
+                            id:
+                              description: Span identifier (span name)
+                              type: string
+                              example: sql.queries
+                            label:
+                              description: Human-readable service label
+                              type: string
+                              example: SQL
+                            percentage:
+                              description: Fraction of traces containing this span (0.0–1.0)
+                              type: number
+                              format: float
+                              example: 0.98
+                              nullable: true
+                            wt:
+                              description: Average wall time in microseconds
+                              type: number
+                              example: 23400
+                            p_96:
+                              description: 96th percentile wall time in microseconds
+                              type: number
+                              example: 45000
+                            count:
+                              description: Total call count
+                              type: number
+                              example: 12
+                            request_wt:
+                              description: Average request wall time in microseconds
+                              type: number
+                              example: 120000
+                            metrics:
+                              description: Associated metric names
+                              type: array
+                              items:
+                                type: string
+                                example: sql.queries
+                              example:
+                                - sql.queries
+                            service_name:
+                              description: Service/layer name
+                              type: string
+                              example: sql
+                            impact:
+                              description: Relative impact score (fraction of total wall time consumed)
+                              type: number
+                              format: float
+                              example: 0.452
+                          type: object
+                          additionalProperties: false
+                    type: object
+                    additionalProperties: false
+                  advanced_filters:
+                    description: Available filter values for refining queries
+                    required:
+                      - fields
+                      - max_applicable_filters
+                    properties:
+                      fields:
+                        description: Filter fields with available values
+                        type: object
+                        additionalProperties:
+                          required:
+                            - distinct_values
+                            - type
+                            - values
+                          properties:
+                            distinct_values:
+                              description: Number of distinct values
+                              type: integer
+                              example: 4
+                            type:
+                              description: Value type
+                              type: string
+                              example: string
+                            values:
+                              description: Filter values with counts
+                              type: array
+                              items:
+                                required:
+                                  - value
+                                  - count
+                                properties:
+                                  value:
+                                    description: Filter value
+                                    type: string
+                                    example: get
+                                  count:
+                                    description: Occurrence count
+                                    type: integer
+                                    example: 26585
+                                type: object
+                                additionalProperties: false
+                          type: object
+                          additionalProperties: false
+                      max_applicable_filters:
+                        description: Maximum number of applicable filters
+                        type: integer
+                        example: 50
+                    type: object
+                    additionalProperties: false
+                type: object
+                additionalProperties: false
+              example:
+                _grain: 60
+                _from: 1771435023
+                _to: 1771440423
+                _agent: a38f69ca-3b56-4ea6-beac-272b2568164a
+                _contexts:
+                  - web
+                _contexts_mode: additive
+                _distribution_cost: wt
+                _project_id: abc123def456
+                _environment_id: main
+                _branch_machine_name: main-bvxea6i
+                _sort: impact
+                top_spans:
+                  data:
+                    - id: sql.queries
+                      label: SQL
+                      percentage: 0.98
+                      wt: 23400
+                      p_96: 45000
+                      count: 12
+                      request_wt: 120000
+                      metrics:
+                        - sql.queries
+                      service_name: sql
+                      impact: 0.452
+                    - id: http.requests
+                      label: HTTP
+                      percentage: 0.75
+                      wt: 45600
+                      p_96: 89000
+                      count: 8
+                      request_wt: 120000
+                      metrics:
+                        - http.requests
+                      service_name: http
+                      impact: 0.304
+                advanced_filters:
+                  fields:
+                    service:
+                      values:
+                        - value: sql
+                          count: 1234
+                        - value: http
+                          count: 567
+                      distinct_values: 2
+                      type: string
+                  max_applicable_filters: 50
+        '400':
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                        example: The from timestamp must be in the past.
+                type: object
+                additionalProperties: false
+        '403':
+          description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
+        '499':
+          description: Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.
+          content:
+            application/json:
+              schema:
+                required:
+                  - error
+                  - message
+                properties:
+                  error:
+                    type: string
+                    example: Too much data fetched
+                  message:
+                    type: string
+                    example: Please reduce the time range or add more filters to narrow down the query
+                type: object
+                additionalProperties: false
   /projects/{projectId}/environments/{environmentId}/observability:
     get:
       tags:
         - Entrypoint
-      summary: Get observability API entrypoint with HATEOAS navigation and retention policies
+      summary: Get observability entrypoint
       description: Returns API entrypoint with hypermedia links to all observability endpoints (resources, logs, HTTP traffic, continuous profiling, server metrics) following HATEOAS principles. Includes data retention policies per metric type (retention_period, max_range, recommended_default_range in minutes), environment metadata (project_id, environment_id, environment_type, vendor), and per-service resource links. Use _links for API navigation.
       operationId: observability_entrypoint
       parameters:
@@ -12484,6 +14871,17 @@ paths:
           content:
             application/json:
               schema:
+                required:
+                  - message
+                  - project_id
+                  - branch_machine_name
+                  - environment_id
+                  - environment_type
+                  - vendor
+                  - psh_user_identifier
+                  - _links
+                  - retention
+                  - data_retention
                 properties:
                   message:
                     description: Welcome message
@@ -12522,9 +14920,31 @@ paths:
                     example: user@example.com
                   _links:
                     description: HATEOAS navigation links to all observability endpoints
+                    required:
+                      - _self
+                      - resources_by_service
+                      - resources_overview
+                      - resources_summary
+                      - blackfire_php_server_caches
+                      - blackfire_server_global
+                      - blackfire_server_overview
+                      - blackfire_server_transactions_breakdown
+                      - logs_query
+                      - logs_overview
+                      - http_metrics_overview
+                      - http_metrics_timeline_urls
+                      - http_metrics_timeline_ips
+                      - http_metrics_timeline_user_agents
+                      - console_sandbox_access
+                      - conprof_applications
+                      - conprof_application_filters
+                      - conprof_timeline
+                      - conprof_flamegraph
                     properties:
                       _self:
                         description: Link to this entrypoint resource
+                        required:
+                          - href
                         properties:
                           href:
                             description: URL to this resource
@@ -12544,6 +14964,9 @@ paths:
                             name: database
                             href: https://api.upsun.com/projects/abc123def456/environments/main/observability/resources/service/database
                         additionalProperties:
+                          required:
+                            - name
+                            - href
                           properties:
                             name:
                               description: Service name
@@ -12555,150 +14978,186 @@ paths:
                               format: uri
                               example: https://api.upsun.com/projects/abc123def456/environments/main/observability/resources/service/app
                           type: object
+                          additionalProperties: false
                       resources_overview:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/resources/overview
                         type: object
                         additionalProperties: false
                       resources_summary:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/resources/summary
                         type: object
                         additionalProperties: false
                       blackfire_php_server_caches:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/server/caches
                         type: object
                         additionalProperties: false
                       blackfire_server_global:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/server
                         type: object
                         additionalProperties: false
                       blackfire_server_overview:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/server/overview
                         type: object
                         additionalProperties: false
-                      blackfire_server_transactions_breakdown_impact:
+                      blackfire_server_transactions_breakdown:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
-                        type: object
-                        additionalProperties: false
-                      blackfire_server_top_spans:
-                        properties:
-                          href:
-                            type: string
-                            format: uri
-                        type: object
-                        additionalProperties: false
-                      blackfire_server_spans:
-                        properties:
-                          href:
-                            type: string
-                            format: uri
-                        type: object
-                        additionalProperties: false
-                      blackfire_server_traces:
-                        properties:
-                          href:
-                            type: string
-                            format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/server/transactions-break-down
                         type: object
                         additionalProperties: false
                       logs_query:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/logs/query
                         type: object
                         additionalProperties: false
                       logs_overview:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/logs/overview
                         type: object
                         additionalProperties: false
                       http_metrics_overview:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/overview
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_urls:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/urls
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_ips:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/ips
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_user_agents:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/user-agents
                         type: object
                         additionalProperties: false
                       console_sandbox_access:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/console/sandbox-access
                         type: object
                         additionalProperties: false
                       conprof_applications:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling
                         type: object
                         additionalProperties: false
                       conprof_application_filters:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp/filter
                         type: object
                         additionalProperties: false
                       conprof_timeline:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp
                         type: object
                         additionalProperties: false
                       conprof_flamegraph:
+                        required:
+                          - href
                         properties:
                           href:
                             type: string
                             format: uri
+                            example: https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp/merge
                         type: object
                         additionalProperties: false
                     type: object
                     additionalProperties: false
                   retention:
                     description: 'DEPRECATED: Data retention periods in minutes per resource type. Use data_retention instead.'
+                    required:
+                      - resources
+                      - logs
+                      - http_traffic
+                      - continuous_profiling
                     properties:
                       resources:
                         type: integer
@@ -12716,6 +15175,13 @@ paths:
                     additionalProperties: false
                   data_retention:
                     description: Data retention policies per metric type with periods in minutes
+                    required:
+                      - _unit
+                      - _unit_in_seconds
+                      - resources
+                      - logs
+                      - http_traffic
+                      - continuous_profiling
                     properties:
                       _unit:
                         description: Time unit for all retention values
@@ -12727,6 +15193,10 @@ paths:
                         example: 60
                       resources:
                         description: Resource metrics retention policy in minutes
+                        required:
+                          - retention_period
+                          - max_range
+                          - recommended_default_range
                         properties:
                           retention_period:
                             description: Data storage duration in minutes
@@ -12744,6 +15214,10 @@ paths:
                         additionalProperties: false
                       logs:
                         description: Logs retention policy in minutes
+                        required:
+                          - retention_period
+                          - max_range
+                          - recommended_default_range
                         properties:
                           retention_period:
                             description: Data storage duration in minutes
@@ -12761,6 +15235,10 @@ paths:
                         additionalProperties: false
                       http_traffic:
                         description: HTTP traffic retention policy in minutes
+                        required:
+                          - retention_period
+                          - max_range
+                          - recommended_default_range
                         properties:
                           retention_period:
                             description: Data storage duration in minutes
@@ -12778,6 +15256,10 @@ paths:
                         additionalProperties: false
                       continuous_profiling:
                         description: Continuous profiling retention policy in minutes
+                        required:
+                          - retention_period
+                          - max_range
+                          - recommended_default_range
                         properties:
                           retention_period:
                             description: Data storage duration in minutes
@@ -13182,6 +15664,9 @@ paths:
                   type: string
                   description: The organization country (2-letter country code).
                   maxLength: 2
+                billing_profile_id:
+                  type: string
+                  description: The billing profile ID.
                 security_contact:
                   type: string
                   format: email
@@ -13207,6 +15692,12 @@ paths:
                 $ref: '#/components/schemas/Error'
         '404':
           description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - Organization already has a billing profile attached
           content:
             application/problem+json:
               schema:
@@ -19352,6 +21843,7 @@ components:
                         - domains
                         - ports
                       additionalProperties: false
+                    nullable: true
                     title: Outbound Firewall Restrictions
                     description: Outbound firewall restrictions
                 required:
@@ -19812,6 +22304,7 @@ components:
                         - domains
                         - ports
                       additionalProperties: false
+                    nullable: true
                     title: Outbound Firewall Restrictions
                     description: Outbound firewall restrictions
                 required:
@@ -20610,6 +23103,7 @@ components:
                         - domains
                         - ports
                       additionalProperties: false
+                    nullable: true
                     title: Outbound Firewall Restrictions
                     description: Outbound firewall restrictions
                 required:
