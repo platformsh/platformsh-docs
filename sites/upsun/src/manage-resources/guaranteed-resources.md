@@ -69,6 +69,7 @@ The following table lists the available CPU and memory configurations for [conta
 
 | CPU | HIGH_CPU | BALANCED | HIGH_MEMORY | HIGHER_MEMORY |
 |-----|-----------|-----------|--------------|----------------|
+| 2   | 4 GB      | 8 GB      | 16 GB        | not supported  |
 | 4   | 8 GB      | 16 GB     | 32 GB        | not supported  |
 | 8   | 16 GB     | 32 GB     | 64 GB        | not supported  |
 | 16  | 32 GB     | 64 GB     | 128 GB       | not supported  |
