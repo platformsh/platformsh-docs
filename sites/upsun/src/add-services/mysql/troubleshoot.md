@@ -71,7 +71,7 @@ to learn about low disk space before it becomes an issue.
 `MySQL server has gone away` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
-One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/#configure-the-database).
+One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/_index.md#configure-the-database).
 
 ### Worker timeout
 
