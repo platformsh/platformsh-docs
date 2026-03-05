@@ -265,7 +265,7 @@ Rescheduling rules:
 
 {{< note theme="info" >}}
 
-After you reschedule an event within the five-day window, further rescheduling for that event is blocked.
+You can reschedule the maintenance event multiple times within the five-day window.
 
 {{< /note >}}
 
