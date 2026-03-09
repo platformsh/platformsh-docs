@@ -10,8 +10,9 @@ This guide explains how to migrate an existing application from another hosting 
 
 It focuses on the technical steps required to make your application deployable on {{% vendor/name %}}, including 
 configuration, services, environment variables, and data migration.
-
+<!-- vale off -->
 No prior experience with {{% vendor/name %}} is needed—each step is explained simply, with examples and troubleshooting tips.
+<!-- vale on -->
 
 ## Before you begin
 
@@ -35,13 +36,13 @@ Before migrating, make sure you have access to:
 
 ### Audit your current setup
 
+<!-- vale off -->
 {{< codetabs >}}
 +++
 title=from Self-Managed
 +++
 
 **Runtime & build**
-
 - **Runtime version**: language and version in use (Node.js, Python, Ruby, PHP, etc.)
 - **Package manager**: npm, yarn, pnpm, pip, composer, bundler, etc.
 - **System dependencies**: packages installed via `apt`, `yum`, or similar
@@ -185,11 +186,11 @@ This determines whether you need a long-running web process, background jobs, ca
 - **Team access**: members, roles, SSO, tokens used by CI/CD.
 
 {{< /codetabs >}}
-
+<!-- vale on -->
 ### How {{% vendor/name %}} maps to your existing architecture
 
 When migrating from another platform, map your existing components to {{% vendor/name %}} concepts.
-
+<!-- vale off -->
 | Existing platform concept          | {{% vendor/name %}} equivalent                                      |
 |------------------------------------|---------------------------------------------------------------------|
 | Web dyno / server                  | [Application Container](/learn/overview/structure.md#apps)          |
@@ -202,7 +203,7 @@ When migrating from another platform, map your existing components to {{% vendor
 | Buildpacks                         | [build hooks](/create-apps/image-properties/hooks.md)               |
 | Review apps / preview deployments  | [Preview environments](/glossary.md#preview-environment)            |
 | SSL certificates                   | [automatic TLS](/define-routes/https.md#tls-certificates) (managed) |
-
+<!-- vale on -->
 ## 2. Clone your Git repository locally
 As a start, you need to clone your source code locally to make it {{% vendor/name %}} ready.
 
@@ -259,14 +260,14 @@ In the form, fill in details like the project name and [region](/development/reg
 You'll be able to define resources for the project after your first push.
 
 {{< /codetabs >}}
-
+<!-- vale off -->
 {{% note theme="info" %}}
 Before migrating your production environment, we recommend pushing to a separate 
 branch first. {{% vendor/name %}} automatically creates a [preview environment](/glossary.md#preview-environment) for 
 each branch, allowing you to validate your configuration, services, and data 
 before switching any production traffic.
 {{% /note %}}
-
+<!-- vale on -->
 ## 5. Configure services and start commands
 
 ### Configure your services
@@ -325,7 +326,7 @@ You need to declare your services in the `services` top YAML key and add a [`rel
 {{% /note %}}
 
 ### Configure how your application and workers starts
-
+<!-- vale off -->
 {{< codetabs >}}
 +++
 title=from Self-Managed
@@ -435,7 +436,7 @@ You may also need to review features that rely on Vercel platform behavior such 
 These features may require application-level implementations when running on {{% vendor/name %}}.
 
 {{< /codetabs >}}
-
+<!-- vale on -->
 ## 6. Configure build and deploy hooks
 
 If you have custom build steps, define them explicitly in the `hooks.build` and `hooks.deploy` section:
@@ -496,7 +497,7 @@ Alternatively, you can [amend those default container resources](/manage-resourc
 If your app requires [Environment variables] to build properly, [add them to your environment](/development/variables/set-variables.md).
 
 Extract existing environment variables in your project:
-
+<!-- vale off -->
 {{< codetabs >}}
 +++
 title=from Self-Managed
@@ -538,7 +539,7 @@ Vercel env pull
 This command writes environment variables to a `.env` file locally.
 
 {{< /codetabs >}}
-
+<!-- vale on -->
 Review the variables and recreate them in {{% vendor/name %}} using [`variable:create`](/administration/cli/reference.md#variablecreate).
 
 ```bash {location="Terminal"}
@@ -653,7 +654,7 @@ If your application is deployed without error but you get a 502 error when loadi
 
 ## 12. Test your production environment
 When your {{% vendor/name %}} project is successfully deployed: 
-
+<!-- vale off -->
 - **Verify service connections**: 
   - Check database connectivity 
   - Verify cache operations 
@@ -663,7 +664,7 @@ When your {{% vendor/name %}} project is successfully deployed:
   Tools like [k6](https://k6.io), [Locust](https://locust.io), or 
   [Gatling](https://gatling.io) can be used for this purpose.
 - **Review logs and metrics**:
-
+<!-- vale on -->
 ```bash {location="Terminal"}
 {{% vendor/cli %}} logs app
 {{% vendor/cli %}} metrics:all
@@ -685,7 +686,7 @@ Do not skip this step if your application is live and receiving traffic. Any wri
 
 Once you have an environment ready and maintenance mode is enabled, import the data from your current provider.
 The exact process depends on the database engine you use.
-
+<!-- vale off -->
 {{< codetabs >}}
 +++
 title=from Self-Managed
@@ -734,7 +735,7 @@ mysqldump --single-transaction DATABASE_NAME > database.sql
 ```
 
 {{< /codetabs >}}
-
+<!-- vale on -->
 Then import the dump using the {{% vendor/name %}} CLI.
 
 ```bash
