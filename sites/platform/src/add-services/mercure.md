@@ -88,12 +88,12 @@ Note that changing the name of the service replaces it with a brand new service 
 
 ### 2. Define the route
 
-Include an entry in your `.platform/routes.yaml` file as shown below, replacing <APP_NAME> with the name of your Mercure app:
+Include an entry in your `.platform/routes.yaml` file as shown below, replacing <SERVICE_NAME> with the name of your Mercure service:
 
 ```yaml {configFile="routes"}
 "https://mercure.{default}/":
    type: upstream
-   upstream: "<APP_NAME>:mercure"
+   upstream: "<SERVICE_NAME>:mercure"
 ```
 
 ### 3. Define the relationship 
@@ -174,7 +174,7 @@ mercure:
 ```yaml {configFile="routes"}
 "https://mercure.{default}/":
    type: upstream
-   upstream: "<APP_NAME>:mercure"
+   upstream: "<SERVICE_NAME>:mercure"
 ```
 
 #### [App configuration](/create-apps/_index.md)

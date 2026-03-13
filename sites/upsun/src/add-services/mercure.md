@@ -143,13 +143,13 @@ Note that changing the name of the service replaces it with a brand new service 
 
 ### 2. Define the route
 
-To access the service URL, add an entry to the `.routes` key as shown below, replacing <APP_NAME> with the name of your app: 
+To access the service URL, add an entry to the `.routes` key as shown below, replacing <SERVICE_NAME> with the name of your service: 
 
 ```yaml {configFile="app"}
 routes: 
   "https://mercure.{default}/":
     type: upstream
-    upstream: "<APP_NAME>:mercure"
+    upstream: "<SERVICE_NAME>:mercure"
 ```
 
 ### 3. Define the relationship 
