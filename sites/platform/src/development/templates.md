@@ -52,3 +52,7 @@ View the [Python documentation](/languages/python/_index.md).
 View the [Ruby documentation](/languages/ruby.md).
 
 {{< repolist noIntro=true lang="ruby" >}}
+
+## View the [Symfony documentation](/languages/symfony.md)
+
+{{< repolist noIntro=true lang="symfony" >}}
