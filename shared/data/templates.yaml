@@ -638,6 +638,28 @@ php:
       MariaDB 10.4<br />
       Automatic TLS certificates<br />
     runtime: php
+  - shortname: symfony3
+    name: symfony3 
+    repo: https://github.com/platformsh-templates/symfony3
+    description: >
+      <p>This template builds Symfony 3 on Upsun Fixed. It includes a
+      pre-configured MariaDB database connection and demonstrates how to
+      get a Symfony application running on Platform.sh. It is intended
+      for you to use as a starting point and modify for your own
+      needs.</p>
+
+      <p>Symfony is a high-performance PHP framework for web
+      development.</p>
+    image: >-
+      data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBkPSJNNjQgMEMyOC42NiAwIDAgMjguNjYgMCA2NHMyOC42NiA2NCA2NCA2NCA2NC0yOC42NiA2NC02NFM5OS4zNCAwIDY0IDB6bTI1LjA0IDM3LjYzYy0yLjIgMC00LjI2LjMtNi4xNi44OC0xLjM2LjQtMi41NCAxLjA0LTMuNTIgMS44OGEzLjM3IDMuMzcgMCAwIDAtMS4yNiAyLjY0YzAgLjk4LjM2IDEuODQgMS4wOCAyLjU4czEuNjYgMS4zNiAyLjg0IDEuODZjMS4xOC41IDIuNTYuOTIgNC4xNCAxLjI2IDEuNTguMzQgMy4yMi43IDQuOTIgMS4wOGE0My45IDQzLjkgMCAwIDEgNC45MiAxLjQ0YzEuNTguNTYgMi45NiAxLjMyIDQuMTQgMi4yOCAxLjE4Ljk2IDIuMTIgMi4xNiAyLjg0IDMuNmE5LjkgOS45IDAgMCAxIDEuMDggNC44OGMwIDIuMi0uNDggNC4xNi0xLjQ0IDUuODgtLjk2IDEuNzItMi4yNiAzLjE2LTMuOSA0LjMyYTE4LjcgMTguNyAwIDAgMS01LjU4IDIuNTRjLTIuMDguNTYtNC4yNi44NC02LjU0Ljg0LTMuMjQgMC02LjM4LS41LTkuNDItMS41YTI2LjMgMjYuMyAwIDAgMS04LjEtNC41OGwzLjMtNS4xYzEuMTIuOTggMi4yNiAxLjg4IDMuNDIgMi43YTI2IDI2IDAgMCAwIDMuNiAyLjA0IDIwLjE0IDIwLjE0IDAgMCAwIDMuNjggMS4xNmMxLjI2LjI2IDIuNTQuMzkgMy44NC4zOSAxLjIgMCAyLjM2LS4xNCAzLjQ4LS40MmExMC41IDEwLjUgMCAwIDAgMi44OC0xLjE0YzguOTgtNC42OCAxMC4wOC0xNy44LTEuMzYtMjEuMy0xLjc4LS40OC0zLjQ4LS45Ni01LjEtMS40NGExOC4xOCAxOC4xOCAwIDAgMS00LjkyLTIuMjJjLS44NC0uNTQtMS41LTEuMTYtMi0xLjg2LS40OC0uNy0uNzItMS41LS43Mi0yLjQgMC0xLjA0LjI4LTEuOTQuODQtMi43YTYuNTggNi41OCAwIDAgMSAyLjI2LTEuOSAxMC44IDEwLjggMCAwIDEgMy4xOC0xLjA4Yy45NC0uMiAxLjg4LS4zIDIuODItLjNhMTcuMiAxNy4yIDAgMCAxIDcuNzQgMi4xMWwxLjM4IDEuMzMtMi45MSA1LjM0YTEzLjQgMTMuNCAwIDAgMC0yLjktMi4wNiAxMi40IDEyLjQgMCAwIDAtNS40LTEuMjJ6bS0zNy4wNiAxLjA4Yy0uNjguMDYtMS40LjE2LTIuMTIuM2ExMi4yNCAxMi4yNCAwIDAgMC0xLjk4LjY2Yy0uNDguMi0uNy40Ni0uNjYuNzhsLTEuMTQgNi41aDQuMmwtLjYgMy4yNGgtNC4xNEwzOS4xIDc5LjczSDMzbDYuMjctMzQuNjZjMS4xMi0xLjMgMi43LTIuMzYgNC43Mi0zLjIgMi0uODQgNC40LTEuMjYgNy4xNi0xLjI2IDEuNjggMCAzLjI0LjIyIDQuNjguNjZhMTAuNiAxMC42IDAgMCAxIDMuNzIgMS45NGwtMi4zNCA0LjYyYTkuMiA5LjIgMCAwIDAtMi44LTEuNSA5LjI0IDkuMjQgMCAwIDAtMy4xNi0uNTJ6Ii8+PC9zdmc+
+    deploy: >-
+      https://console.upsun.com/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/symfony3/.platform.template.yaml
+    content: |
+      PHP 7.4<br />
+      MariaDB 10.4<br />
+      Automatic TLS certificates<br />
+      Composer-based build<br />
+    runtime: php
   - shortname: wordpress-woocommerce
     name: WooCommerce (Bedrock) for Upsun Fixed
     repo: https://github.com/platformsh-templates/wordpress-woocommerce

@@ -53,6 +53,8 @@ View the [Ruby documentation](/languages/ruby.md).
 
 {{< repolist noIntro=true lang="ruby" >}}
 
-## View the [Symfony documentation](/languages/symfony.md)
+## Symfony
 
-{{< repolist noIntro=true lang="symfony" >}}
+View the [Symfony documentation](/guides/symfony.md)
+
+{{< repolist noIntro=true lang="symfony3" >}}
