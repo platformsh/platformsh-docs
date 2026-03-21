@@ -4820,6 +4820,92 @@ paths:
 
         If data synchronization is specified, the data in the environment will
         be overwritten with that of its parent.
+  /projects/{projectId}/environments/{environmentId}/tasks:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+      operationId: list-projects-environments-tasks
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCollection'
+      tags:
+        - Task
+  /projects/{projectId}/environments/{environmentId}/tasks/{taskId}:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: taskId
+      operationId: get-projects-environments-tasks
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+      tags:
+        - Task
+  /projects/{projectId}/environments/{environmentId}/tasks/{taskId}/run:
+    post:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: taskId
+      operationId: run-task
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskTriggerInput'
+      tags:
+        - Task
   /projects/{projectId}/environments/{environmentId}/variables:
     get:
       parameters:
@@ -6111,6 +6197,15 @@ paths:
           schema:
             type: string
             example: App\Controller\ProductController::list
+        - name: limit
+          in: query
+          description: Maximum number of recommendation results to return. Clamped to range 10–200. Defaults to 10 (or 200 when filtering by transaction).
+          required: false
+          schema:
+            type: integer
+            maximum: 200
+            minimum: 10
+            example: 50
       responses:
         '200':
           description: Recommendation statistics retrieved successfully
@@ -6178,6 +6273,11 @@ paths:
                           example: 15
                         _links:
                           description: API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.
+                          required:
+                            - api_timeline
+                            - api_subprofiles
+                            - api_profile
+                            - api_graph
                           properties:
                             api_timeline:
                               description: API endpoint for timeline data (JSON)
@@ -6427,79 +6527,115 @@ paths:
                     description: List of automatic profiles
                     type: array
                     items:
+                      required:
+                        - uuid
+                        - name
+                        - _links
                       properties:
                         uuid:
                           description: Profile UUID
                           type: string
                           format: uuid
+                          example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                         name:
                           description: Profile name
                           type: string
+                          example: POST /api/cart
                         metadata:
                           description: Profile metadata
                           type: object
                         _links:
                           description: Profile navigation links. Links with type "text/html" are web pages for humans. Links with type "application/json" are API endpoints returning JSON.
+                          required:
+                            - api_timeline
+                            - api_subprofiles
+                            - api_profile
+                            - api_graph
                           properties:
                             graph_url:
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
                                 type:
                                   type: string
                                   enum:
                                     - text/html
                                   example: text/html
                               type: object
+                              additionalProperties: false
                             api_timeline:
                               description: API endpoint for timeline data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_subprofiles:
                               description: API endpoint for subprofiles data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_profile:
                               description: API endpoint for profile details (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_graph:
                               description: API endpoint for call graph data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                           type: object
                       type: object
                   page:
@@ -13900,7 +14036,7 @@ paths:
                               example: 45000
                             count:
                               description: Total call count
-                              type: number
+                              type: integer
                               example: 12
                             request_wt:
                               description: Average request wall time in microseconds
@@ -14719,6 +14855,13 @@ paths:
         - in: query
           name: filter[label]
           description: Allows filtering by `label` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[billing_profile_id]
+          description: Allows filtering by `billing_profile_id` using one or more operators.
           style: deepObject
           explode: true
           schema:
@@ -17597,6 +17740,131 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /billing/{billing_profile_id}/projects:
+    get:
+      summary: List projects
+      description: Retrieves a list of projects for the specified billing profile.
+      operationId: list-billing-profile-projects
+      tags:
+        - Billing Profile Projects
+      parameters:
+        - $ref: '#/components/parameters/BillingProfileID'
+        - in: query
+          name: filter[id]
+          description: Allows filtering by `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[title]
+          description: Allows filtering by `title` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[subscription_id]
+          description: Allows filtering by `subscription_id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[region]
+          description: Allows filtering by `region` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[type]
+          description: Allows filtering by `type` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[plan]
+          description: Allows filtering by `plan` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[status]
+          description: Allows filtering by `status` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[updated_at]
+          description: Allows filtering by `updated_at` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/DateTimeFilter'
+        - in: query
+          name: filter[created_at]
+          description: Allows filtering by `created_at` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/DateTimeFilter'
+        - in: query
+          name: page[size]
+          description: Determines the number of items to show.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: null
+        - in: query
+          name: page[before]
+          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - in: query
+          name: page[after]
+          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: |
+            Allows sorting by a single field.<br>
+            Use a dash ("-") to sort descending.<br>
+            Supported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
+          schema:
+            type: string
+            example: '-updated_at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrganizationProject'
+                  facets:
+                    $ref: '#/components/schemas/ProjectFacets'
+                  _links:
+                    $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -24177,6 +24445,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - created_at
         - updated_at
@@ -24188,6 +24460,7 @@ components:
         - states
         - result
         - service_id
+        - tls_certificates
       additionalProperties: false
     FastlyIntegrationCreateInput:
       type: object
@@ -24236,6 +24509,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - type
         - token
@@ -24288,6 +24565,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - type
         - token
@@ -26045,6 +26326,18 @@ components:
           additionalProperties: false
           title: Runtime Operations
           description: ''
+        tasks:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Enabled
+              description: If true, background tasks can be triggered.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Tasks
+          description: ''
         outbound_firewall:
           type: object
           properties:
@@ -26442,6 +26735,7 @@ components:
           title: Integrations
           description: ''
       required:
+        - tasks
         - metrics
         - logs_forwarding
         - guaranteed_resources
@@ -28459,6 +28753,155 @@ components:
         - image
         - started_at
       additionalProperties: false
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          title: Task Identifier
+          description: The identifier of Task
+        type:
+          type: string
+          title: Image type
+          description: The runtime type and version for the task (e.g., python:3.8)
+        source:
+          type: object
+          properties:
+            root:
+              type: string
+              title: Task Source Root
+              description: The root of the task relative to the repository root
+          required:
+            - root
+          additionalProperties: false
+          title: Source Code Configuration
+          description: Configuration related to the source code of the task
+        hooks:
+          type: object
+          properties:
+            build:
+              type: string
+              nullable: true
+              title: Build Hook
+              description: Hook executed after the build process
+            deploy:
+              type: string
+              nullable: true
+              title: Deploy Hook
+              description: Hook executed before the task's run command
+          required:
+            - build
+            - deploy
+          additionalProperties: false
+          title: Hooks
+          description: Scripts executed at various points in the lifecycle of the task
+        relationships:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service.
+              endpoint:
+                type: string
+                nullable: true
+                title: Endpoint Name
+                description: The name of the endpoint on the service.
+            required:
+              - service
+              - endpoint
+            additionalProperties: false
+            nullable: true
+          title: Relationships
+          description: The relationships of the task to defined services and applications
+        mounts:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              source:
+                type: string
+                enum:
+                  - instance
+                  - local
+                  - service
+                  - storage
+                  - temporary
+                  - tmp
+                title: Mount type
+                description: The type of mount that will provide the data.
+              source_path:
+                type: string
+                title: Source Path
+                description: The path to be mounted, relative to the root directory of the volume that's being mounted from.
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`.
+            required:
+              - source
+              - source_path
+            additionalProperties: false
+          title: Mounts
+          description: Filesystem mounts of this task
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: {}
+          title: Environment Variables
+          description: Variables provide environment-sensitive information to control how your task behaves
+        run:
+          type: object
+          properties:
+            command:
+              type: string
+              title: Run Command
+              description: The command to execute when running the task
+            timeout:
+              type: integer
+              title: Timeout
+              description: The maximum timeout in seconds after which the task will be forcefully killed
+          required:
+            - command
+            - timeout
+          additionalProperties: false
+          title: Run Configuration
+          description: Configuration for task execution
+        name:
+          type: string
+          title: Task name
+          description: The unique name of the task
+      required:
+        - id
+        - type
+        - source
+        - hooks
+        - relationships
+        - mounts
+        - variables
+        - run
+        - name
+      additionalProperties: false
+    TaskCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'
+    TaskTriggerInput:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: {}
+          title: Variables
+          description: Environment variables for the task
+      additionalProperties: false
     Tree:
       type: object
       properties:
@@ -28933,7 +29376,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -28970,7 +29413,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -29037,7 +29480,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -29074,7 +29517,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -30098,6 +30541,11 @@ components:
           $ref: '#/components/schemas/ProjectTrialPlan'
         project_ui:
           $ref: '#/components/schemas/ProjectUI'
+        dedicated_tag:
+          type: string
+          allOf:
+            - $ref: '#/components/schemas/ProjectDedicatedTag'
+          nullable: true
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -30107,6 +30555,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity'
+          nullable: true
+        fastly_service_ids:
+          description: Fastly service IDs for the project.
+          type: array
+          items:
+            type: string
           nullable: true
         project_options:
           type: object
@@ -30549,6 +31003,9 @@ components:
         - failed
         - suspended
         - deleted
+    ProjectDedicatedTag:
+      type: string
+      description: Dedicated tag.
     ProjectUI:
       description: The URL for the project's user interface.
       type: string
