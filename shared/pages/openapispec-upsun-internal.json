@@ -8365,6 +8365,104 @@
         }
       }
     },
+    "/billing/{billing_profile_id}/invoices/{invoice_id}/authorize": {
+      "post": {
+        "summary": "[Internal] Create confirmation credentials for 3D-Secure",
+        "description": "Creates confirmation credentials for payments that require online authorization. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "authorize-invoice",
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_profile_id"
+          },
+          {
+            "$ref": "#/components/parameters/billing_invoice_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "redirect_to_url": {
+                      "type": "object",
+                      "description": "URL information to complete the payment.",
+                      "properties": {
+                        "return_url": {
+                          "type": "string",
+                          "description": "Return URL after payment completion."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "URL for payment finalization."
+                        }
+                      }
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Required payment action type."
+                    },
+                    "intent": {
+                      "type": "object",
+                      "description": "Payment intent details.",
+                      "properties": {
+                        "payment_intent_id": {
+                          "type": "string",
+                          "description": "Unique identifier for the payment intent."
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description": "Client secret for the payment intent."
+                        },
+                        "public_key": {
+                          "type": "string",
+                          "description": "Public key for the payment intent."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request when no authorization is required.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/billing/{billing_profile_id}/invoices/{invoice_id}/details": {
       "get": {
         "summary": "[Internal] Get invoice details",
@@ -9022,7 +9120,12 @@
                     "description": "ID of the user."
                   },
                   "permissions": {
-                    "$ref": "#/components/schemas/billing_user_permissions"
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/billing_user_permissions"
+                      }
+                    ],
+                    "default": null
                   }
                 }
               }
@@ -10500,7 +10603,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/salesforce_profile_response"
+                        "$ref": "#/components/schemas/salesforce_profile_response_with_links"
                       }
                     }
                   }
@@ -14188,6 +14291,147 @@
         ],
         "summary": "Synchronize a child environment with its parent",
         "description": "This synchronizes the code and/or data of an environment with that of\nits parent, then redeploys the environment. Synchronization is only\npossible if a branch has no unmerged commits and it can be fast-forwarded.\n\nIf data synchronization is specified, the data in the environment will\nbe overwritten with that of its parent.\n"
+      }
+    },
+    "/projects/{projectId}/environments/{environmentId}/tasks": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "environmentId"
+          }
+        ],
+        "operationId": "list-projects-environments-tasks",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskCollection"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      }
+    },
+    "/projects/{projectId}/environments/{environmentId}/tasks/{taskId}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "environmentId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "taskId"
+          }
+        ],
+        "operationId": "get-projects-environments-tasks",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      }
+    },
+    "/projects/{projectId}/environments/{environmentId}/tasks/{taskId}/run": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "environmentId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "taskId"
+          }
+        ],
+        "operationId": "run-task",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskTriggerInput"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Task"
+        ]
       }
     },
     "/projects/{projectId}/environments/{environmentId}/variables": {
@@ -19458,6 +19702,18 @@
               "type": "string",
               "example": "App\\Controller\\ProductController::list"
             }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of recommendation results to return. Clamped to range 10–200. Defaults to 10 (or 200 when filtering by transaction).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 10,
+              "example": 50
+            }
           }
         ],
         "responses": {
@@ -19539,6 +19795,12 @@
                           },
                           "_links": {
                             "description": "API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.",
+                            "required": [
+                              "api_timeline",
+                              "api_subprofiles",
+                              "api_profile",
+                              "api_graph"
+                            ],
                             "properties": {
                               "api_timeline": {
                                 "description": "API endpoint for timeline data (JSON)",
@@ -19882,15 +20144,22 @@
                       "description": "List of automatic profiles",
                       "type": "array",
                       "items": {
+                        "required": [
+                          "uuid",
+                          "name",
+                          "_links"
+                        ],
                         "properties": {
                           "uuid": {
                             "description": "Profile UUID",
                             "type": "string",
-                            "format": "uuid"
+                            "format": "uuid",
+                            "example": "4b5266a2-fd71-468b-bf05-87b342079cbf"
                           },
                           "name": {
                             "description": "Profile name",
-                            "type": "string"
+                            "type": "string",
+                            "example": "POST /api/cart"
                           },
                           "metadata": {
                             "description": "Profile metadata",
@@ -19898,12 +20167,23 @@
                           },
                           "_links": {
                             "description": "Profile navigation links. Links with type \"text/html\" are web pages for humans. Links with type \"application/json\" are API endpoints returning JSON.",
+                            "required": [
+                              "api_timeline",
+                              "api_subprofiles",
+                              "api_profile",
+                              "api_graph"
+                            ],
                             "properties": {
                               "graph_url": {
+                                "required": [
+                                  "href",
+                                  "type"
+                                ],
                                 "properties": {
                                   "href": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "example": "https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
                                   },
                                   "type": {
                                     "type": "string",
@@ -19913,14 +20193,20 @@
                                     "example": "text/html"
                                   }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": false
                               },
                               "api_timeline": {
                                 "description": "API endpoint for timeline data (JSON)",
+                                "required": [
+                                  "href",
+                                  "type"
+                                ],
                                 "properties": {
                                   "href": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline"
                                   },
                                   "type": {
                                     "type": "string",
@@ -19930,14 +20216,20 @@
                                     "example": "application/json"
                                   }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": false
                               },
                               "api_subprofiles": {
                                 "description": "API endpoint for subprofiles data (JSON)",
+                                "required": [
+                                  "href",
+                                  "type"
+                                ],
                                 "properties": {
                                   "href": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles"
                                   },
                                   "type": {
                                     "type": "string",
@@ -19947,14 +20239,20 @@
                                     "example": "application/json"
                                   }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": false
                               },
                               "api_profile": {
                                 "description": "API endpoint for profile details (JSON)",
+                                "required": [
+                                  "href",
+                                  "type"
+                                ],
                                 "properties": {
                                   "href": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile"
                                   },
                                   "type": {
                                     "type": "string",
@@ -19964,14 +20262,20 @@
                                     "example": "application/json"
                                   }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": false
                               },
                               "api_graph": {
                                 "description": "API endpoint for call graph data (JSON)",
+                                "required": [
+                                  "href",
+                                  "type"
+                                ],
                                 "properties": {
                                   "href": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "format": "uri",
+                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
                                   },
                                   "type": {
                                     "type": "string",
@@ -19981,7 +20285,8 @@
                                     "example": "application/json"
                                   }
                                 },
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": false
                               }
                             },
                             "type": "object"
@@ -23453,7 +23758,8 @@
                           "properties": {
                             "href": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/logs/overview?from=1704067200&to=1704153600"
                             }
                           },
                           "type": "object",
@@ -23467,7 +23773,8 @@
                           "properties": {
                             "href": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/logs/query?from=1704067200&to=1704153600"
                             }
                           },
                           "type": "object",
@@ -24070,6 +24377,7 @@
                     "_cursor": {
                       "description": "Cursor for next page (if more results available)",
                       "type": "string",
+                      "example": "eyJ0cyI6MTcwNDA2NzIwMCwiaWQiOiJhYmMxMjMifQ==",
                       "nullable": true
                     },
                     "_has_more_results": {
@@ -24092,7 +24400,8 @@
                           "properties": {
                             "href": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/logs/query?from=1704067200&to=1704153600"
                             }
                           },
                           "type": "object",
@@ -24106,7 +24415,8 @@
                           "properties": {
                             "href": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/logs/query?from=1704067200&to=1704153600&cursor=eyJ0cyI6MTcwNDA2NzIwMH0"
                             }
                           },
                           "type": "object",
@@ -24120,7 +24430,8 @@
                           "properties": {
                             "href": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/logs/overview?from=1704067200&to=1704153600"
                             }
                           },
                           "type": "object",
@@ -24325,7 +24636,8 @@
                         "properties": {
                           "cursor": {
                             "description": "Opaque cursor for this entry, used as the pagination cursor for the next page",
-                            "type": "string"
+                            "type": "string",
+                            "example": "eyJ0cyI6MTcwNDA2NzIwMCwiaWQiOiJhYmMxMjMifQ=="
                           },
                           "datetime": {
                             "description": "Timestamp of the log entry in ISO 8601 format",
@@ -31279,7 +31591,7 @@
                               },
                               "count": {
                                 "description": "Total call count",
-                                "type": "number",
+                                "type": "integer",
                                 "example": 12
                               },
                               "request_wt": {
@@ -32423,6 +32735,16 @@
             "in": "query",
             "name": "filter[netsuite_id]",
             "description": "[Internal] Allows filtering by `netsuite_id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[billing_profile_id]",
+            "description": "Allows filtering by `billing_profile_id` using one or more operators.",
             "style": "deepObject",
             "explode": true,
             "schema": {
@@ -37318,6 +37640,175 @@
         }
       }
     },
+    "/resources/cloud/usage": {
+      "get": {
+        "summary": "[Internal] Get latest resource usage",
+        "operationId": "get-resource-usage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/FilterProjectID"
+          },
+          {
+            "name": "filter[environment]",
+            "in": "query",
+            "description": "Allows filtering by `environment` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageSize"
+          },
+          {
+            "$ref": "#/components/parameters/PageBefore"
+          },
+          {
+            "$ref": "#/components/parameters/PageAfter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EnvironmentUsage"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "count",
+                    "items",
+                    "_links"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/resources/cloud/usage/history": {
+      "get": {
+        "summary": "[Internal] List project history",
+        "operationId": "list-project-history",
+        "parameters": [
+          {
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Allows filtering by `id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/FilterProjectID"
+          },
+          {
+            "name": "filter[resource]",
+            "in": "query",
+            "description": "Allows filtering by `resource` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "name": "filter[environment]",
+            "in": "query",
+            "description": "Allows filtering by `environment` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "name": "filter[user_id]",
+            "in": "query",
+            "description": "Allows filtering by `user_id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "name": "filter[timestamp]",
+            "in": "query",
+            "description": "Allows filtering by `timestamp` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/DateTimeFilter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/History"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "count",
+                    "items",
+                    "_links"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
     "/locate/{project_id}": {
       "get": {
         "summary": "[Internal] Locate project",
@@ -41793,6 +42284,187 @@
           }
         }
       }
+    },
+    "/billing/{billing_profile_id}/projects": {
+      "get": {
+        "summary": "List projects",
+        "description": "Retrieves a list of projects for the specified billing profile.",
+        "operationId": "list-billing-profile-projects",
+        "tags": [
+          "Billing Profile Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_profile_id"
+          },
+          {
+            "in": "query",
+            "name": "filter[id]",
+            "description": "Allows filtering by `id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[title]",
+            "description": "Allows filtering by `title` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[subscription_id]",
+            "description": "Allows filtering by `subscription_id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[region]",
+            "description": "Allows filtering by `region` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[type]",
+            "description": "Allows filtering by `type` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[plan]",
+            "description": "Allows filtering by `plan` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[status]",
+            "description": "Allows filtering by `status` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[updated_at]",
+            "description": "Allows filtering by `updated_at` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/DateTimeFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter[created_at]",
+            "description": "Allows filtering by `created_at` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/DateTimeFilter"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationProject"
+                      }
+                    },
+                    "facets": {
+                      "$ref": "#/components/schemas/ProjectFacets"
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -45113,21 +45785,10 @@
             "pattern": "^[A-Z]{3}$",
             "example": "USD"
           },
-          "organization_ids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of organization IDs associated with this billing profile."
-          },
           "vendor": {
             "type": "string",
             "nullable": true,
             "description": "The Vendor associated to the billing profile."
-          },
-          "staff_account": {
-            "type": "boolean",
-            "description": "Whether this is a staff account."
           },
           "pricing_model": {
             "type": "string",
@@ -45402,11 +46063,6 @@
             "description": "[Internal] Rate class identifier",
             "nullable": true,
             "example": "standard"
-          },
-          "staff_account": {
-            "type": "boolean",
-            "description": "[Internal] Whether this is a staff account",
-            "nullable": true
           },
           "account_tier": {
             "type": "string",
@@ -45949,10 +46605,6 @@
                 "invoice_id": {
                   "type": "string",
                   "description": "The invoice ID."
-                },
-                "uid": {
-                  "type": "string",
-                  "description": "The ID of the owner of the order."
                 }
               }
             }
@@ -45982,6 +46634,62 @@
         },
         "type": "object"
       },
+      "discount": {
+        "description": "The discount object.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The ID of the discount.",
+            "type": "integer"
+          },
+          "billing_profile_id": {
+            "description": "The ULID of the billing profile the discount applies to.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The machine name of the discount type.",
+            "type": "string",
+            "enum": [
+              "allowance"
+            ]
+          },
+          "type_label": {
+            "description": "The label of the discount type.",
+            "type": "string",
+            "example": "First Project Incentive"
+          },
+          "status": {
+            "description": "The status of the discount.",
+            "type": "string",
+            "enum": [
+              "inactive",
+              "active",
+              "expired",
+              "deactivated"
+            ]
+          },
+          "discount": {
+            "description": "Discount value per relevant time periods.",
+            "properties": {
+              "monthly": {
+                "$ref": "#/components/schemas/currency_amount"
+              }
+            },
+            "type": "object"
+          },
+          "start_at": {
+            "description": "The start time of the discount period.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_at": {
+            "description": "The end time of the discount period (if applicable).",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
       "currency_amount_nullable": {
         "description": "Currency amount with detailed components.",
         "properties": {
@@ -46005,71 +46713,6 @@
         },
         "type": "object",
         "nullable": true
-      },
-      "discount": {
-        "description": "The discount object.",
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "The ID of the discount.",
-            "type": "integer"
-          },
-          "billing_profile_id": {
-            "description": "The ULID of the billing profile the discount applies to.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The machine name of the discount type.",
-            "type": "string",
-            "enum": [
-              "startup"
-            ]
-          },
-          "type_label": {
-            "description": "The label of the discount type.",
-            "type": "string"
-          },
-          "status": {
-            "description": "The status of the discount.",
-            "type": "string",
-            "enum": [
-              "inactive",
-              "active",
-              "expired",
-              "deactivated"
-            ]
-          },
-          "discount": {
-            "description": "Discount value per relevant time periods.",
-            "properties": {
-              "monthly": {
-                "$ref": "#/components/schemas/currency_amount"
-              },
-              "commitment_period": {
-                "$ref": "#/components/schemas/currency_amount_nullable"
-              },
-              "contract_total": {
-                "$ref": "#/components/schemas/currency_amount_nullable"
-              }
-            },
-            "type": "object"
-          },
-          "config": {
-            "description": "The discount type specific configuration.",
-            "type": "object"
-          },
-          "start_at": {
-            "description": "The start time of the discount period.",
-            "type": "string",
-            "format": "date-time"
-          },
-          "end_at": {
-            "description": "The end time of the discount period (if applicable).",
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        }
       },
       "contract_detail": {
         "description": "The contract detail object.",
@@ -46188,6 +46831,7 @@
       "billing_user_permissions": {
         "type": "array",
         "description": "The billing profile permissions.",
+        "minItems": 1,
         "items": {
           "type": "string",
           "enum": [
@@ -46211,14 +46855,6 @@
           },
           "permissions": {
             "$ref": "#/components/schemas/billing_user_permissions"
-          },
-          "level": {
-            "type": "string",
-            "description": "Access level of the user.",
-            "enum": [
-              "admin",
-              "view"
-            ]
           },
           "created_at": {
             "type": "string",
@@ -46421,6 +47057,10 @@
         "description": "The project estimation object.",
         "type": "object",
         "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "The project ID."
+          },
           "resources": {
             "type": "array",
             "description": "Estimates for individual project resource components",
@@ -47029,6 +47669,7 @@
         "type": "object",
         "required": [
           "name",
+          "billing_email",
           "country",
           "billing_street_1",
           "administrative_area",
@@ -47045,7 +47686,7 @@
           "billing_email": {
             "type": "string",
             "format": "email",
-            "description": "Billing email address (optional)",
+            "description": "Billing email address",
             "example": "billing@example.com"
           },
           "country": {
@@ -47130,6 +47771,33 @@
             "$ref": "#/components/schemas/price"
           }
         }
+      },
+      "salesforce_profile_response_with_links": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/salesforce_profile_response"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_links": {
+                "type": "object",
+                "description": "HAL links for related resources.",
+                "properties": {
+                  "self": {
+                    "$ref": "#/components/schemas/link"
+                  },
+                  "update": {
+                    "$ref": "#/components/schemas/link"
+                  }
+                },
+                "required": [
+                  "self"
+                ]
+              }
+            }
+          }
+        ]
       },
       "AcceptedResponse": {
         "type": "object",
@@ -53960,6 +54628,11 @@
             "type": "string",
             "title": "Fastly Service ID",
             "description": "The Fastly Service ID"
+          },
+          "tls_certificates": {
+            "type": "boolean",
+            "title": "TLS Certificates",
+            "description": "Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions"
           }
         },
         "required": [
@@ -53972,7 +54645,8 @@
           "excluded_environments",
           "states",
           "result",
-          "service_id"
+          "service_id",
+          "tls_certificates"
         ],
         "additionalProperties": false
       },
@@ -54035,6 +54709,11 @@
             "type": "string",
             "title": "Fastly Service ID",
             "description": "The Fastly Service ID"
+          },
+          "tls_certificates": {
+            "type": "boolean",
+            "title": "TLS Certificates",
+            "description": "Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions"
           }
         },
         "required": [
@@ -54103,6 +54782,11 @@
             "type": "string",
             "title": "Fastly Service ID",
             "description": "The Fastly Service ID"
+          },
+          "tls_certificates": {
+            "type": "boolean",
+            "title": "TLS Certificates",
+            "description": "Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions"
           }
         },
         "required": [
@@ -56397,6 +57081,22 @@
             "title": "Runtime Operations",
             "description": ""
           },
+          "tasks": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Enabled",
+                "description": "If true, background tasks can be triggered."
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "additionalProperties": false,
+            "title": "Tasks",
+            "description": ""
+          },
           "outbound_firewall": {
             "type": "object",
             "properties": {
@@ -56913,6 +57613,7 @@
           }
         },
         "required": [
+          "tasks",
           "metrics",
           "logs_forwarding",
           "guaranteed_resources",
@@ -60030,6 +60731,197 @@
         ],
         "additionalProperties": false
       },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Task Identifier",
+            "description": "The identifier of Task"
+          },
+          "type": {
+            "type": "string",
+            "title": "Image type",
+            "description": "The runtime type and version for the task (e.g., python:3.8)"
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "root": {
+                "type": "string",
+                "title": "Task Source Root",
+                "description": "The root of the task relative to the repository root"
+              }
+            },
+            "required": [
+              "root"
+            ],
+            "additionalProperties": false,
+            "title": "Source Code Configuration",
+            "description": "Configuration related to the source code of the task"
+          },
+          "hooks": {
+            "type": "object",
+            "properties": {
+              "build": {
+                "type": "string",
+                "nullable": true,
+                "title": "Build Hook",
+                "description": "Hook executed after the build process"
+              },
+              "deploy": {
+                "type": "string",
+                "nullable": true,
+                "title": "Deploy Hook",
+                "description": "Hook executed before the task's run command"
+              }
+            },
+            "required": [
+              "build",
+              "deploy"
+            ],
+            "additionalProperties": false,
+            "title": "Hooks",
+            "description": "Scripts executed at various points in the lifecycle of the task"
+          },
+          "relationships": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "service": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Service Name",
+                  "description": "The name of the service."
+                },
+                "endpoint": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Endpoint Name",
+                  "description": "The name of the endpoint on the service."
+                }
+              },
+              "required": [
+                "service",
+                "endpoint"
+              ],
+              "additionalProperties": false,
+              "nullable": true
+            },
+            "title": "Relationships",
+            "description": "The relationships of the task to defined services and applications"
+          },
+          "mounts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "instance",
+                    "local",
+                    "service",
+                    "storage",
+                    "temporary",
+                    "tmp"
+                  ],
+                  "title": "Mount type",
+                  "description": "The type of mount that will provide the data."
+                },
+                "source_path": {
+                  "type": "string",
+                  "title": "Source Path",
+                  "description": "The path to be mounted, relative to the root directory of the volume that's being mounted from."
+                },
+                "service": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Service Name",
+                  "description": "The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`."
+                }
+              },
+              "required": [
+                "source",
+                "source_path"
+              ],
+              "additionalProperties": false
+            },
+            "title": "Mounts",
+            "description": "Filesystem mounts of this task"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "title": "Environment Variables",
+            "description": "Variables provide environment-sensitive information to control how your task behaves"
+          },
+          "run": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "title": "Run Command",
+                "description": "The command to execute when running the task"
+              },
+              "timeout": {
+                "type": "integer",
+                "title": "Timeout",
+                "description": "The maximum timeout in seconds after which the task will be forcefully killed"
+              }
+            },
+            "required": [
+              "command",
+              "timeout"
+            ],
+            "additionalProperties": false,
+            "title": "Run Configuration",
+            "description": "Configuration for task execution"
+          },
+          "name": {
+            "type": "string",
+            "title": "Task name",
+            "description": "The unique name of the task"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "source",
+          "hooks",
+          "relationships",
+          "mounts",
+          "variables",
+          "run",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "TaskCollection": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Task"
+        }
+      },
+      "TaskTriggerInput": {
+        "type": "object",
+        "properties": {
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "title": "Variables",
+            "description": "Environment variables for the task"
+          }
+        },
+        "additionalProperties": false
+      },
       "Tree": {
         "type": "object",
         "properties": {
@@ -61010,7 +61902,7 @@
           "down": {
             "allOf": [
               {
-                "description": "Lower bound on resource usage"
+                "description": "Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling."
               },
               {
                 "$ref": "#/components/schemas/AutoscalerCondition"
@@ -61062,7 +61954,7 @@
           "down": {
             "allOf": [
               {
-                "description": "Lower bound on resource usage"
+                "description": "Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling."
               },
               {
                 "$ref": "#/components/schemas/AutoscalerCondition"
@@ -61157,7 +62049,7 @@
           "down": {
             "allOf": [
               {
-                "description": "Lower bound on resource usage"
+                "description": "Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling."
               },
               {
                 "$ref": "#/components/schemas/AutoscalerCondition"
@@ -61209,7 +62101,7 @@
           "down": {
             "allOf": [
               {
-                "description": "Lower bound on resource usage"
+                "description": "Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling."
               },
               {
                 "$ref": "#/components/schemas/AutoscalerCondition"
@@ -63427,7 +64319,7 @@
             "nullable": true
           },
           "fastly_service_ids": {
-            "description": "[Internal] Fastly service IDs for the project.",
+            "description": "Fastly service IDs for the project.",
             "type": "array",
             "items": {
               "type": "string"
@@ -64963,6 +65855,75 @@
       "CarbonTotal": {
         "type": "number",
         "description": "The calculated total of the metric for the given interval."
+      },
+      "History": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the history record."
+          },
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "event_type": {
+            "type": "string",
+            "description": "The type of event that triggered the record."
+          },
+          "event_id": {
+            "type": "string",
+            "description": "The ID of the event."
+          },
+          "resource": {
+            "type": "string",
+            "description": "The resource type (e.g., cpu_app, memory_services, storage)."
+          },
+          "environment": {
+            "type": "string",
+            "description": "The environment name."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "The quantity of the resource."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp when the record was created."
+          },
+          "user": {
+            "type": "string",
+            "description": "The ID of the user who triggered the event."
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnvironmentUsage": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "environment": {
+            "type": "string",
+            "description": "The environment name."
+          },
+          "resources": {
+            "type": "object",
+            "description": "The latest resource quantities keyed by resource type.",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "project_id",
+          "environment",
+          "resources"
+        ]
       },
       "CreatedAt": {
         "type": "string",
