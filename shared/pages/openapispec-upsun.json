@@ -8655,7 +8655,8 @@
                     },
                     "arguments": {
                       "description": "Function arguments and metric data",
-                      "type": "object"
+                      "type": "object",
+                      "nullable": true
                     },
                     "layers": {
                       "description": "Layer information",
@@ -8854,7 +8855,6 @@
                           "_links": {
                             "description": "API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.",
                             "required": [
-                              "api_timeline",
                               "api_subprofiles",
                               "api_profile",
                               "api_graph"
@@ -8959,6 +8959,20 @@
                         },
                         "type": "object",
                         "additionalProperties": false
+                      }
+                    },
+                    "tested_transactions": {
+                      "description": "List of transaction names that have been tested by recommendations",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "untested_top_transactions": {
+                      "description": "List of top transaction names that have not been tested by recommendations",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
                       }
                     },
                     "total": {
@@ -9226,7 +9240,6 @@
                           "_links": {
                             "description": "Profile navigation links. Links with type \"text/html\" are web pages for humans. Links with type \"application/json\" are API endpoints returning JSON.",
                             "required": [
-                              "api_timeline",
                               "api_subprofiles",
                               "api_profile",
                               "api_graph"
@@ -9682,7 +9695,8 @@
                                 "description": "Performance impact score (ms × count)",
                                 "type": "number",
                                 "format": "float",
-                                "example": 15234.67
+                                "example": 15234.67,
+                                "nullable": true
                               },
                               "average": {
                                 "description": "Average response time in milliseconds",
@@ -9767,7 +9781,8 @@
                                       "description": "Performance impact score",
                                       "type": "number",
                                       "format": "float",
-                                      "example": 378.45
+                                      "example": 378.45,
+                                      "nullable": true
                                     }
                                   },
                                   "type": "object",
@@ -9966,13 +9981,13 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips": {
+    "/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/ips": {
       "get": {
         "tags": [
           "Http Traffic"
         ],
         "summary": "Get HTTP traffic timeline by IP",
-        "description": "Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP's share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.",
+        "description": "Returns HTTP traffic analytics grouped by IP address with IPs ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.",
         "operationId": "http_metrics_timeline_ips",
         "parameters": [
           {
@@ -10020,16 +10035,27 @@
             }
           },
           {
-            "name": "top_count",
+            "name": "limit",
             "in": "query",
-            "description": "Number of top IPs to return (default: 10, max: 100)",
+            "description": "Maximum number of items to return (default: 200, max: 300)",
             "required": false,
             "schema": {
               "type": "integer",
               "default": null,
-              "maximum": 100,
-              "minimum": 1,
-              "example": 20
+              "maximum": 300,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "top_hits_count",
+            "in": "query",
+            "description": "Number of top items to include in timeline (default: 15, max: 15)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": null,
+              "maximum": 15,
+              "minimum": 1
             }
           },
           {
@@ -10222,8 +10248,10 @@
                     "_environment_id",
                     "_environment_type",
                     "_branch_machine_name",
-                    "_top_count",
-                    "data"
+                    "_breakdown_limit",
+                    "_breakdown_top_hits",
+                    "breakdown",
+                    "top_hits_timeline"
                   ],
                   "properties": {
                     "_grain": {
@@ -10266,10 +10294,32 @@
                       "type": "string",
                       "example": "main-bvxea6i"
                     },
-                    "_top_count": {
-                      "description": "Number of top IPs included in response",
+                    "_breakdown_limit": {
+                      "description": "Maximum number of items returned",
                       "type": "integer",
-                      "example": 10
+                      "example": 200
+                    },
+                    "_breakdown_top_hits": {
+                      "description": "Configuration for top hits selection",
+                      "required": [
+                        "max_quantity",
+                        "max_percentage"
+                      ],
+                      "properties": {
+                        "max_quantity": {
+                          "description": "Maximum number of top hit items tracked in timeline",
+                          "type": "integer",
+                          "example": 15
+                        },
+                        "max_percentage": {
+                          "description": "Maximum cumulative impact percentage for top hits",
+                          "type": "number",
+                          "format": "float",
+                          "example": 98
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
                     },
                     "_methods": {
                       "description": "Applied method filter values",
@@ -10361,13 +10411,12 @@
                       ],
                       "nullable": true
                     },
-                    "data": {
-                      "description": "HTTP traffic data grouped by IP addresses",
+                    "breakdown": {
+                      "description": "IP addresses ranked by impact",
                       "required": [
                         "kind",
                         "total",
-                        "top_hits",
-                        "timelines"
+                        "data"
                       ],
                       "properties": {
                         "kind": {
@@ -10383,43 +10432,18 @@
                           "type": "integer",
                           "example": 396519
                         },
-                        "top_hits": {
-                          "description": "Top IP addresses ranked by request count. Object keys are IP addresses.",
-                          "type": "object",
-                          "example": {
-                            "192.168.1.1": {
-                              "name": "192.168.1.1",
-                              "impact": 15.67,
-                              "average": 0.234,
-                              "p_50": 0.156,
-                              "p_96": 0.892,
-                              "count": 62143
-                            },
-                            "10.0.0.5": {
-                              "name": "10.0.0.5",
-                              "impact": 12.34,
-                              "average": 0.189,
-                              "p_50": 0.123,
-                              "p_96": 0.756,
-                              "count": 48921
-                            },
-                            "172.16.0.10": {
-                              "name": "172.16.0.10",
-                              "impact": 8.45,
-                              "average": 0.312,
-                              "p_50": 0.201,
-                              "p_96": 1.234,
-                              "count": 33512
-                            }
-                          },
-                          "additionalProperties": {
+                        "data": {
+                          "description": "List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.",
+                          "type": "array",
+                          "items": {
                             "required": [
                               "name",
                               "impact",
                               "average",
                               "p_50",
                               "p_96",
-                              "count"
+                              "count",
+                              "top_hit"
                             ],
                             "properties": {
                               "name": {
@@ -10431,8 +10455,7 @@
                                 "description": "Impact score as percentage of total wall time consumed",
                                 "type": "number",
                                 "format": "float",
-                                "example": 15.67,
-                                "nullable": true
+                                "example": 15.67
                               },
                               "average": {
                                 "description": "Average request duration in seconds",
@@ -10456,14 +10479,58 @@
                                 "description": "Total number of requests from this IP",
                                 "type": "integer",
                                 "example": 62143
+                              },
+                              "top_hit": {
+                                "description": "Whether this item is tracked in top_hits_timeline",
+                                "type": "boolean",
+                                "example": true
                               }
                             },
                             "type": "object",
                             "additionalProperties": false
-                          }
-                        },
-                        "timelines": {
-                          "description": "Time-series HTTP traffic metrics grouped by IP. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.",
+                          },
+                          "example": [
+                            {
+                              "name": "192.168.1.1",
+                              "impact": 15.67,
+                              "average": 0.234,
+                              "p_50": 0.156,
+                              "p_96": 0.892,
+                              "count": 62143,
+                              "top_hit": true
+                            },
+                            {
+                              "name": "10.0.0.5",
+                              "impact": 12.34,
+                              "average": 0.189,
+                              "p_50": 0.123,
+                              "p_96": 0.756,
+                              "count": 48921,
+                              "top_hit": true
+                            },
+                            {
+                              "name": "172.16.0.10",
+                              "impact": 8.45,
+                              "average": 0.312,
+                              "p_50": 0.201,
+                              "p_96": 1.234,
+                              "count": 33512,
+                              "top_hit": false
+                            }
+                          ]
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    },
+                    "top_hits_timeline": {
+                      "description": "Time-series data for top hit items",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "description": "Time-series HTTP traffic metrics for top hit IPs. Fields are omitted for timestamps with no data.",
                           "type": "array",
                           "items": {
                             "required": [
@@ -10475,13 +10542,19 @@
                                 "type": "integer",
                                 "example": 1704067200
                               },
-                              "total": {
+                              "_total_consumed": {
+                                "description": "Total wall-time consumed across all items at this interval",
+                                "type": "number",
+                                "format": "float",
+                                "example": 5678.9
+                              },
+                              "_total_count": {
                                 "description": "Total request count at this timestamp across all IPs. Consider 0 if absent",
                                 "type": "integer",
                                 "example": 4120
                               },
                               "data": {
-                                "description": "Per-IP metrics at this timestamp. Object keys are IP addresses.",
+                                "description": "Per-IP metrics at this timestamp. Only includes top hit items.",
                                 "type": "object",
                                 "example": {
                                   "192.168.1.1": {
@@ -10491,10 +10564,6 @@
                                   "10.0.0.5": {
                                     "count": 1247,
                                     "impact": 30.26
-                                  },
-                                  "172.16.0.10": {
-                                    "count": 823,
-                                    "impact": 19.98
                                   }
                                 },
                                 "additionalProperties": {
@@ -10527,7 +10596,8 @@
                           "example": [
                             {
                               "timestamp": 1704067200,
-                              "total": 4120,
+                              "_total_consumed": 5678.9,
+                              "_total_count": 4120,
                               "data": {
                                 "192.168.1.1": {
                                   "count": 1543,
@@ -10540,7 +10610,8 @@
                             },
                             {
                               "timestamp": 1704074400,
-                              "total": 3891,
+                              "_total_consumed": 4321.2,
+                              "_total_count": 3891,
                               "data": {
                                 "10.0.0.5": {
                                   "count": 1247,
@@ -10649,13 +10720,13 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents": {
+    "/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/user-agents": {
       "get": {
         "tags": [
           "Http Traffic"
         ],
         "summary": "Get HTTP traffic timeline by user agent",
-        "description": "Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent's share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.",
+        "description": "Returns HTTP traffic analytics grouped by User Agent with User Agents ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.",
         "operationId": "http_metrics_timeline_user_agents",
         "parameters": [
           {
@@ -10703,16 +10774,27 @@
             }
           },
           {
-            "name": "top_count",
+            "name": "limit",
             "in": "query",
-            "description": "Number of top User Agents to return (default: 10, max: 100)",
+            "description": "Maximum number of items to return (default: 200, max: 300)",
             "required": false,
             "schema": {
               "type": "integer",
               "default": null,
-              "maximum": 100,
-              "minimum": 1,
-              "example": 20
+              "maximum": 300,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "top_hits_count",
+            "in": "query",
+            "description": "Number of top items to include in timeline (default: 15, max: 15)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": null,
+              "maximum": 15,
+              "minimum": 1
             }
           },
           {
@@ -10905,8 +10987,10 @@
                     "_environment_id",
                     "_environment_type",
                     "_branch_machine_name",
-                    "_top_count",
-                    "data"
+                    "_breakdown_limit",
+                    "_breakdown_top_hits",
+                    "breakdown",
+                    "top_hits_timeline"
                   ],
                   "properties": {
                     "_grain": {
@@ -10949,10 +11033,32 @@
                       "type": "string",
                       "example": "main-bvxea6i"
                     },
-                    "_top_count": {
-                      "description": "Number of top User Agents included in response",
+                    "_breakdown_limit": {
+                      "description": "Maximum number of items returned",
                       "type": "integer",
-                      "example": 10
+                      "example": 200
+                    },
+                    "_breakdown_top_hits": {
+                      "description": "Configuration for top hits selection",
+                      "required": [
+                        "max_quantity",
+                        "max_percentage"
+                      ],
+                      "properties": {
+                        "max_quantity": {
+                          "description": "Maximum number of top hit items tracked in timeline",
+                          "type": "integer",
+                          "example": 15
+                        },
+                        "max_percentage": {
+                          "description": "Maximum cumulative impact percentage for top hits",
+                          "type": "number",
+                          "format": "float",
+                          "example": 98
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
                     },
                     "_methods": {
                       "description": "Applied method filter values",
@@ -11044,13 +11150,12 @@
                       ],
                       "nullable": true
                     },
-                    "data": {
-                      "description": "HTTP traffic data grouped by User Agents",
+                    "breakdown": {
+                      "description": "User Agents ranked by impact",
                       "required": [
                         "kind",
                         "total",
-                        "top_hits",
-                        "timelines"
+                        "data"
                       ],
                       "properties": {
                         "kind": {
@@ -11066,43 +11171,18 @@
                           "type": "integer",
                           "example": 396519
                         },
-                        "top_hits": {
-                          "description": "Top User Agents ranked by request count. Object keys are User Agent strings.",
-                          "type": "object",
-                          "example": {
-                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36": {
-                              "name": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                              "impact": 45.67,
-                              "average": 0.234,
-                              "p_50": 0.156,
-                              "p_96": 0.892,
-                              "count": 62143
-                            },
-                            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36": {
-                              "name": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-                              "impact": 32.45,
-                              "average": 0.189,
-                              "p_50": 0.123,
-                              "p_96": 0.756,
-                              "count": 44123
-                            },
-                            "curl/7.68.0": {
-                              "name": "curl/7.68.0",
-                              "impact": 8.45,
-                              "average": 0.312,
-                              "p_50": 0.201,
-                              "p_96": 1.234,
-                              "count": 11512
-                            }
-                          },
-                          "additionalProperties": {
+                        "data": {
+                          "description": "List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.",
+                          "type": "array",
+                          "items": {
                             "required": [
                               "name",
                               "impact",
                               "average",
                               "p_50",
                               "p_96",
-                              "count"
+                              "count",
+                              "top_hit"
                             ],
                             "properties": {
                               "name": {
@@ -11114,8 +11194,7 @@
                                 "description": "Impact score as percentage of total wall time consumed",
                                 "type": "number",
                                 "format": "float",
-                                "example": 45.67,
-                                "nullable": true
+                                "example": 45.67
                               },
                               "average": {
                                 "description": "Average request duration in seconds",
@@ -11139,14 +11218,49 @@
                                 "description": "Total number of requests from this User Agent",
                                 "type": "integer",
                                 "example": 62143
+                              },
+                              "top_hit": {
+                                "description": "Whether this item is tracked in top_hits_timeline",
+                                "type": "boolean",
+                                "example": true
                               }
                             },
                             "type": "object",
                             "additionalProperties": false
-                          }
-                        },
-                        "timelines": {
-                          "description": "Time-series HTTP traffic metrics grouped by User Agent. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.",
+                          },
+                          "example": [
+                            {
+                              "name": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                              "impact": 45.67,
+                              "average": 0.234,
+                              "p_50": 0.156,
+                              "p_96": 0.892,
+                              "count": 62143,
+                              "top_hit": true
+                            },
+                            {
+                              "name": "curl/7.68.0",
+                              "impact": 8.45,
+                              "average": 0.312,
+                              "p_50": 0.201,
+                              "p_96": 1.234,
+                              "count": 11512,
+                              "top_hit": false
+                            }
+                          ]
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    },
+                    "top_hits_timeline": {
+                      "description": "Time-series data for top hit items",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "description": "Time-series HTTP traffic metrics for top hit User Agents. Fields are omitted for timestamps with no data.",
                           "type": "array",
                           "items": {
                             "required": [
@@ -11158,26 +11272,24 @@
                                 "type": "integer",
                                 "example": 1704067200
                               },
-                              "total": {
-                                "description": "Total request count at this timestamp across all User Agents. Consider 0 if absent",
+                              "_total_consumed": {
+                                "description": "Total wall-time consumed across all items at this interval",
+                                "type": "number",
+                                "format": "float",
+                                "example": 5678.9
+                              },
+                              "_total_count": {
+                                "description": "Total request count at this timestamp. Consider 0 if absent",
                                 "type": "integer",
                                 "example": 4120
                               },
                               "data": {
-                                "description": "Per-User Agent metrics at this timestamp. Object keys are User Agent strings.",
+                                "description": "Per-User Agent metrics at this timestamp. Only includes top hit items.",
                                 "type": "object",
                                 "example": {
                                   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36": {
                                     "count": 1543,
                                     "impact": 47.45
-                                  },
-                                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36": {
-                                    "count": 1247,
-                                    "impact": 38.26
-                                  },
-                                  "curl/7.68.0": {
-                                    "count": 223,
-                                    "impact": 6.85
                                   }
                                 },
                                 "additionalProperties": {
@@ -11187,12 +11299,12 @@
                                   ],
                                   "properties": {
                                     "count": {
-                                      "description": "Request count from this User Agent at this timestamp",
+                                      "description": "Request count at this timestamp",
                                       "type": "integer",
                                       "example": 1543
                                     },
                                     "impact": {
-                                      "description": "Impact score as percentage of wall time consumed at this timestamp",
+                                      "description": "Impact score as percentage of wall time consumed",
                                       "type": "number",
                                       "format": "float",
                                       "example": 47.45,
@@ -11210,7 +11322,8 @@
                           "example": [
                             {
                               "timestamp": 1704067200,
-                              "total": 4120,
+                              "_total_consumed": 5678.9,
+                              "_total_count": 4120,
                               "data": {
                                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64)": {
                                   "count": 1543,
@@ -11220,16 +11333,6 @@
                             },
                             {
                               "timestamp": 1704070800
-                            },
-                            {
-                              "timestamp": 1704074400,
-                              "total": 3891,
-                              "data": {
-                                "curl/7.68.0": {
-                                  "count": 223,
-                                  "impact": 6.85
-                                }
-                              }
                             }
                           ]
                         }
@@ -11332,13 +11435,13 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls": {
+    "/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/urls": {
       "get": {
         "tags": [
           "Http Traffic"
         ],
         "summary": "Get HTTP traffic timeline by URL",
-        "description": "Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by \"METHOD-URL\" keys (e.g., \"GET-https://example.com/api/products\") and timestamped traffic data with request/response sizes in bytes.",
+        "description": "Returns HTTP traffic analytics with URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.",
         "operationId": "http_metrics_timeline_urls",
         "parameters": [
           {
@@ -11386,16 +11489,27 @@
             }
           },
           {
-            "name": "top_count",
+            "name": "limit",
             "in": "query",
-            "description": "Number of top URLs to return (default: 10, max: 100)",
+            "description": "Maximum number of items to return (default: 200, max: 300)",
             "required": false,
             "schema": {
               "type": "integer",
               "default": null,
-              "maximum": 100,
-              "minimum": 1,
-              "example": 20
+              "maximum": 300,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "top_hits_count",
+            "in": "query",
+            "description": "Number of top items to include in timeline (default: 15, max: 15)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": null,
+              "maximum": 15,
+              "minimum": 1
             }
           },
           {
@@ -11588,8 +11702,10 @@
                     "_environment_id",
                     "_environment_type",
                     "_branch_machine_name",
-                    "_top_count",
-                    "data",
+                    "_breakdown_limit",
+                    "_breakdown_top_hits",
+                    "breakdown",
+                    "top_hits_timeline",
                     "filters"
                   ],
                   "properties": {
@@ -11633,10 +11749,32 @@
                       "type": "string",
                       "example": "main-bvxea6i"
                     },
-                    "_top_count": {
-                      "description": "Number of top URLs included in response",
+                    "_breakdown_limit": {
+                      "description": "Maximum number of items returned",
                       "type": "integer",
-                      "example": 10
+                      "example": 200
+                    },
+                    "_breakdown_top_hits": {
+                      "description": "Configuration for top hits selection",
+                      "required": [
+                        "max_quantity",
+                        "max_percentage"
+                      ],
+                      "properties": {
+                        "max_quantity": {
+                          "description": "Maximum number of top hit items tracked in timeline",
+                          "type": "integer",
+                          "example": 15
+                        },
+                        "max_percentage": {
+                          "description": "Maximum cumulative impact percentage for top hits",
+                          "type": "number",
+                          "format": "float",
+                          "example": 98
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
                     },
                     "_methods": {
                       "description": "Applied method filter values",
@@ -11728,13 +11866,12 @@
                       ],
                       "nullable": true
                     },
-                    "data": {
-                      "description": "HTTP traffic data containing URL statistics and time-series information",
+                    "breakdown": {
+                      "description": "URLs ranked by impact",
                       "required": [
                         "kind",
                         "total",
-                        "top_hits",
-                        "timelines"
+                        "data"
                       ],
                       "properties": {
                         "kind": {
@@ -11750,39 +11887,10 @@
                           "type": "integer",
                           "example": 396519
                         },
-                        "top_hits": {
-                          "description": "Top URLs ranked by impact (response time × request count). Object keys use \"METHOD-URL\" format (e.g., \"GET-https://example.com/api/products\") as unique identifiers.",
-                          "type": "object",
-                          "example": {
-                            "GET-https://example.com/api/products": {
-                              "url": "https://example.com/api/products",
-                              "method": "GET",
-                              "impact": 15234.67,
-                              "average": 245.3,
-                              "p_50": 198.5,
-                              "p_96": 512.8,
-                              "count": 62143
-                            },
-                            "GET-https://example.com/api/users/{id}": {
-                              "url": "https://example.com/api/users/{id}",
-                              "method": "GET",
-                              "impact": 8921.44,
-                              "average": 178.2,
-                              "p_50": 142.1,
-                              "p_96": 389.3,
-                              "count": 50073
-                            },
-                            "POST-https://example.com/api/orders": {
-                              "url": "https://example.com/api/orders",
-                              "method": "POST",
-                              "impact": 6543.21,
-                              "average": 312.5,
-                              "p_50": 267.8,
-                              "p_96": 678.4,
-                              "count": 20945
-                            }
-                          },
-                          "additionalProperties": {
+                        "data": {
+                          "description": "List of URLs ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.",
+                          "type": "array",
+                          "items": {
                             "required": [
                               "url",
                               "method",
@@ -11790,7 +11898,8 @@
                               "average",
                               "p_50",
                               "p_96",
-                              "count"
+                              "count",
+                              "top_hit"
                             ],
                             "properties": {
                               "url": {
@@ -11813,10 +11922,11 @@
                                 "example": "GET"
                               },
                               "impact": {
-                                "description": "Performance impact score (ms × count)",
+                                "description": "Performance impact score (ms x count)",
                                 "type": "number",
                                 "format": "float",
-                                "example": 15234.67
+                                "example": 15234.67,
+                                "nullable": true
                               },
                               "average": {
                                 "description": "Average response time in milliseconds",
@@ -11840,14 +11950,51 @@
                                 "description": "Total number of requests",
                                 "type": "integer",
                                 "example": 62143
+                              },
+                              "top_hit": {
+                                "description": "Whether this URL is tracked in top_hits_timeline",
+                                "type": "boolean",
+                                "example": true
                               }
                             },
                             "type": "object",
                             "additionalProperties": false
-                          }
-                        },
-                        "timelines": {
-                          "description": "Time-series HTTP traffic metrics. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.",
+                          },
+                          "example": [
+                            {
+                              "url": "https://example.com/api/products",
+                              "method": "GET",
+                              "impact": 15234.67,
+                              "average": 245.3,
+                              "p_50": 198.5,
+                              "p_96": 512.8,
+                              "count": 62143,
+                              "top_hit": true
+                            },
+                            {
+                              "url": "https://example.com/api/orders",
+                              "method": "POST",
+                              "impact": 6543.21,
+                              "average": 312.5,
+                              "p_50": 267.8,
+                              "p_96": 678.4,
+                              "count": 20945,
+                              "top_hit": false
+                            }
+                          ]
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    },
+                    "top_hits_timeline": {
+                      "description": "Time-series data for top hit URLs",
+                      "required": [
+                        "data"
+                      ],
+                      "properties": {
+                        "data": {
+                          "description": "Time-series HTTP traffic metrics for top hit URLs. Fields are omitted for timestamps with no data.",
                           "type": "array",
                           "items": {
                             "required": [
@@ -11858,6 +12005,17 @@
                                 "description": "Data point timestamp",
                                 "type": "integer",
                                 "example": 1704067200
+                              },
+                              "_total_consumed": {
+                                "description": "Total wall-time consumed across all URLs at this interval",
+                                "type": "number",
+                                "format": "float",
+                                "example": 5678.9
+                              },
+                              "_total_count": {
+                                "description": "Total request count at this timestamp",
+                                "type": "integer",
+                                "example": 4120
                               },
                               "request_size": {
                                 "description": "Total request payload size in bytes",
@@ -11870,20 +12028,12 @@
                                 "example": 2097152
                               },
                               "urls": {
-                                "description": "Per-URL metrics at this timestamp. Object keys use \"METHOD-URL\" format (e.g., \"GET-https://example.com/api/products\") as unique identifiers.",
+                                "description": "Per-URL metrics at this timestamp. Only includes top hit items.",
                                 "type": "object",
                                 "example": {
                                   "GET-https://example.com/api/products": {
                                     "count": 1543,
                                     "impact": 378.45
-                                  },
-                                  "GET-https://example.com/api/users/{id}": {
-                                    "count": 1247,
-                                    "impact": 221.87
-                                  },
-                                  "POST-https://example.com/api/orders": {
-                                    "count": 523,
-                                    "impact": 163.44
                                   }
                                 },
                                 "additionalProperties": {
@@ -11901,7 +12051,8 @@
                                       "description": "Performance impact score",
                                       "type": "number",
                                       "format": "float",
-                                      "example": 378.45
+                                      "example": 378.45,
+                                      "nullable": true
                                     }
                                   },
                                   "type": "object",
@@ -11960,6 +12111,8 @@
                           "example": [
                             {
                               "timestamp": 1704067200,
+                              "_total_consumed": 5678.9,
+                              "_total_count": 1543,
                               "request_size": 524288,
                               "response_size": 2097152,
                               "urls": {
@@ -11979,25 +12132,6 @@
                             },
                             {
                               "timestamp": 1704070800
-                            },
-                            {
-                              "timestamp": 1704074400,
-                              "request_size": 612345,
-                              "response_size": 1847293,
-                              "urls": {
-                                "GET-https://example.com/api/products": {
-                                  "count": 1247,
-                                  "impact": 298.12
-                                }
-                              },
-                              "codes": {
-                                "UNKNOWN": 0,
-                                "1XX": 0,
-                                "2XX": 1247,
-                                "3XX": 0,
-                                "4XX": 0,
-                                "5XX": 0
-                              }
                             }
                           ]
                         }
@@ -19454,7 +19588,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/urls"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/urls"
                             }
                           },
                           "type": "object",
@@ -19468,7 +19602,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/ips"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/ips"
                             }
                           },
                           "type": "object",
@@ -19482,7 +19616,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/user-agents"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/user-agents"
                             }
                           },
                           "type": "object",
@@ -22810,7 +22944,7 @@
         "x-vendor": "upsun"
       }
     },
-    "/billing/{billing_profile_id}/organizations": {
+    "/billing/profiles/{billing_profile_id}/organizations": {
       "get": {
         "summary": "Billing profile organizations",
         "description": "Retrieves organizations that belong to the specified billing profile.",
@@ -24678,7 +24812,7 @@
         }
       }
     },
-    "/billing/{billing_profile_id}/projects": {
+    "/billing/profiles/{billing_profile_id}/projects": {
       "get": {
         "summary": "List projects",
         "description": "Retrieves a list of projects for the specified billing profile.",

@@ -5031,87 +5031,7 @@ paths:
             - admin
             - clients
         - OAuth2: []
-  /billing:
-    get:
-      summary: '[Internal] List billing profile mapping details.'
-      description: Lists billing profile mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: list-billing-profiles-mapping
-      tags:
-        - Billing Profiles
-      parameters:
-        - name: sort
-          in: query
-          description: |
-            Sort field. Use a minus sign (-) prefix for descending order.
-            Supported fields: created_at, updated_at
-          schema:
-            type: string
-            example: '-created_at'
-        - name: page[size]
-          in: query
-          description: Number of items per page
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 1000
-            default: null
-        - name: page[after]
-          in: query
-          description: Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - name: page[before]
-          in: query
-          description: Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - name: filter[salesforce_id][eq]
-          in: query
-          description: Filter by Salesforce ID (exact match)
-          schema:
-            type: string
-      responses:
-        '200':
-          description: List of billing profiles mapping
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/billing_profile_mapping_list'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}:
-    get:
-      summary: '[Internal] Get billing profile mapping details'
-      description: Retrieves mapping details for a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: get-billing-profile-mapping
-      tags:
-        - Billing Profiles
-      parameters:
-        - $ref: '#/components/parameters/billing_profile_id'
-      responses:
-        '200':
-          description: Billing profile found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/billing_profile_mapping_with_links'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/profile:
+  /billing/profiles/{billing_profile_id}:
     get:
       summary: '[Internal] Get billing profile'
       description: Retrieves a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5178,7 +5098,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/addons:
+  /billing/profiles/{billing_profile_id}/addons:
     get:
       summary: Get add-ons
       description: Retrieves information about the add-ons for a billing profile.
@@ -5247,7 +5167,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
       x-vendor: upsun
-  /billing/{billing_profile_id}/payment-source:
+  /billing/profiles/{billing_profile_id}/payment-source:
     get:
       summary: '[Internal] Get payment source'
       description: Retrieves the payment source for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5334,7 +5254,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/payment-source/intent:
+  /billing/profiles/{billing_profile_id}/payment-source/intent:
     post:
       summary: '[Internal] Create payment intent'
       description: Creates a payment intent for the specified billing profile.
@@ -5377,7 +5297,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/prepayment:
+  /billing/profiles/{billing_profile_id}/prepayment:
     get:
       summary: '[Internal] Get prepayment'
       description: Retrieves prepayment information for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5542,7 +5462,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/invoices:
+  /billing/profiles/{billing_profile_id}/invoices:
     get:
       summary: '[Internal] List invoices'
       description: |
@@ -5666,7 +5586,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/invoices/{invoice_id}:
+  /billing/profiles/{billing_profile_id}/invoices/{invoice_id}:
     get:
       summary: '[Internal] Get invoice'
       description: |
@@ -5703,7 +5623,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/invoices/{invoice_id}/authorize:
+  /billing/profiles/{billing_profile_id}/invoices/{invoice_id}/authorize:
     post:
       summary: '[Internal] Create confirmation credentials for 3D-Secure'
       description: Creates confirmation credentials for payments that require online authorization. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5765,7 +5685,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/invoices/{invoice_id}/details:
+  /billing/profiles/{billing_profile_id}/invoices/{invoice_id}/details:
     get:
       summary: '[Internal] Get invoice details'
       description: Retrieves the lines items of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5800,7 +5720,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/invoices/{invoice_id}/payments:
+  /billing/profiles/{billing_profile_id}/invoices/{invoice_id}/payments:
     get:
       summary: '[Internal] Get invoice payments'
       description: Retrieves the payments of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5835,7 +5755,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/alerts/billing:
+  /billing/profiles/{billing_profile_id}/alerts/billing:
     get:
       summary: '[Internal] Get billing alert configuration'
       description: Retrieves billing alert configuration for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5911,7 +5831,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/alerts/projects/{project_id}/usage:
+  /billing/profiles/{billing_profile_id}/alerts/projects/{project_id}/usage:
     get:
       summary: '[Internal] Get usage alert configuration'
       description: Retrieves usage alert configuration for the specified project. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5987,7 +5907,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/dunning-actions:
+  /billing/profiles/{billing_profile_id}/dunning-actions:
     get:
       summary: '[Internal] List scheduled dunning actions'
       description: Retrieves a list of all scheduled dunning actions for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -6015,7 +5935,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/discounts:
+  /billing/profiles/{billing_profile_id}/discounts:
     get:
       summary: '[Internal] List billing profile discounts'
       description: Retrieves all applicable discounts granted to the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -6060,7 +5980,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/contract:
+  /billing/profiles/{billing_profile_id}/contract:
     get:
       summary: '[Internal] List billing profile contract information'
       description: Retrieves commitment and agency discounts granted to the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -6105,7 +6025,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/users:
+  /billing/profiles/{billing_profile_id}/users:
     get:
       summary: '[Internal] List billing profile users'
       description: Accessible to the billing account owner.
@@ -6197,7 +6117,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/users/{billing_user_id}:
+  /billing/profiles/{billing_profile_id}/users/{billing_user_id}:
     get:
       summary: '[Internal] Get billing profile user'
       description: Retrieves the specified billing profile user.
@@ -6292,7 +6212,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/vouchers:
+  /billing/profiles/{billing_profile_id}/vouchers:
     get:
       summary: '[Internal] List vouchers'
       description: Retrieves vouchers for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -6320,7 +6240,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/estimate:
+  /billing/profiles/{billing_profile_id}/estimate:
     get:
       summary: '[Internal] Estimate billing profile'
       description: Retrieves estimated cost for a billing profile.
@@ -6349,7 +6269,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-  /billing/{billing_profile_id}/projects/{project_id}/estimate:
+  /billing/profiles/{billing_profile_id}/projects/{project_id}/estimate:
     get:
       summary: '[Internal] Estimate project'
       description: Retrieves estimated cost for a project.
@@ -13154,6 +13074,7 @@ paths:
                   arguments:
                     description: Function arguments and metric data
                     type: object
+                    nullable: true
                   layers:
                     description: Layer information
                     type: object
@@ -13303,7 +13224,6 @@ paths:
                         _links:
                           description: API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.
                           required:
-                            - api_timeline
                             - api_subprofiles
                             - api_profile
                             - api_graph
@@ -13380,6 +13300,16 @@ paths:
                           additionalProperties: false
                       type: object
                       additionalProperties: false
+                  tested_transactions:
+                    description: List of transaction names that have been tested by recommendations
+                    type: array
+                    items:
+                      type: string
+                  untested_top_transactions:
+                    description: List of top transaction names that have not been tested by recommendations
+                    type: array
+                    items:
+                      type: string
                   total:
                     description: Total number of profiles with failing recommendations
                     type: integer
@@ -13576,7 +13506,6 @@ paths:
                         _links:
                           description: Profile navigation links. Links with type "text/html" are web pages for humans. Links with type "application/json" are API endpoints returning JSON.
                           required:
-                            - api_timeline
                             - api_subprofiles
                             - api_profile
                             - api_graph
@@ -13922,6 +13851,7 @@ paths:
                               type: number
                               format: float
                               example: 15234.67
+                              nullable: true
                             average:
                               description: Average response time in milliseconds
                               type: number
@@ -13989,6 +13919,7 @@ paths:
                                     type: number
                                     format: float
                                     example: 378.45
+                                    nullable: true
                                 type: object
                                 additionalProperties: false
                             codes:
@@ -14123,12 +14054,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/ips:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by IP
-      description: 'Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.'
+      description: 'Returns HTTP traffic analytics grouped by IP address with IPs ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_ips
       parameters:
         - name: projectId
@@ -14163,16 +14094,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top IPs to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -14319,8 +14258,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                 properties:
                   _grain:
                     description: Data granularity in seconds
@@ -14354,10 +14295,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top IPs included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -14428,13 +14386,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data grouped by IP addresses
+                  breakdown:
+                    description: IP addresses ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -14446,32 +14403,10 @@ paths:
                         description: Total request count across all IPs
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top IP addresses ranked by request count. Object keys are IP addresses.
-                        type: object
-                        example:
-                          192.168.1.1:
-                            name: 192.168.1.1
-                            impact: 15.67
-                            average: 0.234
-                            p_50: 0.156
-                            p_96: 0.892
-                            count: 62143
-                          10.0.0.5:
-                            name: 10.0.0.5
-                            impact: 12.34
-                            average: 0.189
-                            p_50: 0.123
-                            p_96: 0.756
-                            count: 48921
-                          172.16.0.10:
-                            name: 172.16.0.10
-                            impact: 8.45
-                            average: 0.312
-                            p_50: 0.201
-                            p_96: 1.234
-                            count: 33512
-                        additionalProperties:
+                      data:
+                        description: List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - name
                             - impact
@@ -14479,6 +14414,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             name:
                               description: The IP address
@@ -14489,7 +14425,6 @@ paths:
                               type: number
                               format: float
                               example: 15.67
-                              nullable: true
                             average:
                               description: Average request duration in seconds
                               type: number
@@ -14509,10 +14444,43 @@ paths:
                               description: Total number of requests from this IP
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this item is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics grouped by IP. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - name: 192.168.1.1
+                            impact: 15.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                            top_hit: true
+                          - name: 10.0.0.5
+                            impact: 12.34
+                            average: 0.189
+                            p_50: 0.123
+                            p_96: 0.756
+                            count: 48921
+                            top_hit: true
+                          - name: 172.16.0.10
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 33512
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit items
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit IPs. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -14522,12 +14490,17 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
-                            total:
+                            _total_consumed:
+                              description: Total wall-time consumed across all items at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
                               description: Total request count at this timestamp across all IPs. Consider 0 if absent
                               type: integer
                               example: 4120
                             data:
-                              description: Per-IP metrics at this timestamp. Object keys are IP addresses.
+                              description: Per-IP metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 192.168.1.1:
@@ -14536,9 +14509,6 @@ paths:
                                 10.0.0.5:
                                   count: 1247
                                   impact: 30.26
-                                172.16.0.10:
-                                  count: 823
-                                  impact: 19.98
                               additionalProperties:
                                 required:
                                   - count
@@ -14560,14 +14530,16 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
-                            total: 4120
+                            _total_consumed: 5678.9
+                            _total_count: 4120
                             data:
                               192.168.1.1:
                                 count: 1543
                                 impact: 37.45
                           - timestamp: 1704070800
                           - timestamp: 1704074400
-                            total: 3891
+                            _total_consumed: 4321.2
+                            _total_count: 3891
                             data:
                               10.0.0.5:
                                 count: 1247
@@ -14636,12 +14608,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/user-agents:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by user agent
-      description: 'Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.'
+      description: 'Returns HTTP traffic analytics grouped by User Agent with User Agents ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_user_agents
       parameters:
         - name: projectId
@@ -14676,16 +14648,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top User Agents to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -14832,8 +14812,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                 properties:
                   _grain:
                     description: Data granularity in seconds
@@ -14867,10 +14849,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top User Agents included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -14941,13 +14940,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data grouped by User Agents
+                  breakdown:
+                    description: User Agents ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -14959,32 +14957,10 @@ paths:
                         description: Total request count across all User Agents
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top User Agents ranked by request count. Object keys are User Agent strings.
-                        type: object
-                        example:
-                          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
-                            name: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-                            impact: 45.67
-                            average: 0.234
-                            p_50: 0.156
-                            p_96: 0.892
-                            count: 62143
-                          Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
-                            name: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
-                            impact: 32.45
-                            average: 0.189
-                            p_50: 0.123
-                            p_96: 0.756
-                            count: 44123
-                          curl/7.68.0:
-                            name: curl/7.68.0
-                            impact: 8.45
-                            average: 0.312
-                            p_50: 0.201
-                            p_96: 1.234
-                            count: 11512
-                        additionalProperties:
+                      data:
+                        description: List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - name
                             - impact
@@ -14992,6 +14968,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             name:
                               description: The User Agent string
@@ -15002,7 +14979,6 @@ paths:
                               type: number
                               format: float
                               example: 45.67
-                              nullable: true
                             average:
                               description: Average request duration in seconds
                               type: number
@@ -15022,10 +14998,36 @@ paths:
                               description: Total number of requests from this User Agent
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this item is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics grouped by User Agent. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - name: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                            impact: 45.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                            top_hit: true
+                          - name: curl/7.68.0
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 11512
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit items
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit User Agents. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -15035,34 +15037,33 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
-                            total:
-                              description: Total request count at this timestamp across all User Agents. Consider 0 if absent
+                            _total_consumed:
+                              description: Total wall-time consumed across all items at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
+                              description: Total request count at this timestamp. Consider 0 if absent
                               type: integer
                               example: 4120
                             data:
-                              description: Per-User Agent metrics at this timestamp. Object keys are User Agent strings.
+                              description: Per-User Agent metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
                                   count: 1543
                                   impact: 47.45
-                                Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
-                                  count: 1247
-                                  impact: 38.26
-                                curl/7.68.0:
-                                  count: 223
-                                  impact: 6.85
                               additionalProperties:
                                 required:
                                   - count
                                   - impact
                                 properties:
                                   count:
-                                    description: Request count from this User Agent at this timestamp
+                                    description: Request count at this timestamp
                                     type: integer
                                     example: 1543
                                   impact:
-                                    description: Impact score as percentage of wall time consumed at this timestamp
+                                    description: Impact score as percentage of wall time consumed
                                     type: number
                                     format: float
                                     example: 47.45
@@ -15073,18 +15074,13 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
-                            total: 4120
+                            _total_consumed: 5678.9
+                            _total_count: 4120
                             data:
                               Mozilla/5.0 (Windows NT 10.0; Win64; x64):
                                 count: 1543
                                 impact: 47.45
                           - timestamp: 1704070800
-                          - timestamp: 1704074400
-                            total: 3891
-                            data:
-                              curl/7.68.0:
-                                count: 223
-                                impact: 6.85
                     type: object
                     additionalProperties: false
                 type: object
@@ -15149,12 +15145,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/urls:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by URL
-      description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
+      description: 'Returns HTTP traffic analytics with URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_urls
       parameters:
         - name: projectId
@@ -15189,16 +15185,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top URLs to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -15345,8 +15349,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                   - filters
                 properties:
                   _grain:
@@ -15381,10 +15387,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top URLs included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -15455,13 +15478,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data containing URL statistics and time-series information
+                  breakdown:
+                    description: URLs ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -15473,35 +15495,10 @@ paths:
                         description: Total request count across all URLs
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top URLs ranked by impact (response time × request count). Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
-                        type: object
-                        example:
-                          GET-https://example.com/api/products:
-                            url: https://example.com/api/products
-                            method: GET
-                            impact: 15234.67
-                            average: 245.3
-                            p_50: 198.5
-                            p_96: 512.8
-                            count: 62143
-                          GET-https://example.com/api/users/{id}:
-                            url: https://example.com/api/users/{id}
-                            method: GET
-                            impact: 8921.44
-                            average: 178.2
-                            p_50: 142.1
-                            p_96: 389.3
-                            count: 50073
-                          POST-https://example.com/api/orders:
-                            url: https://example.com/api/orders
-                            method: POST
-                            impact: 6543.21
-                            average: 312.5
-                            p_50: 267.8
-                            p_96: 678.4
-                            count: 20945
-                        additionalProperties:
+                      data:
+                        description: List of URLs ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - url
                             - method
@@ -15510,6 +15507,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             url:
                               description: Request URL
@@ -15528,10 +15526,11 @@ paths:
                                 - OPTIONS
                               example: GET
                             impact:
-                              description: Performance impact score (ms × count)
+                              description: Performance impact score (ms x count)
                               type: number
                               format: float
                               example: 15234.67
+                              nullable: true
                             average:
                               description: Average response time in milliseconds
                               type: number
@@ -15551,10 +15550,38 @@ paths:
                               description: Total number of requests
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this URL is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - url: https://example.com/api/products
+                            method: GET
+                            impact: 15234.67
+                            average: 245.3
+                            p_50: 198.5
+                            p_96: 512.8
+                            count: 62143
+                            top_hit: true
+                          - url: https://example.com/api/orders
+                            method: POST
+                            impact: 6543.21
+                            average: 312.5
+                            p_50: 267.8
+                            p_96: 678.4
+                            count: 20945
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit URLs
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit URLs. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -15564,6 +15591,15 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
+                            _total_consumed:
+                              description: Total wall-time consumed across all URLs at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
+                              description: Total request count at this timestamp
+                              type: integer
+                              example: 4120
                             request_size:
                               description: Total request payload size in bytes
                               type: integer
@@ -15573,18 +15609,12 @@ paths:
                               type: integer
                               example: 2097152
                             urls:
-                              description: Per-URL metrics at this timestamp. Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
+                              description: Per-URL metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 GET-https://example.com/api/products:
                                   count: 1543
                                   impact: 378.45
-                                GET-https://example.com/api/users/{id}:
-                                  count: 1247
-                                  impact: 221.87
-                                POST-https://example.com/api/orders:
-                                  count: 523
-                                  impact: 163.44
                               additionalProperties:
                                 required:
                                   - count
@@ -15599,6 +15629,7 @@ paths:
                                     type: number
                                     format: float
                                     example: 378.45
+                                    nullable: true
                                 type: object
                                 additionalProperties: false
                             codes:
@@ -15641,6 +15672,8 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
+                            _total_consumed: 5678.9
+                            _total_count: 1543
                             request_size: 524288
                             response_size: 2097152
                             urls:
@@ -15655,20 +15688,6 @@ paths:
                               4XX: 0
                               5XX: 0
                           - timestamp: 1704070800
-                          - timestamp: 1704074400
-                            request_size: 612345
-                            response_size: 1847293
-                            urls:
-                              GET-https://example.com/api/products:
-                                count: 1247
-                                impact: 298.12
-                            codes:
-                              UNKNOWN: 0
-                              1XX: 0
-                              2XX: 1247
-                              3XX: 0
-                              4XX: 0
-                              5XX: 0
                     type: object
                     additionalProperties: false
                   filters:
@@ -22765,7 +22784,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/urls
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/urls
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_ips:
@@ -22775,7 +22794,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/ips
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/ips
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_user_agents:
@@ -22785,7 +22804,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/user-agents
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/user-agents
                         type: object
                         additionalProperties: false
                       console_sandbox_access:
@@ -25832,7 +25851,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       x-vendor: upsun
-  /billing/{billing_profile_id}/organizations:
+  /billing/profiles/{billing_profile_id}/organizations:
     get:
       summary: Billing profile organizations
       description: Retrieves organizations that belong to the specified billing profile.
@@ -29090,7 +29109,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-  /billing/{billing_profile_id}/projects:
+  /billing/profiles/{billing_profile_id}/projects:
     get:
       summary: List projects
       description: Retrieves a list of projects for the specified billing profile.
@@ -31610,12 +31629,6 @@ components:
       $ref: '#/components/schemas/invoice_detail'
     AddressVerificationPayload:
       $ref: '#/components/schemas/address_verification'
-    BillingProfileMappingListPayload:
-      $ref: '#/components/schemas/billing_profile_mapping_list'
-    BillingProfileMappingPayload:
-      $ref: '#/components/schemas/billing_profile_mapping'
-    BillingProfileMappingPayloadWithLinks:
-      $ref: '#/components/schemas/billing_profile_mapping_with_links'
     BillingAlertConfig:
       $ref: '#/components/schemas/billing_alert_config'
     BillingUser:
@@ -31658,125 +31671,6 @@ components:
       $ref: '#/components/schemas/salesforce_profile_response'
     BadRequestError:
       $ref: '#/components/schemas/bad_request_error'
-    billing_profile_mapping:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the billing profile.
-        billing_account_id:
-          type: string
-          description: The ID of the billing account associated with this billing profile.
-          nullable: true
-        salesforce_id:
-          type: string
-          description: '[Internal] The Salesforce ID associated with the billing profile.'
-          nullable: true
-        bp_account_id:
-          type: string
-          nullable: true
-          description: '[Internal] The Billing Platform account ID.'
-        bp_profile_id:
-          type: string
-          nullable: true
-          description: '[Internal] The Billing Platform profile ID.'
-        stripe_customer_id:
-          type: string
-          nullable: true
-          description: '[Internal] The Stripe customer ID.'
-        stripe_instance:
-          type: string
-          nullable: true
-          description: '[Internal] The Stripe instance identifier.'
-        country:
-          type: string
-          nullable: true
-          description: The country code for the billing profile.
-        currency:
-          type: string
-          nullable: true
-          description: ISO 4217 currency code (3-letter code) for the billing profile.
-          pattern: ^[A-Z]{3}$
-          example: USD
-        vendor:
-          type: string
-          nullable: true
-          description: The Vendor associated to the billing profile.
-        pricing_model:
-          type: string
-          description: Pricing model for the profile.
-          enum:
-            - fixed
-            - flex
-        created_at:
-          type: string
-          format: date-time
-          description: The timestamp when the billing profile was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: The timestamp when the billing profile was last updated.
-    link:
-      type: object
-      properties:
-        href:
-          type: string
-          description: The URL of the linked resource.
-      required:
-        - href
-    billing_profile_mapping_with_links:
-      allOf:
-        - $ref: '#/components/schemas/billing_profile_mapping'
-        - type: object
-          properties:
-            _links:
-              type: object
-              description: HAL links for related resources.
-              properties:
-                self:
-                  $ref: '#/components/schemas/link'
-              required:
-                - self
-    billing_profile_mapping_list:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of items in the list.
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/billing_profile_mapping_with_links'
-          description: Array of billing profiles.
-        _links:
-          type: object
-          description: HAL links for pagination.
-          properties:
-            self:
-              $ref: '#/components/schemas/link'
-            next:
-              $ref: '#/components/schemas/link'
-            previous:
-              $ref: '#/components/schemas/link'
-          required:
-            - self
-    error:
-      type: object
-      properties:
-        title:
-          type: string
-          description: A short, human-readable summary of the problem type.
-        status:
-          type: integer
-          format: int32
-          description: The HTTP status code generated by the origin server.
-          minimum: 100
-          maximum: 600
-          exclusiveMaximum: true
-          example: 404
-        detail:
-          type: string
-          description: A human-readable explanation specific to this occurrence of the problem.
     salesforce_profile_response:
       type: object
       properties:
@@ -31846,6 +31740,23 @@ components:
           type: string
           format: date-time
           description: Timestamp when the profile was last updated (RFC 3339)
+    error:
+      type: object
+      properties:
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code generated by the origin server.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
     salesforce_profile_update_request:
       type: object
       properties:
@@ -31998,6 +31909,14 @@ components:
         data:
           description: The data object for a particular source type. Different source types will have different schemas for the data property.
           type: object
+    link:
+      type: object
+      properties:
+        href:
+          type: string
+          description: The URL of the linked resource.
+      required:
+        - href
     prepayment:
       type: object
       description: Prepayment info for a billing profile.
