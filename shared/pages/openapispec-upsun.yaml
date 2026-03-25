@@ -4820,6 +4820,92 @@ paths:
 
         If data synchronization is specified, the data in the environment will
         be overwritten with that of its parent.
+  /projects/{projectId}/environments/{environmentId}/tasks:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+      operationId: list-projects-environments-tasks
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCollection'
+      tags:
+        - Task
+  /projects/{projectId}/environments/{environmentId}/tasks/{taskId}:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: taskId
+      operationId: get-projects-environments-tasks
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+      tags:
+        - Task
+  /projects/{projectId}/environments/{environmentId}/tasks/{taskId}/run:
+    post:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: environmentId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: taskId
+      operationId: run-task
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskTriggerInput'
+      tags:
+        - Task
   /projects/{projectId}/environments/{environmentId}/variables:
     get:
       parameters:
@@ -6039,6 +6125,7 @@ paths:
                   arguments:
                     description: Function arguments and metric data
                     type: object
+                    nullable: true
                   layers:
                     description: Layer information
                     type: object
@@ -6111,6 +6198,15 @@ paths:
           schema:
             type: string
             example: App\Controller\ProductController::list
+        - name: limit
+          in: query
+          description: Maximum number of recommendation results to return. Clamped to range 10–200. Defaults to 10 (or 200 when filtering by transaction).
+          required: false
+          schema:
+            type: integer
+            maximum: 200
+            minimum: 10
+            example: 50
       responses:
         '200':
           description: Recommendation statistics retrieved successfully
@@ -6178,6 +6274,10 @@ paths:
                           example: 15
                         _links:
                           description: API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.
+                          required:
+                            - api_subprofiles
+                            - api_profile
+                            - api_graph
                           properties:
                             api_timeline:
                               description: API endpoint for timeline data (JSON)
@@ -6251,6 +6351,16 @@ paths:
                           additionalProperties: false
                       type: object
                       additionalProperties: false
+                  tested_transactions:
+                    description: List of transaction names that have been tested by recommendations
+                    type: array
+                    items:
+                      type: string
+                  untested_top_transactions:
+                    description: List of top transaction names that have not been tested by recommendations
+                    type: array
+                    items:
+                      type: string
                   total:
                     description: Total number of profiles with failing recommendations
                     type: integer
@@ -6427,79 +6537,114 @@ paths:
                     description: List of automatic profiles
                     type: array
                     items:
+                      required:
+                        - uuid
+                        - name
+                        - _links
                       properties:
                         uuid:
                           description: Profile UUID
                           type: string
                           format: uuid
+                          example: 4b5266a2-fd71-468b-bf05-87b342079cbf
                         name:
                           description: Profile name
                           type: string
+                          example: POST /api/cart
                         metadata:
                           description: Profile metadata
                           type: object
                         _links:
                           description: Profile navigation links. Links with type "text/html" are web pages for humans. Links with type "application/json" are API endpoints returning JSON.
+                          required:
+                            - api_subprofiles
+                            - api_profile
+                            - api_graph
                           properties:
                             graph_url:
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
                                 type:
                                   type: string
                                   enum:
                                     - text/html
                                   example: text/html
                               type: object
+                              additionalProperties: false
                             api_timeline:
                               description: API endpoint for timeline data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_subprofiles:
                               description: API endpoint for subprofiles data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_profile:
                               description: API endpoint for profile details (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                             api_graph:
                               description: API endpoint for call graph data (JSON)
+                              required:
+                                - href
+                                - type
                               properties:
                                 href:
                                   type: string
                                   format: uri
+                                  example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
                                 type:
                                   type: string
                                   enum:
                                     - application/json
                                   example: application/json
                               type: object
+                              additionalProperties: false
                           type: object
                       type: object
                   page:
@@ -6757,6 +6902,7 @@ paths:
                               type: number
                               format: float
                               example: 15234.67
+                              nullable: true
                             average:
                               description: Average response time in milliseconds
                               type: number
@@ -6824,6 +6970,7 @@ paths:
                                     type: number
                                     format: float
                                     example: 378.45
+                                    nullable: true
                                 type: object
                                 additionalProperties: false
                             codes:
@@ -6958,12 +7105,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/ips:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by IP
-      description: 'Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.'
+      description: 'Returns HTTP traffic analytics grouped by IP address with IPs ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_ips
       parameters:
         - name: projectId
@@ -6998,16 +7145,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top IPs to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -7154,8 +7309,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                 properties:
                   _grain:
                     description: Data granularity in seconds
@@ -7189,10 +7346,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top IPs included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -7263,13 +7437,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data grouped by IP addresses
+                  breakdown:
+                    description: IP addresses ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -7281,32 +7454,10 @@ paths:
                         description: Total request count across all IPs
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top IP addresses ranked by request count. Object keys are IP addresses.
-                        type: object
-                        example:
-                          192.168.1.1:
-                            name: 192.168.1.1
-                            impact: 15.67
-                            average: 0.234
-                            p_50: 0.156
-                            p_96: 0.892
-                            count: 62143
-                          10.0.0.5:
-                            name: 10.0.0.5
-                            impact: 12.34
-                            average: 0.189
-                            p_50: 0.123
-                            p_96: 0.756
-                            count: 48921
-                          172.16.0.10:
-                            name: 172.16.0.10
-                            impact: 8.45
-                            average: 0.312
-                            p_50: 0.201
-                            p_96: 1.234
-                            count: 33512
-                        additionalProperties:
+                      data:
+                        description: List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - name
                             - impact
@@ -7314,6 +7465,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             name:
                               description: The IP address
@@ -7324,7 +7476,6 @@ paths:
                               type: number
                               format: float
                               example: 15.67
-                              nullable: true
                             average:
                               description: Average request duration in seconds
                               type: number
@@ -7344,10 +7495,43 @@ paths:
                               description: Total number of requests from this IP
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this item is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics grouped by IP. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - name: 192.168.1.1
+                            impact: 15.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                            top_hit: true
+                          - name: 10.0.0.5
+                            impact: 12.34
+                            average: 0.189
+                            p_50: 0.123
+                            p_96: 0.756
+                            count: 48921
+                            top_hit: true
+                          - name: 172.16.0.10
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 33512
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit items
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit IPs. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -7357,12 +7541,17 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
-                            total:
+                            _total_consumed:
+                              description: Total wall-time consumed across all items at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
                               description: Total request count at this timestamp across all IPs. Consider 0 if absent
                               type: integer
                               example: 4120
                             data:
-                              description: Per-IP metrics at this timestamp. Object keys are IP addresses.
+                              description: Per-IP metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 192.168.1.1:
@@ -7371,9 +7560,6 @@ paths:
                                 10.0.0.5:
                                   count: 1247
                                   impact: 30.26
-                                172.16.0.10:
-                                  count: 823
-                                  impact: 19.98
                               additionalProperties:
                                 required:
                                   - count
@@ -7395,14 +7581,16 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
-                            total: 4120
+                            _total_consumed: 5678.9
+                            _total_count: 4120
                             data:
                               192.168.1.1:
                                 count: 1543
                                 impact: 37.45
                           - timestamp: 1704070800
                           - timestamp: 1704074400
-                            total: 3891
+                            _total_consumed: 4321.2
+                            _total_count: 3891
                             data:
                               10.0.0.5:
                                 count: 1247
@@ -7471,12 +7659,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/user-agents:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by user agent
-      description: 'Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent''s share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.'
+      description: 'Returns HTTP traffic analytics grouped by User Agent with User Agents ranked by impact (response time × request count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_user_agents
       parameters:
         - name: projectId
@@ -7511,16 +7699,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top User Agents to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -7667,8 +7863,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                 properties:
                   _grain:
                     description: Data granularity in seconds
@@ -7702,10 +7900,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top User Agents included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -7776,13 +7991,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data grouped by User Agents
+                  breakdown:
+                    description: User Agents ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -7794,32 +8008,10 @@ paths:
                         description: Total request count across all User Agents
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top User Agents ranked by request count. Object keys are User Agent strings.
-                        type: object
-                        example:
-                          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
-                            name: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-                            impact: 45.67
-                            average: 0.234
-                            p_50: 0.156
-                            p_96: 0.892
-                            count: 62143
-                          Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
-                            name: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
-                            impact: 32.45
-                            average: 0.189
-                            p_50: 0.123
-                            p_96: 0.756
-                            count: 44123
-                          curl/7.68.0:
-                            name: curl/7.68.0
-                            impact: 8.45
-                            average: 0.312
-                            p_50: 0.201
-                            p_96: 1.234
-                            count: 11512
-                        additionalProperties:
+                      data:
+                        description: List of items ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - name
                             - impact
@@ -7827,6 +8019,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             name:
                               description: The User Agent string
@@ -7837,7 +8030,6 @@ paths:
                               type: number
                               format: float
                               example: 45.67
-                              nullable: true
                             average:
                               description: Average request duration in seconds
                               type: number
@@ -7857,10 +8049,36 @@ paths:
                               description: Total number of requests from this User Agent
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this item is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics grouped by User Agent. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - name: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                            impact: 45.67
+                            average: 0.234
+                            p_50: 0.156
+                            p_96: 0.892
+                            count: 62143
+                            top_hit: true
+                          - name: curl/7.68.0
+                            impact: 8.45
+                            average: 0.312
+                            p_50: 0.201
+                            p_96: 1.234
+                            count: 11512
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit items
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit User Agents. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -7870,34 +8088,33 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
-                            total:
-                              description: Total request count at this timestamp across all User Agents. Consider 0 if absent
+                            _total_consumed:
+                              description: Total wall-time consumed across all items at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
+                              description: Total request count at this timestamp. Consider 0 if absent
                               type: integer
                               example: 4120
                             data:
-                              description: Per-User Agent metrics at this timestamp. Object keys are User Agent strings.
+                              description: Per-User Agent metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36:
                                   count: 1543
                                   impact: 47.45
-                                Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36:
-                                  count: 1247
-                                  impact: 38.26
-                                curl/7.68.0:
-                                  count: 223
-                                  impact: 6.85
                               additionalProperties:
                                 required:
                                   - count
                                   - impact
                                 properties:
                                   count:
-                                    description: Request count from this User Agent at this timestamp
+                                    description: Request count at this timestamp
                                     type: integer
                                     example: 1543
                                   impact:
-                                    description: Impact score as percentage of wall time consumed at this timestamp
+                                    description: Impact score as percentage of wall time consumed
                                     type: number
                                     format: float
                                     example: 47.45
@@ -7908,18 +8125,13 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
-                            total: 4120
+                            _total_consumed: 5678.9
+                            _total_count: 4120
                             data:
                               Mozilla/5.0 (Windows NT 10.0; Win64; x64):
                                 count: 1543
                                 impact: 47.45
                           - timestamp: 1704070800
-                          - timestamp: 1704074400
-                            total: 3891
-                            data:
-                              curl/7.68.0:
-                                count: 223
-                                impact: 6.85
                     type: object
                     additionalProperties: false
                 type: object
@@ -7984,12 +8196,12 @@ paths:
                     example: Please reduce the time range or add more filters to narrow down the query
                 type: object
                 additionalProperties: false
-  /projects/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls:
+  /projects/{projectId}/environments/{environmentId}/observability/http/breakdown/urls:
     get:
       tags:
         - Http Traffic
       summary: Get HTTP traffic timeline by URL
-      description: 'Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with request/response sizes in bytes.'
+      description: 'Returns HTTP traffic analytics with URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in timeline data.'
       operationId: http_metrics_timeline_urls
       parameters:
         - name: projectId
@@ -8024,16 +8236,24 @@ paths:
             type: integer
             format: int64
             example: 1704153600
-        - name: top_count
+        - name: limit
           in: query
-          description: 'Number of top URLs to return (default: 10, max: 100)'
+          description: 'Maximum number of items to return (default: 200, max: 300)'
           required: false
           schema:
             type: integer
             default: null
-            maximum: 100
+            maximum: 300
             minimum: 1
-            example: 20
+        - name: top_hits_count
+          in: query
+          description: 'Number of top items to include in timeline (default: 15, max: 15)'
+          required: false
+          schema:
+            type: integer
+            default: null
+            maximum: 15
+            minimum: 1
         - name: methods[]
           in: query
           description: Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.
@@ -8180,8 +8400,10 @@ paths:
                   - _environment_id
                   - _environment_type
                   - _branch_machine_name
-                  - _top_count
-                  - data
+                  - _breakdown_limit
+                  - _breakdown_top_hits
+                  - breakdown
+                  - top_hits_timeline
                   - filters
                 properties:
                   _grain:
@@ -8216,10 +8438,27 @@ paths:
                     description: Branch machine name
                     type: string
                     example: main-bvxea6i
-                  _top_count:
-                    description: Number of top URLs included in response
+                  _breakdown_limit:
+                    description: Maximum number of items returned
                     type: integer
-                    example: 10
+                    example: 200
+                  _breakdown_top_hits:
+                    description: Configuration for top hits selection
+                    required:
+                      - max_quantity
+                      - max_percentage
+                    properties:
+                      max_quantity:
+                        description: Maximum number of top hit items tracked in timeline
+                        type: integer
+                        example: 15
+                      max_percentage:
+                        description: Maximum cumulative impact percentage for top hits
+                        type: number
+                        format: float
+                        example: 98
+                    type: object
+                    additionalProperties: false
                   _methods:
                     description: Applied method filter values
                     type: array
@@ -8290,13 +8529,12 @@ paths:
                       - '1'
                       - '-1'
                     nullable: true
-                  data:
-                    description: HTTP traffic data containing URL statistics and time-series information
+                  breakdown:
+                    description: URLs ranked by impact
                     required:
                       - kind
                       - total
-                      - top_hits
-                      - timelines
+                      - data
                     properties:
                       kind:
                         description: The kind of grouping
@@ -8308,35 +8546,10 @@ paths:
                         description: Total request count across all URLs
                         type: integer
                         example: 396519
-                      top_hits:
-                        description: Top URLs ranked by impact (response time × request count). Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
-                        type: object
-                        example:
-                          GET-https://example.com/api/products:
-                            url: https://example.com/api/products
-                            method: GET
-                            impact: 15234.67
-                            average: 245.3
-                            p_50: 198.5
-                            p_96: 512.8
-                            count: 62143
-                          GET-https://example.com/api/users/{id}:
-                            url: https://example.com/api/users/{id}
-                            method: GET
-                            impact: 8921.44
-                            average: 178.2
-                            p_50: 142.1
-                            p_96: 389.3
-                            count: 50073
-                          POST-https://example.com/api/orders:
-                            url: https://example.com/api/orders
-                            method: POST
-                            impact: 6543.21
-                            average: 312.5
-                            p_50: 267.8
-                            p_96: 678.4
-                            count: 20945
-                        additionalProperties:
+                      data:
+                        description: List of URLs ranked by impact. First _breakdown_top_hits.max_quantity items are tracked in top_hits_timeline.
+                        type: array
+                        items:
                           required:
                             - url
                             - method
@@ -8345,6 +8558,7 @@ paths:
                             - p_50
                             - p_96
                             - count
+                            - top_hit
                           properties:
                             url:
                               description: Request URL
@@ -8363,10 +8577,11 @@ paths:
                                 - OPTIONS
                               example: GET
                             impact:
-                              description: Performance impact score (ms × count)
+                              description: Performance impact score (ms x count)
                               type: number
                               format: float
                               example: 15234.67
+                              nullable: true
                             average:
                               description: Average response time in milliseconds
                               type: number
@@ -8386,10 +8601,38 @@ paths:
                               description: Total number of requests
                               type: integer
                               example: 62143
+                            top_hit:
+                              description: Whether this URL is tracked in top_hits_timeline
+                              type: boolean
+                              example: true
                           type: object
                           additionalProperties: false
-                      timelines:
-                        description: Time-series HTTP traffic metrics. Each data point contains `timestamp` and optional data fields. Fields are omitted for timestamps with no data - this indicates no data was received.
+                        example:
+                          - url: https://example.com/api/products
+                            method: GET
+                            impact: 15234.67
+                            average: 245.3
+                            p_50: 198.5
+                            p_96: 512.8
+                            count: 62143
+                            top_hit: true
+                          - url: https://example.com/api/orders
+                            method: POST
+                            impact: 6543.21
+                            average: 312.5
+                            p_50: 267.8
+                            p_96: 678.4
+                            count: 20945
+                            top_hit: false
+                    type: object
+                    additionalProperties: false
+                  top_hits_timeline:
+                    description: Time-series data for top hit URLs
+                    required:
+                      - data
+                    properties:
+                      data:
+                        description: Time-series HTTP traffic metrics for top hit URLs. Fields are omitted for timestamps with no data.
                         type: array
                         items:
                           required:
@@ -8399,6 +8642,15 @@ paths:
                               description: Data point timestamp
                               type: integer
                               example: 1704067200
+                            _total_consumed:
+                              description: Total wall-time consumed across all URLs at this interval
+                              type: number
+                              format: float
+                              example: 5678.9
+                            _total_count:
+                              description: Total request count at this timestamp
+                              type: integer
+                              example: 4120
                             request_size:
                               description: Total request payload size in bytes
                               type: integer
@@ -8408,18 +8660,12 @@ paths:
                               type: integer
                               example: 2097152
                             urls:
-                              description: Per-URL metrics at this timestamp. Object keys use "METHOD-URL" format (e.g., "GET-https://example.com/api/products") as unique identifiers.
+                              description: Per-URL metrics at this timestamp. Only includes top hit items.
                               type: object
                               example:
                                 GET-https://example.com/api/products:
                                   count: 1543
                                   impact: 378.45
-                                GET-https://example.com/api/users/{id}:
-                                  count: 1247
-                                  impact: 221.87
-                                POST-https://example.com/api/orders:
-                                  count: 523
-                                  impact: 163.44
                               additionalProperties:
                                 required:
                                   - count
@@ -8434,6 +8680,7 @@ paths:
                                     type: number
                                     format: float
                                     example: 378.45
+                                    nullable: true
                                 type: object
                                 additionalProperties: false
                             codes:
@@ -8476,6 +8723,8 @@ paths:
                           additionalProperties: false
                         example:
                           - timestamp: 1704067200
+                            _total_consumed: 5678.9
+                            _total_count: 1543
                             request_size: 524288
                             response_size: 2097152
                             urls:
@@ -8490,20 +8739,6 @@ paths:
                               4XX: 0
                               5XX: 0
                           - timestamp: 1704070800
-                          - timestamp: 1704074400
-                            request_size: 612345
-                            response_size: 1847293
-                            urls:
-                              GET-https://example.com/api/products:
-                                count: 1247
-                                impact: 298.12
-                            codes:
-                              UNKNOWN: 0
-                              1XX: 0
-                              2XX: 1247
-                              3XX: 0
-                              4XX: 0
-                              5XX: 0
                     type: object
                     additionalProperties: false
                   filters:
@@ -13900,7 +14135,7 @@ paths:
                               example: 45000
                             count:
                               description: Total call count
-                              type: number
+                              type: integer
                               example: 12
                             request_wt:
                               description: Average request wall time in microseconds
@@ -14310,7 +14545,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/urls
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/urls
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_ips:
@@ -14320,7 +14555,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/ips
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/ips
                         type: object
                         additionalProperties: false
                       http_metrics_timeline_user_agents:
@@ -14330,7 +14565,7 @@ paths:
                           href:
                             type: string
                             format: uri
-                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http-metrics/timeline/user-agents
+                            example: https://api.upsun.com/projects/abc123def456/environments/main/observability/http/breakdown/user-agents
                         type: object
                         additionalProperties: false
                       console_sandbox_access:
@@ -14719,6 +14954,13 @@ paths:
         - in: query
           name: filter[label]
           description: Allows filtering by `label` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[billing_profile_id]
+          description: Allows filtering by `billing_profile_id` using one or more operators.
           style: deepObject
           explode: true
           schema:
@@ -16418,7 +16660,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       x-vendor: upsun
-  /billing/{billing_profile_id}/organizations:
+  /billing/profiles/{billing_profile_id}/organizations:
     get:
       summary: Billing profile organizations
       description: Retrieves organizations that belong to the specified billing profile.
@@ -17597,6 +17839,131 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /billing/profiles/{billing_profile_id}/projects:
+    get:
+      summary: List projects
+      description: Retrieves a list of projects for the specified billing profile.
+      operationId: list-billing-profile-projects
+      tags:
+        - Billing Profile Projects
+      parameters:
+        - $ref: '#/components/parameters/BillingProfileID'
+        - in: query
+          name: filter[id]
+          description: Allows filtering by `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[title]
+          description: Allows filtering by `title` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[subscription_id]
+          description: Allows filtering by `subscription_id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[region]
+          description: Allows filtering by `region` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[type]
+          description: Allows filtering by `type` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[plan]
+          description: Allows filtering by `plan` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[status]
+          description: Allows filtering by `status` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[updated_at]
+          description: Allows filtering by `updated_at` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/DateTimeFilter'
+        - in: query
+          name: filter[created_at]
+          description: Allows filtering by `created_at` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/DateTimeFilter'
+        - in: query
+          name: page[size]
+          description: Determines the number of items to show.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: null
+        - in: query
+          name: page[before]
+          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - in: query
+          name: page[after]
+          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: |
+            Allows sorting by a single field.<br>
+            Use a dash ("-") to sort descending.<br>
+            Supported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
+          schema:
+            type: string
+            example: '-updated_at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrganizationProject'
+                  facets:
+                    $ref: '#/components/schemas/ProjectFacets'
+                  _links:
+                    $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -24177,6 +24544,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - created_at
         - updated_at
@@ -24188,6 +24559,7 @@ components:
         - states
         - result
         - service_id
+        - tls_certificates
       additionalProperties: false
     FastlyIntegrationCreateInput:
       type: object
@@ -24236,6 +24608,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - type
         - token
@@ -24288,6 +24664,10 @@ components:
           type: string
           title: Fastly Service ID
           description: The Fastly Service ID
+        tls_certificates:
+          type: boolean
+          title: TLS Certificates
+          description: Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
       required:
         - type
         - token
@@ -26045,6 +26425,18 @@ components:
           additionalProperties: false
           title: Runtime Operations
           description: ''
+        tasks:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Enabled
+              description: If true, background tasks can be triggered.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Tasks
+          description: ''
         outbound_firewall:
           type: object
           properties:
@@ -26442,6 +26834,7 @@ components:
           title: Integrations
           description: ''
       required:
+        - tasks
         - metrics
         - logs_forwarding
         - guaranteed_resources
@@ -28459,6 +28852,155 @@ components:
         - image
         - started_at
       additionalProperties: false
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          title: Task Identifier
+          description: The identifier of Task
+        type:
+          type: string
+          title: Image type
+          description: The runtime type and version for the task (e.g., python:3.8)
+        source:
+          type: object
+          properties:
+            root:
+              type: string
+              title: Task Source Root
+              description: The root of the task relative to the repository root
+          required:
+            - root
+          additionalProperties: false
+          title: Source Code Configuration
+          description: Configuration related to the source code of the task
+        hooks:
+          type: object
+          properties:
+            build:
+              type: string
+              nullable: true
+              title: Build Hook
+              description: Hook executed after the build process
+            deploy:
+              type: string
+              nullable: true
+              title: Deploy Hook
+              description: Hook executed before the task's run command
+          required:
+            - build
+            - deploy
+          additionalProperties: false
+          title: Hooks
+          description: Scripts executed at various points in the lifecycle of the task
+        relationships:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service.
+              endpoint:
+                type: string
+                nullable: true
+                title: Endpoint Name
+                description: The name of the endpoint on the service.
+            required:
+              - service
+              - endpoint
+            additionalProperties: false
+            nullable: true
+          title: Relationships
+          description: The relationships of the task to defined services and applications
+        mounts:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              source:
+                type: string
+                enum:
+                  - instance
+                  - local
+                  - service
+                  - storage
+                  - temporary
+                  - tmp
+                title: Mount type
+                description: The type of mount that will provide the data.
+              source_path:
+                type: string
+                title: Source Path
+                description: The path to be mounted, relative to the root directory of the volume that's being mounted from.
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`.
+            required:
+              - source
+              - source_path
+            additionalProperties: false
+          title: Mounts
+          description: Filesystem mounts of this task
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: {}
+          title: Environment Variables
+          description: Variables provide environment-sensitive information to control how your task behaves
+        run:
+          type: object
+          properties:
+            command:
+              type: string
+              title: Run Command
+              description: The command to execute when running the task
+            timeout:
+              type: integer
+              title: Timeout
+              description: The maximum timeout in seconds after which the task will be forcefully killed
+          required:
+            - command
+            - timeout
+          additionalProperties: false
+          title: Run Configuration
+          description: Configuration for task execution
+        name:
+          type: string
+          title: Task name
+          description: The unique name of the task
+      required:
+        - id
+        - type
+        - source
+        - hooks
+        - relationships
+        - mounts
+        - variables
+        - run
+        - name
+      additionalProperties: false
+    TaskCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'
+    TaskTriggerInput:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: {}
+          title: Variables
+          description: Environment variables for the task
+      additionalProperties: false
     Tree:
       type: object
       properties:
@@ -28933,7 +29475,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -28970,7 +29512,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -29037,7 +29579,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -29074,7 +29616,7 @@ components:
           description: Whether the trigger is enabled
         down:
           allOf:
-            - description: Lower bound on resource usage
+            - description: Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
             - $ref: '#/components/schemas/AutoscalerCondition'
         up:
           allOf:
@@ -30098,6 +30640,11 @@ components:
           $ref: '#/components/schemas/ProjectTrialPlan'
         project_ui:
           $ref: '#/components/schemas/ProjectUI'
+        dedicated_tag:
+          type: string
+          allOf:
+            - $ref: '#/components/schemas/ProjectDedicatedTag'
+          nullable: true
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -30107,6 +30654,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Activity'
+          nullable: true
+        fastly_service_ids:
+          description: Fastly service IDs for the project.
+          type: array
+          items:
+            type: string
           nullable: true
         project_options:
           type: object
@@ -30549,6 +31102,9 @@ components:
         - failed
         - suspended
         - deleted
+    ProjectDedicatedTag:
+      type: string
+      description: Dedicated tag.
     ProjectUI:
       description: The URL for the project's user interface.
       type: string
