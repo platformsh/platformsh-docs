@@ -8476,7 +8476,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_alert_config"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/billing_alert_config"
+                  }
                 }
               }
             }
@@ -8601,7 +8604,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_alert_config"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/billing_alert_config"
+                  }
                 }
               }
             }
@@ -8648,7 +8654,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "type"
+                ],
                 "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "Usage alert type"
+                  },
                   "active": {
                     "type": "boolean",
                     "description": "Whether the usage alert should be active or not."
@@ -9813,6 +9826,49 @@
       }
     },
     "/billing/migrations": {
+      "get": {
+        "summary": "[Internal] List migrations",
+        "description": "List all migrations. Requires staff billing view access.\nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
+        "operationId": "list-migrations",
+        "tags": [
+          "Migrations"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of migrations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/migration"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "[Internal] Create migration",
         "description": "Create a new migration entry with organization data. This endpoint is used to bulk import organization \nbilling data from legacy systems. Requires staff billing create access. \nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
@@ -9858,6 +9914,215 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Duplicate organization ID conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/migrations/{migration_id}/organizations": {
+      "get": {
+        "summary": "[Internal] List migration organizations",
+        "description": "List all organizations for a specific migration. Supports CSV export via the `format=csv` query parameter.\nRequires staff billing view access.\nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
+        "operationId": "list-migration-organizations",
+        "tags": [
+          "Migrations"
+        ],
+        "parameters": [
+          {
+            "name": "migration_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the migration",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Response format. Use `csv` to download organizations as a CSV file.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of migration organizations (JSON or CSV depending on format parameter)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of organizations"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/migration_organization"
+                      }
+                    }
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid migration_id",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Migration not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "[Internal] Add organizations to migration",
+        "description": "Add additional organizations to an existing migration. This resets the migration status back to Pending (0)\nsince mapping is required for new organizations. Duplicate organization IDs within the migration are rejected.\nRequires staff billing create access.\nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
+        "operationId": "add-migration-organizations",
+        "tags": [
+          "Migrations"
+        ],
+        "parameters": [
+          {
+            "name": "migration_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the migration",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "description": "Array of organizations to add to the migration",
+                "items": {
+                  "$ref": "#/components/schemas/migration_organization"
+                },
+                "minItems": 1
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Organizations added successfully. Migration status reset to Pending.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/migration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Migration not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "One or more organization IDs already exist in the migration",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -9950,6 +10215,190 @@
           },
           "404": {
             "description": "Migration organization not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/migrations/{migration_id}/csv/bp/organization-accounts": {
+      "get": {
+        "summary": "[Internal] Download organization accounts CSV",
+        "description": "Generate a CSV file of organization accounts for bulk loading into BillingPlatform.\nRequires the migration to have status 6 (BP callbacks received) and all organizations\nto have billing profiles with BP account IDs. Requires staff billing view access.\nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
+        "operationId": "download-migration-organization-accounts-csv",
+        "tags": [
+          "Migrations"
+        ],
+        "parameters": [
+          {
+            "name": "migration_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the migration",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file containing organization accounts for BP bulk loading",
+            "headers": {
+              "Content-Disposition": {
+                "schema": {
+                  "type": "string",
+                  "example": "attachment; filename=\"organization-accounts.csv\""
+                }
+              }
+            },
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid migration_id",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Migration not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Migration is not ready for download. Either the migration status is not 6 (BP callbacks received),\nan organization is missing a billing profile, or a billing profile is missing a BP account ID.\n",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/migrations/{migration_id}/csv/bp/organization-account-products": {
+      "get": {
+        "summary": "[Internal] Download organization account products CSV",
+        "description": "Generate a CSV file of organization account products for bulk loading into BillingPlatform.\nIncludes rows for Viewer User Licenses, Admin Standard Licenses, and (when advanced user\nmanagement is enabled) Admin Advanced Licenses. Uses the appropriate rate class (Flex or Fixed)\nbased on each billing profile's pricing model.\nRequires the migration to have status 6 (BP callbacks received) and all organizations\nto have billing profiles with BP account IDs. Requires staff billing view access.\nNOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.\n",
+        "operationId": "download-migration-organization-account-products-csv",
+        "tags": [
+          "Migrations"
+        ],
+        "parameters": [
+          {
+            "name": "migration_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the migration",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV file containing organization account products for BP bulk loading",
+            "headers": {
+              "Content-Disposition": {
+                "schema": {
+                  "type": "string",
+                  "example": "attachment; filename=\"organization-account-products.csv\""
+                }
+              }
+            },
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid migration_id",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Migration not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Migration is not ready for download. Either the migration status is not 6 (BP callbacks received),\nan organization is missing a billing profile, or a billing profile is missing a BP account ID.\n",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -19022,6 +19471,254 @@
         }
       }
     },
+    "/projects/{projectId}/environments/{environmentId}/observability/metrics/{service}": {
+      "get": {
+        "tags": [
+          "Service Metrics"
+        ],
+        "summary": "[Internal] List available service metrics",
+        "description": "Returns available queryable metrics for a specific service, scoped by project and environment within a time range. Each metric includes its type, unit, description, and a HATEOAS link to the timeline endpoint.",
+        "operationId": "service_metrics_list",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The unique identifier of the Upsun project",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "abc123def456"
+            }
+          },
+          {
+            "name": "environmentId",
+            "in": "path",
+            "description": "The environment identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "service",
+            "in": "path",
+            "description": "Service name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9_\\-\\.]+",
+              "example": "redis"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704067200
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704153600
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available metrics listed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "_from",
+                    "_to",
+                    "_project_id",
+                    "_environment_id",
+                    "_branch_machine_name",
+                    "_service",
+                    "metrics"
+                  ],
+                  "properties": {
+                    "_from": {
+                      "description": "Query start timestamp",
+                      "type": "integer",
+                      "example": 1704067200
+                    },
+                    "_to": {
+                      "description": "Query end timestamp",
+                      "type": "integer",
+                      "example": 1704153600
+                    },
+                    "_project_id": {
+                      "description": "Project identifier",
+                      "type": "string",
+                      "example": "abc123def456"
+                    },
+                    "_environment_id": {
+                      "description": "Environment identifier",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_branch_machine_name": {
+                      "description": "Branch machine name",
+                      "type": "string",
+                      "example": "main-bvxea6i"
+                    },
+                    "_service": {
+                      "description": "Service name",
+                      "type": "string",
+                      "example": "redis"
+                    },
+                    "metrics": {
+                      "description": "Available metrics for this service",
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "metric_name",
+                          "type",
+                          "unit",
+                          "description",
+                          "_links"
+                        ],
+                        "properties": {
+                          "metric_name": {
+                            "description": "Full metric name (services-prefixed)",
+                            "type": "string",
+                            "example": "services.redis.memory.used"
+                          },
+                          "type": {
+                            "description": "Metric type",
+                            "type": "string",
+                            "enum": [
+                              "gauge",
+                              "sum",
+                              "histogram",
+                              "exponential_histogram"
+                            ],
+                            "example": "gauge"
+                          },
+                          "unit": {
+                            "description": "Metric unit",
+                            "type": "string",
+                            "example": "By"
+                          },
+                          "description": {
+                            "description": "Metric description",
+                            "type": "string",
+                            "example": "Memory used by Redis"
+                          },
+                          "_links": {
+                            "description": "HATEOAS links",
+                            "required": [
+                              "metric"
+                            ],
+                            "properties": {
+                              "metric": {
+                                "required": [
+                                  "href"
+                                ],
+                                "properties": {
+                                  "href": {
+                                    "description": "URL to metric timeline endpoint",
+                                    "type": "string",
+                                    "format": "uri"
+                                  }
+                                },
+                                "type": "object",
+                                "additionalProperties": false
+                              }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                          }
+                        },
+                        "type": "object",
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "type",
+                    "title",
+                    "status",
+                    "violations"
+                  ],
+                  "properties": {
+                    "type": {
+                      "description": "RFC 2616 reference URL identifying the error type",
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://tools.ietf.org/html/rfc2616#section-1"
+                    },
+                    "title": {
+                      "description": "Human-readable summary of the validation error",
+                      "type": "string",
+                      "example": "Please ensure parameters are correct."
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "violations": {
+                      "description": "Map of parameter names to their validation errors. Each parameter can have multiple error messages.",
+                      "type": "object",
+                      "example": {
+                        "grain": [
+                          "Grain can not be larger than the selection windows."
+                        ],
+                        "from": [
+                          "The from timestamp must be in the past."
+                        ],
+                        "to": [
+                          "The to timestamp must be greater than the from timestamp."
+                        ]
+                      },
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "The from timestamp must be in the past."
+                        }
+                      }
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          }
+        }
+      }
+    },
     "/projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/timeline": {
       "get": {
         "tags": [
@@ -19904,14 +20601,14 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/observability/profiles/automatic": {
+    "/projects/{projectId}/environments/{environmentId}/observability/profiles": {
       "get": {
         "tags": [
           "Blackfire Profiling"
         ],
-        "summary": "List automatic profiling results",
-        "description": "Returns a paginated list of automatic (APM-triggered) profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.",
-        "operationId": "blackfire_profiles_list_automatic",
+        "summary": "List profiling results",
+        "description": "Returns a paginated list of profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.",
+        "operationId": "blackfire_profiles_list",
         "parameters": [
           {
             "name": "projectId",
@@ -19974,7 +20671,18 @@
             "description": "Wildcard search across URI, name, and transaction name.",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "/api/products"
+            }
+          },
+          {
+            "name": "is_auto",
+            "in": "query",
+            "description": "When false, excludes auto-triggered (APM) profiles from results.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "example": false
             }
           },
           {
@@ -19987,13 +20695,91 @@
               "enum": [
                 "true",
                 "false"
-              ]
+              ],
+              "example": "true"
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Field to sort results by.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "date",
+                "wt",
+                "io",
+                "cpu",
+                "pmu",
+                "nw",
+                "sql",
+                "http"
+              ],
+              "example": "date"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "Sort direction.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "example": "desc"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Filter profiles created after this date (ISO 8601).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-01-01T00:00:00+00:00"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Filter profiles created before this date (ISO 8601).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-12-31T23:59:59+00:00"
+            }
+          },
+          {
+            "name": "status_code",
+            "in": "query",
+            "description": "Filter by profile status code: -1=empty, 0=todo, 16=payment_required, 32=too_many_subprofiles, 64=done, 128=failed, 192=rejected.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                -1,
+                0,
+                16,
+                32,
+                64,
+                128,
+                192
+              ],
+              "example": 64
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Automatic profiles retrieved successfully",
+            "description": "Profiles retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -20030,7 +20816,7 @@
                       "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
                     },
                     "profiles": {
-                      "description": "List of automatic profiles",
+                      "description": "List of profiles",
                       "type": "array",
                       "items": {
                         "required": [
@@ -20050,9 +20836,242 @@
                             "type": "string",
                             "example": "POST /api/cart"
                           },
+                          "created_at": {
+                            "description": "Profile creation date (ISO 8601)",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-03-26T14:31:49+0000"
+                          },
+                          "updated_at": {
+                            "description": "Profile last update date (ISO 8601)",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-03-26T14:31:52+0000"
+                          },
                           "metadata": {
-                            "description": "Profile metadata",
+                            "description": "Profile metadata (language, framework, transaction name, etc.)",
                             "type": "object"
+                          },
+                          "data": {
+                            "description": "Profile performance data",
+                            "properties": {
+                              "envelope": {
+                                "description": "Aggregate performance metrics",
+                                "properties": {
+                                  "wt": {
+                                    "description": "Wall time (microseconds)",
+                                    "type": "number",
+                                    "example": 143341
+                                  },
+                                  "cpu": {
+                                    "description": "CPU time (microseconds)",
+                                    "type": "number",
+                                    "example": 113242
+                                  },
+                                  "io": {
+                                    "description": "I/O time (microseconds)",
+                                    "type": "number",
+                                    "example": 30099
+                                  },
+                                  "pmu": {
+                                    "description": "Peak memory usage (bytes)",
+                                    "type": "number",
+                                    "example": 5990880
+                                  },
+                                  "mu": {
+                                    "description": "Memory usage (bytes)",
+                                    "type": "number",
+                                    "example": 6301320
+                                  },
+                                  "nw": {
+                                    "description": "Network I/O (bytes)",
+                                    "type": "number",
+                                    "example": 739
+                                  },
+                                  "ct": {
+                                    "description": "Call count",
+                                    "type": "number",
+                                    "example": 1
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "important_metrics": {
+                                "description": "Pre-aggregated SQL and HTTP metrics",
+                                "properties": {
+                                  "sql_queries": {
+                                    "properties": {
+                                      "ct": {
+                                        "description": "Number of SQL queries",
+                                        "type": "number",
+                                        "example": 5
+                                      },
+                                      "wt": {
+                                        "description": "Total SQL wall time (microseconds)",
+                                        "type": "number",
+                                        "example": 7004
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "http_requests": {
+                                    "properties": {
+                                      "ct": {
+                                        "description": "Number of HTTP requests",
+                                        "type": "number",
+                                        "example": 1
+                                      },
+                                      "wt": {
+                                        "description": "Total HTTP wall time (microseconds)",
+                                        "type": "number",
+                                        "example": 11
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "recommendations": {
+                            "description": "Number of recommendation constraints evaluated",
+                            "type": "integer",
+                            "example": 4,
+                            "nullable": true
+                          },
+                          "context": {
+                            "description": "Request context (HTTP or CLI)",
+                            "properties": {
+                              "uri": {
+                                "description": "Full request URI (HTTP profiles)",
+                                "type": "string",
+                                "example": "https://example.com/api/v2/builds"
+                              },
+                              "method": {
+                                "description": "HTTP method",
+                                "type": "string",
+                                "example": "POST"
+                              },
+                              "status_code": {
+                                "description": "HTTP response status code",
+                                "type": "integer",
+                                "example": 200
+                              },
+                              "path": {
+                                "description": "Request path",
+                                "type": "string",
+                                "example": "/api/v2/builds"
+                              },
+                              "type": {
+                                "description": "Context type",
+                                "type": "string",
+                                "enum": [
+                                  "http-request",
+                                  "cli"
+                                ],
+                                "example": "http-request"
+                              },
+                              "args": {
+                                "description": "Command arguments (CLI profiles)",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status_code": {
+                            "description": "Profile processing status: 64=done, 128=failed, 0=todo, -1=empty, 16=payment_required, 32=too_many_subprofiles, 192=rejected",
+                            "type": "integer",
+                            "example": 64
+                          },
+                          "status_name": {
+                            "description": "Human-readable profile status",
+                            "type": "string",
+                            "example": "finished"
+                          },
+                          "owner": {
+                            "description": "Profile owner",
+                            "properties": {
+                              "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "John Doe"
+                              },
+                              "avatar": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "agent": {
+                            "description": "Blackfire agent/environment info",
+                            "properties": {
+                              "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "env_uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "is_env": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "has_timeline": {
+                            "description": "Whether the profile has timeline data",
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "is_public": {
+                            "description": "Whether the profile is publicly shared",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "is_readonly": {
+                            "description": "Whether the profile is read-only",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "is_comparison": {
+                            "description": "Whether this is a comparison profile",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "caches": {
+                            "description": "Cache statistics (OPcache, APCu, realpath, PCRE)",
+                            "type": "object"
+                          },
+                          "report": {
+                            "description": "Test report with constraints and assertions",
+                            "type": "object",
+                            "nullable": true
+                          },
+                          "vulnerable_usages": {
+                            "description": "Security vulnerabilities detected",
+                            "type": "array",
+                            "items": {
+                              "type": "object"
+                            },
+                            "nullable": true
+                          },
+                          "key_page": {
+                            "description": "Key page / transaction configuration",
+                            "type": "object",
+                            "nullable": true
                           },
                           "_links": {
                             "description": "Profile navigation links. Links with type \"text/html\" are web pages for humans. Links with type \"application/json\" are API endpoints returning JSON.",
@@ -20211,9 +21230,67 @@
                     {
                       "uuid": "4b5266a2-fd71-468b-bf05-87b342079cbf",
                       "name": "POST /api/cart",
+                      "created_at": "2026-03-26T14:31:49+0000",
+                      "updated_at": "2026-03-26T14:31:52+0000",
                       "metadata": {
                         "Triggered by": "apm",
-                        "Transaction Name": "App\\Controller\\CartController::add"
+                        "Transaction Name": "App\\Controller\\CartController::add",
+                        "Language": "php",
+                        "Frameworks": [
+                          "symfony_framework"
+                        ]
+                      },
+                      "data": {
+                        "envelope": {
+                          "wt": 143341,
+                          "cpu": 113242,
+                          "io": 30099,
+                          "pmu": 5990880,
+                          "mu": 6301320,
+                          "nw": 739,
+                          "ct": 1
+                        },
+                        "important_metrics": {
+                          "sql_queries": {
+                            "ct": 5,
+                            "wt": 7004
+                          },
+                          "http_requests": {
+                            "ct": 1,
+                            "wt": 11
+                          }
+                        }
+                      },
+                      "recommendations": 4,
+                      "context": {
+                        "uri": "https://example.com/api/cart",
+                        "method": "POST",
+                        "status_code": 200,
+                        "path": "/api/cart",
+                        "type": "http-request"
+                      },
+                      "status_code": 64,
+                      "status_name": "finished",
+                      "owner": {
+                        "uuid": "4aed4f5d-e0cb-4320-902f-885fddaa7d15",
+                        "name": "John Doe"
+                      },
+                      "agent": {
+                        "uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
+                        "name": "Production",
+                        "env_uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
+                        "is_env": true
+                      },
+                      "has_timeline": true,
+                      "is_public": false,
+                      "is_readonly": false,
+                      "is_comparison": false,
+                      "caches": {
+                        "opcache": {
+                          "enabled": true,
+                          "hitrate": 0.99,
+                          "items": 5128
+                        }
                       },
                       "_links": {
                         "graph_url": {
@@ -23429,7 +24506,7 @@
           {
             "name": "log_kinds[]",
             "in": "query",
-            "description": "Filter by log kind. Can be specified multiple times for multiple values (e.g., ?log_kinds[]=application&log_kinds[]=deployment). Use log_kinds_mode to control inclusion/exclusion behavior.",
+            "description": "Filter by log kind. \"access\": HTTP access logs (nginx), \"application\": user application logs (default), \"cron\": scheduled cron job logs, \"deployment\": deploy and post-deploy logs, \"platform\": platform-managed infrastructure service logs (e.g. sshd, systemd-journald, dbus). Can be specified multiple times (e.g., ?log_kinds[]=application&log_kinds[]=deployment). Use log_kinds_mode to control inclusion/exclusion behavior.",
             "required": false,
             "style": "form",
             "explode": true,
@@ -23437,6 +24514,13 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "enum": [
+                  "access",
+                  "application",
+                  "cron",
+                  "deployment",
+                  "platform"
+                ],
                 "example": "application"
               }
             }
@@ -23657,9 +24741,17 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "enum": [
+                          "access",
+                          "application",
+                          "cron",
+                          "deployment",
+                          "platform"
+                        ],
                         "example": "application"
                       },
                       "example": [
+                        "access",
                         "application",
                         "deployment"
                       ]
@@ -24303,7 +25395,7 @@
           {
             "name": "log_kinds[]",
             "in": "query",
-            "description": "Filter by log kind. Can be specified multiple times for multiple values (e.g., ?log_kinds[]=application&log_kinds[]=deployment). Use log_kinds_mode to control inclusion/exclusion behavior.",
+            "description": "Filter by log kind. \"access\": HTTP access logs (nginx), \"application\": user application logs (default), \"cron\": scheduled cron job logs, \"deployment\": deploy and post-deploy logs, \"platform\": platform-managed infrastructure service logs (e.g. sshd, systemd-journald, dbus). Can be specified multiple times (e.g., ?log_kinds[]=application&log_kinds[]=deployment). Use log_kinds_mode to control inclusion/exclusion behavior.",
             "required": false,
             "style": "form",
             "explode": true,
@@ -24311,6 +25403,13 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "enum": [
+                  "access",
+                  "application",
+                  "cron",
+                  "deployment",
+                  "platform"
+                ],
                 "example": "application"
               }
             }
@@ -24616,9 +25715,17 @@
                       "type": "array",
                       "items": {
                         "type": "string",
+                        "enum": [
+                          "access",
+                          "application",
+                          "cron",
+                          "deployment",
+                          "platform"
+                        ],
                         "example": "application"
                       },
                       "example": [
+                        "access",
                         "application",
                         "deployment"
                       ]
@@ -24705,8 +25812,15 @@
                             "example": "php:8.2-fpm"
                           },
                           "log_kind": {
-                            "description": "Category of the log entry (e.g., application, deployment)",
+                            "description": "Category of the log entry: \"access\" (HTTP/nginx), \"application\" (user code), \"cron\" (scheduled jobs), \"deployment\" (deploy/post-deploy), \"platform\" (infrastructure services)",
                             "type": "string",
+                            "enum": [
+                              "access",
+                              "application",
+                              "cron",
+                              "deployment",
+                              "platform"
+                            ],
                             "example": "application"
                           },
                           "content": {
@@ -30488,7 +31602,7 @@
                                       "href": {
                                         "type": "string",
                                         "format": "uri",
-                                        "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/automatic?transaction=App%5CController%3A%3Alist"
+                                        "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles?transaction=App%5CController%3A%3Alist"
                                       }
                                     },
                                     "type": "object",
@@ -30618,7 +31732,7 @@
                             "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist"
                           },
                           "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CProductController%3A%3Alist"
+                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CProductController%3A%3Alist"
                           }
                         }
                       },
@@ -30641,7 +31755,7 @@
                             "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout"
                           },
                           "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CCartController%3A%3Acheckout"
+                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CCartController%3A%3Acheckout"
                           }
                         }
                       },
@@ -30664,7 +31778,7 @@
                             "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile"
                           },
                           "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CUserController%3A%3Aprofile"
+                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CUserController%3A%3Aprofile"
                           }
                         }
                       }
@@ -31861,6 +32975,281 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}/environments/{environmentId}/observability/metrics/{service}/{metricName}": {
+      "get": {
+        "tags": [
+          "Service Metrics"
+        ],
+        "summary": "[Internal] Get gauge service metric timeline",
+        "description": "Returns a time-series of gauge service metric aggregations (last, min, max, avg, sample_count) for a specific service and metric name, scoped by project and environment.",
+        "operationId": "service_metric_gauge_timeline",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The unique identifier of the Upsun project",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "abc123def456"
+            }
+          },
+          {
+            "name": "environmentId",
+            "in": "path",
+            "description": "The environment identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "service",
+            "in": "path",
+            "description": "Service name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9_\\-\\.]+",
+              "example": "redis"
+            }
+          },
+          {
+            "name": "metricName",
+            "in": "path",
+            "description": "Full metric name (services-prefixed)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-zA-Z0-9_\\-\\.]+",
+              "example": "services.redis.memory.used"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704067200
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704153600
+            }
+          },
+          {
+            "name": "grain",
+            "in": "query",
+            "description": "Granularity of data points in seconds. Auto-calculated if omitted.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gauge metric timeline retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "_grain",
+                    "_from",
+                    "_to",
+                    "_project_id",
+                    "_environment_id",
+                    "_branch_machine_name",
+                    "_service",
+                    "metric_name",
+                    "type",
+                    "data"
+                  ],
+                  "properties": {
+                    "_grain": {
+                      "description": "Data granularity in seconds",
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "_from": {
+                      "description": "Query start timestamp",
+                      "type": "integer",
+                      "example": 1704067200
+                    },
+                    "_to": {
+                      "description": "Query end timestamp",
+                      "type": "integer",
+                      "example": 1704153600
+                    },
+                    "_project_id": {
+                      "description": "Project identifier",
+                      "type": "string",
+                      "example": "abc123def456"
+                    },
+                    "_environment_id": {
+                      "description": "Environment identifier",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_branch_machine_name": {
+                      "description": "Branch machine name",
+                      "type": "string",
+                      "example": "main-bvxea6i"
+                    },
+                    "_service": {
+                      "description": "Service name",
+                      "type": "string",
+                      "example": "redis"
+                    },
+                    "metric_name": {
+                      "description": "Full metric name",
+                      "type": "string",
+                      "example": "services.redis.memory.used"
+                    },
+                    "type": {
+                      "description": "Metric type",
+                      "type": "string",
+                      "enum": [
+                        "gauge"
+                      ],
+                      "example": "gauge"
+                    },
+                    "data": {
+                      "description": "Time-series gauge metric data points",
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "timestamp"
+                        ],
+                        "properties": {
+                          "timestamp": {
+                            "description": "Unix timestamp",
+                            "type": "integer",
+                            "example": 1708000000
+                          },
+                          "last": {
+                            "description": "Most recent gauge value in the interval",
+                            "type": "number",
+                            "format": "float",
+                            "example": 85.2,
+                            "nullable": true
+                          },
+                          "min": {
+                            "description": "Minimum gauge value in the interval",
+                            "type": "number",
+                            "format": "float",
+                            "example": 10,
+                            "nullable": true
+                          },
+                          "max": {
+                            "description": "Maximum gauge value in the interval",
+                            "type": "number",
+                            "format": "float",
+                            "example": 95,
+                            "nullable": true
+                          },
+                          "avg": {
+                            "description": "Average gauge value in the interval",
+                            "type": "number",
+                            "format": "float",
+                            "example": 52.3,
+                            "nullable": true
+                          },
+                          "sample_count": {
+                            "description": "Number of gauge observations in the interval",
+                            "type": "integer",
+                            "example": 3,
+                            "nullable": true
+                          }
+                        },
+                        "type": "object",
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "type",
+                    "title",
+                    "status",
+                    "violations"
+                  ],
+                  "properties": {
+                    "type": {
+                      "description": "RFC 2616 reference URL identifying the error type",
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://tools.ietf.org/html/rfc2616#section-1"
+                    },
+                    "title": {
+                      "description": "Human-readable summary of the validation error",
+                      "type": "string",
+                      "example": "Please ensure parameters are correct."
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "violations": {
+                      "description": "Map of parameter names to their validation errors. Each parameter can have multiple error messages.",
+                      "type": "object",
+                      "example": {
+                        "grain": [
+                          "Grain can not be larger than the selection windows."
+                        ],
+                        "from": [
+                          "The from timestamp must be in the past."
+                        ],
+                        "to": [
+                          "The to timestamp must be greater than the from timestamp."
+                        ]
+                      },
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "The from timestamp must be in the past."
+                        }
+                      }
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
           }
         }
       }
@@ -46380,7 +47769,7 @@
         "type": "object",
         "description": "The alert configuration for a billing profile.",
         "properties": {
-          "id": {
+          "type": {
             "type": "string",
             "description": "Type of alert (e.g. \"billing\")"
           },
@@ -47103,6 +48492,39 @@
           }
         }
       },
+      "migration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the migration",
+            "example": 1
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the migration was created",
+            "example": "2026-02-11T10:30:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the migration was last updated",
+            "example": "2026-02-11T10:30:00Z"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status of the migration:\n0 = Pending (migration created, profiles not yet created)\n1 = Profiles created (billing profiles created for all organizations)\n2 = SF mapped by ID (existing Salesforce accounts mapped by ID)\n3 = SF mapped by email (existing Salesforce accounts mapped by email)\n4 = SF accounts created (Salesforce accounts created for remaining unmapped organizations)\n5 = SF billing profiles created (all Salesforce billing profiles created)\n6 = BP callbacks received (all BP callbacks received; bp_account_id and bp_profile_id set on billing_profile)\n",
+            "example": 0
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "status"
+        ]
+      },
       "migration_organization": {
         "type": "object",
         "properties": {
@@ -47298,39 +48720,6 @@
           "stripe_exp_date",
           "stripe_country",
           "stripe_mandate_ref"
-        ]
-      },
-      "migration": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier for the migration",
-            "example": 1
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp when the migration was created",
-            "example": "2026-02-11T10:30:00Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp when the migration was last updated",
-            "example": "2026-02-11T10:30:00Z"
-          },
-          "status": {
-            "type": "integer",
-            "description": "Status of the migration (0 = pending)",
-            "example": 0
-          }
-        },
-        "required": [
-          "id",
-          "created_at",
-          "updated_at",
-          "status"
         ]
       },
       "billing_account": {
