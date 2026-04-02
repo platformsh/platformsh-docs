@@ -6437,13 +6437,13 @@ paths:
                 additionalProperties: false
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
-  /projects/{projectId}/environments/{environmentId}/observability/profiles/automatic:
+  /projects/{projectId}/environments/{environmentId}/observability/profiles:
     get:
       tags:
         - Blackfire Profiling
-      summary: List automatic profiling results
-      description: Returns a paginated list of automatic (APM-triggered) profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.
-      operationId: blackfire_profiles_list_automatic
+      summary: List profiling results
+      description: Returns a paginated list of profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.
+      operationId: blackfire_profiles_list
       parameters:
         - name: projectId
           in: path
@@ -6491,6 +6491,14 @@ paths:
           required: false
           schema:
             type: string
+            example: /api/products
+        - name: is_auto
+          in: query
+          description: When false, excludes auto-triggered (APM) profiles from results.
+          required: false
+          schema:
+            type: boolean
+            example: false
         - name: is_public
           in: query
           description: Filter to public profiles only when set to "true".
@@ -6500,9 +6508,69 @@ paths:
             enum:
               - 'true'
               - 'false'
+            example: 'true'
+        - name: sort_by
+          in: query
+          description: Field to sort results by.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - date
+              - wt
+              - io
+              - cpu
+              - pmu
+              - nw
+              - sql
+              - http
+            example: date
+        - name: sort_order
+          in: query
+          description: Sort direction.
+          required: false
+          schema:
+            type: string
+            default: null
+            enum:
+              - asc
+              - desc
+            example: desc
+        - name: start_date
+          in: query
+          description: Filter profiles created after this date (ISO 8601).
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2026-01-01T00:00:00+00:00'
+        - name: end_date
+          in: query
+          description: Filter profiles created before this date (ISO 8601).
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2026-12-31T23:59:59+00:00'
+        - name: status_code
+          in: query
+          description: 'Filter by profile status code: -1=empty, 0=todo, 16=payment_required, 32=too_many_subprofiles, 64=done, 128=failed, 192=rejected.'
+          required: false
+          schema:
+            type: integer
+            enum:
+              - -1
+              - 0
+              - 16
+              - 32
+              - 64
+              - 128
+              - 192
+            example: 64
       responses:
         '200':
-          description: Automatic profiles retrieved successfully
+          description: Profiles retrieved successfully
           content:
             application/json:
               schema:
@@ -6534,7 +6602,7 @@ paths:
                     format: uuid
                     example: a38f69ca-3b56-4ea6-beac-272b2568164a
                   profiles:
-                    description: List of automatic profiles
+                    description: List of profiles
                     type: array
                     items:
                       required:
@@ -6551,9 +6619,186 @@ paths:
                           description: Profile name
                           type: string
                           example: POST /api/cart
+                        created_at:
+                          description: Profile creation date (ISO 8601)
+                          type: string
+                          format: date-time
+                          example: 2026-03-26T14:31:49+0000
+                        updated_at:
+                          description: Profile last update date (ISO 8601)
+                          type: string
+                          format: date-time
+                          example: 2026-03-26T14:31:52+0000
                         metadata:
-                          description: Profile metadata
+                          description: Profile metadata (language, framework, transaction name, etc.)
                           type: object
+                        data:
+                          description: Profile performance data
+                          properties:
+                            envelope:
+                              description: Aggregate performance metrics
+                              properties:
+                                wt:
+                                  description: Wall time (microseconds)
+                                  type: number
+                                  example: 143341
+                                cpu:
+                                  description: CPU time (microseconds)
+                                  type: number
+                                  example: 113242
+                                io:
+                                  description: I/O time (microseconds)
+                                  type: number
+                                  example: 30099
+                                pmu:
+                                  description: Peak memory usage (bytes)
+                                  type: number
+                                  example: 5990880
+                                mu:
+                                  description: Memory usage (bytes)
+                                  type: number
+                                  example: 6301320
+                                nw:
+                                  description: Network I/O (bytes)
+                                  type: number
+                                  example: 739
+                                ct:
+                                  description: Call count
+                                  type: number
+                                  example: 1
+                              type: object
+                            important_metrics:
+                              description: Pre-aggregated SQL and HTTP metrics
+                              properties:
+                                sql_queries:
+                                  properties:
+                                    ct:
+                                      description: Number of SQL queries
+                                      type: number
+                                      example: 5
+                                    wt:
+                                      description: Total SQL wall time (microseconds)
+                                      type: number
+                                      example: 7004
+                                  type: object
+                                http_requests:
+                                  properties:
+                                    ct:
+                                      description: Number of HTTP requests
+                                      type: number
+                                      example: 1
+                                    wt:
+                                      description: Total HTTP wall time (microseconds)
+                                      type: number
+                                      example: 11
+                                  type: object
+                              type: object
+                          type: object
+                        recommendations:
+                          description: Number of recommendation constraints evaluated
+                          type: integer
+                          example: 4
+                          nullable: true
+                        context:
+                          description: Request context (HTTP or CLI)
+                          properties:
+                            uri:
+                              description: Full request URI (HTTP profiles)
+                              type: string
+                              example: https://example.com/api/v2/builds
+                            method:
+                              description: HTTP method
+                              type: string
+                              example: POST
+                            status_code:
+                              description: HTTP response status code
+                              type: integer
+                              example: 200
+                            path:
+                              description: Request path
+                              type: string
+                              example: /api/v2/builds
+                            type:
+                              description: Context type
+                              type: string
+                              enum:
+                                - http-request
+                                - cli
+                              example: http-request
+                            args:
+                              description: Command arguments (CLI profiles)
+                              type: array
+                              items:
+                                type: string
+                          type: object
+                        status_code:
+                          description: 'Profile processing status: 64=done, 128=failed, 0=todo, -1=empty, 16=payment_required, 32=too_many_subprofiles, 192=rejected'
+                          type: integer
+                          example: 64
+                        status_name:
+                          description: Human-readable profile status
+                          type: string
+                          example: finished
+                        owner:
+                          description: Profile owner
+                          properties:
+                            uuid:
+                              type: string
+                              format: uuid
+                            name:
+                              type: string
+                              example: John Doe
+                            avatar:
+                              type: string
+                              format: uri
+                          type: object
+                        agent:
+                          description: Blackfire agent/environment info
+                          properties:
+                            uuid:
+                              type: string
+                              format: uuid
+                            name:
+                              type: string
+                            env_uuid:
+                              type: string
+                              format: uuid
+                            is_env:
+                              type: boolean
+                          type: object
+                        has_timeline:
+                          description: Whether the profile has timeline data
+                          type: boolean
+                          example: true
+                        is_public:
+                          description: Whether the profile is publicly shared
+                          type: boolean
+                          example: false
+                        is_readonly:
+                          description: Whether the profile is read-only
+                          type: boolean
+                          example: false
+                        is_comparison:
+                          description: Whether this is a comparison profile
+                          type: boolean
+                          example: false
+                        caches:
+                          description: Cache statistics (OPcache, APCu, realpath, PCRE)
+                          type: object
+                        report:
+                          description: Test report with constraints and assertions
+                          type: object
+                          nullable: true
+                        vulnerable_usages:
+                          description: Security vulnerabilities detected
+                          type: array
+                          items:
+                            type: object
+                          nullable: true
+                        key_page:
+                          description: Key page / transaction configuration
+                          type: object
+                          nullable: true
                         _links:
                           description: Profile navigation links. Links with type "text/html" are web pages for humans. Links with type "application/json" are API endpoints returning JSON.
                           required:
@@ -6669,9 +6914,56 @@ paths:
                 profiles:
                   - uuid: 4b5266a2-fd71-468b-bf05-87b342079cbf
                     name: POST /api/cart
+                    created_at: 2026-03-26T14:31:49+0000
+                    updated_at: 2026-03-26T14:31:52+0000
                     metadata:
                       Triggered by: apm
                       Transaction Name: App\Controller\CartController::add
+                      Language: php
+                      Frameworks:
+                        - symfony_framework
+                    data:
+                      envelope:
+                        wt: 143341
+                        cpu: 113242
+                        io: 30099
+                        pmu: 5990880
+                        mu: 6301320
+                        nw: 739
+                        ct: 1
+                      important_metrics:
+                        sql_queries:
+                          ct: 5
+                          wt: 7004
+                        http_requests:
+                          ct: 1
+                          wt: 11
+                    recommendations: 4
+                    context:
+                      uri: https://example.com/api/cart
+                      method: POST
+                      status_code: 200
+                      path: /api/cart
+                      type: http-request
+                    status_code: 64
+                    status_name: finished
+                    owner:
+                      uuid: 4aed4f5d-e0cb-4320-902f-885fddaa7d15
+                      name: John Doe
+                    agent:
+                      uuid: a38f69ca-3b56-4ea6-beac-272b2568164a
+                      name: Production
+                      env_uuid: a38f69ca-3b56-4ea6-beac-272b2568164a
+                      is_env: true
+                    has_timeline: true
+                    is_public: false
+                    is_readonly: false
+                    is_comparison: false
+                    caches:
+                      opcache:
+                        enabled: true
+                        hitrate: 0.99
+                        items: 5128
                     _links:
                       graph_url:
                         href: https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph
@@ -13306,7 +13598,7 @@ paths:
                                     href:
                                       type: string
                                       format: uri
-                                      example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/automatic?transaction=App%5CController%3A%3Alist
+                                      example: https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles?transaction=App%5CController%3A%3Alist
                                   type: object
                                   additionalProperties: false
                               type: object
@@ -13403,7 +13695,7 @@ paths:
                         recommendations:
                           href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist
                         automatic_profiles:
-                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CProductController%3A%3Alist
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CProductController%3A%3Alist
                     - transaction: App\Controller\CartController::checkout
                       wt_96th_percentile: 523456.2
                       avg_wt: 245678.34
@@ -13420,7 +13712,7 @@ paths:
                         recommendations:
                           href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout
                         automatic_profiles:
-                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CCartController%3A%3Acheckout
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CCartController%3A%3Acheckout
                     - transaction: App\Controller\UserController::profile
                       wt_96th_percentile: 89234.1
                       avg_wt: 34567.89
@@ -13437,7 +13729,7 @@ paths:
                         recommendations:
                           href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile
                         automatic_profiles:
-                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CUserController%3A%3Aprofile
+                          href: https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CUserController%3A%3Aprofile
                 top_hits_timeline:
                   data:
                     - timestamp: 1771435020
