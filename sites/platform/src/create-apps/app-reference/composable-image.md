@@ -56,7 +56,6 @@ To override any part of a property, you must provide the entire property.
 | `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md). |
 | [`access`](/create-apps/image-properties/access.md)           | An access dictionary                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
 | [`variables`](/create-apps/image-properties/variables.md)        | A variables dictionary                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
-| [`firewall`](/create-apps/image-properties/firewall.md)         | A firewall dictionary                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
 | [`hooks`](/create-apps/image-properties/hooks.md)            | A hooks dictionary                                             |          | No               | Specifies commands and/or scripts to run in the `build`, `deploy`, and `post_deploy` phases.                                                                                                                                                                                                      |
 | [`crons`](/create-apps/image-properties/crons.md)            | A cron dictionary                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
 | [`source`](/create-apps/image-properties/source.md)           | A source dictionary                                           |          | No               | Details about the app’s source code and available operations.                                                                                                                                                                                                 |
@@ -78,6 +77,19 @@ applications:
 ```
 
 ### Supported Nix channels
+
+{{% note theme="info" %}}
+
+Nix releases new channels a few times per year. Channels that were fully supported can quickly become deprecated. With Composable Images, you are responsible for: 
+
+ - Keeping your Nix channel up to date  
+ - Ensuring requested runtimes and packages are available and current
+
+Unlike [Single Runtime Images](/create-apps/app-reference/single-runtime-image.md), which receive automatic minor and security updates, Composable Images require proactive maintenance. We recommend reviewing your configuration at least twice per year to upgrade the Nix channel and any runtimes or packages you rely on.
+
+See [Which image type should I use?](/create-apps/app-reference.html#which-image-type) for a quick comparison of [Single Runtime](/create-apps/app-reference/single-runtime-image.md) vs Composable Images.
+
+{{% /note %}}
 
 Upsun supports the following Nix channel versions:
 
@@ -174,7 +186,7 @@ See the [`stack` configuration example](#example-stack-configuration) above, whi
 
 If a PHP runtime is the first declared (or _primary_) runtime in the app:
   - The PHP-FPM service starts automatically.
-  - You can configure the PHP-FPMP service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
+  - You can configure the PHP-FPM service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
 
     The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys.
 

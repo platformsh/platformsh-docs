@@ -17,6 +17,11 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="varnish" status="supported" environment="grid" >}}
 
+{{% deprecated-versions %}}
+
+{{< image-versions image="varnish" status="deprecated" environment="grid" >}}
+
+
 ## How it works
 
 All incoming requests go through the [standard router](../define-routes/_index.md).
