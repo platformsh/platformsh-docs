@@ -2,6 +2,9 @@
 title: "firewall"
 weight: 4
 description: A firewall dictionary that defines the outbound firewall rules for the application.
+build:
+  list: never
+  render: never
 ---
 
 {{< premium-features/tiered "Elite and Enterprise" >}}
