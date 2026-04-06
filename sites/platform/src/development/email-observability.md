@@ -80,7 +80,7 @@ curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJEC
   -H "accept: application/json" | jq '.'
 ```
 
-Use `start_date` and `end_date` to narrow the range:
+Use `start_date` and `end_date` to narrow the range (format: `YYYY-MM-DD`):
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJECT_ID" >}}?start_date=2025-01-01&end_date=2025-01-31" \
