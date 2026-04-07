@@ -66,8 +66,10 @@ To verify a webhook request:
 
 1. Read the raw POST body (the JSON payload).
 2. Read the `X-JWS-Signature` header.
-3. Re-attach the payload into the JWS token (insert it between the two dots).
-4. Verify the signature using HS256 with your shared key.
+3. Parse the JWS protected header and signature from the header value (the string in the form `<base64url-encoded-header>..<base64url-encoded-signature>`). Then, do one of the following:
+   - Use a JWS library that supports RFC 7797 detached, unencoded payloads (`b64:false`) and pass the raw body bytes from step 1 as the detached payload.
+   - Manually compute the JWS signing input as `<base64url-encoded-header>.<raw-body-bytes>` and verify the HS256 MAC over this signing input with your shared key.
+4. Verify the signature using HS256 with your shared key, treating the raw body bytes from step 1 as the payload. Do **not** try to build a new compact JWS string by inserting the raw body between the two dots.
 5. If verification fails, reject the request (for example, respond with `401`).
 
 {{% note %}}
