@@ -1,62 +1,70 @@
 ---
 title: Manage search indexing for an environment
 sidebarTitle: Manage search indexing
-description: Learn how to set up search indexing so only your live production site appears in search results.
+description: Protect SEO health by managing an environment's visibility to search engines.
 ---
 
-When you have preview environments,
-you don't want search engines indexing them and diluting the SEO of your production site.
+Exposing multiple environments in the same project to search engines can harm your
+production site's SEO rankings, for example, through duplicate content, broken links, or unpolished pages.
 
-Search engine indexers are told to ignore all preview environments.
-When you're ready to go live, give your production environment a [custom domain](/domains/steps/_index.md)
-and then set it to be visible to search engines.
+By default, {{% vendor/name %}} hides **all** environments that do not have a custom domain assigned.
 
-To change your production environment's visibility to search engines, follow these steps:
+After you assign a [custom domain](/domains/steps/_index.md) to an environment (preview or production), you can
+then choose to reveal the environment to search engines.
+
+{{< note >}}
+
+If you have multiple environments with custom domains, make only one visible to search engines.
+
+{{< /note >}}
+
+To change an environment's visibility to search engines:
 
 {{< codetabs >}}
-+++
-title=Using the CLI
-+++
-
-To not restrict indexers on your production environment, run the following command:
-
-```bash
-{{% vendor/cli %}} environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}} restrict_robots false
-```
-
-<--->
 +++
 title=In the Console
 +++
 
-1. Select a project.
-1. From the **Environment** menu, select the production environment.
-1. Click {{< icon settings >}} **Settings** near the upper right of the page.
-1. On the **General** tab, select or clear the **Hide from search engines** checkbox.
+1. Select the project you want to update.
+1. From the **Environment** menu, select the environment whose visibility you want to change.
+1. Click {{< icon settings >}} **Settings**.
+1. Select or clear the **Hide from search engines** checkbox.
+
+<--->
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash
+{{% vendor/cli %}} environment:info --environment {{< variable "ENVIRONMENT_NAME" >}} restrict_robots false
+```
 
 {{< /codetabs >}}
+
+{{< note >}}
 
 {{% vendor/name %}} can't guarantee that indexers follow the instructions.
 If you're concerned about access, set up [HTTP access control](/environments/http-access-control.md).
 
-## How it's done
+{{< /note >}}
 
-When the **Hide from search engines** is enabled, 
-search engines are turned away from environments by including a `X-Robots-Tag` header:
+## How it works
+
+When **Hide from search engines** is enabled, {{% vendor/name %}} adds the following header
+to responses, which instructs search engines to not index and to not traverse your site:
 
 ```txt
 X-Robots-Tag: noindex, nofollow
 ```
 
-This header instructs search engine indexers to not index these sites and not traverse links from these sites, keeping non-production sites out of search engine indexes.
-
 By default, this setting is enabled for all `{{% vendor/cli %}}.site` domains, and is disabled for any environment with a custom domain.
 
-## Alternative method
+## Alternative method: Use a robots.txt file
 
 You can also instruct search engine indexers by using a `robots.txt` file.
 Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
 Control either with the [`location` section of your app configuration](/create-apps/image-properties/web.md#locations).
 
-If your `robots.txt` file includes instructions to ignore a page,
-search engine indexers may ignore it even if you have configured {{% vendor/name %}} to not send the header.
+If your `robots.txt` file instructs search engines to ignore a page, that instruction takes effect regardless of whether {{% vendor/name %}} is configured to send the `X-Robots-Tag` header.
