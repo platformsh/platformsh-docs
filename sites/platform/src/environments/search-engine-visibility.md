@@ -50,7 +50,7 @@ X-Robots-Tag: noindex, nofollow
 
 This header instructs search engine indexers to not index these sites and not traverse links from these sites, keeping non-production sites out of search engine indexes.
 
-By default, this setting is enabled for all `{{% vendor/cli %}}.site` domains, and is disabled for production environments with a custom domain.
+By default, this setting is enabled for all `{{% vendor/cli %}}.site` domains, and is disabled for any environment with a custom domain.
 
 ## Alternative method
 
