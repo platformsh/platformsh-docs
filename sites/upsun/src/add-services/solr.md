@@ -561,6 +561,45 @@ This is the complete list of plugins that are available and loaded by default:
 | [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |*     |*    |
 | [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |
 
+## Custom Solr plugins
+
+You can add server-side Solr plugins (`.jar` files) to augment the behavior of the Solr service. 
+
+1. Download the `.jar` file to the ‘`/lib` directory that maps to the required scope of the library: 
+
+  - `<core_instance>/lib/` for core-specific plugins 
+  - `<solr_home>/lib/` for node-level availability 
+  - `<solr_install>/lib/` for system-wide availability
+
+      For example, to include a core-specific custom plugin as part of a core named `core1-conf`, your directory structure will look something like this (this structure is part of your code repo): 
+    ```text
+    .upsun/                                                                                                                                                                                
+      ├── config.yaml                                                                                                                                                                        
+      └── core1-conf/                                                                                                                                                                         
+          ├── lib/                                                                                                                                                                           
+          │   └── CUSTOM_PLUGIN_NAME.jar                                                                                                                                                
+          ├── managed-schema.xml                                                                                                                                                             
+          └── solrconfig.xml
+    ```
+
+
+2. Check the size of the configuration directory (`core1-conf` in this example) and subdirectories (including `lib`). See the [Limitations](#limitations) section for the command to run and for recommended size limits.  
+
+3. In your `./upsun/config.yaml` file, include the plugin as part of the `solr` service:  
+
+    ```yaml
+    solr:
+      type: solr:{{% latest "solr" %}}
+      configuration:
+        cores:
+          mainindex:
+            conf_dir: !archive "core1-conf"
+        endpoints:
+          solr:
+            core: mainindex
+    ```
+Downloading to a `lib` subdirectory of a `.solr.configuration.cores.CORE_NAME.conf_dir` directory is considered a best practice. Installing libraries in a `.solr.configuration.configsets.CONFIGSET_NAME` directory might cause unexpected results.
+
 ## Upgrading
 
 The Solr data format sometimes changes between versions in incompatible ways. Solr doesn't include a data upgrade mechanism as it is expected that all indexes can be regenerated from stable data if needed. To upgrade (or downgrade) Solr you need to use a new service from scratch.
