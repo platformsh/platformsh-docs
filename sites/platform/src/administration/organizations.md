@@ -270,7 +270,7 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 - Yes. You will be automatically redirected to the new console and can log in using the same credentials.  
 
 #### Will I be able to switch if I have both Fixed and Flex organizations?  
-- Yes. You can navigate between organizations (Fixed or Flex) from a drop-down list.  
+- Yes. If you already have both organization types, you can navigate between them from a drop-down list in the console.
 
 #### How will Fixed vs Flex be identifiable in the console?  
 - Organizations will have tags next to their names in the console.  
@@ -284,7 +284,6 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 
 #### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
 Yes.
-  - There will be a new way to create organizations (you can now choose Fixed or Flex).  
   - Ability to navigate between organization types.  
   - **[15-day free trial](https://auth.upsun.com/register/)** for users creating Flex organizations.  
 
