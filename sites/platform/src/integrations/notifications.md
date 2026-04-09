@@ -2,7 +2,7 @@
 title: "Health notifications"
 weight: -1
 description: |
-  {{% vendor/name %}} can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
+  {{% vendor/name %}} can notify you when various events happen on your project, in any environment.
 ---
 
 {{% description %}}
@@ -16,6 +16,8 @@ When you create a new project,
 
 ## Available notifications
 
+Notifications include the steps to take to resolve the issue.
+
 ### Low-disk warning
 
 {{% vendor/name %}} monitors disk space usage on all applications and services in your cluster.
@@ -23,6 +25,18 @@ When you create a new project,
 * When available disk space drops below 20% or 4&nbsp;GB, whichever is smaller, a warning notification is generated.
 * When available disk space drops below 10% or 2&nbsp;GB, whichever is smaller, a critical notification is generated.
 * When available disk space returns above 20% or 4&nbsp;GB, whichever is smaller, an all-clear notification is generated.
+
+### Low-inode warning
+
+Inodes are filesystem metadata entries that store information about files and directories.
+Each file, directory, or symlink consumes one inode, regardless of its size. Running out of inodes prevents
+the creation of new files even when disk space is available.
+
+{{% vendor/name %}} monitors inode usage on all applications and services in your cluster.
+
+* When available inodes drop below 20% of the total available, a warning notification is generated.
+* When available inodes drop below 10% of the total available, a critical notification is generated.
+* When available inodes return above 20% of the total available, an all-clear notification is generated.
 
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
