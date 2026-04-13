@@ -105,7 +105,7 @@ applications:
   myapp:
     hooks:
       deploy: |
-        if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
           symfony console app:dev:anonymize
         fi
 ```
