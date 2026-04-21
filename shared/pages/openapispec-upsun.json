@@ -3914,6 +3914,1647 @@
         }
       }
     },
+    "/projects/{projectId}/environments/{envId}/continuous-profiling": {
+      "get": {
+        "operationId": "list_applications",
+        "summary": "List profiled applications",
+        "description": "Returns all applications reporting continuous profiling data for the authenticated agent, scoped to the given time range. Each application includes its available profile types (with unit and aggregation metadata) and detected languages",
+        "tags": [
+          "Continuous Profiling"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the Upsun project",
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "22sdxmbrs4lai"
+            }
+          },
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "description": "The environment identifier",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start of the time range as a Unix timestamp, defaults to now minus 30 minutes.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700000000
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End of the time range as a Unix timestamp, defaults to now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700003600
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Applications listed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "applications"
+                  ],
+                  "properties": {
+                    "applications": {
+                      "type": "object",
+                      "description": "Map of application name to application details",
+                      "example": {
+                        "ingester": {
+                          "name": "ingester",
+                          "profile_types": {
+                            "cpu": {
+                              "name": "cpu",
+                              "description": "Time spent running on the CPU",
+                              "title": "CPU Time",
+                              "unit": "nanoseconds",
+                              "aggregation": "sum"
+                            },
+                            "alloc_objects": {
+                              "name": "alloc_objects",
+                              "description": "Number of objects allocated",
+                              "title": "Allocations",
+                              "unit": "count",
+                              "aggregation": "sum"
+                            }
+                          },
+                          "languages": [
+                            "go"
+                          ]
+                        },
+                        "admin-pipeline": {
+                          "name": "admin-pipeline",
+                          "profile_types": {
+                            "cpu": {
+                              "name": "cpu",
+                              "description": "Time spent running on the CPU",
+                              "title": "CPU Time",
+                              "unit": "nanoseconds",
+                              "aggregation": "sum"
+                            },
+                            "wall-time": {
+                              "name": "wall-time",
+                              "description": "Wall clock time spent executing",
+                              "title": "Wall Time",
+                              "unit": "nanoseconds",
+                              "aggregation": "sum"
+                            }
+                          },
+                          "languages": [
+                            "php"
+                          ]
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "name",
+                          "profile_types",
+                          "languages"
+                        ],
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "my-app"
+                          },
+                          "profile_types": {
+                            "type": "object",
+                            "description": "Map of profile type name to profile type details",
+                            "example": {
+                              "cpu": {
+                                "name": "cpu",
+                                "description": "Time spent running on the CPU",
+                                "title": "CPU Time",
+                                "unit": "nanoseconds",
+                                "aggregation": "sum"
+                              },
+                              "alloc_objects": {
+                                "name": "alloc_objects",
+                                "description": "Number of objects allocated",
+                                "title": "Allocations",
+                                "unit": "count",
+                                "aggregation": "sum"
+                              }
+                            },
+                            "additionalProperties": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "name",
+                                "description",
+                                "title",
+                                "unit",
+                                "aggregation"
+                              ],
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "example": "cpu"
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "example": "Time spent running on the CPU"
+                                },
+                                "title": {
+                                  "type": "string",
+                                  "example": "CPU Time"
+                                },
+                                "unit": {
+                                  "type": "string",
+                                  "example": "nanoseconds"
+                                },
+                                "aggregation": {
+                                  "type": "string",
+                                  "enum": [
+                                    "avg",
+                                    "sum"
+                                  ],
+                                  "example": "sum"
+                                }
+                              }
+                            }
+                          },
+                          "languages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "example": [
+                              "go",
+                              "python"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "invalid 'from' parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Query timeout - The query exceeded the server timeout limit. Please narrow down the query by reducing the time range or adding more specific filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 499
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Timeout while querying data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}": {
+      "get": {
+        "operationId": "get_application_timeline",
+        "summary": "Get application timeline",
+        "description": "Returns timeline data points for the given application and profile type, scoped to the authenticated agent. Points are aggregated at a computed grain (60s to 1h) based on the time range. The response includes the bounded time range, aggregation metadata, and the agent retention period",
+        "tags": [
+          "Continuous Profiling"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the Upsun project",
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "22sdxmbrs4lai"
+            }
+          },
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "description": "The environment identifier",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "app",
+            "in": "path",
+            "required": true,
+            "description": "URL-encoded application name",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "my-app"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start of the time range as a Unix timestamp, defaults to now minus 30 minutes.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700000000
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End of the time range as a Unix timestamp, defaults to now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700003600
+            }
+          },
+          {
+            "name": "profile_type",
+            "in": "query",
+            "description": "Profile type to query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cpu",
+                "wall-time",
+                "wall",
+                "goroutine",
+                "alloc_objects",
+                "alloc_space",
+                "inuse_objects",
+                "inuse_space",
+                "space"
+              ],
+              "default": null,
+              "example": "cpu"
+            }
+          },
+          {
+            "name": "runtime_mode",
+            "in": "query",
+            "description": "Filter mode for runtime parameter. \"1\" (additive) includes only specified runtimes. \"-1\" (subtractive) excludes specified runtimes and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime[]",
+            "in": "query",
+            "description": "Filter by runtime language. Can be specified multiple times for multiple values (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "go"
+              }
+            }
+          },
+          {
+            "name": "runtime_version_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_version parameter. \"1\" (additive) includes only specified versions. \"-1\" (subtractive) excludes specified versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_version[]",
+            "in": "query",
+            "description": "Filter by runtime version. Can be specified multiple times for multiple values (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "1.21"
+              }
+            }
+          },
+          {
+            "name": "runtime_arch_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_arch parameter. \"1\" (additive) includes only specified architectures. \"-1\" (subtractive) excludes specified architectures and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_arch[]",
+            "in": "query",
+            "description": "Filter by runtime architecture. Can be specified multiple times for multiple values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "amd64"
+              }
+            }
+          },
+          {
+            "name": "runtime_os_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_os parameter. \"1\" (additive) includes only specified operating systems. \"-1\" (subtractive) excludes specified operating systems and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_os[]",
+            "in": "query",
+            "description": "Filter by runtime operating system. Can be specified multiple times for multiple values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "linux"
+              }
+            }
+          },
+          {
+            "name": "probe_version_mode",
+            "in": "query",
+            "description": "Filter mode for probe_version parameter. \"1\" (additive) includes only specified probe versions. \"-1\" (subtractive) excludes specified probe versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "probe_version[]",
+            "in": "query",
+            "description": "Filter by probe version. Can be specified multiple times for multiple values (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "2.28.2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Timeline data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "from",
+                    "to",
+                    "grain",
+                    "unit",
+                    "aggregation_type",
+                    "retention",
+                    "points"
+                  ],
+                  "properties": {
+                    "from": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Actual start of the time range as a Unix timestamp",
+                      "example": 1700000000
+                    },
+                    "to": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Actual end of the time range as a Unix timestamp",
+                      "example": 1700003600
+                    },
+                    "grain": {
+                      "type": "integer",
+                      "description": "Granularity of data points in seconds",
+                      "example": 1800
+                    },
+                    "unit": {
+                      "type": "string",
+                      "description": "Unit of the sample values, suffixed with `_per_second` for sum aggregation types",
+                      "example": "nanoseconds_per_second"
+                    },
+                    "aggregation_type": {
+                      "type": "string",
+                      "enum": [
+                        "avg",
+                        "sum"
+                      ],
+                      "example": "sum"
+                    },
+                    "retention": {
+                      "type": "integer",
+                      "description": "Agent retention period in minutes",
+                      "example": 80640
+                    },
+                    "points": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "timestamp"
+                        ],
+                        "properties": {
+                          "timestamp": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1700000000
+                          },
+                          "value": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Aggregated sample value for this time slot. When no profiling data was collected during this slot, the key is entirely absent from the JSON object (not present as null or zero). The frontend should render such points as gaps in the timeline chart, not as zero-value data points",
+                            "example": 15733333
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid filters"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Query timeout - The query exceeded the server timeout limit. Please narrow down the query by reducing the time range or adding more specific filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 499
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Timeout while querying data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}/merge": {
+      "get": {
+        "operationId": "get_application_merge",
+        "summary": "Get merged profile",
+        "description": "Returns a merged profile for the given application over the specified time range. The output format is controlled by the `out` query parameter: `pprof` returns a gzipped protobuf with Content-Disposition header, `dot` returns a GraphViz DOT graph, `flamebearerv2` returns JSON flame graph data",
+        "tags": [
+          "Continuous Profiling"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the Upsun project",
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "22sdxmbrs4lai"
+            }
+          },
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "description": "The environment identifier",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "app",
+            "in": "path",
+            "required": true,
+            "description": "URL-encoded application name",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "my-app"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start of the time range as a Unix timestamp, defaults to now minus 30 minutes.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700000000
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End of the time range as a Unix timestamp, defaults to now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700003600
+            }
+          },
+          {
+            "name": "profile_type",
+            "in": "query",
+            "description": "Profile type to query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cpu",
+                "wall-time",
+                "wall",
+                "goroutine",
+                "alloc_objects",
+                "alloc_space",
+                "inuse_objects",
+                "inuse_space",
+                "space"
+              ],
+              "default": null,
+              "example": "cpu"
+            }
+          },
+          {
+            "name": "out",
+            "in": "query",
+            "description": "Output format for the merged profile.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pprof",
+                "dot",
+                "flamebearerv2"
+              ],
+              "default": null,
+              "example": "pprof"
+            }
+          },
+          {
+            "name": "runtime_mode",
+            "in": "query",
+            "description": "Filter mode for runtime parameter. \"1\" (additive) includes only specified runtimes. \"-1\" (subtractive) excludes specified runtimes and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime[]",
+            "in": "query",
+            "description": "Filter by runtime language. Can be specified multiple times for multiple values (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "go"
+              }
+            }
+          },
+          {
+            "name": "runtime_version_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_version parameter. \"1\" (additive) includes only specified versions. \"-1\" (subtractive) excludes specified versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_version[]",
+            "in": "query",
+            "description": "Filter by runtime version. Can be specified multiple times for multiple values (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "1.21"
+              }
+            }
+          },
+          {
+            "name": "runtime_arch_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_arch parameter. \"1\" (additive) includes only specified architectures. \"-1\" (subtractive) excludes specified architectures and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_arch[]",
+            "in": "query",
+            "description": "Filter by runtime architecture. Can be specified multiple times for multiple values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "amd64"
+              }
+            }
+          },
+          {
+            "name": "runtime_os_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_os parameter. \"1\" (additive) includes only specified operating systems. \"-1\" (subtractive) excludes specified operating systems and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_os[]",
+            "in": "query",
+            "description": "Filter by runtime operating system. Can be specified multiple times for multiple values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "linux"
+              }
+            }
+          },
+          {
+            "name": "probe_version_mode",
+            "in": "query",
+            "description": "Filter mode for probe_version parameter. \"1\" (additive) includes only specified probe versions. \"-1\" (subtractive) excludes specified probe versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "probe_version[]",
+            "in": "query",
+            "description": "Filter by probe version. Can be specified multiple times for multiple values (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "2.28.2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Merged profile retrieved successfully",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "Gzipped pprof protobuf when `out=pprof`"
+                }
+              },
+              "text/vnd.graphviz": {
+                "schema": {
+                  "type": "string",
+                  "description": "GraphViz DOT graph when `out=dot`"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "description": "Flame graph JSON when `out=flamebearerv2`",
+                  "required": [
+                    "version",
+                    "flamebearer",
+                    "metadata",
+                    "_profile_type",
+                    "_sample_unit"
+                  ],
+                  "properties": {
+                    "version": {
+                      "type": "integer",
+                      "description": "Flamebearer format version",
+                      "example": 1
+                    },
+                    "flamebearer": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Core flame graph data structure containing function names and the hierarchical call tree encoded as levels of 4-tuples",
+                      "required": [
+                        "names",
+                        "levels",
+                        "numTicks",
+                        "maxSelf"
+                      ],
+                      "properties": {
+                        "names": {
+                          "type": "array",
+                          "description": "Array of function identifiers referenced by index in `levels`. Each entry is a JSON-encoded location object with `filename`, `name`, and `line` fields",
+                          "items": {
+                            "type": "string",
+                            "example": "sync/atomic.(*Pointer).Store"
+                          },
+                          "example": [
+                            "total",
+                            "time.now",
+                            "sync/atomic.(*Pointer).Store"
+                          ]
+                        },
+                        "levels": {
+                          "type": "array",
+                          "description": "Flame graph call tree encoded as levels. Each level is a flat array of 4-tuples `[offset, total, self, name_index]` where `offset` is the gap from the left edge in sample units, `total` is the inclusive sample count, `self` is the exclusive sample count, and `name_index` references the `names` array",
+                          "items": {
+                            "type": "array",
+                            "example": [
+                              0,
+                              7361350000000,
+                              5310000000,
+                              0
+                            ],
+                            "items": {
+                              "type": "integer",
+                              "example": 0
+                            }
+                          },
+                          "example": [
+                            [
+                              0,
+                              7361350000000,
+                              5310000000,
+                              0
+                            ],
+                            [
+                              5310000000,
+                              160000000,
+                              0,
+                              1,
+                              0,
+                              483950000000,
+                              0,
+                              2
+                            ]
+                          ]
+                        },
+                        "numTicks": {
+                          "type": "integer",
+                          "description": "Total number of samples across the entire profile",
+                          "example": 7361350000000
+                        },
+                        "maxSelf": {
+                          "type": "integer",
+                          "description": "Maximum exclusive (self) sample count across all nodes",
+                          "example": 333800000000
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "description": "Profile metadata describing the format and sampling configuration",
+                      "required": [
+                        "format",
+                        "spyName",
+                        "sampleRate",
+                        "units",
+                        "name"
+                      ],
+                      "properties": {
+                        "format": {
+                          "type": "string",
+                          "description": "Profile format. Always `single` for merged profiles (`double` is used for diff profiles)",
+                          "example": "single"
+                        },
+                        "spyName": {
+                          "type": "string",
+                          "description": "Name of the profiling agent that collected the data. Always `unknown` for pprof-based profiles",
+                          "example": "unknown"
+                        },
+                        "sampleRate": {
+                          "type": "integer",
+                          "description": "Sampling rate in Hz used during profiling",
+                          "example": 100
+                        },
+                        "units": {
+                          "type": "string",
+                          "description": "Unit of measure for sample values (e.g. `nanoseconds`, `bytes`, `count`)",
+                          "example": "nanoseconds"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Human-readable name for the profile",
+                          "example": "merged_profile"
+                        }
+                      }
+                    },
+                    "timeline": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Present for pyroscope flamebearer format compatibility. Always null for merged profiles returned by this endpoint — do not build UI to render this field",
+                      "additionalProperties": false,
+                      "required": [
+                        "startTime",
+                        "samples",
+                        "durationDelta"
+                      ],
+                      "properties": {
+                        "startTime": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Start of the timeline as a Unix timestamp in seconds",
+                          "example": 1700000000
+                        },
+                        "samples": {
+                          "type": "array",
+                          "description": "Sequence of sample counts, one per time bucket starting at `startTime` and spaced by `durationDelta`",
+                          "items": {
+                            "type": "integer",
+                            "example": 100
+                          },
+                          "example": [
+                            100,
+                            200,
+                            150
+                          ]
+                        },
+                        "durationDelta": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Time interval between consecutive samples in seconds",
+                          "example": 10
+                        },
+                        "watermarks": {
+                          "type": "object",
+                          "description": "Map of sample index to watermark timestamp",
+                          "additionalProperties": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        }
+                      },
+                      "example": null
+                    },
+                    "groups": {
+                      "type": "object",
+                      "description": "Present for pyroscope flamebearer format compatibility. Always an empty object for merged profiles returned by this endpoint — do not build UI to render this field",
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "startTime",
+                          "samples",
+                          "durationDelta"
+                        ],
+                        "properties": {
+                          "startTime": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Start of the timeline as a Unix timestamp in seconds",
+                            "example": 1700000000
+                          },
+                          "samples": {
+                            "type": "array",
+                            "description": "Sequence of sample counts, one per time bucket starting at `startTime` and spaced by `durationDelta`",
+                            "items": {
+                              "type": "integer",
+                              "example": 100
+                            },
+                            "example": [
+                              100,
+                              200,
+                              150
+                            ]
+                          },
+                          "durationDelta": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Time interval between consecutive samples in seconds",
+                            "example": 10
+                          },
+                          "watermarks": {
+                            "type": "object",
+                            "description": "Map of sample index to watermark timestamp",
+                            "additionalProperties": {
+                              "type": "integer",
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      },
+                      "example": {}
+                    },
+                    "heatmap": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Present for pyroscope flamebearer format compatibility. Always null for merged profiles returned by this endpoint — do not build UI to render this field",
+                      "additionalProperties": false,
+                      "required": [
+                        "values",
+                        "timeBuckets",
+                        "valueBuckets",
+                        "startTime",
+                        "endTime",
+                        "minValue",
+                        "maxValue",
+                        "minDepth",
+                        "maxDepth"
+                      ],
+                      "properties": {
+                        "values": {
+                          "type": "array",
+                          "description": "2D matrix of occurrence counts indexed as `values[time_bucket][value_bucket]`",
+                          "items": {
+                            "type": "array",
+                            "example": [
+                              0,
+                              1,
+                              3,
+                              0
+                            ],
+                            "items": {
+                              "type": "integer",
+                              "example": 0
+                            }
+                          }
+                        },
+                        "timeBuckets": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Number of bins on the time (X) axis",
+                          "example": 10
+                        },
+                        "valueBuckets": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Number of bins on the value (Y) axis",
+                          "example": 20
+                        },
+                        "startTime": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Start of the time axis as Unix nanoseconds",
+                          "example": 1700000000000000000
+                        },
+                        "endTime": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "End of the time axis as Unix nanoseconds",
+                          "example": 1700003600000000000
+                        },
+                        "minValue": {
+                          "type": "integer",
+                          "description": "Minimum value axis boundary",
+                          "example": 0
+                        },
+                        "maxValue": {
+                          "type": "integer",
+                          "description": "Maximum value axis boundary",
+                          "example": 1000000
+                        },
+                        "minDepth": {
+                          "type": "integer",
+                          "description": "Minimum non-zero count in the values matrix",
+                          "example": 1
+                        },
+                        "maxDepth": {
+                          "type": "integer",
+                          "description": "Maximum count in the values matrix",
+                          "example": 500
+                        }
+                      },
+                      "example": null
+                    },
+                    "_profile_type": {
+                      "type": "string",
+                      "description": "Profile type name",
+                      "example": "cpu"
+                    },
+                    "_sample_unit": {
+                      "type": "string",
+                      "description": "Unit of the sample values",
+                      "example": "nanoseconds"
+                    },
+                    "_aggregation_type": {
+                      "type": "string",
+                      "description": "Aggregation method for timeline data",
+                      "enum": [
+                        "avg",
+                        "sum"
+                      ],
+                      "example": "sum"
+                    },
+                    "_application": {
+                      "type": "string",
+                      "description": "Application name the profile was collected from",
+                      "example": "ingester"
+                    },
+                    "_from": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Start of the merged time range",
+                      "example": "2026-03-25T15:18:53Z"
+                    },
+                    "_to": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "End of the merged time range",
+                      "example": "2026-04-01T14:18:53Z"
+                    },
+                    "_scale_factor": {
+                      "type": "integer",
+                      "description": "Scale factor applied to sample values",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "invalid 'profile_type' parameter (invalid)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Query timeout - The query exceeded the server timeout limit. Please narrow down the query by reducing the time range or adding more specific filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 499
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Timeout while querying data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}/filter": {
+      "get": {
+        "operationId": "get_application_filter",
+        "summary": "Get application filter values",
+        "description": "Returns available label filter fields and their distinct values for the given application. Use these values to build filter parameters (`runtime[]`, `runtime_version[]`, etc.) on the timeline and merge endpoints",
+        "tags": [
+          "Continuous Profiling"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the Upsun project",
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "22sdxmbrs4lai"
+            }
+          },
+          {
+            "name": "envId",
+            "in": "path",
+            "required": true,
+            "description": "The environment identifier",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "app",
+            "in": "path",
+            "required": true,
+            "description": "URL-encoded application name",
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "my-app"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start of the time range as a Unix timestamp, defaults to now minus 30 minutes.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700000000
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End of the time range as a Unix timestamp, defaults to now.",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1700003600
+            }
+          },
+          {
+            "name": "profile_type",
+            "in": "query",
+            "description": "Profile type to query.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cpu",
+                "wall-time",
+                "wall",
+                "goroutine",
+                "alloc_objects",
+                "alloc_space",
+                "inuse_objects",
+                "inuse_space",
+                "space"
+              ],
+              "default": null,
+              "example": "cpu"
+            }
+          },
+          {
+            "name": "runtime_mode",
+            "in": "query",
+            "description": "Filter mode for runtime parameter. \"1\" (additive) includes only specified runtimes. \"-1\" (subtractive) excludes specified runtimes and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime[]",
+            "in": "query",
+            "description": "Filter by runtime language. Can be specified multiple times for multiple values (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "go"
+              }
+            }
+          },
+          {
+            "name": "runtime_version_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_version parameter. \"1\" (additive) includes only specified versions. \"-1\" (subtractive) excludes specified versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_version[]",
+            "in": "query",
+            "description": "Filter by runtime version. Can be specified multiple times for multiple values (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "1.21"
+              }
+            }
+          },
+          {
+            "name": "runtime_arch_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_arch parameter. \"1\" (additive) includes only specified architectures. \"-1\" (subtractive) excludes specified architectures and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_arch[]",
+            "in": "query",
+            "description": "Filter by runtime architecture. Can be specified multiple times for multiple values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "amd64"
+              }
+            }
+          },
+          {
+            "name": "runtime_os_mode",
+            "in": "query",
+            "description": "Filter mode for runtime_os parameter. \"1\" (additive) includes only specified operating systems. \"-1\" (subtractive) excludes specified operating systems and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "runtime_os[]",
+            "in": "query",
+            "description": "Filter by runtime operating system. Can be specified multiple times for multiple values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "linux"
+              }
+            }
+          },
+          {
+            "name": "probe_version_mode",
+            "in": "query",
+            "description": "Filter mode for probe_version parameter. \"1\" (additive) includes only specified probe versions. \"-1\" (subtractive) excludes specified probe versions and includes all others.",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                1,
+                -1
+              ],
+              "example": 1
+            }
+          },
+          {
+            "name": "probe_version[]",
+            "in": "query",
+            "description": "Filter by probe version. Can be specified multiple times for multiple values (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode to control inclusion/exclusion behavior.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "2.28.2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filter values retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "fields",
+                    "max_applicable_filters"
+                  ],
+                  "properties": {
+                    "fields": {
+                      "type": "object",
+                      "description": "Map of filter field name to its distinct values and counts",
+                      "example": {
+                        "runtime": {
+                          "distinct_values": 2,
+                          "values": [
+                            {
+                              "value": "go",
+                              "count": 1500
+                            },
+                            {
+                              "value": "python",
+                              "count": 500
+                            }
+                          ]
+                        },
+                        "runtime_version": {
+                          "distinct_values": 3,
+                          "values": [
+                            {
+                              "value": "1.21",
+                              "count": 1000
+                            },
+                            {
+                              "value": "1.22",
+                              "count": 400
+                            },
+                            {
+                              "value": "3.12",
+                              "count": 600
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "distinct_values",
+                          "values"
+                        ],
+                        "properties": {
+                          "distinct_values": {
+                            "type": "integer",
+                            "description": "Total number of distinct values for this field",
+                            "example": 2
+                          },
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "value",
+                                "count"
+                              ],
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "example": "go"
+                                },
+                                "count": {
+                                  "type": "integer",
+                                  "example": 1000
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "max_applicable_filters": {
+                      "type": "integer",
+                      "description": "Maximum number of applicable filters",
+                      "example": 45
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid filters"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Query timeout - The query exceeded the server timeout limit. Please narrow down the query by reducing the time range or adding more specific filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 499
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Timeout while querying data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{projectId}": {
       "get": {
         "parameters": [
@@ -3944,77 +5585,6 @@
         ],
         "summary": "Get a project",
         "description": "Retrieve the details of a single project."
-      },
-      "patch": {
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectPatch"
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          }
-        ],
-        "operationId": "update-projects",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Project"
-        ],
-        "summary": "Update a project",
-        "description": "Update the details of an existing project."
-      },
-      "delete": {
-        "parameters": [
-          {
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "name": "projectId"
-          }
-        ],
-        "operationId": "delete-projects",
-        "responses": {
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AcceptedResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Project"
-        ],
-        "summary": "Delete a project",
-        "description": "Delete the entire project."
       }
     },
     "/projects/{projectId}/activities": {
@@ -8311,11 +9881,11 @@
                     "language": {
                       "description": "Profiled application language",
                       "type": "string",
+                      "example": "php",
                       "enum": [
                         "php",
                         "python"
-                      ],
-                      "example": "php"
+                      ]
                     }
                   },
                   "type": "object",
@@ -8682,11 +10252,11 @@
                     "language": {
                       "description": "Profiled application language",
                       "type": "string",
+                      "example": "php",
                       "enum": [
                         "php",
                         "python"
-                      ],
-                      "example": "php"
+                      ]
                     }
                   },
                   "type": "object",
@@ -8769,9 +10339,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "example": 50,
               "maximum": 200,
-              "minimum": 10,
-              "example": 50
+              "minimum": 10
             }
           }
         ],
@@ -8870,14 +10440,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -8893,14 +10463,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -8916,14 +10486,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -8939,14 +10509,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9001,19 +10571,19 @@
                       "total": 15,
                       "_links": {
                         "api_timeline": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline",
                           "type": "application/json"
                         },
                         "api_subprofiles": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles",
                           "type": "application/json"
                         },
                         "api_profile": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile",
                           "type": "application/json"
                         },
                         "api_graph": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
                           "type": "application/json"
                         }
                       }
@@ -9087,14 +10657,14 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/observability/profiles/automatic": {
+    "/projects/{projectId}/environments/{environmentId}/observability/profiles": {
       "get": {
         "tags": [
           "Blackfire Profiling"
         ],
-        "summary": "List automatic profiling results",
-        "description": "Returns a paginated list of automatic (APM-triggered) profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.",
-        "operationId": "blackfire_profiles_list_automatic",
+        "summary": "List profiling results",
+        "description": "Returns a paginated list of profiles for the environment, optionally filtered by transaction name. Proxied from the Blackfire API.",
+        "operationId": "blackfire_profiles_list",
         "parameters": [
           {
             "name": "projectId",
@@ -9157,7 +10727,18 @@
             "description": "Wildcard search across URI, name, and transaction name.",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "/api/products"
+            }
+          },
+          {
+            "name": "is_auto",
+            "in": "query",
+            "description": "When false, excludes auto-triggered (APM) profiles from results.",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "example": false
             }
           },
           {
@@ -9167,16 +10748,94 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "true",
               "enum": [
                 "true",
                 "false"
+              ]
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Field to sort results by.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "date",
+              "default": null,
+              "enum": [
+                "date",
+                "wt",
+                "io",
+                "cpu",
+                "pmu",
+                "nw",
+                "sql",
+                "http"
+              ]
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "Sort direction.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "desc",
+              "default": null,
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Filter profiles created after this date (ISO 8601).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-01-01T00:00:00+00:00"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "Filter profiles created before this date (ISO 8601).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-12-31T23:59:59+00:00"
+            }
+          },
+          {
+            "name": "status_code",
+            "in": "query",
+            "description": "Filter by profile status code: -1=empty, 0=todo, 16=payment_required, 32=too_many_subprofiles, 64=done, 128=failed, 192=rejected.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 64,
+              "enum": [
+                -1,
+                0,
+                16,
+                32,
+                64,
+                128,
+                192
               ]
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Automatic profiles retrieved successfully",
+            "description": "Profiles retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -9213,7 +10872,7 @@
                       "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
                     },
                     "profiles": {
-                      "description": "List of automatic profiles",
+                      "description": "List of profiles",
                       "type": "array",
                       "items": {
                         "required": [
@@ -9233,8 +10892,241 @@
                             "type": "string",
                             "example": "POST /api/cart"
                           },
+                          "created_at": {
+                            "description": "Profile creation date (ISO 8601)",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-03-26T14:31:49+0000"
+                          },
+                          "updated_at": {
+                            "description": "Profile last update date (ISO 8601)",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2026-03-26T14:31:52+0000"
+                          },
                           "metadata": {
-                            "description": "Profile metadata",
+                            "description": "Profile metadata (language, framework, transaction name, etc.)",
+                            "type": "object"
+                          },
+                          "data": {
+                            "description": "Profile performance data",
+                            "properties": {
+                              "envelope": {
+                                "description": "Aggregate performance metrics",
+                                "properties": {
+                                  "wt": {
+                                    "description": "Wall time (microseconds)",
+                                    "type": "number",
+                                    "example": 143341
+                                  },
+                                  "cpu": {
+                                    "description": "CPU time (microseconds)",
+                                    "type": "number",
+                                    "example": 113242
+                                  },
+                                  "io": {
+                                    "description": "I/O time (microseconds)",
+                                    "type": "number",
+                                    "example": 30099
+                                  },
+                                  "pmu": {
+                                    "description": "Peak memory usage (bytes)",
+                                    "type": "number",
+                                    "example": 5990880
+                                  },
+                                  "mu": {
+                                    "description": "Memory usage (bytes)",
+                                    "type": "number",
+                                    "example": 6301320
+                                  },
+                                  "nw": {
+                                    "description": "Network I/O (bytes)",
+                                    "type": "number",
+                                    "example": 739
+                                  },
+                                  "ct": {
+                                    "description": "Call count",
+                                    "type": "number",
+                                    "example": 1
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "important_metrics": {
+                                "description": "Pre-aggregated SQL and HTTP metrics",
+                                "properties": {
+                                  "sql_queries": {
+                                    "properties": {
+                                      "ct": {
+                                        "description": "Number of SQL queries",
+                                        "type": "number",
+                                        "example": 5
+                                      },
+                                      "wt": {
+                                        "description": "Total SQL wall time (microseconds)",
+                                        "type": "number",
+                                        "example": 7004
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "http_requests": {
+                                    "properties": {
+                                      "ct": {
+                                        "description": "Number of HTTP requests",
+                                        "type": "number",
+                                        "example": 1
+                                      },
+                                      "wt": {
+                                        "description": "Total HTTP wall time (microseconds)",
+                                        "type": "number",
+                                        "example": 11
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "recommendations": {
+                            "description": "Number of recommendation constraints evaluated",
+                            "type": "integer",
+                            "example": 4,
+                            "nullable": true
+                          },
+                          "context": {
+                            "description": "Request context (HTTP or CLI)",
+                            "properties": {
+                              "uri": {
+                                "description": "Full request URI (HTTP profiles)",
+                                "type": "string",
+                                "example": "https://example.com/api/v2/builds"
+                              },
+                              "method": {
+                                "description": "HTTP method",
+                                "type": "string",
+                                "example": "POST"
+                              },
+                              "status_code": {
+                                "description": "HTTP response status code",
+                                "type": "integer",
+                                "example": 200
+                              },
+                              "path": {
+                                "description": "Request path",
+                                "type": "string",
+                                "example": "/api/v2/builds"
+                              },
+                              "type": {
+                                "description": "Context type",
+                                "type": "string",
+                                "example": "http-request",
+                                "enum": [
+                                  "http-request",
+                                  "cli",
+                                  "no-op"
+                                ]
+                              },
+                              "args": {
+                                "description": "Command arguments (CLI profiles)",
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status_code": {
+                            "description": "Profile processing status: 64=done, 128=failed, 0=todo, -1=empty, 16=payment_required, 32=too_many_subprofiles, 192=rejected",
+                            "type": "integer",
+                            "example": 64
+                          },
+                          "status_name": {
+                            "description": "Human-readable profile status",
+                            "type": "string",
+                            "example": "finished"
+                          },
+                          "owner": {
+                            "description": "Profile owner",
+                            "properties": {
+                              "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "John Doe"
+                              },
+                              "avatar": {
+                                "type": "string",
+                                "format": "uri"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "agent": {
+                            "description": "Blackfire agent/environment info",
+                            "properties": {
+                              "uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "env_uuid": {
+                                "type": "string",
+                                "format": "uuid"
+                              },
+                              "is_env": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "has_timeline": {
+                            "description": "Whether the profile has timeline data",
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "is_public": {
+                            "description": "Whether the profile is publicly shared",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "is_readonly": {
+                            "description": "Whether the profile is read-only",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "is_comparison": {
+                            "description": "Whether this is a comparison profile",
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "caches": {
+                            "description": "Cache statistics (OPcache, APCu, realpath, PCRE)",
+                            "type": "object"
+                          },
+                          "report": {
+                            "description": "Test report with constraints and assertions",
+                            "type": "object",
+                            "nullable": true
+                          },
+                          "vulnerable_usages": {
+                            "description": "Security vulnerabilities detected",
+                            "type": "array",
+                            "items": {
+                              "type": "object"
+                            },
+                            "nullable": true
+                          },
+                          "key_page": {
+                            "description": "Key page / transaction configuration",
                             "type": "object"
                           },
                           "_links": {
@@ -9258,10 +11150,10 @@
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "text/html",
                                     "enum": [
                                       "text/html"
-                                    ],
-                                    "example": "text/html"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9277,14 +11169,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9300,14 +11192,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9323,14 +11215,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9346,14 +11238,14 @@
                                   "href": {
                                     "type": "string",
                                     "format": "uri",
-                                    "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
+                                    "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
                                   },
                                   "type": {
                                     "type": "string",
+                                    "example": "application/json",
                                     "enum": [
                                       "application/json"
-                                    ],
-                                    "example": "application/json"
+                                    ]
                                   }
                                 },
                                 "type": "object",
@@ -9394,9 +11286,67 @@
                     {
                       "uuid": "4b5266a2-fd71-468b-bf05-87b342079cbf",
                       "name": "POST /api/cart",
+                      "created_at": "2026-03-26T14:31:49+0000",
+                      "updated_at": "2026-03-26T14:31:52+0000",
                       "metadata": {
                         "Triggered by": "apm",
-                        "Transaction Name": "App\\Controller\\CartController::add"
+                        "Transaction Name": "App\\Controller\\CartController::add",
+                        "Language": "php",
+                        "Frameworks": [
+                          "symfony_framework"
+                        ]
+                      },
+                      "data": {
+                        "envelope": {
+                          "wt": 143341,
+                          "cpu": 113242,
+                          "io": 30099,
+                          "pmu": 5990880,
+                          "mu": 6301320,
+                          "nw": 739,
+                          "ct": 1
+                        },
+                        "important_metrics": {
+                          "sql_queries": {
+                            "ct": 5,
+                            "wt": 7004
+                          },
+                          "http_requests": {
+                            "ct": 1,
+                            "wt": 11
+                          }
+                        }
+                      },
+                      "recommendations": 4,
+                      "context": {
+                        "uri": "https://example.com/api/cart",
+                        "method": "POST",
+                        "status_code": 200,
+                        "path": "/api/cart",
+                        "type": "http-request"
+                      },
+                      "status_code": 64,
+                      "status_name": "finished",
+                      "owner": {
+                        "uuid": "4aed4f5d-e0cb-4320-902f-885fddaa7d15",
+                        "name": "John Doe"
+                      },
+                      "agent": {
+                        "uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
+                        "name": "Production",
+                        "env_uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
+                        "is_env": true
+                      },
+                      "has_timeline": true,
+                      "is_public": false,
+                      "is_readonly": false,
+                      "is_comparison": false,
+                      "caches": {
+                        "opcache": {
+                          "enabled": true,
+                          "hitrate": 0.99,
+                          "items": 5128
+                        }
                       },
                       "_links": {
                         "graph_url": {
@@ -9404,19 +11354,19 @@
                           "type": "text/html"
                         },
                         "api_timeline": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline",
                           "type": "application/json"
                         },
                         "api_subprofiles": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/subprofiles",
                           "type": "application/json"
                         },
                         "api_profile": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/profile",
                           "type": "application/json"
                         },
                         "api_graph": {
-                          "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
+                          "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
                           "type": "application/json"
                         }
                       }
@@ -9552,10 +11502,10 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "example": 20,
               "default": null,
               "maximum": 100,
-              "minimum": 1,
-              "example": 20
+              "minimum": 1
             }
           }
         ],
@@ -9605,12 +11555,12 @@
                     "_environment_type": {
                       "description": "Environment type",
                       "type": "string",
+                      "example": "production",
                       "enum": [
                         "production",
                         "staging",
                         "development"
-                      ],
-                      "example": "production"
+                      ]
                     },
                     "_branch_machine_name": {
                       "description": "Branch machine name",
@@ -9680,6 +11630,7 @@
                               "method": {
                                 "description": "HTTP method",
                                 "type": "string",
+                                "example": "GET",
                                 "enum": [
                                   "GET",
                                   "POST",
@@ -9688,8 +11639,7 @@
                                   "DELETE",
                                   "HEAD",
                                   "OPTIONS"
-                                ],
-                                "example": "GET"
+                                ]
                               },
                               "impact": {
                                 "description": "Performance impact score (ms × count)",
@@ -10059,6 +12009,36 @@
             }
           },
           {
+            "name": "applications[]",
+            "in": "query",
+            "description": "Filter by application. Can be specified multiple times for multiple values (e.g., ?applications[]=app1&applications[]=app2). Use applications_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "app"
+              }
+            }
+          },
+          {
+            "name": "applications_mode",
+            "in": "query",
+            "description": "Filter mode for applications parameter. \"1\" (additive) includes only specified applications. \"-1\" (subtractive, default) excludes specified applications and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "1",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ]
+            }
+          },
+          {
             "name": "methods[]",
             "in": "query",
             "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
@@ -10069,6 +12049,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "GET",
                 "enum": [
                   "GET",
                   "POST",
@@ -10077,8 +12058,7 @@
                   "DELETE",
                   "HEAD",
                   "OPTIONS"
-                ],
-                "example": "GET"
+                ]
               }
             }
           },
@@ -10089,12 +12069,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10119,12 +12099,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10138,14 +12118,14 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "2XX",
                 "enum": [
                   "1XX",
                   "2XX",
                   "3XX",
                   "4XX",
                   "5XX"
-                ],
-                "example": "2XX"
+                ]
               }
             }
           },
@@ -10156,12 +12136,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10186,12 +12166,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10205,6 +12185,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "0-50",
                 "enum": [
                   "0-50",
                   "50-100",
@@ -10213,8 +12194,7 @@
                   "400-800",
                   "800-1600",
                   "1600+"
-                ],
-                "example": "0-50"
+                ]
               }
             }
           },
@@ -10225,12 +12205,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           }
         ],
@@ -10282,12 +12262,12 @@
                     "_environment_type": {
                       "description": "Environment type",
                       "type": "string",
+                      "example": "production",
                       "enum": [
                         "production",
                         "staging",
                         "development"
-                      ],
-                      "example": "production"
+                      ]
                     },
                     "_branch_machine_name": {
                       "description": "Branch machine name",
@@ -10321,6 +12301,24 @@
                       "type": "object",
                       "additionalProperties": false
                     },
+                    "_applications": {
+                      "description": "Applied application filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "app"
+                      },
+                      "nullable": true
+                    },
+                    "_applications_mode": {
+                      "description": "Application filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "1",
+                        "-1"
+                      ]
+                    },
                     "_methods": {
                       "description": "Applied method filter values",
                       "type": "array",
@@ -10333,11 +12331,11 @@
                     "_methods_mode": {
                       "description": "Method filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_domains": {
                       "description": "Applied domain filter values",
@@ -10351,11 +12349,11 @@
                     "_domains_mode": {
                       "description": "Domain filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_code_slots": {
                       "description": "Applied code slot filter values",
@@ -10369,11 +12367,11 @@
                     "_code_slots_mode": {
                       "description": "Code slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_codes": {
                       "description": "Applied HTTP status code filter values",
@@ -10387,11 +12385,11 @@
                     "_codes_mode": {
                       "description": "Code filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_request_duration_slots": {
                       "description": "Applied request duration slot filter values",
@@ -10405,11 +12403,11 @@
                     "_request_duration_slots_mode": {
                       "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "breakdown": {
                       "description": "IP addresses ranked by impact",
@@ -10422,10 +12420,10 @@
                         "kind": {
                           "description": "The kind of grouping",
                           "type": "string",
+                          "example": "ip",
                           "enum": [
                             "ip"
-                          ],
-                          "example": "ip"
+                          ]
                         },
                         "total": {
                           "description": "Total request count across all IPs",
@@ -10798,6 +12796,36 @@
             }
           },
           {
+            "name": "applications[]",
+            "in": "query",
+            "description": "Filter by application. Can be specified multiple times for multiple values (e.g., ?applications[]=app1&applications[]=app2). Use applications_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "app"
+              }
+            }
+          },
+          {
+            "name": "applications_mode",
+            "in": "query",
+            "description": "Filter mode for applications parameter. \"1\" (additive) includes only specified applications. \"-1\" (subtractive, default) excludes specified applications and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "1",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ]
+            }
+          },
+          {
             "name": "methods[]",
             "in": "query",
             "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
@@ -10808,6 +12836,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "GET",
                 "enum": [
                   "GET",
                   "POST",
@@ -10816,8 +12845,7 @@
                   "DELETE",
                   "HEAD",
                   "OPTIONS"
-                ],
-                "example": "GET"
+                ]
               }
             }
           },
@@ -10828,12 +12856,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10858,12 +12886,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10877,14 +12905,14 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "2XX",
                 "enum": [
                   "1XX",
                   "2XX",
                   "3XX",
                   "4XX",
                   "5XX"
-                ],
-                "example": "2XX"
+                ]
               }
             }
           },
@@ -10895,12 +12923,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10925,12 +12953,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -10944,6 +12972,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "0-50",
                 "enum": [
                   "0-50",
                   "50-100",
@@ -10952,8 +12981,7 @@
                   "400-800",
                   "800-1600",
                   "1600+"
-                ],
-                "example": "0-50"
+                ]
               }
             }
           },
@@ -10964,12 +12992,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           }
         ],
@@ -11021,12 +13049,12 @@
                     "_environment_type": {
                       "description": "Environment type",
                       "type": "string",
+                      "example": "production",
                       "enum": [
                         "production",
                         "staging",
                         "development"
-                      ],
-                      "example": "production"
+                      ]
                     },
                     "_branch_machine_name": {
                       "description": "Branch machine name",
@@ -11060,6 +13088,24 @@
                       "type": "object",
                       "additionalProperties": false
                     },
+                    "_applications": {
+                      "description": "Applied application filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "app"
+                      },
+                      "nullable": true
+                    },
+                    "_applications_mode": {
+                      "description": "Application filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "1",
+                        "-1"
+                      ]
+                    },
                     "_methods": {
                       "description": "Applied method filter values",
                       "type": "array",
@@ -11072,11 +13118,11 @@
                     "_methods_mode": {
                       "description": "Method filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_domains": {
                       "description": "Applied domain filter values",
@@ -11090,11 +13136,11 @@
                     "_domains_mode": {
                       "description": "Domain filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_code_slots": {
                       "description": "Applied code slot filter values",
@@ -11108,11 +13154,11 @@
                     "_code_slots_mode": {
                       "description": "Code slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_codes": {
                       "description": "Applied HTTP status code filter values",
@@ -11126,11 +13172,11 @@
                     "_codes_mode": {
                       "description": "Code filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_request_duration_slots": {
                       "description": "Applied request duration slot filter values",
@@ -11144,11 +13190,11 @@
                     "_request_duration_slots_mode": {
                       "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "breakdown": {
                       "description": "User Agents ranked by impact",
@@ -11161,10 +13207,10 @@
                         "kind": {
                           "description": "The kind of grouping",
                           "type": "string",
+                          "example": "user_agent",
                           "enum": [
                             "user_agent"
-                          ],
-                          "example": "user_agent"
+                          ]
                         },
                         "total": {
                           "description": "Total request count across all User Agents",
@@ -11513,6 +13559,36 @@
             }
           },
           {
+            "name": "applications[]",
+            "in": "query",
+            "description": "Filter by application. Can be specified multiple times for multiple values (e.g., ?applications[]=app1&applications[]=app2). Use applications_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "app"
+              }
+            }
+          },
+          {
+            "name": "applications_mode",
+            "in": "query",
+            "description": "Filter mode for applications parameter. \"1\" (additive) includes only specified applications. \"-1\" (subtractive, default) excludes specified applications and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "1",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ]
+            }
+          },
+          {
             "name": "methods[]",
             "in": "query",
             "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
@@ -11523,6 +13599,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "GET",
                 "enum": [
                   "GET",
                   "POST",
@@ -11531,8 +13608,7 @@
                   "DELETE",
                   "HEAD",
                   "OPTIONS"
-                ],
-                "example": "GET"
+                ]
               }
             }
           },
@@ -11543,12 +13619,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -11573,12 +13649,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -11592,14 +13668,14 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "2XX",
                 "enum": [
                   "1XX",
                   "2XX",
                   "3XX",
                   "4XX",
                   "5XX"
-                ],
-                "example": "2XX"
+                ]
               }
             }
           },
@@ -11610,12 +13686,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -11640,12 +13716,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -11659,6 +13735,7 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "0-50",
                 "enum": [
                   "0-50",
                   "50-100",
@@ -11667,8 +13744,7 @@
                   "400-800",
                   "800-1600",
                   "1600+"
-                ],
-                "example": "0-50"
+                ]
               }
             }
           },
@@ -11679,12 +13755,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           }
         ],
@@ -11737,12 +13813,12 @@
                     "_environment_type": {
                       "description": "Environment type",
                       "type": "string",
+                      "example": "production",
                       "enum": [
                         "production",
                         "staging",
                         "development"
-                      ],
-                      "example": "production"
+                      ]
                     },
                     "_branch_machine_name": {
                       "description": "Branch machine name",
@@ -11776,6 +13852,24 @@
                       "type": "object",
                       "additionalProperties": false
                     },
+                    "_applications": {
+                      "description": "Applied application filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "app"
+                      },
+                      "nullable": true
+                    },
+                    "_applications_mode": {
+                      "description": "Application filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "nullable": true,
+                      "enum": [
+                        "1",
+                        "-1"
+                      ]
+                    },
                     "_methods": {
                       "description": "Applied method filter values",
                       "type": "array",
@@ -11788,11 +13882,11 @@
                     "_methods_mode": {
                       "description": "Method filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_domains": {
                       "description": "Applied domain filter values",
@@ -11806,11 +13900,11 @@
                     "_domains_mode": {
                       "description": "Domain filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_code_slots": {
                       "description": "Applied code slot filter values",
@@ -11824,11 +13918,11 @@
                     "_code_slots_mode": {
                       "description": "Code slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_codes": {
                       "description": "Applied HTTP status code filter values",
@@ -11842,11 +13936,11 @@
                     "_codes_mode": {
                       "description": "Code filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_request_duration_slots": {
                       "description": "Applied request duration slot filter values",
@@ -11860,11 +13954,11 @@
                     "_request_duration_slots_mode": {
                       "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "1",
                         "-1"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "breakdown": {
                       "description": "URLs ranked by impact",
@@ -11877,10 +13971,10 @@
                         "kind": {
                           "description": "The kind of grouping",
                           "type": "string",
+                          "example": "url",
                           "enum": [
                             "url"
-                          ],
-                          "example": "url"
+                          ]
                         },
                         "total": {
                           "description": "Total request count across all URLs",
@@ -11910,6 +14004,7 @@
                               "method": {
                                 "description": "HTTP method",
                                 "type": "string",
+                                "example": "GET",
                                 "enum": [
                                   "GET",
                                   "POST",
@@ -11918,8 +14013,7 @@
                                   "DELETE",
                                   "HEAD",
                                   "OPTIONS"
-                                ],
-                                "example": "GET"
+                                ]
                               },
                               "impact": {
                                 "description": "Performance impact score (ms x count)",
@@ -12391,12 +14485,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           }
         ],
@@ -13748,12 +15842,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           }
         ],
@@ -15182,12 +17276,12 @@
                       "nullable": true,
                       "additionalProperties": {
                         "type": "string",
+                        "example": "web",
                         "enum": [
                           "web",
                           "unified",
                           ""
-                        ],
-                        "example": "web"
+                        ]
                       }
                     },
                     "data": {
@@ -16118,11 +18212,11 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "web",
                 "enum": [
                   "web",
                   "cli"
-                ],
-                "example": "web"
+                ]
               }
             }
           },
@@ -16133,12 +18227,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -16222,11 +18316,11 @@
                     "_contexts_mode": {
                       "description": "Context filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_distribution_cost": {
                       "description": "Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)",
@@ -16533,11 +18627,11 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "web",
                 "enum": [
                   "web",
                   "cli"
-                ],
-                "example": "web"
+                ]
               }
             }
           },
@@ -16548,12 +18642,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -16681,11 +18775,11 @@
                     "_contexts_mode": {
                       "description": "Context filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_distribution_cost": {
                       "description": "Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)",
@@ -17091,11 +19185,11 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "web",
                 "enum": [
                   "web",
                   "cli"
-                ],
-                "example": "web"
+                ]
               }
             }
           },
@@ -17106,12 +19200,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17136,12 +19230,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17166,12 +19260,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17196,12 +19290,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17226,12 +19320,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17256,12 +19350,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17286,12 +19380,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17316,12 +19410,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17346,12 +19440,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17376,12 +19470,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17406,12 +19500,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17436,12 +19530,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -17529,11 +19623,11 @@
                     "_contexts_mode": {
                       "description": "Context filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_transactions": {
                       "description": "Applied transaction filter values",
@@ -17547,11 +19641,11 @@
                     "_transactions_mode": {
                       "description": "Transaction filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_wt_slot": {
                       "description": "Applied wall-time slot filter values",
@@ -17565,11 +19659,11 @@
                     "_wt_slot_mode": {
                       "description": "Wall-time slot filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_pmu_slot": {
                       "description": "Applied peak memory slot filter values",
@@ -17583,11 +19677,11 @@
                     "_pmu_slot_mode": {
                       "description": "Peak memory slot filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_http_status_codes": {
                       "description": "Applied HTTP status code filter values",
@@ -17601,11 +19695,11 @@
                     "_http_status_codes_mode": {
                       "description": "HTTP status code filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_http_hosts": {
                       "description": "Applied HTTP host filter values",
@@ -17619,11 +19713,11 @@
                     "_http_hosts_mode": {
                       "description": "HTTP host filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_hosts": {
                       "description": "Applied host filter values",
@@ -17637,11 +19731,11 @@
                     "_hosts_mode": {
                       "description": "Host filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_frameworks": {
                       "description": "Applied framework filter values",
@@ -17655,11 +19749,11 @@
                     "_frameworks_mode": {
                       "description": "Framework filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_languages": {
                       "description": "Applied language filter values",
@@ -17673,11 +19767,11 @@
                     "_languages_mode": {
                       "description": "Language filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_methods": {
                       "description": "Applied method filter values",
@@ -17691,11 +19785,11 @@
                     "_methods_mode": {
                       "description": "Method filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_runtimes": {
                       "description": "Applied runtime filter values",
@@ -17709,11 +19803,11 @@
                     "_runtimes_mode": {
                       "description": "Runtime filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_oss": {
                       "description": "Applied OS filter values",
@@ -17727,11 +19821,11 @@
                     "_oss_mode": {
                       "description": "OS filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_distribution_cost": {
                       "description": "Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)",
@@ -17744,16 +19838,17 @@
                     "_breakdown_dimension": {
                       "description": "Applied dimension for transaction breakdown calculations",
                       "type": "string",
+                      "nullable": false,
                       "enum": [
                         "wt",
                         "pmu",
                         "stdout"
-                      ],
-                      "nullable": false
+                      ]
                     },
                     "_sort": {
                       "description": "Applied sort order for the transaction breakdown",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "impact",
                         "total_requests",
@@ -17762,8 +19857,7 @@
                         "avg_stdout",
                         "total_errors",
                         "wt_96th_percentile"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_breakdown_limit": {
                       "description": "Maximum number of transactions returned",
@@ -17880,7 +19974,7 @@
                                 "required": [
                                   "top_spans",
                                   "recommendations",
-                                  "automatic_profiles"
+                                  "profiles"
                                 ],
                                 "properties": {
                                   "top_spans": {
@@ -17892,7 +19986,7 @@
                                       "href": {
                                         "type": "string",
                                         "format": "uri",
-                                        "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%3A%3Alist&from=1771348620&to=1771435020"
+                                        "example": "https://api.upsun.com/projects/abc123/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%3A%3Alist&from=1771348620&to=1771435020"
                                       }
                                     },
                                     "type": "object",
@@ -17907,14 +20001,14 @@
                                       "href": {
                                         "type": "string",
                                         "format": "uri",
-                                        "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/recommendations?transaction=App%5CController%3A%3Alist"
+                                        "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles/recommendations?transaction=App%5CController%3A%3Alist"
                                       }
                                     },
                                     "type": "object",
                                     "additionalProperties": false
                                   },
-                                  "automatic_profiles": {
-                                    "description": "Link to automatic profiles filtered by this transaction",
+                                  "profiles": {
+                                    "description": "Link to profiles filtered by this transaction",
                                     "required": [
                                       "href"
                                     ],
@@ -17922,7 +20016,7 @@
                                       "href": {
                                         "type": "string",
                                         "format": "uri",
-                                        "example": "https://api.upsun.com/api/projects/abc123/environments/main/observability/profiles/automatic?transaction=App%5CController%3A%3Alist"
+                                        "example": "https://api.upsun.com/projects/abc123/environments/main/observability/profiles?transaction=App%5CController%3A%3Alist"
                                       }
                                     },
                                     "type": "object",
@@ -18046,13 +20140,13 @@
                         "top_hit": true,
                         "_links": {
                           "top_spans": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CProductController%3A%3Alist&from=1771348620&to=1771435020"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CProductController%3A%3Alist&from=1771348620&to=1771435020"
                           },
                           "recommendations": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist"
                           },
-                          "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CProductController%3A%3Alist"
+                          "profiles": {
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CProductController%3A%3Alist"
                           }
                         }
                       },
@@ -18069,13 +20163,13 @@
                         "top_hit": true,
                         "_links": {
                           "top_spans": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CCartController%3A%3Acheckout&from=1771348620&to=1771435020"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CCartController%3A%3Acheckout&from=1771348620&to=1771435020"
                           },
                           "recommendations": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout"
                           },
-                          "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CCartController%3A%3Acheckout"
+                          "profiles": {
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CCartController%3A%3Acheckout"
                           }
                         }
                       },
@@ -18092,13 +20186,13 @@
                         "top_hit": false,
                         "_links": {
                           "top_spans": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CUserController%3A%3Aprofile&from=1771348620&to=1771435020"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CUserController%3A%3Aprofile&from=1771348620&to=1771435020"
                           },
                           "recommendations": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile"
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile"
                           },
-                          "automatic_profiles": {
-                            "href": "https://api.upsun.com/api/projects/abc123def456/environments/main/observability/profiles/automatic?transaction=App%5CController%5CUserController%3A%3Aprofile"
+                          "profiles": {
+                            "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles?transaction=App%5CController%5CUserController%3A%3Aprofile"
                           }
                         }
                       }
@@ -18322,11 +20416,11 @@
               "type": "array",
               "items": {
                 "type": "string",
+                "example": "web",
                 "enum": [
                   "web",
                   "cli"
-                ],
-                "example": "web"
+                ]
               }
             }
           },
@@ -18337,12 +20431,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18367,12 +20461,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18397,12 +20491,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18427,12 +20521,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18457,12 +20551,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18487,12 +20581,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18517,12 +20611,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18547,12 +20641,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18577,12 +20671,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18607,12 +20701,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18637,12 +20731,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18667,12 +20761,12 @@
             "required": false,
             "schema": {
               "type": "string",
+              "example": "1",
               "default": null,
               "enum": [
                 "1",
                 "-1"
-              ],
-              "example": "1"
+              ]
             }
           },
           {
@@ -18757,11 +20851,11 @@
                     "_contexts_mode": {
                       "description": "Context filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_transactions": {
                       "description": "Applied transaction filter values",
@@ -18775,11 +20869,11 @@
                     "_transactions_mode": {
                       "description": "Transaction filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_wt_slot": {
                       "description": "Applied wall-time slot filter values",
@@ -18793,11 +20887,11 @@
                     "_wt_slot_mode": {
                       "description": "Wall-time slot filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_pmu_slot": {
                       "description": "Applied peak memory slot filter values",
@@ -18811,11 +20905,11 @@
                     "_pmu_slot_mode": {
                       "description": "Peak memory slot filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_http_status_codes": {
                       "description": "Applied HTTP status code filter values",
@@ -18829,11 +20923,11 @@
                     "_http_status_codes_mode": {
                       "description": "HTTP status code filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_http_hosts": {
                       "description": "Applied HTTP host filter values",
@@ -18847,11 +20941,11 @@
                     "_http_hosts_mode": {
                       "description": "HTTP host filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_hosts": {
                       "description": "Applied host filter values",
@@ -18865,11 +20959,11 @@
                     "_hosts_mode": {
                       "description": "Host filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_frameworks": {
                       "description": "Applied framework filter values",
@@ -18883,11 +20977,11 @@
                     "_frameworks_mode": {
                       "description": "Framework filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_languages": {
                       "description": "Applied language filter values",
@@ -18901,11 +20995,11 @@
                     "_languages_mode": {
                       "description": "Language filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_methods": {
                       "description": "Applied method filter values",
@@ -18919,11 +21013,11 @@
                     "_methods_mode": {
                       "description": "Method filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_runtimes": {
                       "description": "Applied runtime filter values",
@@ -18937,11 +21031,11 @@
                     "_runtimes_mode": {
                       "description": "Runtime filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_oss": {
                       "description": "Applied OS filter values",
@@ -18955,11 +21049,11 @@
                     "_oss_mode": {
                       "description": "OS filter mode (additive=include only, subtractive=exclude)",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "additive",
                         "subtractive"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "_distribution_cost": {
                       "description": "Applied distribution cost dimension (wt=wall time, pmu=peak memory usage)",
@@ -18972,6 +21066,7 @@
                     "_sort": {
                       "description": "Applied sort field for top spans",
                       "type": "string",
+                      "nullable": true,
                       "enum": [
                         "percentage",
                         "p_96",
@@ -18979,8 +21074,7 @@
                         "wt",
                         "exec-time",
                         "impact"
-                      ],
-                      "nullable": true
+                      ]
                     },
                     "top_spans": {
                       "description": "Top spans aggregated data",
@@ -19373,21 +21467,21 @@
                     "environment_type": {
                       "description": "Environment type classification",
                       "type": "string",
+                      "example": "production",
                       "enum": [
                         "production",
                         "staging",
                         "development"
-                      ],
-                      "example": "production"
+                      ]
                     },
                     "vendor": {
                       "description": "Platform vendor identifier",
                       "type": "string",
+                      "example": "upsun",
                       "enum": [
                         "upsun",
                         "platformsh"
-                      ],
-                      "example": "upsun"
+                      ]
                     },
                     "psh_user_identifier": {
                       "description": "Authenticated user identifier",
@@ -19644,7 +21738,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/continuous-profiling"
                             }
                           },
                           "type": "object",
@@ -19658,7 +21752,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp/filter"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/continuous-profiling/app/myapp/filter"
                             }
                           },
                           "type": "object",
@@ -19672,7 +21766,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/continuous-profiling/app/myapp"
                             }
                           },
                           "type": "object",
@@ -19686,7 +21780,7 @@
                             "href": {
                               "type": "string",
                               "format": "uri",
-                              "example": "https://conprof.blackfire.io/projects/abc123def456/env/main/continuous-profiling/app/myapp/merge"
+                              "example": "https://api.upsun.com/projects/abc123def456/environments/main/continuous-profiling/app/myapp/merge"
                             }
                           },
                           "type": "object",
@@ -22944,130 +25038,6 @@
         "x-vendor": "upsun"
       }
     },
-    "/billing/profiles/{billing_profile_id}/organizations": {
-      "get": {
-        "summary": "Billing profile organizations",
-        "description": "Retrieves organizations that belong to the specified billing profile.",
-        "operationId": "list-billing-profile-orgs",
-        "tags": [
-          "Billing"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/BillingProfileID"
-          },
-          {
-            "in": "query",
-            "name": "filter[type]",
-            "description": "Allows filtering by `type` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[status]",
-            "description": "Allows filtering by `status` using one or more operators.<br>\nDefaults to excluding deleted organizations.\n",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `name`, `label`, `created_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Organization"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/organizations/{organization_id}/projects": {
       "get": {
         "summary": "List projects",
@@ -24799,187 +26769,6 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/billing/profiles/{billing_profile_id}/projects": {
-      "get": {
-        "summary": "List projects",
-        "description": "Retrieves a list of projects for the specified billing profile.",
-        "operationId": "list-billing-profile-projects",
-        "tags": [
-          "Billing Profile Projects"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/BillingProfileID"
-          },
-          {
-            "in": "query",
-            "name": "filter[id]",
-            "description": "Allows filtering by `id` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[title]",
-            "description": "Allows filtering by `title` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[subscription_id]",
-            "description": "Allows filtering by `subscription_id` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[region]",
-            "description": "Allows filtering by `region` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[type]",
-            "description": "Allows filtering by `type` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[plan]",
-            "description": "Allows filtering by `plan` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[status]",
-            "description": "Allows filtering by `status` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/StringFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "filter[created_at]",
-            "description": "Allows filtering by `created_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "description": "Total number of items across pages."
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/OrganizationProject"
-                      }
-                    },
-                    "facets": {
-                      "$ref": "#/components/schemas/ProjectFacets"
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -28611,8 +30400,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -28745,8 +30534,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -28776,8 +30565,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -30235,7 +32024,7 @@
                           "scripts": {
                             "type": "boolean",
                             "title": "Scripts",
-                            "description": "Whether to execute scripts in this location (for script based runtimes)."
+                            "description": "Whether to execute scripts in this location (for script based runtimes). The default value depends on the project setting `locations_script_default`"
                           },
                           "index": {
                             "type": "array",
@@ -30683,6 +32472,27 @@
                   "title": "Composable images",
                   "description": ""
                 },
+                "image": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Image name",
+                      "description": "Image name with version to be deployed"
+                    },
+                    "buildfile": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Dockerfile",
+                      "description": "Path to the dockerfile to use to build the container from"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true,
+                  "title": "OCI image",
+                  "description": "OCI image configuration"
+                },
                 "is_across_submodule": {
                   "type": "boolean",
                   "title": "Is Across Submodule",
@@ -30737,6 +32547,7 @@
                 "build",
                 "dependencies",
                 "stack",
+                "image",
                 "is_across_submodule",
                 "instance_count",
                 "config_id",
@@ -31303,6 +33114,27 @@
                   "title": "Composable images",
                   "description": ""
                 },
+                "image": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Image name",
+                      "description": "Image name with version to be deployed"
+                    },
+                    "buildfile": {
+                      "type": "string",
+                      "nullable": true,
+                      "title": "Dockerfile",
+                      "description": "Path to the dockerfile to use to build the container from"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true,
+                  "title": "OCI image",
+                  "description": "OCI image configuration"
+                },
                 "instance_count": {
                   "type": "integer",
                   "nullable": true,
@@ -31343,6 +33175,7 @@
                 "worker",
                 "app",
                 "stack",
+                "image",
                 "instance_count",
                 "slug_id",
                 "supports_horizontal_scaling"
@@ -31428,10 +33261,10 @@
             "$ref": "#/components/schemas/EnterpriseDeploymentTarget"
           },
           {
-            "$ref": "#/components/schemas/KubernetesDeploymentTargetStorage"
+            "$ref": "#/components/schemas/FoundationDeploymentTarget"
           },
           {
-            "$ref": "#/components/schemas/FoundationDeploymentTarget"
+            "$ref": "#/components/schemas/KubernetesDeploymentTargetStorage"
           }
         ]
       },
@@ -31450,10 +33283,10 @@
             "$ref": "#/components/schemas/EnterpriseDeploymentTargetCreateInput"
           },
           {
-            "$ref": "#/components/schemas/KubernetesDeploymentTargetStorageCreateInput"
+            "$ref": "#/components/schemas/FoundationDeploymentTargetCreateInput"
           },
           {
-            "$ref": "#/components/schemas/FoundationDeploymentTargetCreateInput"
+            "$ref": "#/components/schemas/KubernetesDeploymentTargetStorageCreateInput"
           }
         ]
       },
@@ -31466,10 +33299,10 @@
             "$ref": "#/components/schemas/EnterpriseDeploymentTargetPatch"
           },
           {
-            "$ref": "#/components/schemas/KubernetesDeploymentTargetStoragePatch"
+            "$ref": "#/components/schemas/FoundationDeploymentTargetPatch"
           },
           {
-            "$ref": "#/components/schemas/FoundationDeploymentTargetPatch"
+            "$ref": "#/components/schemas/KubernetesDeploymentTargetStoragePatch"
           }
         ]
       },
@@ -31747,8 +33580,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -31839,8 +33672,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -31885,8 +33718,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -33614,8 +35447,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -33695,8 +35528,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -33766,8 +35599,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -34826,8 +36659,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -34839,6 +36672,7 @@
           },
           "k8s_config": {
             "type": "string",
+            "nullable": true,
             "title": "K8S config",
             "description": "K8S config"
           },
@@ -34872,8 +36706,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -34898,8 +36732,8 @@
             "enum": [
               "dedicated",
               "enterprise",
-              "kubernetes",
-              "local"
+              "foundation",
+              "kubernetes"
             ],
             "title": "Deployment target type",
             "description": "The type of the deployment target"
@@ -36426,52 +38260,6 @@
         ],
         "additionalProperties": false
       },
-      "ProjectPatch": {
-        "type": "object",
-        "properties": {
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "title": "Arbitrary attributes",
-            "description": "Arbitrary attributes attached to this resource"
-          },
-          "title": {
-            "type": "string",
-            "title": "Title",
-            "description": "The title of the project"
-          },
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the project"
-          },
-          "default_branch": {
-            "type": "string",
-            "nullable": true,
-            "title": "Default branch",
-            "description": "The default branch of the project"
-          },
-          "timezone": {
-            "type": "string",
-            "title": "Timezone",
-            "description": "Timezone of the project"
-          },
-          "region": {
-            "type": "string",
-            "title": "Region",
-            "description": "The region of the project"
-          },
-          "default_domain": {
-            "type": "string",
-            "nullable": true,
-            "title": "Default domain",
-            "description": "The default domain of the project"
-          }
-        },
-        "additionalProperties": false
-      },
       "ProjectSettings": {
         "type": "object",
         "properties": {
@@ -37057,6 +38845,16 @@
             "type": "boolean",
             "title": "Save Applications Vendors",
             "description": "Save vendors.json files locally after builds for SBOM generation."
+          },
+          "locations_script_default": {
+            "type": "boolean",
+            "title": "Set the default for script execution in web locations",
+            "description": ""
+          },
+          "support_oci_images": {
+            "type": "boolean",
+            "title": "Support OCI images",
+            "description": ""
           }
         },
         "required": [
@@ -37134,7 +38932,9 @@
           "allow_burst",
           "router_resources",
           "allow_scaling_to_zero",
-          "save_applications_vendors"
+          "save_applications_vendors",
+          "locations_script_default",
+          "support_oci_images"
         ],
         "additionalProperties": false
       },
@@ -43061,16 +44861,6 @@
           "type": "string"
         }
       },
-      "BillingProfileID": {
-        "in": "path",
-        "name": "billing_profile_id",
-        "description": "The ID of the billing profile.",
-        "required": true,
-        "schema": {
-          "type": "string",
-          "format": "ulid"
-        }
-      },
       "OrderID": {
         "in": "path",
         "name": "order_id",
@@ -43415,7 +45205,8 @@
         "Blackfire Profiling",
         "Blackfire Monitoring",
         "Resources",
-        "Http Traffic"
+        "Http Traffic",
+        "Continuous Profiling"
       ]
     },
     {
