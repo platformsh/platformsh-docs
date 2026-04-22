@@ -7,26 +7,29 @@ description: Protect SEO health by managing an environment's visibility to searc
 Exposing multiple environments in the same project to search engines can harm your
 production site's SEO rankings, for example, through duplicate content, broken links, or unpolished pages.
 
-By default, {{% vendor/name %}} hides **all** environments that do not have a custom domain assigned.
+Whether search engines can index an environment depends on its domain:
 
-After you assign a [custom domain](/domains/steps/_index.md) to an environment (preview or production), you can
-then choose to reveal the environment to search engines.
+- **No custom domain**: Always hidden from search engines. This is enforced and can't be changed.
+- **Preview environment with a custom domain**: Hidden by default. You can make it visible.
+- **Production environment with a custom domain**: Visible by default. You can hide it.
 
 {{< note >}}
 
-If you have multiple environments with custom domains, make only one visible to search engines.
+If multiple environments have custom domains, ensure that **at most** one is visible to avoid duplicate content and SEO dilution.
 
 {{< /note >}}
 
-To change an environment's visibility to search engines:
+To change whether search engines can index an environment:
 
 {{< codetabs >}}
 +++
 title=In the Console
 +++
 
+Prerequisite: The environment must have a [custom domain](/domains/steps/_index.md).
+
 1. Select the project you want to update.
-1. From the **Environment** menu, select the environment whose visibility you want to change.
+1. From the **Environment** menu, select the environment.
 1. Click {{< icon settings >}} **Settings**.
 1. Select or clear the **Hide from search engines** checkbox.
 
@@ -34,6 +37,8 @@ title=In the Console
 +++
 title=Using the CLI
 +++
+
+Prerequisite: The environment must have a [custom domain](/domains/steps/_index.md).
 
 Run the following command:
 
@@ -46,7 +51,7 @@ Run the following command:
 {{< note >}}
 
 {{% vendor/name %}} can't guarantee that indexers follow the instructions.
-If you're concerned about access, set up [HTTP access control](/environments/http-access-control.md).
+To restrict access entirely, set up [HTTP access control](/environments/http-access-control.md).
 
 {{< /note >}}
 
@@ -59,7 +64,7 @@ to responses, which instructs search engines to not index and to not traverse yo
 X-Robots-Tag: noindex, nofollow
 ```
 
-By default, this setting is enabled for all `{{% vendor/cli %}}.site` domains, and is disabled for any environment with a custom domain.
+This setting can only be changed on environments with a custom domain.
 
 ## Alternative method: Use a robots.txt file
 
