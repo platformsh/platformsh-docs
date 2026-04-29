@@ -44,7 +44,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{
 Example filtering by a specific month:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{< variable "PROJECT_ID" >}}?from_date=2026-03-01&to_date=2026-03-31&limit=50" \
+curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{< variable "PROJECT_ID" >}}?from_date={{< variable "FROM_DATE" "YYYY-MM-DD" >}}&to_date={{< variable "TO_DATE" "YYYY-MM-DD" >}}&limit=50" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -101,7 +101,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< varia
 Example narrowing the range to a specific month:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< variable "PROJECT_ID" >}}?start_date=2026-03-01&end_date=2026-03-31" \
+curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< variable "PROJECT_ID" >}}?start_date={{< variable "START_DATE" "YYYY-MM-DD" >}}&end_date={{< variable "END_DATE" "YYYY-MM-DD" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
