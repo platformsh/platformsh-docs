@@ -7,15 +7,24 @@ description: Protect SEO health by managing an environment's visibility to searc
 Exposing multiple environments in the same project to search engines can harm your
 production site's SEO rankings, for example, through duplicate content, broken links, or unpolished pages.
 
-Whether search engines can index an environment depends on its domain:
+Whether search engines can index an environment depends on your project type:
 
-- **No custom domain**: Always hidden from search engines. This is enforced and can't be changed.
-- **Preview environment with a custom domain**: Hidden by default. You can make it visible.
-- **Production environment with a custom domain**: Visible by default. You can hide it.
+**Grid projects**
+
+- **Preview or production environment without a custom domain**: Always hidden from search engines. This is enforced and can't be changed.
+- **Preview environment with a custom domain**: Hidden by default. You can change this.
+- **Production environment with a custom domain (new project)**: Visible by default. You can change this.
+- **Production environment with a custom domain (existing project)**: Retains its current setting. You can change this.
+
+**{{% names/dedicated-gen-2 %}} projects**
+
+- **Development environments** (Grid-based preview branches): Always hidden from search engines. This is enforced and can't be changed.
+- **Staging environment**: Hidden by default. You can change this.
+- **Production environment**: Always visible to search engines. This is enforced and can't be changed.
 
 {{< note >}}
 
-If multiple environments have custom domains, ensure that **at most** one is visible to avoid duplicate content and SEO dilution.
+Keep only one environment visible to search engines at a time to avoid duplicate content and SEO dilution.
 
 {{< /note >}}
 
@@ -26,8 +35,6 @@ To change whether search engines can index an environment:
 title=In the Console
 +++
 
-Prerequisite: The environment must have a [custom domain](/domains/steps/_index.md).
-
 1. Select the project you want to update.
 1. From the **Environment** menu, select the environment.
 1. Click {{< icon settings >}} **Settings**.
@@ -37,8 +44,6 @@ Prerequisite: The environment must have a [custom domain](/domains/steps/_index.
 +++
 title=Using the CLI
 +++
-
-Prerequisite: The environment must have a [custom domain](/domains/steps/_index.md).
 
 Run the following command:
 
@@ -63,8 +68,6 @@ to responses, which instructs search engines to not index and to not traverse yo
 ```txt
 X-Robots-Tag: noindex, nofollow
 ```
-
-This setting can only be changed on environments with a custom domain.
 
 ## Alternative method: Use a robots.txt file
 
