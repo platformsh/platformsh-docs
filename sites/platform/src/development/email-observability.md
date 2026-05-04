@@ -20,7 +20,8 @@ You can access data only for projects listed in your token's claims.
 
 To get an access token:
 
-1. [Create an API token](/administration/cli/api-tokens.md) in the {{% vendor/name %}} Console.
+1. In the [Console](https://console.upsun.com), create an API token. For details, refer to [Create an API token](/administration/cli/api-tokens.md#2-create-an-api-token) in the product docs.
+
 2. Exchange it for an access token (valid for 15 minutes):
 
    ```bash
