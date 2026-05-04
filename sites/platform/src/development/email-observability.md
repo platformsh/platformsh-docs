@@ -120,8 +120,9 @@ Suppression lists prevent sending to addresses that have bounced or blocked your
 
 ### Bounces
 
-The bouncelist contains addresses that have hard-bounced. The system automatically suppresses further sending attempts to these addresses.
+The bounce list contains addresses that have hard-bounced. The system automatically suppresses further sending attempts to these addresses.
 
+<!-- vale of -->
 #### List bounced addresses
 
 ```bash
@@ -134,7 +135,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/bouncelist/platformsh-auth/{{< 
 |-----------|---------|-------------|
 | `limit`   | `50`    | Number of records to return. |
 
-#### Remove from bouncelist
+#### Remove from bounce list
 
 Only remove an address after confirming it is now valid. Returns `204 No Content` on success.
 
@@ -144,7 +145,7 @@ curl -X DELETE "https://sendgrid.pltfrm.sh/api/v1/sendgrid/bouncelist/platformsh
   -H "content-type: application/json" \
   -d '{"email": "user@example.com"}'
 ```
-
+<!-- vale on -->
 ### Blocks
 
 The blocklist prevents sending to addresses that have previously blocked your emails or marked them as spam, protecting your sender reputation.
