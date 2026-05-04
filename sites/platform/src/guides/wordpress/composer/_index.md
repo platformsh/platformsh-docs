@@ -55,7 +55,6 @@ For more information, see the following {{% vendor/name %}} community post: [How
 In the same way, using Composer makes it unnecessary for you to commit all of WordPress to your repository, since you can add it as a dependency. There are several ways to do this (i.e. [Bedrock](https://github.com/platformsh-templates/wordpress-bedrock)) depending on how many assumptions you want to be made for your configuration and project structure. The simplest one uses the [`roots/wordpress`](https://github.com/roots/wordpress) meta-package to install WordPress core via Composer:
 
 ```bash
-composer require roots/wordpress-core-installer
 composer require roots/wordpress
 ```
 

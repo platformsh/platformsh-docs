@@ -82,23 +82,23 @@ To install WordPress with Composer, complete the following steps:
 
    Now that you have made your WordPress site into a Composer project, you can download packages via Composer.
 
-   To download WordPress itself, run the following commands:
+   To download WordPress itself, run the following command:
 
    ```bash
-   $ composer require roots/wordpress-core-installer
    $ composer require roots/wordpress
    ```
 
-   The two dependencies are now listed in your `composer.json` file:
+   The dependency is now listed in your `composer.json` file:
 
    ```json
     {
         "require": {
-            "roots/wordpress-core-installer": "^4.0",
             "roots/wordpress": "^6.0"
         }
     }
    ```
+
+   `roots/wordpress` is a meta-package that pulls in `roots/wordpress-core-installer` automatically.
 
 5. Complete the installation:
 
