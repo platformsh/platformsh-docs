@@ -37,7 +37,7 @@ To get an access token:
 Retrieve a log of email events for a project:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/get/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -45,7 +45,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{
 Example filtering by a specific month:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{< variable "PROJECT_ID" >}}?from_date={{< variable "FROM_DATE" "YYYY-MM-DD" >}}&to_date={{< variable "TO_DATE" "YYYY-MM-DD" >}}&limit=50" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/get/{{< variable "PROJECT_ID" >}}?from_date={{< variable "FROM_DATE" "YYYY-MM-DD" >}}&to_date={{< variable "TO_DATE" "YYYY-MM-DD" >}}&limit=50" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -64,7 +64,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/get/platformsh-auth/{{
 Retrieve events for one or more specific email addresses:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/email/platformsh-auth/{{< variable "PROJECT_ID" >}}?email=user@example.com&email=other@example.com" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/email/{{< variable "PROJECT_ID" >}}?email=user@example.com&email=other@example.com" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -76,7 +76,7 @@ Retrieve events of a specific type by passing `event_type` as a path segment in 
 Example filtering by `bounce` events:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/messages/bounce/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/bounce/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -94,7 +94,7 @@ The `limit`, `offset`, `from_date`, and `to_date` parameters from the [previous 
 Retrieve aggregated daily delivery statistics for a project. This endpoint provides high-level metrics compatible with common visualization tools.
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -102,7 +102,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< varia
 Example narrowing the range to a specific month:
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/stats/platformsh-auth/{{< variable "PROJECT_ID" >}}?start_date={{< variable "START_DATE" "YYYY-MM-DD" >}}&end_date={{< variable "END_DATE" "YYYY-MM-DD" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJECT_ID" >}}?start_date={{< variable "START_DATE" "YYYY-MM-DD" >}}&end_date={{< variable "END_DATE" "YYYY-MM-DD" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -126,7 +126,7 @@ The bounce list contains addresses that have hard-bounced. The system automatica
 #### List bounced addresses
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/bouncelist/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/bouncelist/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -140,7 +140,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/bouncelist/platformsh-auth/{{< 
 Only remove an address after confirming it is now valid. Returns `204 No Content` on success.
 
 ```bash
-curl -X DELETE "https://sendgrid.pltfrm.sh/api/v1/sendgrid/bouncelist/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl -X DELETE "https://platform.sendgrid.pltfrm.sh/api/v1/self/bouncelist/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "content-type: application/json" \
   -d '{"email": "user@example.com"}'
@@ -153,7 +153,7 @@ The blocklist prevents sending to addresses that have previously blocked your em
 #### List blocked addresses
 
 ```bash
-curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/blocklist/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/blocklist/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "accept: application/json" | jq '.'
 ```
@@ -167,7 +167,7 @@ curl "https://sendgrid.pltfrm.sh/api/v1/sendgrid/blocklist/platformsh-auth/{{< v
 Removes an address to resume sending. Returns `204 No Content` on success.
 
 ```bash
-curl -X DELETE "https://sendgrid.pltfrm.sh/api/v1/sendgrid/blocklist/platformsh-auth/{{< variable "PROJECT_ID" >}}" \
+curl -X DELETE "platform.sendgrid.pltfrm.sh/api/v1/self/blocklist/{{< variable "PROJECT_ID" >}}" \
   -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
   -H "content-type: application/json" \
   -d '{"email": "user@example.com"}'
