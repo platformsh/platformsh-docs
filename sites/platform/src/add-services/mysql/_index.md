@@ -72,10 +72,23 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 
-### Upgrade, change, or downgrade a service
+### Upgrade 
+
+1. Branch locally from production. For example: `git branch -c database-updgrade`.
+2. Push the branch to ensure it creates a copy of your data and spins up a new container. `git push`. Important: Do not skip this step.
+3. Edit the `.platform/services.yaml` file and change the `type` to your desired version. 
+4. Commit the changes and push.
+5. You can now test the new version on the `database-upgrade` branch.
+6. After confirming everything is working correctly, merge the `database-upgrade` with production. Note: deployment will take slightly longer because the database needs to be restarted during the upgrade.
 
 {{% note theme="caution" title="Caution" %}}
-Upgrading and downgrading a service version or changing a service type are destructive processes that delete the existing service and its data. 
+Do NOT change the service name. Changing the service name WILL delete the existing container and its data. 
+{{% /note %}}
+
+### Downgrade 
+
+{{% note theme="caution" title="Caution" %}}
+Downgrading a service version is NOT possible without changing the service name. Changing the service name WILL delete the existing container and its data. 
 
 A best practice is to first back up your environment and export the data. 
 {{% /note %}}
@@ -83,12 +96,10 @@ A best practice is to first back up your environment and export the data.
 To prevent data loss after completing either of these actions, follow these steps:
 
 1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so. 
-1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
-1. Change the service type in your [service configuration](/add-services/_index.md):
-    - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
-and check that each upgrade commit translates into an actual deployment.   
-    - **Change or downgrade:** Specify the new service type and the desired version.
-1. [Import your data](#importing-data) into the new service.
+2. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
+3. Change the service type AND the service name in your `.platform/services.yaml` file. 
+4. Commit and push. A new container will be created with an empty database.
+5. [Import your data](#importing-data) into the new service.
 
 
 ## Example
