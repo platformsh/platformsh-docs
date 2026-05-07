@@ -283,7 +283,7 @@ applications:
   # The name of your app.
   myapp:
   # Choose Node.js version 20 or above.
-    type: 'nodejs:20'
+    type: 'nodejs:{{% latest "nodejs" %}}'
     # Override the default Node.js build flavor.
     build:
       flavor: none
@@ -301,7 +301,7 @@ applications:
   # The name of your app.
   myapp:
     # Choose Node.js version 20 or above.
-    type: 'nodejs:20'
+    type: 'nodejs:{{% latest "nodejs" %}}'
     # Override the default Node.js build flavor.
     build:
       flavor: none

@@ -254,7 +254,7 @@ to be used by a `web` instance and a `queue` worker instance:
 ```yaml {configFile="apps"}
 myapp:
   # The type of the application to build.
-  type: "nodejs:20"
+  type: 'nodejs:{{% latest "nodejs" %}}'
 
   # Defines how much space is available to local mounts.
   disk: 512

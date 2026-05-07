@@ -111,7 +111,7 @@ api:
     root: api-app
 
 admin:
-  type: nodejs:16
+  type: 'nodejs:{{% latest "nodejs" %}}'
 
   mounts:
     '/.tmp_platformsh': 'shared:files/tmp_platformsh'
@@ -139,7 +139,7 @@ admin:
     root: admin
 
 gatsby:
-  type: 'nodejs:18'
+  type: 'nodejs:{{% latest "nodejs" %}}'
 
   mounts:
     '/.cache': { source: local, source_path: cache }
