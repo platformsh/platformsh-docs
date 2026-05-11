@@ -166,7 +166,7 @@ You can then verify that your integration is functioning properly using the [`in
 
 ## Health notifications on Dedicated Gen 2
 
-Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by Platform.sh — you don't need to configure notifications yourself. All notification types are monitored, and Platform.sh responds as follows:
+Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by {{% vendor/name %}} — you don't need to configure notifications yourself. All notification types are monitored, and {{% vendor/name %}} responds as follows:
 
 | Environment | Notification |
 |---|---|
