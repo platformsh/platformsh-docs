@@ -171,4 +171,4 @@ Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled
 | Environment | Response |
 |---|---|
 | Production (any cloud) | A support ticket is automatically opened on your behalf |
-| Staging | No action is taken by {{% vendor/name %}} — monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md) |
+| Staging, development | No action is taken by {{% vendor/name %}} — monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md) |
