@@ -112,21 +112,17 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 ### Join the community
 
-The {{% vendor/name %}} community meets on both a [Community
-forum](https://support.platform.sh/hc/en-us/community/topics) and
-{{< vendor/url "discord" "Discord" >}} for questions and discussion.
-
 Have an experiment you'd like to share?
 Looking for a way to contribute?
 
 <div style="margin-top: 3rem; text-align: center;">
-    Join us on {{< vendor/url "discord" "Discord" >}}
+    Join us on the {{< vendor/url "community" "Upsun Community Forum" >}}
 </div>
 
 ### Contribute
 
 Feel free to open an issue or pull request for any of the repositories below,
-or let us know on {{< vendor/url "discord" "Discord" >}} if you find a
+or let us know on the {{< vendor/url "community" "Upsun Community Forum" >}} if you find a
 problem we can help with:
 
 {{< home/links-github >}}

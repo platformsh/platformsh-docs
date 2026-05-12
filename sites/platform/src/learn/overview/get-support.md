@@ -1,5 +1,5 @@
 ---
-title: " Get support"
+title: "Get support"
 weight: 4
 toc: false
 description: |
@@ -31,10 +31,10 @@ If you have any additional information, you can select the submitted ticket and 
 {{< /note >}}
 
 <!-- vale off -->
-## Discord
+## Upsun Community Forum
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the public {{< vendor/url "discord" "Discord" >}}.
+join other customers and engineers on the {{< vendor/url "community" "Upsun Community Forum" >}}.
 
 ## Community
 
