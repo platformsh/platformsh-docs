@@ -166,13 +166,9 @@ You can then verify that your integration is functioning properly using the [`in
 
 ## Health notifications on Dedicated Gen 2
 
-Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by {{% vendor/name %}} — you don't need to configure notifications yourself. All notification types are monitored, and {{% vendor/name %}} responds as follows:
+Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by {{% vendor/name %}} — you don't need to configure notifications yourself. All notification types are monitored. 
 
-| Environment | Notification |
+| Environment | Response |
 |---|---|
 | Production (any cloud) | A support ticket is automatically opened on your behalf |
-| Staging — [STAGING PLAN TYPE] | A support ticket is automatically opened on your behalf |
-| Staging — all other clouds | No notification is sent |
-
-If your DG2 staging environment has no automatic notifications, monitor your disk usage
-via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md).
+| Staging | No action is taken by {{% vendor/name %}} — monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md) |
