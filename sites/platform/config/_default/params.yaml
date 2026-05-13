@@ -50,7 +50,6 @@ vendor:
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.upsun.com/register
-        discord: https://discord.gg/upsun
         community: https://community.upsun.com
 
 # Images (kept in static/)
