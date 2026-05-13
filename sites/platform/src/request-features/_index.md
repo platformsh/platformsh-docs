@@ -15,7 +15,7 @@ You can open a [support ticket](/learn/overview/get-support.html#create-a-suppor
 
 ### For non-account holders or those who prefer a chat
 
-Join us on the {{< vendor/url "community" "Upsun Community Forum" >}}. You can share your ideas and discuss them with our community and team members.
+Join us in the {{< vendor/url "community" "Upsun Community Forum" >}}. You can share your ideas and discuss them with our community and team members.
 
 {{< note title="We love to hear from you!" theme="info" >}}
 

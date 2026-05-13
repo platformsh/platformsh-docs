@@ -34,12 +34,8 @@ If you have any additional information, you can select the submitted ticket and 
 ## Upsun Community Forum
 
 To talk about app development or framework-related questions,
-join other customers and engineers on the {{< vendor/url "community" "Upsun Community Forum" >}}.
+join other customers and engineers in the {{< vendor/url "community" "Upsun Community Forum" >}}.
 
-## Community
-
-The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how-to guides with suggestions
-on how to get the most out of {{% vendor/name %}}.
 <!-- vale on -->
 
 ## Contact Sales
