@@ -2,19 +2,12 @@
 title: "Health notifications"
 weight: -1
 description: |
-  {{% vendor/name %}} can notify you when various events happen on your project, in any environment.
+  {{% vendor/name %}} monitors disk space and inode usage across your environments. Learn how health notifications are handled and how to configure them on Grid.
 ---
 
 {{% description %}}
 
-To add or modify an integration for a project, you need to be a [project admin](/administration/users.md#project-roles).
-
-## Default low-disk email notifications
-
-When you create a new project,
-{{% vendor/name %}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](/administration/users.md#project-roles).
-
-## Available notifications
+## Notification types
 
 Notifications include the steps to take to resolve the issue.
 
@@ -40,7 +33,11 @@ the creation of new files even when disk space is available.
 
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
-## Configuring notifications
+## Configuring health notifications on Grid
+
+To add or modify a notification integration, you need to be a [project admin](/administration/users.md#project-roles).
+
+When you create a new project, {{% vendor/name %}} creates a default low-disk email notification for all project admins. You can also set up additional notifications (for example, via Slack or PagerDuty) as described below.
 
 Health notifications can be set up via the [{{% vendor/name %}} CLI](/administration/cli/_index.md), through a number of different channels.
 
@@ -159,10 +156,19 @@ Now register a `health.pagerduty` integration as follows:
 Any notification will now trigger an alert in PagerDuty.
 
 
-## Validate the integration
+### Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validate-integrations) command
+You can then verify that your integration is functioning properly using the [`integration:validate`](/administration/cli/reference.md#integrationvalidate) command
 
 ```bash
 {{% vendor/cli %}} integration:validate
 ```
+
+## Health notifications on Dedicated Gen 2
+
+Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by {{% vendor/name %}} — you don't need to configure notifications yourself. All notification types are monitored. 
+
+| Environment | Response |
+|---|---|
+| Production (any cloud) | A support ticket is automatically opened on your behalf |
+| Staging, development | No action is taken by {{% vendor/name %}} — monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md) |
