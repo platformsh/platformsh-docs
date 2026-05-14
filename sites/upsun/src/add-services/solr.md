@@ -526,6 +526,51 @@ services:
 The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.
 You are strongly recommended to define your own configuration with a custom core and endpoint.
 
+### Bundled modules (Solr 9.9+)
+
+Solr 9.8 made [`<lib>` directives in `solrconfig.xml` opt-in](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#solr-9-8), and Solr 10.0 ([SOLR-16781](https://issues.apache.org/jira/browse/SOLR-16781)) removed support for them entirely.
+As a result, bundled modules shipped under `/opt/solr/<VERSION>/modules/` (such as `extraction`, `analysis-extras`, `langid`, `ltr`, and `clustering`) are no longer auto-loaded from `<lib>` references in your configset.
+Instead, opt in by listing the modules you need via the `configuration.modules` field, which {{% vendor/name %}} renders into the upstream [`SOLR_MODULES` environment variable](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html).
+
+By default, no bundled modules are loaded &mdash; only the modules you explicitly request are placed on the classpath.
+This keeps small instances from paying the memory cost of modules they don't use.
+
+```yaml {configFile="services"}
+services:
+  # The name of the service container. Must be unique within a project.
+  solr:
+    type: solr:{{% latest "solr" %}}
+    configuration:
+      modules:
+        - extraction
+        - analysis-extras
+        - langid
+        - ltr
+      cores:
+        mainindex:
+          conf_dir: !archive "core1-conf"
+      endpoints:
+        main:
+          core: mainindex
+```
+
+If you're upgrading from Solr 9.6 or earlier and your configset relies on `<lib>` directives (for example, the default Drupal [`search_api_solr`](https://www.drupal.org/project/search_api_solr) configset), add the matching modules to `configuration.modules` when you bump the version:
+
+```yaml {configFile="services"}
+services:
+  solr:
+    type: solr:9.9
+    configuration:
+      modules:
+        - extraction
+        - analysis-extras
+        - langid
+        - ltr
+```
+
+The `configuration.modules` field is supported only on Solr 9.9 and later.
+On Solr 9.6 and earlier, modules continue to load from `<lib>` directives in your configset, and no migration is required to keep your existing setup working.
+
 ### Limitations
 
 The recommended maximum size for configuration directories (zipped) is 2MB. These need to be monitored to ensure they don't grow beyond that. If the zipped configuration directories grow beyond this, performance declines and deploys become longer. The directory archives are compressed and string encoded. You could use this bash pipeline
