@@ -20,10 +20,10 @@
       "name": "community",
       "spider": "docs/spiders/communityspider.py",
       "allowed_domains": [
-        "community.platform.sh"
+        "community.upsun.com"
       ],
       "start_urls": [
-        "https://community.platform.sh/"
+        "https://community.upsun.com/"
       ]
     },
     "website": {
