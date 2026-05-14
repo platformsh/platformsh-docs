@@ -65,7 +65,7 @@ Example:
 ```yaml {location=".upsun/app.yaml"}
 applications:
   myapp:
-    type: nodejs:16
+    type: nodejs:22
     source:
       root: folder1
     ...
@@ -74,7 +74,7 @@ applications:
 ```yaml {location=".upsun/app-bis.yaml"}
 applications:
   myapp:
-    type: nodejs:20
+    type: nodejs:26
     build:
       flavor: none
     ...
@@ -85,7 +85,7 @@ the blended configuration will be the following:
 ```yaml {location="YAML config result"}
 applications:
   myapp:
-    type: nodejs:20
+    type: nodejs:26
     build:
       flavor: none
     ...

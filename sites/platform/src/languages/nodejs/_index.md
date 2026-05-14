@@ -291,7 +291,7 @@ use the following configuration:
 # The name of your app.
 name: myapp
 # Choose Node.js version 20 or above.
-type: 'nodejs:20'
+type: 'nodejs:{{% latest "nodejs" %}}'
 # Override the default Node.js build flavor.
 build:
   flavor: none
@@ -308,7 +308,7 @@ You can even [use Bun as a runtime](https://devcenter.upsun.com/posts/bun-suppor
 # The name of your app.
 name: myapp
 # Choose Node.js version 20 or above.
-type: 'nodejs:20'
+type: 'nodejs:{{% latest "nodejs" %}}'
 # Override the default Node.js build flavor.
 build:
   flavor: none
