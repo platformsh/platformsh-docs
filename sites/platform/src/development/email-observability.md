@@ -13,24 +13,10 @@ This API sits on top of the SendGrid infrastructure used by {{% vendor/name %}}'
 [built-in SMTP proxy](/development/email.md).
 It doesn't provide direct access to SendGrid — all data is scoped to the projects your token is authorized for.
 
-## Authentication
+## Before you begin
 
-All requests require a short-lived OAuth2 access token passed as a Bearer token.
-You can access data only for projects listed in your token's claims.
-
-To get an access token:
-
-1. In the [Console](https://console.upsun.com), create an API token. For details, refer to [Create an API token](/administration/cli/api-tokens.md#2-create-an-api-token) in the product docs.
-
-2. Exchange it for an access token (valid for 15 minutes):
-
-   ```bash
-   curl -u platform-api-user: \
-     -d 'grant_type=api_token&api_token={{< variable "API_TOKEN" >}}' \
-     https://auth.api.platform.sh/oauth2/token
-   ```
-
-   Use the `access_token` value from the response as the Bearer token in your requests.
+- Authenticate the {{% vendor/name %}} CLI to your account by running `{{% vendor/cli %}} login` or `{{% vendor/cli %}}`.
+- Find your project ID, used in place of `{{< variable "PROJECT_ID" >}}` in the commands below. To find it, run `{{% vendor/cli %}} project:info id`.
 
 ## Query message history
 
@@ -38,16 +24,16 @@ Retrieve a log of email events for a project:
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/get/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 Example filtering by a specific month:
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/get/{{< variable "PROJECT_ID" >}}?from_date={{< variable "FROM_DATE" "YYYY-MM-DD" >}}&to_date={{< variable "TO_DATE" "YYYY-MM-DD" >}}&limit=50" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 ### Parameters
@@ -65,8 +51,8 @@ Retrieve events for one or more specific email addresses:
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/email/{{< variable "PROJECT_ID" >}}?email=user@example.com&email=other@example.com" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 ### Filter by event type
@@ -77,8 +63,8 @@ Example filtering by `bounce` events:
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/messages/bounce/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 #### Parameters
@@ -95,16 +81,16 @@ Retrieve aggregated daily delivery statistics for a project. This endpoint provi
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 Example narrowing the range to a specific month:
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/stats/{{< variable "PROJECT_ID" >}}?start_date={{< variable "START_DATE" "YYYY-MM-DD" >}}&end_date={{< variable "END_DATE" "YYYY-MM-DD" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 ### Parameters
@@ -122,13 +108,13 @@ Suppression lists prevent sending to addresses that have bounced or blocked your
 
 The bounce list contains addresses that have hard-bounced. The system automatically suppresses further sending attempts to these addresses.
 
-<!-- vale of -->
+<!-- vale off -->
 #### List bounced addresses
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/bouncelist/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 | Parameter | Default | Description |
@@ -141,8 +127,8 @@ Only remove an address after confirming it is now valid. Returns `204 No Content
 
 ```bash
 curl -X DELETE "https://platform.sendgrid.pltfrm.sh/api/v1/self/bouncelist/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "content-type: application/json" \
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.' \
   -d '{"email": "user@example.com"}'
 ```
 <!-- vale on -->
@@ -154,8 +140,8 @@ The blocklist prevents sending to addresses that have previously blocked your em
 
 ```bash
 curl "https://platform.sendgrid.pltfrm.sh/api/v1/self/blocklist/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "accept: application/json" | jq '.'
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.'
 ```
 
 | Parameter | Default | Description |
@@ -168,8 +154,8 @@ Removes an address to resume sending. Returns `204 No Content` on success.
 
 ```bash
 curl -X DELETE "platform.sendgrid.pltfrm.sh/api/v1/self/blocklist/{{< variable "PROJECT_ID" >}}" \
-  -H "Authorization: Bearer {{< variable "ACCESS_TOKEN" >}}" \
-  -H "content-type: application/json" \
+  -H "$({{% vendor/cli %}} auth:token -WH)" \
+  -H "accept: application/json" -s | jq '.' \
   -d '{"email": "user@example.com"}'
 ```
 
