@@ -172,7 +172,7 @@ For Dedicated Generation 2 projects, the response to health notifications depend
 |-------------|----------|
 | Production (any cloud) | {{% vendor/company_name %}} Support and Operations teams are alerted and a support ticket is automatically opened on your behalf. |
 | Staging  | No alerts are sent and no action is taken by {{% vendor/company_name %}}. You can monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md). |
-| Development | DG2 development environments run on the Grid - notifications work as described in the [Health notifications on Grid](#health-notifications-on-grid) section of this topic. |
+| Development/preview | DG2 development/preview environments run on the Grid - notifications work as described in the [Health notifications on Grid](#health-notifications-on-grid) section of this topic. |
 
 ## Related topics
 - [Dedicated Gen 2 Overview](dedicated-environments/dedicated-gen-2/overview.md)
