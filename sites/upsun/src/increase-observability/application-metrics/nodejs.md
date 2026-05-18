@@ -72,6 +72,13 @@ The `start` function accepts an object as a parameter with the following keys:
 
 - `uploadTimeoutMillis`: Timeout in milliseconds for the upload request (default: 10000)
 
+{{< note theme="warning" >}}
+
+On Upsun, `appName` is set to application name by default. If you override this value, you might
+not be able to see it on the profiling tab.
+
+{{< /note >}}
+
 ### `function stop() {}`
 
 Stops the continuous profiling probe.
