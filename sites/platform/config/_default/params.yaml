@@ -50,7 +50,7 @@ vendor:
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.upsun.com/register
-        discord: https://discord.gg/upsun
+        community: https://community.upsun.com
 
 # Images (kept in static/)
 logo: "images/logo.svg"
@@ -107,7 +107,7 @@ nonDocsSections:
     weight: -80
   # community:
   #   title: Community Forum
-  #   link: https://community.platform.sh
+  #   link: https://community.upsun.com
   #   weight: -70
 
 # Metadata
