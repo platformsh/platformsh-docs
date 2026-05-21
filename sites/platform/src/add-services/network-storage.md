@@ -9,10 +9,9 @@ Your apps can use any combination of `local` and `service` mounts.
 
 {{< note >}}
 
-Writing to network mounts is slightly slower than to local mounts, though the difference 
-is usually negligible. The slower performance becomes more noticeable during high-volume 
-sequential file creation, such as rapidly creating many small files. In such cases, a 
-local mount is more effective.
+Writing to network mounts is slightly slower than to local mounts, most noticeably during high-volume sequential file creation — in that case, a local mount is more effective. Applications polling network mounts for a new file may not immediately detect it even though it exists. 
+
+Detection can be delayed by approximately 30 seconds, so polling logic should account for this delay and not treat a missing file as an error until that window has passed.
 
 {{< /note >}}
 
