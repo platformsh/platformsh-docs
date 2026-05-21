@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI (Platform.sh compatibility) 5.9.0
+# Upsun CLI (Platform.sh compatibility) 5.10.4
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -21,6 +21,7 @@ showTitle: false
 ## All commands
 
 * [`clear-cache`](#clear-cache)
+* [`completion`](#completion)
 * [`console`](#console)
 * [`decode`](#decode)
 * [`docs`](#docs)
@@ -182,6 +183,10 @@ showTitle: false
 * [`repo:ls`](#repols)
 * [`repo:read`](#reporead)
 
+**resources**
+
+* [`resources:build:get`](#resourcesbuildget)
+
 **route**
 
 * [`route:get`](#routeget)
@@ -270,25 +275,52 @@ Aliases: `cc`
 platform cc
 ```
 
+## `completion`
+
+Dump the shell completion script
+
+### Usage
+
+```
+completion [--debug] [--] [<shell>]
+```
+
+The completion command dumps the shell completion script required
+to use shell autocompletion (currently, bash, fish, zsh completion are supported).
+
+Static installation
+-------------------
+
+Dump the script to a global completion file and restart your shell:
+
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash | sudo tee /etc/bash_completion.d/platform.phar
+
+Or dump the script to a local file and source it:
+
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash > completion.sh
+
+    # source the file whenever you use the project
+    source completion.sh
+
+    # or add this line at the end of your "~/.bashrc" file:
+    source /path/to/completion.sh
+
+Dynamic installation
+--------------------
+
+Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
+
+    eval "$(/home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash)"
+
+#### Arguments
+
+* `shell`(optional)
+  The shell type (e.g. "bash"), the value of the "$SHELL" env var will be used if this is not given
+
 #### Options
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+* `--debug`
+  Tail the completion debug log
 
 ## `console`
 
@@ -316,27 +348,9 @@ platform web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environme
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `decode`
 
-Decode an encoded string such as PLATFORM_VARIABLES
+Decode a string that was encoded with JSON and Base64
 
 ### Usage
 
@@ -347,30 +361,12 @@ platform decode [-P|--property PROPERTY] [--] <value>
 #### Arguments
 
 * `value`(required)
-  The variable value to decode
+  The value to decode
 
 #### Options
 
 * `--property` (`-P`) (expects a value)
-  The property to view within the variable
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+  The property to view within the value
 
 ### Examples
 
@@ -386,7 +382,7 @@ Open the online documentation
 ### Usage
 
 ```
-platform docs [--browser BROWSER] [--pipe] [--] [<search>]...
+platform docs [--browser BROWSER] [--pipe] [--] [<search>...]
 ```
 
 #### Arguments
@@ -401,24 +397,6 @@ platform docs [--browser BROWSER] [--pipe] [--] [<search>]...
 
 * `--pipe`
   Output the URL to stdout.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -460,32 +438,14 @@ To display the list of available commands, please use the list command.
 * `--raw`
   To output raw command help
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `list`
 
-Lists commands
+List commands
 
 ### Usage
 
 ```
-platform list [--raw] [--format FORMAT] [--all] [--] [<namespace>]
+platform list [--raw] [--format FORMAT] [--all] [-h|--help] [-V|--version] [-v|vv|vvv|--verbose] [-q|--quiet] [-y|--yes] [--no-interaction] [--] <command> [<namespace>]
 ```
 
 The list command lists all commands:
@@ -506,9 +466,6 @@ It's also possible to get raw list of commands (useful for embedding command run
 
 #### Arguments
 
-* `command`(required)
-  The command to execute
-
 * `namespace`(optional)
   The namespace name
 
@@ -523,24 +480,6 @@ It's also possible to get raw list of commands (useful for embedding command run
 * `--all`
   Show all commands, including hidden ones
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `multi`
 
 Execute a command on multiple projects
@@ -548,7 +487,7 @@ Execute a command on multiple projects
 ### Usage
 
 ```
-platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [--] <cmd> (<cmd>)...
+platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [--] <cmd>...
 ```
 
 #### Arguments
@@ -559,7 +498,7 @@ platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [
 #### Options
 
 * `--projects` (`-p`) (expects a value)
-  A list of project IDs, separated by commas and/or whitespace
+  A list of project IDs. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--continue`
   Continue running commands even if an exception is encountered
@@ -569,24 +508,6 @@ platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [
 
 * `--reverse`
   Reverse the order of project options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -626,24 +547,6 @@ platform activity:cancel [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [-a|-
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `activity:get`
 
@@ -700,24 +603,6 @@ platform activity:get [-P|--property PROPERTY] [-t|--type TYPE] [-x|--exclude-ty
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -786,24 +671,6 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -892,24 +759,6 @@ platform activity:log [--refresh REFRESH] [-t|--timestamps] [--type TYPE] [-x|--
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Display the log for the last push on the current environment:
@@ -956,24 +805,6 @@ platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJE
 
 * `--identity-file` (`-i`) (expects a value)
   [Deprecated option, no longer used]
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `app:config-validate`
 
@@ -1046,27 +877,9 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `auth:api-token-login`
 
-Log in to Upsun (formerly Platform.sh) using an API token
+Log in using an API token
 
 ### Usage
 
@@ -1082,29 +895,9 @@ You can create an account at:
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
 
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `auth:browser-login`
 
-Log in to Upsun (formerly Platform.sh) via a browser
+Log in via a browser
 
 Aliases: `login`
 
@@ -1146,24 +939,6 @@ PLATFORMSH_CLI_TOKEN environment variable.
 * `--pipe`
   Output the URL to stdout.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `auth:info`
 
 Display your account information
@@ -1199,24 +974,6 @@ platform auth:info [--no-auto-login] [-P|--property PROPERTY] [--refresh] [--for
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Print your user ID:
@@ -1236,7 +993,7 @@ platform auth:info id --no-auto-login
 
 ## `auth:logout`
 
-Log out of Upsun (formerly Platform.sh)
+Log out
 
 Aliases: `logout`
 
@@ -1254,24 +1011,6 @@ platform logout [-a|--all] [--other]
 * `--other`
   Log out from other local sessions
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `auth:verify-phone-number`
 
 Verify your phone number interactively
@@ -1281,26 +1020,6 @@ Verify your phone number interactively
 ```
 platform auth:verify-phone-number
 ```
-
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `autoscaling:get`
 
@@ -1330,24 +1049,6 @@ platform autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--fo
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `autoscaling:set`
 
@@ -1407,24 +1108,6 @@ You can also configure resources statically by running: platform resources:set
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Enable autoscaling for an application using the default configuration:
@@ -1481,24 +1164,6 @@ platform backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Make a backup of the current environment:
@@ -1545,24 +1210,6 @@ platform backup:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `backup:get`
 
 View an environment backup
@@ -1591,24 +1238,6 @@ platform backup:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `backup:list`
 
@@ -1641,24 +1270,6 @@ platform backups [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -1705,24 +1316,6 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Restore the most recent backup:
@@ -1765,24 +1358,6 @@ platform certificate:add [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `certificate:delete`
 
 Delete a certificate from the project
@@ -1809,24 +1384,6 @@ platform certificate:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `certificate:get`
 
 View a certificate
@@ -1852,24 +1409,6 @@ platform certificate:get [-P|--property PROPERTY] [--date-fmt DATE-FMT] [-p|--pr
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `certificate:list`
 
@@ -1927,24 +1466,6 @@ platform certificates [--domain DOMAIN] [--exclude-domain EXCLUDE-DOMAIN] [--iss
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Output a list of domains covered by valid certificates:
@@ -1980,24 +1501,6 @@ platform commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -2060,24 +1563,6 @@ platform commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRO
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -2145,24 +1630,6 @@ platform db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [
 * `--relationship` (`-r`) (expects a value)
   The service relationship to use
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Create an SQL dump file:
@@ -2211,24 +1678,6 @@ platform sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment 
 
 * `--relationship` (`-r`) (expects a value)
   The service relationship to use
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -2288,24 +1737,6 @@ platform domain:add [--cert CERT] [--key KEY] [--chain CHAIN] [--attach ATTACH] 
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Add the domain example.com:
@@ -2346,24 +1777,6 @@ platform domain:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -2410,24 +1823,6 @@ platform domain:get [-P|--property PROPERTY] [--format FORMAT] [-c|--columns COL
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `domain:list`
 
 Get a list of all domains
@@ -2456,24 +1851,6 @@ platform domains [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--pr
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `domain:update`
 
@@ -2513,24 +1890,6 @@ platform domain:update [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project P
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Update the custom certificate for the domain example.org:
@@ -2545,7 +1904,7 @@ Activate an environment
 ### Usage
 
 ```
-platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>...]
 ```
 
 #### Arguments
@@ -2570,24 +1929,6 @@ platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--env
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Activate the environments "develop" and "stage":
@@ -2604,7 +1945,7 @@ Aliases: `branch`
 ### Usage
 
 ```
-platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id>] [<parent>]
+platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id> [<parent>]]
 ```
 
 #### Arguments
@@ -2641,24 +1982,6 @@ platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Create a new branch "sprint-2", based on "develop":
@@ -2675,33 +1998,13 @@ Aliases: `checkout`
 ### Usage
 
 ```
-platform checkout [<id>]
+platform checkout [<environment>]
 ```
 
 #### Arguments
 
-* `id`(optional)
+* `environment`(optional)
   The ID of the environment to check out. For example: "sprint2"
-
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -2717,7 +2020,7 @@ Delete one or more environments
 ### Usage
 
 ```
-platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>...]
 ```
 
 When a Upsun (formerly Platform.sh) environment is deleted, it will become "inactive": it will
@@ -2781,24 +2084,6 @@ This command allows you to delete environments as well as their Git branches.
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Delete the currently checked out environment:
@@ -2850,24 +2135,6 @@ platform deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environmen
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `environment:deploy:type`
 
 Show or set the environment deployment type
@@ -2903,24 +2170,6 @@ Choose manual to have changes staged until you trigger a deployment (including c
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Set the deployment type to "manual" (disable automatic deployments):
@@ -2937,7 +2186,7 @@ Aliases: `drush`
 ### Usage
 
 ```
-platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<cmd>]...
+platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<cmd>...]
 ```
 
 #### Arguments
@@ -2955,24 +2204,6 @@ platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app A
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3031,24 +2262,6 @@ platform httpaccess [--access ACCESS] [--auth AUTH] [--enabled ENABLED] [-p|--pr
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Require a username and password:
@@ -3078,7 +2291,7 @@ Read or set properties for an environment
 ### Usage
 
 ```
-platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
+platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<property> [<value>]]
 ```
 
 #### Arguments
@@ -3117,24 +2330,6 @@ platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3205,24 +2400,6 @@ platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--envir
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `environment:list`
 
 Get a list of environments
@@ -3270,24 +2447,6 @@ platform environments [-I|--no-inactive] [--status STATUS] [--pipe] [--refresh R
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `environment:logs`
 
 Read an environment's logs
@@ -3327,24 +2486,6 @@ platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment E
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3401,24 +2542,6 @@ This command will initiate a Git merge of the specified environment into its par
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Merge the environment "sprint-2" into its parent:
@@ -3453,24 +2576,6 @@ The environment will be unavailable until it is resumed. No data will be lost.
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `environment:push`
 
@@ -3530,24 +2635,6 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Push code to the current environment:
@@ -3591,24 +2678,6 @@ platform redeploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `environment:relationships`
 
 Show an environment's relationships
@@ -3642,24 +2711,6 @@ platform relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJEC
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3702,24 +2753,6 @@ platform environment:resume [-p|--project PROJECT] [-e|--environment ENVIRONMENT
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `environment:scp`
 
 Copy files to and from an environment using scp
@@ -3729,7 +2762,7 @@ Aliases: `scp`
 ### Usage
 
 ```
-platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>]...
+platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>...]
 ```
 
 #### Arguments
@@ -3756,24 +2789,6 @@ platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONME
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3806,7 +2821,7 @@ Aliases: `ssh`
 ### Usage
 
 ```
-platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>]...
+platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>...]
 ```
 
 #### Arguments
@@ -3840,24 +2855,6 @@ platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Open a shell over SSH:
@@ -3887,14 +2884,14 @@ platform environment:ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode'
 
 ## `environment:synchronize`
 
-Synchronize an environment's code and/or data from its parent
+Synchronize an environment's code, data and/or resources from its parent
 
 Aliases: `sync`
 
 ### Usage
 
 ```
-platform sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<synchronize>]...
+platform sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<synchronize>...]
 ```
 
 This command synchronizes to a child environment from its parent environment.
@@ -3927,24 +2924,6 @@ parent to the child.
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -3986,24 +2965,6 @@ platform url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] 
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -4059,24 +3020,6 @@ platform xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONME
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Connect to Xdebug on the environment, listening locally on port 9000.:
@@ -4091,7 +3034,7 @@ View detailed information on a single integration activity
 ### Usage
 
 ```
-platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<integration>] [<activity>]
+platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT] [--] [<integration> [<activity>]]
 ```
 
 #### Arguments
@@ -4124,24 +3067,6 @@ platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `integration:activity:list`
 
@@ -4201,24 +3126,6 @@ platform integration:activities [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [
 * `--environment` (`-e`) (expects a value)
   [Deprecated option, not used]
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `integration:activity:log`
 
 Display the log for an integration activity
@@ -4226,7 +3133,7 @@ Display the log for an integration activity
 ### Usage
 
 ```
-platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<integration>] [<activity>]
+platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<integration> [<activity>]]
 ```
 
 #### Arguments
@@ -4250,24 +3157,6 @@ platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--
 
 * `--environment` (`-e`) (expects a value)
   [Deprecated option, not used]
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `integration:add`
 
@@ -4422,24 +3311,6 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Add an integration with a GitHub repository:
@@ -4478,24 +3349,6 @@ platform integration:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `integration:get`
 
 View details of an integration
@@ -4528,24 +3381,6 @@ platform integration:get [-P|--property [PROPERTY]] [--format FORMAT] [-c|--colu
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `integration:list`
 
 View a list of project integration(s)
@@ -4574,24 +3409,6 @@ platform integrations [-t|--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] 
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `integration:update`
 
@@ -4751,24 +3568,6 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Switch on the "fetch branches" option for a specific integration:
@@ -4806,24 +3605,6 @@ repository may be deleted.
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `local:build`
 
 Build the current project locally
@@ -4833,7 +3614,7 @@ Aliases: `build`
 ### Usage
 
 ```
-platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATION] [-c|--copy] [--clone] [--run-deploy-hooks] [--no-clean] [--no-archive] [--no-backup] [--no-cache] [--no-build-hooks] [--no-deps] [--working-copy] [--concurrency CONCURRENCY] [--lock] [--] [<app>]...
+platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATION] [-c|--copy] [--clone] [--run-deploy-hooks] [--no-clean] [--no-archive] [--no-backup] [--no-cache] [--no-build-hooks] [--no-deps] [--working-copy] [--concurrency CONCURRENCY] [--lock] [--] [<app>...]
 ```
 
 #### Arguments
@@ -4888,24 +3669,6 @@ platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATIO
 * `--lock`
   Drush: create or update a lock file (only available with Drush version 7+)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Build the current project:
@@ -4940,26 +3703,6 @@ platform dir [<subdir>]
 * `subdir`(optional)
   The subdirectory to find ('local', 'web' or 'shared')
 
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `local:drush-aliases`
 
 Find the project's Drush aliases
@@ -4982,24 +3725,6 @@ platform drush-aliases [-r|--recreate] [-g|--group GROUP] [--pipe]
 
 * `--pipe`
   Output the current group name (do nothing else).
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -5060,24 +3785,6 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -5146,24 +3853,6 @@ platform cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest]
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `metrics:disk-usage`
 
 Show disk usage of an environment
@@ -5220,24 +3909,6 @@ platform disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `metrics:memory`
 
 Show memory usage of an environment
@@ -5291,24 +3962,6 @@ platform mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `mount:download`
 
 Download files from a mount, using rsync
@@ -5360,24 +4013,6 @@ platform mount:download [-a|--all] [-m|--mount MOUNT] [--target TARGET] [--sourc
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `mount:list`
 
 Get a list of mounts
@@ -5421,24 +4056,6 @@ platform mounts [--paths] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `mount:upload`
 
@@ -5485,24 +4102,6 @@ platform mount:upload [--source SOURCE] [-m|--mount MOUNT] [--delete] [--exclude
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `operation:list`
 
 List runtime operations on an environment
@@ -5541,24 +4140,6 @@ platform ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `operation:run`
 
 Run an operation on the environment
@@ -5594,24 +4175,6 @@ platform operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:billing:address`
 
 View or change an organization's billing address
@@ -5619,7 +4182,7 @@ View or change an organization's billing address
 ### Usage
 
 ```
-platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>] [<properties>]...
+platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property> [<value> [<properties>...]]]
 ```
 
 #### Arguments
@@ -5653,24 +4216,6 @@ platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--d
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:billing:profile`
 
 View or change an organization's billing profile
@@ -5678,7 +4223,7 @@ View or change an organization's billing profile
 ### Usage
 
 ```
-platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
+platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property> [<value>]]
 ```
 
 #### Arguments
@@ -5708,24 +4253,6 @@ platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--d
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `organization:create`
 
@@ -5757,24 +4284,6 @@ Access to individual projects (API and SSH) is managed separately, for now.
 * `--country` (expects a value)
   The organization country. Used as the default for the billing address.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:delete`
 
 Delete an organization
@@ -5793,24 +4302,6 @@ platform organization:delete [-o|--org ORG] [-p|--project PROJECT]
 * `--project` (`-p`) (expects a value)
   The project ID or URL, which auto-selects the organization if --org is not used
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:info`
 
 View or change organization details
@@ -5818,7 +4309,7 @@ View or change organization details
 ### Usage
 
 ```
-platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
+platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property> [<value>]]
 ```
 
 #### Arguments
@@ -5851,24 +4342,6 @@ platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--refresh] [--
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -5922,24 +4395,6 @@ platform orgs [--my] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:subscription:list`
 
 List subscriptions within an organization
@@ -5975,24 +4430,6 @@ platform org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project 
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:user:add`
 
 Invite a user to an organization
@@ -6016,24 +4453,6 @@ platform organization:user:add [-o|--org ORG] [--permission PERMISSION] [--] [<e
 * `--permission` (expects a value)
   Permission(s) for the user on the organization. Valid permissions are: billing, members, plans, projects:create, projects:list
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:user:delete`
 
 Remove a user from an organization
@@ -6053,24 +4472,6 @@ platform organization:user:delete [-o|--org ORG] [--] <email>
 
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `organization:user:get`
 
@@ -6107,24 +4508,6 @@ platform organization:user:get [-o|--org ORG] [-P|--property PROPERTY] [--date-f
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:user:list`
 
 List organization users
@@ -6134,7 +4517,7 @@ Aliases: `org:users`
 ### Usage
 
 ```
-platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -6151,6 +4534,9 @@ platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
 
+* `--project` (`-p`) (expects a value)
+  The project ID or URL, which auto-selects the organization if --org is not used
+
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
@@ -6162,24 +4548,6 @@ platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `organization:user:projects`
 
@@ -6218,24 +4586,6 @@ platform oups [-o|--org ORG] [--list-all] [--format FORMAT] [-c|--columns COLUMN
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `organization:user:update`
 
 Update an organization user
@@ -6259,24 +4609,6 @@ platform organization:user:update [-o|--org ORG] [--permission PERMISSION] [--] 
 * `--permission` (expects a value)
   Permission(s) for the user on the organization. Valid permissions are: billing, members, plans, projects:create, projects:list
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `project:clear-build-cache`
 
 Clear a project's build cache
@@ -6291,24 +4623,6 @@ platform project:clear-build-cache [-p|--project PROJECT]
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `project:create`
 
@@ -6367,24 +4681,6 @@ to STDERR.
 * `--no-set-remote`
   Do not set the new project as the remote
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `project:delete`
 
 Delete a project
@@ -6405,24 +4701,6 @@ platform project:delete [-p|--project PROJECT] [--] [<project>]
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `project:get`
 
 Clone a project locally
@@ -6432,7 +4710,7 @@ Aliases: `get`
 ### Usage
 
 ```
-platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--project PROJECT] [--] [<project>] [<directory>]
+platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--project PROJECT] [--] [<project> [<directory>]]
 ```
 
 #### Arguments
@@ -6457,24 +4735,6 @@ platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--proj
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Clone the project "abc123" into the directory "my-project":
@@ -6489,7 +4749,7 @@ Read or set properties for a project
 ### Usage
 
 ```
-platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<property>] [<value>]
+platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<property> [<value>]]
 ```
 
 #### Arguments
@@ -6525,24 +4785,6 @@ platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -6682,24 +4924,6 @@ platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh R
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `project:set-remote`
 
 Set the remote project for the current Git repository
@@ -6716,26 +4940,6 @@ platform set-remote [<project>]
 
 * `project`(optional)
   The project ID
-
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -6774,24 +4978,6 @@ platform repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment 
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -6835,24 +5021,6 @@ platform repo:ls [-d|--directories] [-f|--files] [--git-style] [-c|--commit COMM
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `repo:read`
 
 Read a directory or file in the project repository
@@ -6881,23 +5049,31 @@ platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVI
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
+## `resources:build:get`
 
-* `--version` (`-V`)
-  Display this application version
+View the build resources of a project
 
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
+Aliases: `build-resources:get`, `build-resources`
 
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+### Usage
 
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+```
+platform build-resources:get [-p|--project PROJECT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
 
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+#### Options
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: cpu, memory. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
 
 ## `route:get`
 
@@ -6943,24 +5119,6 @@ platform route:get [--id ID] [-1|--primary] [-P|--property PROPERTY] [--refresh]
 * `--identity-file` (`-i`) (expects a value)
   [Deprecated option, no longer used]
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * View the URL to the https://{default}/ route:
@@ -7005,24 +5163,6 @@ platform routes [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-heade
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `service:list`
 
 List services in the project
@@ -7058,24 +5198,6 @@ platform services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment 
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `service:mongo:dump`
 
 Create a binary archive dump of data from MongoDB
@@ -7110,24 +5232,6 @@ platform mongodump [-c|--collection COLLECTION] [-z|--gzip] [-o|--stdout] [-r|--
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `service:mongo:export`
 
@@ -7167,24 +5271,6 @@ platform mongoexport [-c|--collection COLLECTION] [--jsonArray] [--type TYPE] [-
 * `--app` (`-A`) (expects a value)
   The remote application name
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Export a CSV from the "users" collection:
@@ -7221,24 +5307,6 @@ platform mongorestore [-c|--collection COLLECTION] [-r|--relationship RELATIONSH
 * `--app` (`-A`) (expects a value)
   The remote application name
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `service:mongo:shell`
 
 Use the MongoDB shell
@@ -7268,24 +5336,6 @@ platform mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJ
 * `--app` (`-A`) (expects a value)
   The remote application name
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Display collection names:
@@ -7302,7 +5352,7 @@ Aliases: `redis`
 ### Usage
 
 ```
-platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]...
+platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>...]
 ```
 
 #### Arguments
@@ -7323,24 +5373,6 @@ platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--env
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -7378,7 +5410,7 @@ Aliases: `valkey`
 ### Usage
 
 ```
-platform valkey [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]...
+platform valkey [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>...]
 ```
 
 #### Arguments
@@ -7400,24 +5432,6 @@ platform valkey [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--en
 * `--app` (`-A`) (expects a value)
   The remote application name
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * Open the valkey-cli shell:
@@ -7425,12 +5439,12 @@ platform valkey [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--en
 platform service:valkey-cli 
 ```
 
-* Ping the Valkey server:
+* Ping the valkey server:
 ```
 platform service:valkey-cli ping
 ```
 
-* Show Valkey status information:
+* Show valkey status information:
 ```
 platform service:valkey-cli info
 ```
@@ -7477,24 +5491,6 @@ platform source-ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMEN
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `source-operation:run`
 
 Run a source operation
@@ -7526,24 +5522,6 @@ platform source-operation:run [--variable VARIABLE] [-p|--project PROJECT] [-e|-
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -7589,24 +5567,6 @@ explicitly. For unattended scripts, remember to turn off interaction via
 * `--new-key`
   Force a new key pair to be generated
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `ssh-key:add`
 
 Add a new SSH key
@@ -7635,24 +5595,6 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 * `--name` (expects a value)
   A name to identify the key
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `ssh-key:delete`
 
 Delete an SSH key
@@ -7675,26 +5617,6 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 
 * `id`(optional)
   The ID of the SSH key to delete
-
-#### Options
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -7734,24 +5656,6 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `subscription:info`
 
 Read or modify subscription properties
@@ -7759,7 +5663,7 @@ Read or modify subscription properties
 ### Usage
 
 ```
-platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<property>] [<value>]
+platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [--] [<property> [<value>]]
 ```
 
 #### Arguments
@@ -7789,24 +5693,6 @@ platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] 
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -7852,24 +5738,6 @@ platform team:create [--label LABEL] [--no-check-unique] [-r|--role ROLE] [--out
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `team:delete`
 
 Delete a team
@@ -7887,24 +5755,6 @@ platform team:delete [-o|--org ORG] [-t|--team TEAM]
 
 * `--team` (`-t`) (expects a value)
   The team ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `team:get`
 
@@ -7941,24 +5791,6 @@ platform team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--p
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `team:list`
 
@@ -8004,24 +5836,6 @@ platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-A|--all] [-o|--org
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * List teams (in the current project, if any):
@@ -8046,7 +5860,7 @@ Add project(s) to a team
 ### Usage
 
 ```
-platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<projects>]...
+platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<projects>...]
 ```
 
 #### Arguments
@@ -8064,24 +5878,6 @@ platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<project
 
 * `--team` (`-t`) (expects a value)
   The team ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `team:project:delete`
 
@@ -8105,24 +5901,6 @@ platform team:project:delete [-o|--org ORG] [-t|--team TEAM] [--] [<project>]
 
 * `--team` (`-t`) (expects a value)
   The team ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `team:project:list`
 
@@ -8159,24 +5937,6 @@ platform team:projects [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--dat
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `team:update`
 
 Update a team
@@ -8210,24 +5970,6 @@ platform team:update [--label LABEL] [--no-check-unique] [-r|--role ROLE] [-t|--
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `team:user:add`
 
 Add a user to a team
@@ -8251,24 +5993,6 @@ platform team:user:add [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 * `--team` (`-t`) (expects a value)
   The team ID
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `team:user:delete`
 
 Remove a user from a team
@@ -8291,24 +6015,6 @@ platform team:user:delete [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 
 * `--team` (`-t`) (expects a value)
   The team ID
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `team:user:list`
 
@@ -8345,24 +6051,6 @@ platform team:users [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-f
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `tunnel:close`
 
 Close SSH tunnels
@@ -8386,24 +6074,6 @@ platform tunnel:close [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRO
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `tunnel:info`
 
@@ -8431,24 +6101,6 @@ platform tunnel:info [-P|--property PROPERTY] [-c|--encode] [-p|--project PROJEC
 
 * `--app` (`-A`) (expects a value)
   The remote application name
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `tunnel:list`
 
@@ -8485,24 +6137,6 @@ platform tunnels [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT
 * `--no-header`
   Do not output the table header
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `tunnel:open`
 
 Open SSH tunnels to an app's relationships
@@ -8538,24 +6172,6 @@ extensions.
 * `--app` (`-A`) (expects a value)
   The remote application name
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `tunnel:single`
 
 Open a single SSH tunnel to an app relationship
@@ -8585,24 +6201,6 @@ platform tunnel:single [--port PORT] [-g|--gateway-ports] [-p|--project PROJECT]
 
 * `--relationship` (`-r`) (expects a value)
   The service relationship to use
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `user:add`
 
@@ -8635,24 +6233,6 @@ platform user:add [-r|--role ROLE] [--force-invite] [-p|--project PROJECT] [-W|-
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -8696,24 +6276,6 @@ platform user:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <email>
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -8760,24 +6322,6 @@ platform user:get [-l|--level LEVEL] [--pipe] [-p|--project PROJECT] [-e|--envir
 * `--role` (`-r`) (expects a value)
   [Deprecated: use user:update to change a user's role(s)]
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * View Alice's role on the project:
@@ -8816,24 +6360,6 @@ platform users [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--proj
 * `--project` (`-p`) (expects a value)
   The project ID or URL
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `user:update`
 
 Update user role(s) on a project
@@ -8862,24 +6388,6 @@ platform user:update [-r|--role ROLE] [-p|--project PROJECT] [-W|--no-wait] [--w
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -8958,24 +6466,6 @@ platform variable:create [-u|--update] [-l|--level LEVEL] [--app-scope APP-SCOPE
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `variable:delete`
 
 Delete a variable
@@ -9007,24 +6497,6 @@ platform variable:delete [-l|--level LEVEL] [-p|--project PROJECT] [-e|--environ
 
 * `--wait`
   Wait for the operation to complete (default)
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ### Examples
 
@@ -9076,24 +6548,6 @@ platform vget [-P|--property PROPERTY] [-l|--level LEVEL] [--format FORMAT] [-c|
 * `--pipe`
   [Deprecated option] Output the variable value only
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ### Examples
 
 * View the variable "example":
@@ -9132,24 +6586,6 @@ platform variables [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `variable:update`
 
@@ -9210,24 +6646,6 @@ platform variable:update [--allow-no-change] [-l|--level LEVEL] [--app-scope APP
 * `--wait`
   Wait for the operation to complete (default)
 
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
 ## `worker:list`
 
 Get a list of all deployed workers
@@ -9262,24 +6680,6 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
 
 * `--no-header`
   Do not output the table header
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 
 
