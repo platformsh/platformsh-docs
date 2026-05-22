@@ -6,7 +6,7 @@ weight: 30
 ---
 
 {{< vendor/name >}} [Continuous Profiler](/increase-observability/application-metrics/cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
+It is available directly the [Console](/administration/web/_index.md), under **Apps and Services → your app → Profiling**.
 
 The Rust continuous profiling is currently made across 3 dimensions:
 - **CPU Time**:  Time spent running on the CPU
