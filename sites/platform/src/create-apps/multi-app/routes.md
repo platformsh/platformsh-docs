@@ -23,7 +23,7 @@ and a Mercure Rocks server app, defined as follows:
 
 ```yaml {configFile="apps"}
 admin:
-  type: nodejs:16
+  type: 'nodejs:{{% latest "nodejs" %}}'
   source:
     root: admin
   ...
@@ -33,7 +33,7 @@ api:
     root: api
   ...
 gatsby:
-  type: nodejs:18
+  type: 'nodejs:{{% latest "nodejs" %}}'
   source:
     root: gatsby
   ...
@@ -111,7 +111,7 @@ api:
         index:
           - index.php
 admin:
-  type: nodejs:16
+  type: 'nodejs:{{% latest "nodejs" %}}'
   source:
     root: admin
   ...

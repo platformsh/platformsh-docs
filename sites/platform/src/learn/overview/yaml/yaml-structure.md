@@ -85,7 +85,7 @@ app1:
     root: app1
 
 app2:
-  type: nodejs:20
+  type: 'nodejs:{{% latest "nodejs" %}}'
   source:
     root: app2
 ```

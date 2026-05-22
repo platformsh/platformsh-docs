@@ -270,7 +270,7 @@ mounts:
 name: 'nextjs'
 
 # The type key specifies the language and version for your app.
-type: 'nodejs:14'
+type: 'nodejs:{{% latest "nodejs" %}}'
 
 dependencies:
   nodejs:

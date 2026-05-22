@@ -52,7 +52,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
     [...]
 
@@ -70,7 +70,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
     [...]
 
@@ -93,7 +93,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
     [...]
 
@@ -114,7 +114,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
     [...]
 

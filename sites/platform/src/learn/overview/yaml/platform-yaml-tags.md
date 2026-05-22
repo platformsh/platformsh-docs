@@ -30,7 +30,7 @@ For example, to include another ``.platform/app1.yaml`` file in the main `{{% ve
 ```yaml {location=".platform/app1.yaml"}
 source:
   root: "/"
-type: "nodejs:20"
+type: 'nodejs:{{% latest "nodejs" %}}'
 web:
   commands:
     start: "node index.js"

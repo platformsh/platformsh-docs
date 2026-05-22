@@ -207,7 +207,7 @@ For [multiple application](/create-apps/multi-app/_index.md) project, you can al
 ```yaml {location=".upsun/apps/my-app.yaml"}
 source:
   root: "/"
-type: "nodejs:18"
+type: 'nodejs:{{% latest "nodejs" %}}'
 web:
   commands:
     start: "node index.js"

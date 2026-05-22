@@ -44,7 +44,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
     web:
       commands:
         start: "npx next start -p $PORT"
@@ -77,7 +77,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
     web:
       commands:
         start: "node index.js"
@@ -111,7 +111,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: "nodejs:20"
+    type: 'nodejs:{{% latest "nodejs" %}}'
     relationships:
       postgresql:
     mounts:
