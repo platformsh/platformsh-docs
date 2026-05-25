@@ -2,7 +2,7 @@
 title: "Health notifications"
 weight: -1
 description: |
-  {{% vendor/name %}} monitors disk space and inode usage across your environments. Learn how health notifications are handled and how to configure them on Grid.
+  {{% vendor/name %}} monitors disk space and inode usage. Learn how health notifications are handled on Grid and Dedicated Gen 2 environments.
 ---
 
 {{% description %}}
@@ -33,17 +33,17 @@ the creation of new files even when disk space is available.
 
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
-## Configuring health notifications on Grid
+## Health notifications on Grid {#health-notifications-on-grid}
 
-To add or modify a notification integration, you need to be a [project admin](/administration/users.md#project-roles).
+By default, {{% vendor/name %}} emails low-disk and low-inode notifications to [project admins](/administration/users.md#project-roles).
 
-When you create a new project, {{% vendor/name %}} creates a default low-disk email notification for all project admins. You can also set up additional notifications (for example, via Slack or PagerDuty) as described below.
-
-Health notifications can be set up via the [{{% vendor/name %}} CLI](/administration/cli/_index.md), through a number of different channels.
+As a project admin, you can also:   
+- Configure the sending of health notifications through other channels (for example, via Slack or PagerDuty) as described in this topic.
+- Use the CLI to [add](/administration/cli/reference.html#integrationadd) and [manage](/administration/cli/reference.html#integrationupdate) health notifications. 
 
 ### Email notifications
 
-A notification can trigger an email to be sent, from an address of your choosing to one or more addresses of your choosing.
+A notification can trigger an email to be sent from an address of your choosing to one or more addresses of your choosing.
 
 You can view an email notification by running `{{% vendor/cli %}} integration:get`.
 
@@ -164,11 +164,16 @@ You can then verify that your integration is functioning properly using the [`in
 {{% vendor/cli %}} integration:validate
 ```
 
-## Health notifications on Dedicated Gen 2
+## Health notifications on Dedicated Gen 2  
 
-Unlike Grid environments, health monitoring on Dedicated Generation 2 is handled by {{% vendor/name %}} — you don't need to configure notifications yourself. All notification types are monitored. 
+For Dedicated Generation 2 projects, the response to health notifications depends on the environment type.
 
 | Environment | Response |
-|---|---|
-| Production (any cloud) | A support ticket is automatically opened on your behalf |
-| Staging, development | No action is taken by {{% vendor/name %}} — monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md) |
+|-------------|----------|
+| Production (any cloud) | {{% vendor/company_name %}} Support and Operations teams are alerted and a support ticket is automatically opened on your behalf. |
+| Staging  | No alerts are sent and no action is taken by {{% vendor/company_name %}}. You can monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md). |
+| Development/preview | DG2 development/preview environments run on the Grid - notifications work as described in the [Health notifications on Grid](#health-notifications-on-grid) section of this topic. |
+
+## Related topics
+- [Dedicated Gen 2 Overview](dedicated-environments/dedicated-gen-2/overview.md)
+- [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md)
