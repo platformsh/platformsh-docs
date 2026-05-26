@@ -435,11 +435,9 @@ You are strongly recommended to define your own configuration with a custom core
 ### Bundled modules (Solr 9.9+)
 
 Solr 9.8 made [`<lib>` directives in `solrconfig.xml` opt-in](https://solr.apache.org/guide/solr/latest/upgrade-notes/major-changes-in-solr-9.html#solr-9-8), and Solr 10.0 ([SOLR-16781](https://issues.apache.org/jira/browse/SOLR-16781)) removed support for them entirely.
-As a result, bundled modules shipped under `/opt/solr/<VERSION>/modules/` (such as `extraction`, `analysis-extras`, `langid`, `ltr`, and `clustering`) are no longer auto-loaded from `<lib>` references in your configset.
-Instead, opt in by listing the modules you need via the `configuration.modules` field, which {{% vendor/name %}} renders into the upstream [`SOLR_MODULES` environment variable](https://solr.apache.org/guide/solr/latest/configuration-guide/solr-modules.html).
+As a result, bundled modules shipped under `/opt/solr/<VERSION>/modules/` (such as `extraction`, `analysis-extras`, `langid`, `ltr`, and `clustering`) are no longer auto-loaded from `<lib>` references in your configset. Instead, opt in by listing the modules you need via the `configuration.modules` field.
 
-By default, no bundled modules are loaded &mdash; only the modules you explicitly request are placed on the classpath.
-This keeps small instances from paying the memory cost of modules they don't use.
+By default, no bundled modules are loaded &mdash; only the modules you explicitly request are placed on the classpath. This keeps small instances from paying the memory cost of modules they don't use.
 
 ```yaml {configFile="services"}
 services:
