@@ -63,6 +63,7 @@ jobs:
           version: 3.0.7
           fail_on_error: true
           reporter: github-check
+          filter_mode: nofilter
           files: sites/${{ matrix.site }}/src
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
