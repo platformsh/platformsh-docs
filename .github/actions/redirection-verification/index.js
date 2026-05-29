@@ -40,7 +40,9 @@ axios.defaults.baseURL = core.getInput('environment_url')
 //axios.defaults.baseURL = 'https://httpstat.us/random/200,500-504,500-504,500-504'
 const retries = Number(core.getInput('number_retries'))
 const retrySleep = Number(core.getInput('retry_sleep'))
-const defaultRoute = core.getInput('base_environment_url')
+const environmentUrl = core.getInput('environment_url')
+const baseEnvironmentUrl = core.getInput('base_environment_url')
+const defaultRoute = baseEnvironmentUrl || environmentUrl
 //const retries = Number('100')
 function sleep(ms) {
   return new Promise((resolve) => {

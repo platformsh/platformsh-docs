@@ -6,7 +6,7 @@ inputs:
     required: true
   base_environment_url:
     description: 'aka value of {default}'
-    required: true
+    required: false
   redirection_token:
     description: 'Redirectionio API token'
     required: true
