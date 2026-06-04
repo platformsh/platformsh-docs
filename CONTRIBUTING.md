@@ -1,6 +1,6 @@
 # Contributing to the Upsun user documentation
 
-Thank you for helping make the Upsun Fixed (formerly Platform.sh) and Upsun Flex documentation better!
+Thank you for helping make the Upsun Fixed (formerly Platform.sh) documentation better!
 
 These contribution guides should help you keep the docs clear and consistent.
 They're intended for use by all contributors,
@@ -16,7 +16,7 @@ For how that structure is applied to different types of docs in this project, se
 
 ## Table of contents
 
-- [Contributing to the Upsun Fixed (formerly Platform.sh) and Upsun Flex user documentation](#contributing-to-the-upsun-user-documentation)
+- [Contributing to the Upsun Fixed (formerly Platform.sh)
   - [Table of contents](#table-of-contents)
   - [Adding new pages](#adding-new-pages)
     - [Adding security reports](#adding-security-reports)

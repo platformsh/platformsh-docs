@@ -13,7 +13,6 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
   PRURLJOBNAME: 'Get PR URL'
 
 jobs:
@@ -77,7 +76,6 @@ jobs:
     if: needs.get_info_on_pr.outputs.continuetests == 'true'
     outputs:
       pr_url: ${{ steps.get_env_url.outputs.pr_url }}
-      pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
       pr_url_status: ${{ steps.get_env_url.outputs.env_status }}
 
     steps:
@@ -182,7 +180,6 @@ jobs:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
       PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
       ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
-      UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -202,7 +199,6 @@ jobs:
         id: get-files
         run: |
           files_platform=()
-          files_upsun=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
@@ -220,20 +216,6 @@ jobs:
               files_platform+=("$ENV_URL$page")
             fi
 
-            if [[ $file = "sites/upsun/src/"*".md" ]]; then
-
-              # Remove file extension
-              page=${file/.md/.html}
-
-              # Remove initial directory
-              page=${page/"sites/upsun/src/"/}
-
-              # Shift index pages up a level
-              page=${page/"/_index.html"/".html"}
-
-              files_upsun+=("$UPSUN_ENV_URL$page")
-            fi
-
           done
 
           # If there are changed files for Upsun Fixed, return a list
@@ -245,33 +227,22 @@ jobs:
             echo changed_files_platform="" >> $GITHUB_OUTPUT
           fi
 
-          # If there are changed files for Upsun, return a list
-          # Using "\n" here creates problems in passing data to the next step, so replace there instead
-          if (( ${#files_upsun[@]} != 0 )); then
-            echo $(printf "||%s" "${files_upsun[@]}")
-            echo changed_files_upsun=$(printf "||%s" "${files_upsun[@]}") >> $GITHUB_OUTPUT
-          else
-            echo changed_files_upsun="" >> $GITHUB_OUTPUT
-          fi
-
       # If there are changed pages, create a comment with a checklist
       - name: Comment with links
-        if: steps.get-files.outputs.changed_files_platform != '' || steps.get-files.outputs.changed_files_upsun != ''
+        if: steps.get-files.outputs.changed_files_platform != ''
         env:
           PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
-          PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
         run: |
-          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Upsun Fixed docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Upsun Fixed docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
       - name: Comment without links
-        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == ''
+        if: steps.get-files.outputs.changed_files_platform == ''
         env:
           ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
-          UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
         run: |
-          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Upsun Fixed docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Upsun Fixed docs]($ENV_URL)" > pr_comment.txt
 
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2
@@ -295,8 +266,7 @@ jobs:
       - id: redirection-tests
         uses: ./.github/actions/redirection-verification
         with:
-          environment_url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
-          base_environment_url: ${{ needs.get_pr_url.outputs.pr_url }}
+          environment_url: ${{ needs.get_pr_url.outputs.pr_url }}
           redirection_project_id: ${{ secrets.REDIRECTIONIO_PROJECT_ID }}
           redirection_token: ${{ secrets.REDIRECTIONIO_API_KEY }}
 
@@ -361,8 +331,6 @@ jobs:
         include:
           - site: platformsh
             url: ${{ needs.get_pr_url.outputs.pr_url }}
-          - site: upsun
-            url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
         if: env.REPOSOURCE == 'source'

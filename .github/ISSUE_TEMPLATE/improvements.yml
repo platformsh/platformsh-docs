@@ -1,5 +1,5 @@
 name: 'Docs - Improvements and corrections'
-description: Suggest changes to improve or correct the existing Upsun Flex or Fixed content
+description: Suggest changes to improve or correct the existing Upsun Fixed content
 labels:
   - ungroomed
 body:
@@ -25,8 +25,8 @@ body:
   - type: textarea
     attributes:
       label: Where should the changes be made?
-      description: Add the links to the Upsun Flex and/or Upsun Fixed pages you think should be updated.
-      placeholder: https://docs.upsun.com, https://fixed.docs.upsun.com/
+      description: Add the links to the Upsun Fixed pages you think should be updated.
+      placeholder: https://fixed.docs.upsun.com/
     validations:
       required: true
 

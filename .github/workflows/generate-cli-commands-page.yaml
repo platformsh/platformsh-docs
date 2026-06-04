@@ -15,7 +15,6 @@ env:
   BRANCH_TITLE: cli-commands-doc-page
   DEFAULT_BRANCH: "main"
   PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.md"
-  UPSUN_CLI_DOC_PATH: "sites/upsun/src/administration/cli/reference.md"
 permissions:
   contents: write
 
@@ -48,8 +47,6 @@ jobs:
           # Adding CLI Commands specific page
           echo "Generating Platform.sh CLI doc page"
           ./shared/scripts/gen-cli-docs.sh ${{ env.PLATFORMSH_CLI_DOC_PATH }} platform
-          echo "Generating Upsun CLI doc page"
-          ./shared/scripts/gen-cli-docs.sh ${{ env.UPSUN_CLI_DOC_PATH }} upsun
 
       - name: Create Pull Request
         id: cpr
@@ -62,14 +59,12 @@ jobs:
           signoff: false
           add-paths: |
             ${{ env.PLATFORMSH_CLI_DOC_PATH }}
-            ${{ env.UPSUN_CLI_DOC_PATH }}
           branch: ${{ env.BRANCH_TITLE }}
           delete-branch: false
           title: '[CLI-BOT] Update on doc pages for CLI commands'
           body: |
             Some changes occurs on the CLI Commands doc page, that is automatically generated from:
              - `platform list --format=md`
-             - `upsun list --format=md`
           labels: |
             report
             automated pr
