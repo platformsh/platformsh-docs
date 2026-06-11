@@ -366,7 +366,7 @@ This is the complete list of plugins that can be enabled:
 | `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | *  | *   |
 | `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *  | *   |
 | `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *  | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | *  | *   |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore (available on Dedicated Gen 2 only) | *   | *  | *   |
 
 
 
