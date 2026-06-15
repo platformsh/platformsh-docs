@@ -398,7 +398,7 @@ This is the complete list of official Elasticsearch plugins that can be enabled:
 | `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                  | *   | *   |     |     |     |
 | `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
 | `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore (available on Dedicated Gen 2 only) |     | *   | *   | *   | *   |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore (supported on Dedicated Gen 2 only) |     | *   | *   | *   | *   |
 | `transport-nio`         | Support for NIO transport                                                                 |     |     |     | *   | *   |
 
 ### Plugin removal
