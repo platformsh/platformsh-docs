@@ -88,7 +88,7 @@ Alternatively, if your worker is idle for too long it can self-terminate.
 
 You may get the following [error message](https://mariadb.com/kb/en/e1040/): `Error 1040: Too many connections`.
 A common way to solve this issue is to increase the `max_connections` property in your MariaDB service configuration.
-However, on {{% vendor/name %}}, you **cannot** configure `max_connections`, this is done automatically for you based on memory.
+However, on {{% vendor/name %}}, you **cannot** configure `max_connections` — this is done automatically for you based on memory.
 
 {{% note theme="info"%}}
 This information applies to DG3 and Professional/Grid {{% vendor/name %}} projects.</br>
