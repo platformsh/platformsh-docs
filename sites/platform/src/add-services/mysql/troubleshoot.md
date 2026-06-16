@@ -95,7 +95,7 @@ This information applies to DG3 and Professional/Grid {{% vendor/name %}} projec
 For DG2 projects, [contact Support](/learn/overview/get-support.md) to configure the `max_connections` property.
 {{% /note %}}
 
-You cannot configure `max_connections` in {{% vendor/name %}} service configurations, nor can it be influenced by any other config. It is calculated automatically based on actual available container memory. Increasing the max_connections happens automatically if the container size increases. 
+You cannot configure `max_connections` in {{% vendor/name %}} service configurations, nor can it be influenced by any other config. It is calculated automatically based on actual available container memory and increases automatically when the container size increases. 
 
 ### How it works
 
