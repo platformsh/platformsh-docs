@@ -1,0 +1,26 @@
+{{ $contentType := "posts" }}
+{{ $output := dict }}
+{{ $data := dict }}
+{{ $attribution := "by" }}
+{{ $context := . }}
+{{ $outerContext := .context}}
+
+<!-- dev center articles -->
+{{ $posts := .context.Site.GetPage ( printf "/%s/" $contentType ) }}
+{{ range $posts.RegularPages }}
+    {{ if ne .Title "Categories" }}
+        {{ $path := .RelPermalink }}
+        {{ $title := .Title }}
+        {{ $subtitle := .Params.subtitle | default false }}
+        {{ $full := printf "%s%s" $outerContext.Site.Params.prodURL .RelPermalink }}
+        {{ $image := .Params.image | default ( index site.Params.contrib "defaultImage" "posts" ) }}
+        {{ $imageAlt := .Params.image_alt | default ( "" ) }}
+        {{ $author := .Params.author }}
+        {{ $categories := .Params.categories }}
+        {{ $date := .Date }} 
+        {{ $draft := .Params.draft | default false }}
+        {{- $output = $output | merge (dict $path (dict "title" $title "subtitle" $subtitle "full" $full "path" $path "image" $image "image_alt" $imageAlt "author" $author "categories" $categories "date" $date "draft" $draft )) -}}
+    {{ end }}
+{{ end }}
+
+{{ return $output }}

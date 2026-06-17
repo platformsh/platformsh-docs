@@ -1,0 +1,7 @@
+{{- $v1hide := .Get "v1hide" | default "false" -}}
+{{- $v2hide := .Get "v2hide" | default "false" -}}
+{{- $version := .Site.Params.vendor.config.version -}}
+{{- if and ( or ( eq $v1hide "false") (eq $version 2) ) ( or ( eq $v2hide "false") (eq $version 1) ) -}}
+
+{{- partial "codetabs/tabs" ( dict "Inner" .Inner "Page" .Page ) -}}
+{{- end -}}

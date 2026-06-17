@@ -1,0 +1,21 @@
+{{ $data := .data }}
+{{ $allExtensions := dict }}
+{{ range $version,$support_type := $data }}
+  <!-- Go through each type of support (available, default, etc.) -->
+  {{ range $support_type_name,$extensions := $support_type }}
+    <!-- Go through each listed extension -->
+    {{ range $extensions }}
+      {{ $newVersion := dict }}
+      <!-- If the extension is already in the map, add the new version -->
+      {{ with index $allExtensions . }}
+        {{ $newVersion = merge . ( dict $version $support_type_name ) }}
+      <!-- Otherwise add the extension to the map with just the one version -->
+      {{ else }}
+        {{ $newVersion =  dict $version $support_type_name }}
+      {{ end }}
+      {{ $allExtensions = merge $allExtensions ( dict . $newVersion ) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ return $allExtensions }}
