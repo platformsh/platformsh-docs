@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 
 // This class defines the template for "secondary" search results,
 // which in this case are documents coming from
-// api.platform.sh/docs, platform.sh, community.platform.sh, and GitHub templates.
+// api.platform.sh/docs, platform.sh, community.upsun.com, and GitHub templates.
 // All secondary results are presented together in the dropdown
 // below primary results from the documentation itself.
 const Suggestions = ({ hits }) => {

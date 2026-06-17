@@ -108,3 +108,9 @@ The following settings require a [support ticket](/learn/overview/get-support.md
 ## Logs
 
 {{% names/dedicated-gen-2 %}} Environments have a slightly different location for [container logs](/increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.
+
+## Health notifications
+
+On Grid environments, project admins receive a default low-disk email notification.
+On Dedicated Gen 2 environments, behavior varies by cluster type.
+See [Health notifications](/integrations/notifications.md) for details.

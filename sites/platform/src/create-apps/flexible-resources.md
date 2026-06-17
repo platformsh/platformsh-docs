@@ -38,6 +38,7 @@ When the `resources` key is set, the CPU sizes come from the following table:
 So you might have the `resources` set as follows:
 
 ```yaml {configFile="app"}
+size: S # when using 'resources', it's best to explicitly set a size because the memory_ratio relies on the vCPU given by the container size.
 resources:
   base_memory: 128
   memory_ratio: 180
@@ -48,7 +49,7 @@ If you change the `size` to `L`, it gets 488&nbsp;MB of memory: `128 + (2 * 180)
 
 {{< note >}}
 
-If you need even more control of your app's resources, take a look at the [Upsun Flex Organization](https://docs.upsun.com/administration/organizations.html#what-is-a-upsun-flex-organization) option. 
+The amount of flexibility here is limited. If your use case requires changing memory and cpu allocations with greater control, [Upsun Flex Organization](https://docs.upsun.com/administration/organizations.html#what-is-a-upsun-flex-organization) is a much better option. 
 
 {{< /note >}}
 

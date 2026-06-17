@@ -98,6 +98,7 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | Kafka                 | HIGH_MEMORY |
 | MariaDB               | HIGH_MEMORY |
 | Memcached             | BALANCED    |
+| Mercure               | BALANCED    |
 | MongoDB               | HIGH_MEMORY |
 | MongoDB Premium       | HIGH_MEMORY |
 | Network Storage       | HIGH_MEMORY |
@@ -113,6 +114,7 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | Ruby                  | HIGH_CPU    |
 | Rust                  | HIGH_CPU    |
 | Solr                  | HIGH_MEMORY |
+| Valkey                | BALANCED    |
 | Varnish               | HIGH_MEMORY |
 | Vault KMS             | HIGH_MEMORY |
 
