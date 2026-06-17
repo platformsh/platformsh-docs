@@ -656,11 +656,292 @@
         }
       }
     },
+    "/billing/activities": {
+      "get": {
+        "summary": "[Internal] List activities (staff)",
+        "description": "Lists activities across all ordering keys, filterable by state, result,\ntype, key_type, ordering_key, payload substring, and timestamps. Intended for operators to\ndiagnose stuck or failing activities — pair with `/billing/activities/summary`\nto first identify states of interest, then drill in with a filter here.\n",
+        "operationId": "list-activities-staff",
+        "tags": [
+          "Activity"
+        ],
+        "parameters": [
+          {
+            "name": "page[size]",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": null
+            }
+          },
+          {
+            "name": "page[after]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page[before]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field. Prefix with `-` for descending. Defaults to `-created_at`.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "created_at",
+                "-created_at",
+                "updated_at",
+                "-updated_at",
+                "state",
+                "-state"
+              ]
+            }
+          },
+          {
+            "name": "filter[state][eq]",
+            "in": "query",
+            "description": "Activity state.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "in_progress",
+                "complete",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "filter[result][eq]",
+            "in": "query",
+            "description": "Activity result.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "filter[type][eq]",
+            "in": "query",
+            "description": "Activity type (e.g. `project.update`, `billing_profile.update`).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[key_type][eq]",
+            "in": "query",
+            "description": "Type of ordering key.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "billing_profile",
+                "migration"
+              ]
+            }
+          },
+          {
+            "name": "filter[ordering_key][eq]",
+            "in": "query",
+            "description": "Filter to a single ordering key (e.g. a billing profile ID).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[payload][contains]",
+            "in": "query",
+            "description": "Substring match against the serialized JSON payload. Matches anywhere\nin the JSON text including keys and values, so prefer specific IDs or\ntokens (e.g. a project ID) over short strings.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[created_at][gte]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "filter[created_at][lte]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "filter[updated_at][gte]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "filter[updated_at][lte]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/activity_staff_item"
+                      }
+                    },
+                    "_links": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/activities/summary": {
+      "get": {
+        "summary": "[Internal] Activity summary by state",
+        "description": "Returns the count of activities in each state, plus the oldest `created_at`\nand most recent `updated_at` per state. Intended for operators to identify\nstuck activities — a large `pending` or `in_progress` bucket with a very\nold `oldest_created_at` indicates work that has not been progressing.\n",
+        "operationId": "get-activity-summary",
+        "tags": [
+          "Activity"
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity summary grouped by state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "generated_at",
+                    "states"
+                  ],
+                  "properties": {
+                    "generated_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Server time when the summary was generated."
+                    },
+                    "states": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "state",
+                          "count",
+                          "oldest_created_at",
+                          "latest_updated_at"
+                        ],
+                        "properties": {
+                          "state": {
+                            "type": "string",
+                            "description": "Activity state (e.g. `pending`, `in_progress`, `complete`, `failed`)."
+                          },
+                          "count": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "Number of activities in this state."
+                          },
+                          "oldest_created_at": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Earliest `created_at` of any activity in this state."
+                          },
+                          "latest_updated_at": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Most recent `updated_at` of any activity in this state."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/activities/{activity_id}": {
+      "get": {
+        "summary": "[Internal] Get activity (staff)",
+        "description": "Returns a single activity by ID, regardless of ordering key. Provides the\ntarget of the HAL `self` link emitted by `GET /billing/activities`. Use\nthis to drill into any activity (billing-profile- or migration-keyed)\nwithout needing its ordering key up front.\n",
+        "operationId": "get-activity-staff",
+        "tags": [
+          "Activity"
+        ],
+        "parameters": [
+          {
+            "name": "activity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/activity_staff_item"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Activity not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/addons": {
       "get": {
         "summary": "Get add-ons",
         "description": "Retrieves information about the add-ons for an organization.",
         "operationId": "get-org-addons",
+        "deprecated": true,
         "tags": [
           "Add-ons"
         ],
@@ -710,6 +991,7 @@
         "summary": "[Internal] Update add-ons",
         "description": "Updates the add-ons for an organization.",
         "operationId": "update-org-addons",
+        "deprecated": true,
         "tags": [
           "Add-ons"
         ],
@@ -1902,6 +2184,81 @@
         }
       }
     },
+    "/billing/profiles/{billing_profile_id}/trusted": {
+      "get": {
+        "summary": "[Internal] Get billing profile trusted status",
+        "description": "Get trusted status for billing profile, driving access to high risk payment methods.",
+        "operationId": "get-billing-trusted",
+        "tags": [
+          "Billing"
+        ],
+        "parameters": [
+          {
+            "name": "billing_profile_id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the billing profile.",
+            "schema": {
+              "type": "string",
+              "format": "ulid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "billing_profile_id": {
+                      "type": "string",
+                      "format": "ulid",
+                      "description": "The ID of the billing profile."
+                    },
+                    "trusted": {
+                      "type": "boolean",
+                      "description": "Whether the billing profile is trusted."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{user_id}/verification": {
       "post": {
         "summary": "Submit credit card verification",
@@ -2311,8 +2668,28 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request or tax number.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validation service (VIES) is unavailable.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2403,6 +2780,16 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request or tax number.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden",
             "content": {
@@ -2425,6 +2812,64 @@
           },
           "409": {
             "description": "Conflict - organization is being migrated",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validation service (VIES) is unavailable.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "[Internal] Delete billing account",
+        "description": "Deletes a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "delete-billing-account",
+        "tags": [
+          "Billing Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_account_id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Billing account deleted"
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict - account is not active or still has billing profiles that must be deleted first",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -11886,7 +12331,17 @@
             }
           },
           "500": {
-            "description": "Validation service error.",
+            "description": "Internal validation error.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Validation service (VIES) is unavailable.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -12894,7 +13349,7 @@
                           "formatted": "19,00 €"
                         }
                       },
-                      "start_at": "2025-11-24T11:43:49+01:00",
+                      "start_at": "2025-11-24",
                       "end_at": null
                     }
                   ],
@@ -12935,6 +13390,7 @@
         "summary": "List organization discounts",
         "description": "Retrieves all applicable discounts granted to the specified organization.",
         "operationId": "list-org-discounts",
+        "deprecated": true,
         "tags": [
           "Discounts"
         ],
@@ -16539,12 +16995,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/project_id"
-          },
-          {
-            "$ref": "#/components/parameters/currency_query"
-          },
-          {
-            "$ref": "#/components/parameters/country_query"
           }
         ],
         "responses": {
@@ -16592,9 +17042,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/organization_id"
-          },
-          {
-            "$ref": "#/components/parameters/currency_query"
           }
         ],
         "responses": {
@@ -16620,6 +17067,129 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/usage": {
+      "get": {
+        "summary": "[Internal] Get current resource usage for an organization",
+        "description": "Returns the current resource usage across all projects associated with an organization,\nincluding per-project environment counts and aggregate totals for CPU, memory, and storage.\nOrganization-level usage data (separate from aggregated project usage) is TBD.\n",
+        "operationId": "get-organization-usage",
+        "tags": [
+          "Estimation"
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "description": "The organization ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "org": {
+                      "type": "object",
+                      "description": "Organization-level usage (TBD)."
+                    },
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "subscription_id": {
+                            "type": "string"
+                          },
+                          "environments": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "totals": {
+                      "type": "object",
+                      "properties": {
+                        "cpu": {
+                          "type": "number"
+                        },
+                        "memory": {
+                          "type": "number"
+                        },
+                        "projects": {
+                          "type": "integer"
+                        },
+                        "storage": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "_links": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "example": {
+                  "org": {},
+                  "projects": [
+                    {
+                      "subscription_id": "2961615",
+                      "environments": 1
+                    }
+                  ],
+                  "totals": {
+                    "cpu": 4.5,
+                    "memory": 1.4063,
+                    "projects": 1,
+                    "storage": 12.8135
+                  },
+                  "_links": {
+                    "self": {
+                      "href": "/organizations/my-org/usage"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway. Returned when an upstream Projects API call fails.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -20574,19 +21144,6 @@
             }
           },
           {
-            "name": "filter[owner_type][eq]",
-            "in": "query",
-            "description": "Filter by owner type (exact match)",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "billing_profile",
-                "organization"
-              ]
-            }
-          },
-          {
             "name": "filter[invoice_date][gte]",
             "in": "query",
             "description": "Filter by invoice date greater than or equal to specified date",
@@ -21072,11 +21629,11 @@
         }
       }
     },
-    "/billing/profiles/{billing_profile_id}/invoices/{invoice_id}/payments": {
+    "/billing/profiles/{billing_profile_id}/invoices/{invoice_id}/pdf": {
       "get": {
-        "summary": "[Internal] Get invoice payments",
-        "description": "Retrieves the payments of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-profile-invoice-payments",
+        "summary": "[Internal] Get invoice PDF",
+        "description": "Downloads the PDF document for a BillingPlatform invoice belonging to the\nspecified billing profile.\n",
+        "operationId": "get-profile-invoice-pdf",
         "tags": [
           "Invoices"
         ],
@@ -21092,16 +21649,135 @@
           "200": {
             "description": "OK",
             "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. Returned when the invoice does not belong to the billing\nprofile, the profile has no BillingPlatform account, or the invoice PDF\nhas not been generated yet.\n",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway. Returned when an upstream BillingPlatform call fails.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/profiles/{billing_profile_id}/invoices/{invoice_id}/payments": {
+      "get": {
+        "summary": "[Internal] Get invoice payments",
+        "description": "Retrieves the payments associated with a specific invoice for the given\nbilling profile. Results are returned in reverse chronological order and paginated.\n\nReturns `404` if the invoice does not exist or does not belong to the\nreferenced billing profile.\n\nRequires staff billing view access.\n",
+        "operationId": "get-profile-invoice-payments",
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_profile_id"
+          },
+          {
+            "$ref": "#/components/parameters/billing_invoice_id"
+          },
+          {
+            "name": "page[size]",
+            "in": "query",
+            "description": "Number of payments per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "name": "page[after]",
+            "in": "query",
+            "description": "Cursor for fetching the next page. Provided in HAL `_links`; do not construct externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page[before]",
+            "in": "query",
+            "description": "Cursor for fetching the previous page. Provided in HAL `_links`; do not construct externally.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "items": {
                       "type": "array",
+                      "description": "Array of invoice payments.",
                       "items": {
                         "$ref": "#/components/schemas/payment"
+                      }
+                    },
+                    "_links": {
+                      "type": "object",
+                      "description": "HAL links for pagination and related resources.",
+                      "properties": {
+                        "self": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "next": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "previous": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "billing-profile": {
+                          "$ref": "#/components/schemas/link"
+                        }
                       },
-                      "description": "Array of invoice payments."
+                      "required": [
+                        "self"
+                      ]
                     }
                   }
                 }
@@ -21386,6 +22062,7 @@
         "summary": "List invoices",
         "description": "Retrieves a list of invoices for the specified organization.",
         "operationId": "list-org-invoices",
+        "deprecated": true,
         "tags": [
           "Invoices"
         ],
@@ -21459,6 +22136,7 @@
         "summary": "Get invoice",
         "description": "Retrieves an invoice for the specified organization.",
         "operationId": "get-org-invoice",
+        "deprecated": true,
         "tags": [
           "Invoices"
         ],
@@ -23293,6 +23971,99 @@
         }
       }
     },
+    "/billing/maintenance-mode": {
+      "get": {
+        "summary": "[Internal] Get maintenance-mode status",
+        "description": "Returns whether maintenance mode is currently enabled. While enabled, the\nservice rejects write requests (POST/PATCH/PUT/DELETE) with 503 across all\n/billing endpoints except this one.\n",
+        "operationId": "get-maintenance-mode",
+        "tags": [
+          "Maintenance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Current maintenance-mode status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean",
+                      "description": "True when maintenance mode is enabled."
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/maintenance-mode/enable": {
+      "post": {
+        "summary": "[Internal] Enable maintenance mode",
+        "description": "Enables maintenance mode. While enabled, all write requests\n(POST/PATCH/PUT/DELETE) under /billing return 503 except for the\nmaintenance-mode endpoints themselves, event publishing and consumption\nstop, and no new background tasks are enqueued. The asynq queues are left\nrunning so the existing Redis backlog drains to completion. Requires staff\nbilling access.\n",
+        "operationId": "enable-maintenance-mode",
+        "tags": [
+          "Maintenance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Maintenance mode enabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean",
+                      "description": "Always true on success."
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/maintenance-mode/disable": {
+      "post": {
+        "summary": "[Internal] Disable maintenance mode",
+        "description": "Disables maintenance mode and resumes background queues. Write requests\nunder /billing return to normal handling once disabled. Requires staff\nbilling access.\n",
+        "operationId": "disable-maintenance-mode",
+        "tags": [
+          "Maintenance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Maintenance mode disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean",
+                      "description": "Always false on success."
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{user_id}/totp": {
       "parameters": [
         {
@@ -24716,6 +25487,7 @@
         "summary": "List orders",
         "description": "Retrieves orders for the specified organization.",
         "operationId": "list-org-orders",
+        "deprecated": true,
         "tags": [
           "Orders"
         ],
@@ -24789,6 +25561,7 @@
         "summary": "Get order",
         "description": "Retrieves an order for the specified organization.",
         "operationId": "get-org-order",
+        "deprecated": true,
         "tags": [
           "Orders"
         ],
@@ -24845,6 +25618,7 @@
         "summary": "Create confirmation credentials for for 3D-Secure",
         "description": "Creates confirmation credentials for payments that require online authorization",
         "operationId": "create-authorization-credentials",
+        "deprecated": true,
         "tags": [
           "Orders"
         ],
@@ -25170,6 +25944,7 @@
         "summary": "Estimate total spend",
         "description": "Estimates the total spend for the specified organization.",
         "operationId": "estimate-org",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25221,6 +25996,7 @@
         "summary": "[Internal] List scheduled dunning actions",
         "description": "Retrieves a list of all scheduled dunning actions for an organization.",
         "operationId": "list-org-dunning-actions",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25271,6 +26047,7 @@
         "summary": "Get billing alert configuration",
         "description": "Retrieves billing alert configuration for the specified organization.",
         "operationId": "get-org-billing-alert-config",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25320,6 +26097,7 @@
         "summary": "Update billing alert configuration",
         "description": "Updates billing alert configuration for the specified organization.",
         "operationId": "update-org-billing-alert-config",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25400,6 +26178,7 @@
         "summary": "[Internal] List banners",
         "description": "Retrieves a list of banners for the specified organization.",
         "operationId": "list-org-banners",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25478,6 +26257,7 @@
         "summary": "Get organization prepayment information",
         "description": "Retrieves prepayment information for the specified organization, if applicable.",
         "operationId": "get-org-prepayment-info",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -25556,6 +26336,7 @@
         "summary": "List organization prepayment transactions",
         "description": "Retrieves a list of prepayment transactions for the specified organization, if applicable.",
         "operationId": "list-org-prepayment-transactions",
+        "deprecated": true,
         "tags": [
           "Organization Management"
         ],
@@ -26614,6 +27395,12 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
+          },
           "503": {
             "$ref": "#/components/responses/ServiceUnavailable"
           }
@@ -26823,6 +27610,35 @@
                 }
               }
             }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/fastly-service-ids": {
+      "delete": {
+        "summary": "[Internal] Clear project Fastly service IDs",
+        "description": "Clears the Fastly service IDs from a project regardless of its status,\nincluding soft-deleted projects. Staff-only. Use this to release IDs\nheld by a deleted project so they can be reassigned elsewhere.\n",
+        "operationId": "clear-org-project-fastly-service-ids",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -28553,11 +29369,223 @@
         }
       }
     },
+    "/billing/payments": {
+      "get": {
+        "summary": "[Internal] List all payments",
+        "description": "Retrieves a paginated, filterable list of payment transactions across all\nbilling profiles. Results are returned in reverse chronological order\n(newest first) by default.\n\nRequires staff billing view access.\n",
+        "operationId": "list-all-payments",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "name": "page[size]",
+            "in": "query",
+            "description": "Number of payments per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "name": "page[after]",
+            "in": "query",
+            "description": "Cursor for fetching the next page. Provided in HAL `_links`; do not construct externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page[before]",
+            "in": "query",
+            "description": "Cursor for fetching the previous page. Provided in HAL `_links`; do not construct externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[status][eq]",
+            "in": "query",
+            "description": "Filter by credit-card transaction status (exact match, case-insensitive).",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "DECLINED"
+            }
+          },
+          {
+            "name": "filter[billing_profile_id][eq]",
+            "in": "query",
+            "description": "Filter by the BillingPlatform billing profile ID.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "description": "Array of payments.",
+                      "items": {
+                        "$ref": "#/components/schemas/payment"
+                      }
+                    },
+                    "_links": {
+                      "type": "object",
+                      "description": "HAL links for pagination.",
+                      "properties": {
+                        "self": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "next": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "previous": {
+                          "$ref": "#/components/schemas/link"
+                        }
+                      },
+                      "required": [
+                        "self"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/payments/{payment_id}": {
+      "get": {
+        "summary": "[Internal] Get payment",
+        "description": "Retrieves a single payment transaction by its ID.\n\nRequires staff billing view access.\n",
+        "operationId": "get-payment",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_payment_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/payment"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/payments/{payment_id}/retry": {
+      "post": {
+        "summary": "[Internal] Retry a failed payment",
+        "description": "Triggers a manual retry of a failed payment by setting the manual-retry\nflag on the payment in BillingPlatform.\n\nReturns the source payment in its current (still-failed) state; clients\nmust poll the payment to observe the outcome of the retry.\n\nRetry is allowed only when `CreditCardTransactionStatus` is `DECLINED` or `FAILED`.\nFor all other statuses, this endpoint returns `409`.\n\nRequires staff billing update access.\n",
+        "operationId": "retry-payment",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_payment_id"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Retry was requested.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/payment"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Payment is not retryable. Only `DECLINED` and `FAILED` are retryable.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/payment-source": {
       "get": {
         "summary": "[Internal] Get payment source",
         "description": "Retrieves the payment source for the specified organization.",
         "operationId": "get-org-payment-source",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -28626,6 +29654,7 @@
         "summary": "[Internal] Create payment source",
         "description": "Creates a payment source for the specified organization.",
         "operationId": "create-org-payment-source",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -28715,6 +29744,7 @@
         "summary": "[Internal] Update payment source",
         "description": "Updates the payment source for the specified organization.",
         "operationId": "update-org-payment-source",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -28778,6 +29808,7 @@
         "summary": "[Internal] Delete payment source",
         "description": "Deletes a payment source for the specified organization.",
         "operationId": "delete-org-payment-source",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -28821,6 +29852,7 @@
         "summary": "[Internal] List allowed payment sources",
         "description": "Retrieves the list of allowed payment sources for the specified organization.",
         "operationId": "list-org-allowed-payment-sources",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -28869,6 +29901,7 @@
         "summary": "[Internal] Create payment intent",
         "description": "Creates a payment intent for the specified organization.",
         "operationId": "create-org-payment-intent",
+        "deprecated": true,
         "tags": [
           "Payments"
         ],
@@ -29438,6 +30471,7 @@
         "summary": "Get address",
         "description": "Retrieves the address for the specified organization.",
         "operationId": "get-org-address",
+        "deprecated": true,
         "tags": [
           "Profiles"
         ],
@@ -29486,6 +30520,7 @@
         "summary": "Update address",
         "description": "Updates the address for the specified organization.",
         "operationId": "update-org-address",
+        "deprecated": true,
         "tags": [
           "Profiles"
         ],
@@ -29555,6 +30590,7 @@
         "summary": "Get profile",
         "description": "Retrieves the profile for the specified organization.",
         "operationId": "get-org-profile",
+        "deprecated": true,
         "tags": [
           "Profiles"
         ],
@@ -29603,6 +30639,7 @@
         "summary": "Update profile",
         "description": "Updates the profile for the specified organization.",
         "operationId": "update-org-profile",
+        "deprecated": true,
         "tags": [
           "Profiles"
         ],
@@ -31270,6 +32307,7 @@
         "summary": "List plan records",
         "description": "Retrieves plan records for the specified organization.",
         "operationId": "list-org-plan-records",
+        "deprecated": true,
         "tags": [
           "Records"
         ],
@@ -31355,6 +32393,7 @@
         "summary": "List usage records",
         "description": "Retrieves usage records for the specified organization.",
         "operationId": "list-org-usage-records",
+        "deprecated": true,
         "tags": [
           "Records"
         ],
@@ -40850,6 +41889,7 @@
       "get": {
         "summary": "Estimate the price of a new subscription",
         "operationId": "estimate-new-org-subscription",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -40948,6 +41988,7 @@
       "get": {
         "summary": "Checks if the user is able to create a new project.",
         "operationId": "can-create-new-org-subscription",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41032,6 +42073,7 @@
       "get": {
         "summary": "Estimate the price of a subscription",
         "operationId": "estimate-org-subscription",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41119,6 +42161,7 @@
       "get": {
         "summary": "[Internal] Estimate the price of a fixed subscription as if it were owned by a flexible org.",
         "operationId": "flex-calc-org-subscription",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41182,6 +42225,7 @@
         "summary": "[Internal] Get the environment caps",
         "description": "Retrieves the environment caps of a project.",
         "operationId": "get-environment-caps",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41230,6 +42274,7 @@
         "summary": "[Internal] Create a new environment cap",
         "description": "Creates a new environment cap for the given project.",
         "operationId": "create-environment-cap",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41318,6 +42363,7 @@
       "get": {
         "summary": "[Internal] Get an environment type cap",
         "operationId": "get-environment-type-cap",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41372,6 +42418,7 @@
         "summary": "[Internal] Update an environment cap",
         "description": "Updates an environment cap for the given project.",
         "operationId": "update-environment-cap",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41465,6 +42512,7 @@
         "summary": "[Internal] Delete and environment cap",
         "description": "Deletes the specified environment cap.",
         "operationId": "delete-environment-cap",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41523,6 +42571,7 @@
       "get": {
         "summary": "[Internal] Get all the environment caps of a project",
         "operationId": "get-environement-cap-by-type",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41575,6 +42624,7 @@
       "get": {
         "summary": "Get current usage for a subscription",
         "operationId": "get-org-subscription-current-usage",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41633,6 +42683,7 @@
       "get": {
         "summary": "List addons for a subscription",
         "operationId": "list-subscription-addons",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41677,6 +42728,7 @@
         "summary": "Get usage alerts",
         "description": "Retrieves current and available usage alerts.",
         "operationId": "get-subscription-usage-alerts",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -41744,6 +42796,7 @@
         "summary": "Update usage alerts.",
         "description": "Updates usage alerts for a subscription.",
         "operationId": "update-subscription-usage-alerts",
+        "deprecated": true,
         "tags": [
           "Subscriptions"
         ],
@@ -42225,6 +43278,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       },
@@ -42239,6 +43295,416 @@
           {
             "$ref": "#/components/parameters/OrganizationID"
           },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          },
+          {
+            "$ref": "#/components/parameters/Vendor"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/subscriptions": {
+      "get": {
+        "summary": "[Internal] List all subscriptions",
+        "description": "Retrieves subscriptions across all organizations.\nNon-staff users only see subscriptions belonging to their organizations.\nStaff users must pass `all=1` to see all subscriptions.\n",
+        "operationId": "list-subscriptions",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Vendor"
+          },
+          {
+            "name": "filter[owner]",
+            "in": "query",
+            "description": "Allows filtering by organization ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[status]",
+            "in": "query",
+            "description": "Allows filtering by subscription status.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[vendor]",
+            "in": "query",
+            "description": "Allows filtering by vendor.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[support_tier]",
+            "in": "query",
+            "description": "Allows filtering by support tier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "When set, staff users see all subscriptions across all organizations.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number (1-based).",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": null
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageSize"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
+                    "subscriptions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Subscription"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "count",
+                    "subscriptions",
+                    "_links"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      },
+      "post": {
+        "summary": "[Internal] Create subscription",
+        "description": "Creates a subscription. The `owner` field in the request body specifies the organization.",
+        "operationId": "create-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Vendor"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "owner",
+                  "project_region"
+                ],
+                "properties": {
+                  "owner": {
+                    "type": "string",
+                    "description": "The ID of the organization that will own the subscription."
+                  },
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan"
+                  },
+                  "project_region": {
+                    "type": "string",
+                    "description": "The machine name of the region where the project is located. Cannot be changed after project creation."
+                  },
+                  "project_title": {
+                    "type": "string",
+                    "description": "The name given to the project. Appears as the title in the UI."
+                  },
+                  "options_url": {
+                    "type": "string",
+                    "description": "The URL of the project options file."
+                  },
+                  "options_custom": {
+                    "$ref": "#/components/schemas/ProjectOptionsCustom"
+                  },
+                  "default_branch": {
+                    "type": "string",
+                    "description": "The default Git branch name for the project."
+                  },
+                  "environments": {
+                    "type": "integer",
+                    "description": "The maximum number of active environments on the project."
+                  },
+                  "storage": {
+                    "type": "integer",
+                    "description": "The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values."
+                  },
+                  "project_notes": {
+                    "type": "string",
+                    "description": "[Internal] The CSE notes for this project."
+                  },
+                  "support_tier": {
+                    "$ref": "#/components/schemas/SupportTier"
+                  },
+                  "enterprise_tag": {
+                    "type": "string",
+                    "description": "[Internal] The enterprise application identifier associated with this project."
+                  },
+                  "agency_site": {
+                    "$ref": "#/components/schemas/AgencySite"
+                  },
+                  "hipaa": {
+                    "$ref": "#/components/schemas/HIPAA"
+                  },
+                  "edgee_org_id": {
+                    "$ref": "#/components/schemas/EdgeeOrgID"
+                  },
+                  "edgee_project_id": {
+                    "$ref": "#/components/schemas/EdgeeProjectID"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscription_id}": {
+      "get": {
+        "summary": "[Internal] Get subscription",
+        "description": "Retrieves a subscription by ID.",
+        "operationId": "get-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          },
+          {
+            "$ref": "#/components/parameters/Vendor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "summary": "[Internal] Update subscription",
+        "description": "Updates a subscription by ID.",
+        "operationId": "update-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          },
+          {
+            "$ref": "#/components/parameters/Vendor"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "project_title": {
+                    "$ref": "#/components/schemas/ProjectTitle"
+                  },
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan"
+                  },
+                  "timezone": {
+                    "$ref": "#/components/schemas/ProjectTimeZone"
+                  },
+                  "environments": {
+                    "type": "integer",
+                    "description": "The maximum number of environments which can be provisioned on the project."
+                  },
+                  "storage": {
+                    "type": "integer",
+                    "description": "The total storage available to each environment, in MiB."
+                  },
+                  "big_dev": {
+                    "type": "string",
+                    "description": "The development environment plan."
+                  },
+                  "big_dev_service": {
+                    "type": "string",
+                    "description": "The development service plan."
+                  },
+                  "backups": {
+                    "type": "string",
+                    "description": "The backups plan."
+                  },
+                  "observability_suite": {
+                    "type": "string",
+                    "description": "The observability suite option."
+                  },
+                  "blackfire": {
+                    "type": "string",
+                    "description": "The Blackfire integration option."
+                  },
+                  "continuous_profiling": {
+                    "type": "string",
+                    "description": "The Blackfire continuous profiling option."
+                  },
+                  "project_support_level": {
+                    "type": "string",
+                    "description": "The project uptime option."
+                  },
+                  "project_notes": {
+                    "type": "string",
+                    "description": "[Internal] The CSE notes for this project."
+                  },
+                  "support_tier": {
+                    "$ref": "#/components/schemas/SupportTier"
+                  },
+                  "enterprise_tag": {
+                    "type": "string",
+                    "description": "[Internal] The enterprise application identifier associated with this project."
+                  },
+                  "agency_site": {
+                    "type": "boolean",
+                    "description": "[Internal] Whether the project is marked as as agency site."
+                  },
+                  "hipaa": {
+                    "type": "string",
+                    "description": "[Internal] The HIPAA option."
+                  },
+                  "edgee_org_id": {
+                    "$ref": "#/components/schemas/EdgeeOrgID"
+                  },
+                  "edgee_project_id": {
+                    "$ref": "#/components/schemas/EdgeeProjectID"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      },
+      "delete": {
+        "summary": "[Internal] Delete subscription",
+        "description": "Deletes a subscription by ID.",
+        "operationId": "delete-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
           {
             "$ref": "#/components/parameters/SubscriptionID"
           },
@@ -46704,6 +48170,7 @@
         "summary": "List vouchers",
         "description": "Retrieves vouchers for the specified organization.",
         "operationId": "list-org-vouchers",
+        "deprecated": true,
         "tags": [
           "Vouchers"
         ],
@@ -46754,6 +48221,7 @@
         "summary": "Apply voucher",
         "description": "Applies a voucher for the specified organization, and refreshes the currently open order.",
         "operationId": "apply-org-voucher",
+        "deprecated": true,
         "tags": [
           "Vouchers"
         ],
@@ -50885,16 +52353,22 @@
               "organization"
             ]
           },
-          "invoice_date": {
-            "description": "The invoice date.",
+          "invoice_start_date": {
+            "description": "The start date of the invoice billing period.",
             "type": "string",
-            "format": "date-time",
+            "format": "date",
+            "nullable": true
+          },
+          "invoice_end_date": {
+            "description": "The end date of the invoice billing period.",
+            "type": "string",
+            "format": "date",
             "nullable": true
           },
           "invoice_due": {
             "description": "The invoice due date.",
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "created": {
@@ -50903,11 +52377,15 @@
             "format": "date-time",
             "nullable": true
           },
-          "changed": {
-            "description": "The time when the invoice was changed.",
+          "updated": {
+            "description": "The time when the invoice was last updated.",
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "payment_status": {
+            "description": "The payment status of the invoice. For BP invoices this reflects the BillingPlatform payment status. For legacy invoices this is PAID or NOT PAID derived from the invoice status.",
+            "type": "string"
           },
           "total": {
             "$ref": "#/components/schemas/formatted_cost"
@@ -50996,13 +52474,13 @@
             "properties": {
               "start": {
                 "type": "string",
-                "format": "date-time",
-                "description": "Subscription start."
+                "format": "date",
+                "description": "Subscription start date."
               },
               "end": {
                 "type": "string",
-                "format": "date-time",
-                "description": "Subscription end."
+                "format": "date",
+                "description": "Subscription end date."
               }
             }
           },
@@ -51052,39 +52530,41 @@
         "type": "object",
         "description": "Payment transaction for a billing profile.",
         "properties": {
-          "invoice_id": {
+          "id": {
             "type": "string",
-            "description": "Invoice ID"
-          },
-          "message": {
-            "type": "string",
-            "description": "The message associated with transaction."
+            "description": "The ID of the Payment."
           },
           "status": {
             "type": "string",
-            "description": "Whether the transactions was successful or a failure."
+            "description": "Whether the transaction was successful or a failure."
+          },
+          "message": {
+            "type": "string",
+            "description": "The message associated with the transaction."
           },
           "amount": {
-            "type": "object",
-            "description": "The payment balance in complex format.",
-            "properties": {
-              "formatted": {
-                "type": "string",
-                "description": "Formatted balance."
+            "allOf": [
+              {
+                "description": "The payment amount."
               },
-              "amount": {
-                "type": "number",
-                "description": "The balance amount."
-              },
-              "currency_code": {
-                "type": "string",
-                "description": "The balance currency code."
-              },
-              "currency_symbol": {
-                "type": "string",
-                "description": "The balance currency symbol."
+              {
+                "$ref": "#/components/schemas/formatted_cost"
               }
-            }
+            ]
+          },
+          "method": {
+            "type": "string",
+            "description": "Payment method (e.g. CREDIT_CARD)."
+          },
+          "remote_id": {
+            "type": "string",
+            "description": "Gateway transaction ID."
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date the payment was made.",
+            "nullable": true
           },
           "created": {
             "type": "string",
@@ -51097,11 +52577,34 @@
             "description": "Time the transaction was last updated.",
             "nullable": true
           },
-          "expire_date": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The expiration date of the transaction (deposits only).",
-            "nullable": true
+          "_links": {
+            "type": "object",
+            "description": "HAL links.",
+            "properties": {
+              "self": {
+                "$ref": "#/components/schemas/link"
+              },
+              "billing-profile": {
+                "$ref": "#/components/schemas/link"
+              },
+              "retry": {
+                "type": "object",
+                "description": "Present only for payments in a failed state. POSTing to this link\ntriggers a manual retry.\n",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            },
+            "required": [
+              "self"
+            ]
           }
         }
       },
@@ -51183,8 +52686,8 @@
                 },
                 "date": {
                   "type": "string",
-                  "format": "date-time",
-                  "description": "The datetime the action is scheduled."
+                  "format": "date",
+                  "description": "The date the action is scheduled."
                 },
                 "days_until": {
                   "type": "string",
@@ -51285,14 +52788,14 @@
             "type": "object"
           },
           "start_at": {
-            "description": "The start time of the discount period.",
+            "description": "The start date of the discount period.",
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "end_at": {
-            "description": "The end time of the discount period (if applicable).",
+            "description": "The end date of the discount period (if applicable).",
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           }
         }
@@ -51962,6 +53465,9 @@
                   "items": {
                     "$ref": "#/components/schemas/estimation_item"
                   }
+                },
+                "total": {
+                  "$ref": "#/components/schemas/price"
                 }
               }
             }
@@ -52105,6 +53611,95 @@
           "message": {
             "type": "string",
             "description": "Additional validation information, if applicable."
+          }
+        }
+      },
+      "activity_staff_item": {
+        "type": "object",
+        "required": [
+          "id",
+          "_links",
+          "type",
+          "ordering_key",
+          "key_type",
+          "state",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "_links": {
+            "type": "object",
+            "required": [
+              "self"
+            ],
+            "properties": {
+              "self": {
+                "type": "object",
+                "required": [
+                  "href"
+                ],
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "example": "/billing/activities/01HXYZ..."
+                  }
+                }
+              }
+            }
+          },
+          "type": {
+            "type": "string",
+            "example": "project.update"
+          },
+          "ordering_key": {
+            "type": "string"
+          },
+          "key_type": {
+            "type": "string",
+            "enum": [
+              "billing_profile",
+              "migration"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "in_progress",
+              "complete",
+              "failed"
+            ]
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "success",
+              "failed"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "error": {
+            "type": "string"
           }
         }
       },
@@ -52965,6 +54560,12 @@
             "title": "Size used",
             "description": "Total size of space used on volumes backed up"
           },
+          "size_object_storage": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Size of object storage",
+            "description": "Total object-storage quota configured on webapps at backup time"
+          },
           "deployment": {
             "type": "string",
             "nullable": true,
@@ -52995,6 +54596,7 @@
           "safe",
           "size_of_volumes",
           "size_used",
+          "size_object_storage",
           "deployment",
           "restorable",
           "automated"
@@ -55769,40 +57371,6 @@
                   "title": "Resources",
                   "description": ""
                 },
-                "size": {
-                  "type": "string",
-                  "enum": [
-                    "2XL",
-                    "4XL",
-                    "AUTO",
-                    "L",
-                    "M",
-                    "S",
-                    "XL",
-                    "XS"
-                  ],
-                  "title": "Container Size",
-                  "description": "The container size for this application in production. Leave blank to allow it to be set dynamically."
-                },
-                "disk": {
-                  "type": "integer",
-                  "nullable": true,
-                  "title": "Disk size",
-                  "description": "The size of the disk."
-                },
-                "access": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string",
-                    "enum": [
-                      "admin",
-                      "contributor",
-                      "viewer"
-                    ]
-                  },
-                  "title": "Access Information",
-                  "description": "Access information, a mapping between access type and roles."
-                },
                 "authorizations": {
                   "type": "array",
                   "items": {
@@ -55837,7 +57405,7 @@
                     "additionalProperties": false
                   },
                   "title": "Authorizations",
-                  "description": "Authorizations available to this container."
+                  "description": "Authorizations available to this container"
                 },
                 "relationships": {
                   "type": "object",
@@ -55865,7 +57433,7 @@
                     "nullable": true
                   },
                   "title": "Service Relationships",
-                  "description": "The relationships of the application to defined services."
+                  "description": "The relationships of the container to defined services"
                 },
                 "additional_hosts": {
                   "type": "object",
@@ -55912,7 +57480,7 @@
                     "additionalProperties": false
                   },
                   "title": "Mounts",
-                  "description": "Filesystem mounts of this application.  If not specified the application will have no writeable disk space."
+                  "description": "Filesystem mounts of this container. If not specified the container will have no writeable disk space"
                 },
                 "timezone": {
                   "type": "string",
@@ -55927,7 +57495,47 @@
                     "additionalProperties": {}
                   },
                   "title": "Environment Variables",
-                  "description": "Variables provide environment-sensitive information to control how your application behaves.  To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment."
+                  "description": "Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment"
+                },
+                "container_profile": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Container Profile",
+                  "description": "Selected container profile for this container"
+                },
+                "size": {
+                  "type": "string",
+                  "enum": [
+                    "2XL",
+                    "4XL",
+                    "AUTO",
+                    "L",
+                    "M",
+                    "S",
+                    "XL",
+                    "XS"
+                  ],
+                  "title": "Container Size",
+                  "description": "The container size for this application in production. Leave blank to allow it to be set dynamically."
+                },
+                "disk": {
+                  "type": "integer",
+                  "nullable": true,
+                  "title": "Disk size",
+                  "description": "The size of the disk."
+                },
+                "access": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "contributor",
+                      "viewer"
+                    ]
+                  },
+                  "title": "Access Information",
+                  "description": "Access information, a mapping between access type and roles."
                 },
                 "firewall": {
                   "type": "object",
@@ -55991,11 +57599,94 @@
                   "title": "Firewall",
                   "description": ""
                 },
-                "container_profile": {
-                  "type": "string",
+                "egress": {
+                  "type": "object",
+                  "properties": {
+                    "build": {
+                      "type": "object",
+                      "properties": {
+                        "allowed_domains": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "host": {
+                                "type": "string",
+                                "title": "Hostname",
+                                "description": "The destination hostname."
+                              },
+                              "port": {
+                                "type": "integer",
+                                "nullable": true,
+                                "title": "Port",
+                                "description": "Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel."
+                              }
+                            },
+                            "required": [
+                              "host",
+                              "port"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "title": "Allowed Domains",
+                          "description": "Destinations the container is permitted to reach."
+                        }
+                      },
+                      "required": [
+                        "allowed_domains"
+                      ],
+                      "additionalProperties": false,
+                      "nullable": true,
+                      "title": "Build-phase egress",
+                      "description": "Egress allowlist applied to build containers."
+                    },
+                    "runtime": {
+                      "type": "object",
+                      "properties": {
+                        "allowed_domains": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "host": {
+                                "type": "string",
+                                "title": "Hostname",
+                                "description": "The destination hostname."
+                              },
+                              "port": {
+                                "type": "integer",
+                                "nullable": true,
+                                "title": "Port",
+                                "description": "Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel."
+                              }
+                            },
+                            "required": [
+                              "host",
+                              "port"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "title": "Allowed Domains",
+                          "description": "Destinations the container is permitted to reach."
+                        }
+                      },
+                      "required": [
+                        "allowed_domains"
+                      ],
+                      "additionalProperties": false,
+                      "nullable": true,
+                      "title": "Runtime-phase egress",
+                      "description": "Egress allowlist applied to runtime containers."
+                    }
+                  },
+                  "required": [
+                    "build",
+                    "runtime"
+                  ],
+                  "additionalProperties": false,
                   "nullable": true,
-                  "title": "Container Profile",
-                  "description": "Selected container profile for the application"
+                  "title": "Egress",
+                  "description": ""
                 },
                 "operations": {
                   "type": "object",
@@ -56632,17 +58323,18 @@
               },
               "required": [
                 "resources",
-                "size",
-                "disk",
-                "access",
                 "authorizations",
                 "relationships",
                 "additional_hosts",
                 "mounts",
                 "timezone",
                 "variables",
-                "firewall",
                 "container_profile",
+                "size",
+                "disk",
+                "access",
+                "firewall",
+                "egress",
                 "operations",
                 "name",
                 "type",
@@ -56838,40 +58530,6 @@
                   "title": "Resources",
                   "description": ""
                 },
-                "size": {
-                  "type": "string",
-                  "enum": [
-                    "2XL",
-                    "4XL",
-                    "AUTO",
-                    "L",
-                    "M",
-                    "S",
-                    "XL",
-                    "XS"
-                  ],
-                  "title": "Container Size",
-                  "description": "The container size for this application in production. Leave blank to allow it to be set dynamically."
-                },
-                "disk": {
-                  "type": "integer",
-                  "nullable": true,
-                  "title": "Disk size",
-                  "description": "The writeable disk size to reserve on this application container."
-                },
-                "access": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "string",
-                    "enum": [
-                      "admin",
-                      "contributor",
-                      "viewer"
-                    ]
-                  },
-                  "title": "Access Information",
-                  "description": "Access information, a mapping between access type and roles."
-                },
                 "authorizations": {
                   "type": "array",
                   "items": {
@@ -56906,7 +58564,7 @@
                     "additionalProperties": false
                   },
                   "title": "Authorizations",
-                  "description": "Authorizations available to this container."
+                  "description": "Authorizations available to this container"
                 },
                 "relationships": {
                   "type": "object",
@@ -56934,7 +58592,7 @@
                     "nullable": true
                   },
                   "title": "Service Relationships",
-                  "description": "The relationships of the application to defined services."
+                  "description": "The relationships of the container to defined services"
                 },
                 "additional_hosts": {
                   "type": "object",
@@ -56981,7 +58639,7 @@
                     "additionalProperties": false
                   },
                   "title": "Mounts",
-                  "description": "Filesystem mounts of this application.  If not specified the application will have no writeable disk space."
+                  "description": "Filesystem mounts of this container. If not specified the container will have no writeable disk space"
                 },
                 "timezone": {
                   "type": "string",
@@ -56996,7 +58654,47 @@
                     "additionalProperties": {}
                   },
                   "title": "Environment Variables",
-                  "description": "Variables provide environment-sensitive information to control how your application behaves.  To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment."
+                  "description": "Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment"
+                },
+                "container_profile": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Container Profile",
+                  "description": "Selected container profile for this container"
+                },
+                "size": {
+                  "type": "string",
+                  "enum": [
+                    "2XL",
+                    "4XL",
+                    "AUTO",
+                    "L",
+                    "M",
+                    "S",
+                    "XL",
+                    "XS"
+                  ],
+                  "title": "Container Size",
+                  "description": "The container size for this application in production. Leave blank to allow it to be set dynamically."
+                },
+                "disk": {
+                  "type": "integer",
+                  "nullable": true,
+                  "title": "Disk size",
+                  "description": "The writeable disk size to reserve on this application container."
+                },
+                "access": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "admin",
+                      "contributor",
+                      "viewer"
+                    ]
+                  },
+                  "title": "Access Information",
+                  "description": "Access information, a mapping between access type and roles."
                 },
                 "firewall": {
                   "type": "object",
@@ -57060,11 +58758,94 @@
                   "title": "Firewall",
                   "description": ""
                 },
-                "container_profile": {
-                  "type": "string",
+                "egress": {
+                  "type": "object",
+                  "properties": {
+                    "build": {
+                      "type": "object",
+                      "properties": {
+                        "allowed_domains": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "host": {
+                                "type": "string",
+                                "title": "Hostname",
+                                "description": "The destination hostname."
+                              },
+                              "port": {
+                                "type": "integer",
+                                "nullable": true,
+                                "title": "Port",
+                                "description": "Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel."
+                              }
+                            },
+                            "required": [
+                              "host",
+                              "port"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "title": "Allowed Domains",
+                          "description": "Destinations the container is permitted to reach."
+                        }
+                      },
+                      "required": [
+                        "allowed_domains"
+                      ],
+                      "additionalProperties": false,
+                      "nullable": true,
+                      "title": "Build-phase egress",
+                      "description": "Egress allowlist applied to build containers."
+                    },
+                    "runtime": {
+                      "type": "object",
+                      "properties": {
+                        "allowed_domains": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "host": {
+                                "type": "string",
+                                "title": "Hostname",
+                                "description": "The destination hostname."
+                              },
+                              "port": {
+                                "type": "integer",
+                                "nullable": true,
+                                "title": "Port",
+                                "description": "Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel."
+                              }
+                            },
+                            "required": [
+                              "host",
+                              "port"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "title": "Allowed Domains",
+                          "description": "Destinations the container is permitted to reach."
+                        }
+                      },
+                      "required": [
+                        "allowed_domains"
+                      ],
+                      "additionalProperties": false,
+                      "nullable": true,
+                      "title": "Runtime-phase egress",
+                      "description": "Egress allowlist applied to runtime containers."
+                    }
+                  },
+                  "required": [
+                    "build",
+                    "runtime"
+                  ],
+                  "additionalProperties": false,
                   "nullable": true,
-                  "title": "Container Profile",
-                  "description": "Selected container profile for the application"
+                  "title": "Egress",
+                  "description": ""
                 },
                 "operations": {
                   "type": "object",
@@ -57301,17 +59082,18 @@
               },
               "required": [
                 "resources",
-                "size",
-                "disk",
-                "access",
                 "authorizations",
                 "relationships",
                 "additional_hosts",
                 "mounts",
                 "timezone",
                 "variables",
-                "firewall",
                 "container_profile",
+                "size",
+                "disk",
+                "access",
+                "firewall",
+                "egress",
                 "operations",
                 "name",
                 "type",
@@ -62522,6 +64304,22 @@
             "title": "Outbound Firewall",
             "description": ""
           },
+          "egress_proxy": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Enabled",
+                "description": "If true, the egress proxy is on for every container in the project: outbound traffic is denied by default and must traverse the proxy. Applies project-wide regardless of whether an application declares an egress allowlist."
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "additionalProperties": false,
+            "title": "Egress Proxy",
+            "description": ""
+          },
           "metrics": {
             "type": "object",
             "properties": {
@@ -62715,10 +64513,16 @@
                 "type": "boolean",
                 "title": "Enabled",
                 "description": "If true, autoscaling can be configured."
+              },
+              "supports_horizontal_scaling_services": {
+                "type": "boolean",
+                "title": "Enable autoscaling for services",
+                "description": "Allow autoscaling to be configured for services (not just apps and workers)"
               }
             },
             "required": [
-              "enabled"
+              "enabled",
+              "supports_horizontal_scaling_services"
             ],
             "additionalProperties": false,
             "title": "Autoscaling",
@@ -66396,6 +68200,161 @@
             "title": "Task Identifier",
             "description": "The identifier of Task"
           },
+          "resources": {
+            "type": "object",
+            "properties": {
+              "base_memory": {
+                "type": "integer",
+                "title": "Base memory",
+                "description": "The base memory for the container"
+              },
+              "memory_ratio": {
+                "type": "integer",
+                "title": "Memory ratio",
+                "description": "The amount of memory to allocate per units of CPU"
+              }
+            },
+            "required": [
+              "base_memory",
+              "memory_ratio"
+            ],
+            "additionalProperties": false,
+            "nullable": true,
+            "title": "Resources",
+            "description": "Resources configuration (base memory and memory ratio)"
+          },
+          "authorizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "env",
+                    "task"
+                  ],
+                  "title": "Authorization Type",
+                  "description": "The resource type for this authorization."
+                },
+                "action": {
+                  "type": "string",
+                  "title": "Authorization Action",
+                  "description": "The action to authorize on the target resource."
+                },
+                "resource": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Authorization Resource",
+                  "description": "The target resource for this authorization."
+                }
+              },
+              "required": [
+                "type",
+                "action",
+                "resource"
+              ],
+              "additionalProperties": false
+            },
+            "title": "Authorizations",
+            "description": "Authorizations available to this container"
+          },
+          "relationships": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "service": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Service Name",
+                  "description": "The name of the service."
+                },
+                "endpoint": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Endpoint Name",
+                  "description": "The name of the endpoint on the service."
+                }
+              },
+              "required": [
+                "service",
+                "endpoint"
+              ],
+              "additionalProperties": false,
+              "nullable": true
+            },
+            "title": "Service Relationships",
+            "description": "The relationships of the container to defined services"
+          },
+          "additional_hosts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Additional hosts",
+            "description": "A mapping of hostname to ip address to be added to the container's hosts file"
+          },
+          "mounts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "instance",
+                    "local",
+                    "service",
+                    "storage",
+                    "temporary",
+                    "tmp"
+                  ],
+                  "title": "Mount type",
+                  "description": "The type of mount that will provide the data."
+                },
+                "source_path": {
+                  "type": "string",
+                  "title": "Source Path",
+                  "description": "The path to be mounted, relative to the root directory of the volume that's being mounted from."
+                },
+                "service": {
+                  "type": "string",
+                  "nullable": true,
+                  "title": "Service Name",
+                  "description": "The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`."
+                }
+              },
+              "required": [
+                "source",
+                "source_path"
+              ],
+              "additionalProperties": false
+            },
+            "title": "Mounts",
+            "description": "Filesystem mounts of this container. If not specified the container will have no writeable disk space"
+          },
+          "timezone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Timezone",
+            "description": "The timezone of the task. Defaults to the project's timezone if not specified"
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "title": "Environment Variables",
+            "description": "Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment"
+          },
+          "container_profile": {
+            "type": "string",
+            "nullable": true,
+            "title": "Container Profile",
+            "description": "Selected container profile for this container"
+          },
           "type": {
             "type": "string",
             "title": "Image type",
@@ -66441,96 +68400,6 @@
             "title": "Hooks",
             "description": "Scripts executed at various points in the lifecycle of the task"
           },
-          "relationships": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "service": {
-                  "type": "string",
-                  "nullable": true,
-                  "title": "Service Name",
-                  "description": "The name of the service."
-                },
-                "endpoint": {
-                  "type": "string",
-                  "nullable": true,
-                  "title": "Endpoint Name",
-                  "description": "The name of the endpoint on the service."
-                }
-              },
-              "required": [
-                "service",
-                "endpoint"
-              ],
-              "additionalProperties": false,
-              "nullable": true
-            },
-            "title": "Relationships",
-            "description": "The relationships of the task to defined services and applications"
-          },
-          "additional_hosts": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "title": "Additional hosts",
-            "description": "A mapping of hostname to ip address to be added to the task container's hosts file"
-          },
-          "mounts": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "properties": {
-                "source": {
-                  "type": "string",
-                  "enum": [
-                    "instance",
-                    "local",
-                    "service",
-                    "storage",
-                    "temporary",
-                    "tmp"
-                  ],
-                  "title": "Mount type",
-                  "description": "The type of mount that will provide the data."
-                },
-                "source_path": {
-                  "type": "string",
-                  "title": "Source Path",
-                  "description": "The path to be mounted, relative to the root directory of the volume that's being mounted from."
-                },
-                "service": {
-                  "type": "string",
-                  "nullable": true,
-                  "title": "Service Name",
-                  "description": "The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`."
-                }
-              },
-              "required": [
-                "source",
-                "source_path"
-              ],
-              "additionalProperties": false
-            },
-            "title": "Mounts",
-            "description": "Filesystem mounts of this task"
-          },
-          "timezone": {
-            "type": "string",
-            "nullable": true,
-            "title": "Timezone",
-            "description": "The timezone of the task. Defaults to the project's timezone if not specified"
-          },
-          "variables": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": {}
-            },
-            "title": "Environment Variables",
-            "description": "Variables provide environment-sensitive information to control how your task behaves"
-          },
           "dependencies": {
             "type": "object",
             "additionalProperties": {
@@ -66543,42 +68412,6 @@
             "type": "object",
             "title": "Runtime Configuration",
             "description": "Runtime-specific configuration"
-          },
-          "authorizations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "env",
-                    "task"
-                  ],
-                  "title": "Authorization Type",
-                  "description": "The resource type for this authorization."
-                },
-                "action": {
-                  "type": "string",
-                  "title": "Authorization Action",
-                  "description": "The action to authorize on the target resource."
-                },
-                "resource": {
-                  "type": "string",
-                  "nullable": true,
-                  "title": "Authorization Resource",
-                  "description": "The target resource for this authorization."
-                }
-              },
-              "required": [
-                "type",
-                "action",
-                "resource"
-              ],
-              "additionalProperties": false
-            },
-            "title": "Authorizations",
-            "description": "Authorizations available to this task"
           },
           "run": {
             "type": "object",
@@ -66602,35 +68435,6 @@
             "title": "Run Configuration",
             "description": "Configuration for task execution"
           },
-          "resources": {
-            "type": "object",
-            "properties": {
-              "base_memory": {
-                "type": "integer",
-                "title": "Base memory",
-                "description": "The base memory for the container"
-              },
-              "memory_ratio": {
-                "type": "integer",
-                "title": "Memory ratio",
-                "description": "The amount of memory to allocate per units of CPU"
-              }
-            },
-            "required": [
-              "base_memory",
-              "memory_ratio"
-            ],
-            "additionalProperties": false,
-            "nullable": true,
-            "title": "Resources",
-            "description": "Resources configuration (base memory and memory ratio)"
-          },
-          "container_profile": {
-            "type": "string",
-            "nullable": true,
-            "title": "Container Profile",
-            "description": "Selected container profile for the task"
-          },
           "name": {
             "type": "string",
             "title": "Task name",
@@ -66639,20 +68443,20 @@
         },
         "required": [
           "id",
-          "type",
-          "source",
-          "hooks",
+          "resources",
+          "authorizations",
           "relationships",
           "additional_hosts",
           "mounts",
           "timezone",
           "variables",
+          "container_profile",
+          "type",
+          "source",
+          "hooks",
           "dependencies",
           "runtime",
-          "authorizations",
           "run",
-          "resources",
-          "container_profile",
           "name"
         ],
         "additionalProperties": false
@@ -72901,6 +74705,15 @@
           "type": "boolean"
         }
       },
+      "billing_payment_id": {
+        "in": "path",
+        "name": "payment_id",
+        "description": "The ID of the payment.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "country": {
         "in": "path",
         "name": "country",
@@ -72915,24 +74728,6 @@
         "name": "billing_account_id",
         "description": "The ID of the billing account.",
         "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "currency_query": {
-        "in": "query",
-        "name": "currency",
-        "description": "The currency code.",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "country_query": {
-        "in": "query",
-        "name": "country",
-        "description": "A country code.",
-        "required": false,
         "schema": {
           "type": "string"
         }
@@ -73428,6 +75223,16 @@
       },
       "Conflict": {
         "description": "Conflict",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "UnprocessableEntity": {
+        "description": "Unprocessable Entity",
         "content": {
           "application/problem+json": {
             "schema": {
