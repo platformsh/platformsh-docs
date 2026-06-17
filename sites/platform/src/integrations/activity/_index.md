@@ -8,7 +8,7 @@ layout: single
 
 {{% description %}}
 
-Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
+Check out examples from other users on the {{% vendor/company_name %}} [Community Forum](https://support.platform.sh/hc/en-us/search?query=activity-scripts&type=community).
 
 ## Installing
 

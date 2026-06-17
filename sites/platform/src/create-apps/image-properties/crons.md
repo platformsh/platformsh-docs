@@ -299,7 +299,6 @@ applications:
         commands:
           start: |
             if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-              {{% vendor/cli %}} backup:create --yes --no-wait
               {{% vendor/cli %}} source-operation:run update --no-wait --yes
             fi
 ```

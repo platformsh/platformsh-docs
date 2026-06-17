@@ -3,7 +3,7 @@ title: "Security and monitoring"
 weight: -17
 sidebarTitle: "Security and monitoring"
 layout: single
-description:  "Security is handled in a similar way for both Dedicated Gen 2 and Dedicated Gen 3 projects, with strict procedures that are followed to handle incidents."
+description:  "Learn how project isolation, encryption, and performance monitoring ensure the security of your Dedicated Gen 2 projects."
 ---
 
 We use a combination of three trusted methods to ensure your site is secure and running at all times: 
