@@ -19,10 +19,6 @@ outputs:
   pr_url:
     description: "The URL of the PR environment"
     value: ${{ steps.get_env_url.outputs.env_url }}
-  pr_url_upsun:
-    description: "The URL of the Upsun variant of the PR environment"
-    value: ${{ steps.get_env_url.outputs.env_url_upsun }}
-
 
 runs:
   using: composite
@@ -37,7 +33,7 @@ runs:
       env:
         PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
         BRANCH: ${{ inputs.branch }}
-        UPSUN_DOCS_PREFIX: "https://docs.upsun.com" # @todo move to a repo var?
+        PROJECT: ${{ inputs.project }}
       id: get_env_url
       run: |
         COMMIT_STATUS="pending"
@@ -87,6 +83,14 @@ runs:
           exit 1
         fi
 
+        ENV_STATE=$(platform environment:info status --project "${PROJECT}" --environment "${BRANCH}" --format plain --no-header || true)
+        if [ "${ENV_STATE}" != "active" ]; then
+          echo "::notice::Environment ${BRANCH} is ${ENV_STATE:-unknown}; skipping URL resolution."
+          echo "env_status=${ENV_STATE:-inactive}" >> $GITHUB_OUTPUT
+          echo "env_url=" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+
         # Get the URL of the environment
         ENV_URL=$(platform url --primary --pipe --environment "${BRANCH}")
 
@@ -104,4 +108,3 @@ runs:
         # Report the final statuses to be used in future jobs
         echo "env_status=$COMMIT_STATUS" >> $GITHUB_OUTPUT
         echo "env_url=$ENV_URL" >> $GITHUB_OUTPUT
-        echo "env_url_upsun=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}" >> $GITHUB_OUTPUT
