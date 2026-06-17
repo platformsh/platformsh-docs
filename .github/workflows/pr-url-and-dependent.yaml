@@ -129,6 +129,9 @@ jobs:
           if [ 'success' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
             status_message="PR environment successfully deployed."
             status_state="${{ needs.get_pr_url.outputs.pr_url_status }}"
+          elif [ 'inactive' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
+            status_message="PR environment is inactive. Dependent tests are skipped."
+            status_state="success"
           else
             status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.upsun.com/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
             # the status reported by our action most likely wont align with what the gh api is expecting, so if the
@@ -140,7 +143,7 @@ jobs:
           echo "status_state=${status_state}" >> $GITHUB_OUTPUT
 
       - name: 'Warn and provide log'
-        if: needs.get_pr_url.outputs.pr_url_status != 'success'
+        if: needs.get_pr_url.outputs.pr_url_status != 'success' && needs.get_pr_url.outputs.pr_url_status != 'inactive'
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
@@ -202,6 +205,7 @@ jobs:
     name: Report Upsun api-internal smoke status
     needs:
       - get_info_on_pr
+      - get_pr_url
       - smoke_test_upsun_api_internal
     runs-on: ubuntu-latest
     env:
@@ -220,6 +224,11 @@ jobs:
             message="Upsun api-internal smoke test failed. Please see run summary."
             if [ 'skipped' = '${{ needs.smoke_test_upsun_api_internal.result }}' ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
               message="Upsun api-internal smoke test can not run on forks until approved."
+              state="success"
+            fi
+            if [ 'skipped' = '${{ needs.smoke_test_upsun_api_internal.result }}' ] && [ 'inactive' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
+              message="Upsun api-internal smoke test skipped because PR environment is inactive."
+              state="success"
             fi
           fi
 
@@ -332,7 +341,7 @@ jobs:
       REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: needs.get_info_on_pr.outputs.continuetests == 'true'
+    if: needs.get_info_on_pr.outputs.continuetests == 'true' && needs.get_pr_url.outputs.pr_url_status == 'success'
     strategy:
       matrix:
         include:
@@ -383,6 +392,11 @@ jobs:
             message="One or more E2E tests failed. See run summary."
             if [ 'skipped' = '${{ needs.run-e2e-test.result }}' ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
               message="E2E tests can not be run on forks until approved."
+              state="success"
+            fi
+            if [ 'skipped' = '${{ needs.run-e2e-test.result }}' ] && [ 'inactive' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
+              message="E2E tests skipped because PR environment is inactive."
+              state="success"
             fi
           fi
 
