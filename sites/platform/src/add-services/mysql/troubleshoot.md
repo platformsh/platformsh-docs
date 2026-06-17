@@ -19,7 +19,7 @@ This is typically caused by one of the following:
 * There are multiple places acquiring locks in different order.
   For example, code path 1 first locks record A and then locks record B,
   while code path 2 first locks record B and then locks record A.
-* There is a long running background process executed by your application that holds the lock until it ends.
+* There is a long-running background process executed by your application that holds the lock until it ends.
 
 If you're using [MariaDB 10+](/add-services/mysql/_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
@@ -39,7 +39,7 @@ Make sure that locks are acquired in a pre-defined order and released as soon as
 
 ## Definer/invoker of view lack rights to use them
 
-There is a single MySQL user, so you can not use "DEFINER" Access Control mechanism for Stored Programs and Views.
+There is a single MySQL user, so you cannot use the "DEFINER" Access Control mechanism for Stored Programs and Views.
 
 When creating a `VIEW`, you may need to explicitly set the `SECURITY` parameter to `INVOKER`:
 
@@ -55,14 +55,14 @@ SELECT
 
 Errors such as `PDO Exception 'MySQL server has gone away'` are usually the result of exhausting your available disk space.
 Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} db:size`.
-Just keep in mind it's an estimate and not exact.
+Note that this is an estimate, not an exact value.
 
 Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](/add-services/_index.md).
 As table space can grow rapidly,
-it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
+set your database mount size to twice the size reported by the `db:size` command.
 
-You may want to add a [low-disk warning](/integrations/notifications.md#low-disk-warning)
-to learn about low disk space before it becomes an issue.
+Consider adding a [low-disk warning](/integrations/notifications.md#low-disk-warning)
+to get notified about low disk space before it becomes an issue.
 
 ### Packet size limitations
 
@@ -88,18 +88,18 @@ Alternatively, if your worker is idle for too long it can self-terminate.
 
 You may get the following [error message](https://mariadb.com/kb/en/e1040/): `Error 1040: Too many connections`.
 A common way to solve this issue is to increase the `max_connections` property in your MariaDB service configuration.
-However, on {{% vendor/name %}}, you **cannot** configure `max_connections` — this is done automatically for you based on memory.
+However, on {{% vendor/name %}}, you **cannot** configure `max_connections`, as it is calculated automatically based on available memory.
 
 {{% note theme="info"%}}
-This information applies to DG3 and Professional/Grid {{% vendor/name %}} projects.</br>
-For DG2 projects, [contact Support](/learn/overview/get-support.md) to configure the `max_connections` property.
+This information applies to Professional/Grid {{% vendor/name %}} projects.
+For Dedicated Gen 2 projects, [contact Support](/learn/overview/get-support.md) to configure the `max_connections` property.
 {{% /note %}}
 
-You cannot configure `max_connections` in {{% vendor/name %}} service configurations, nor can it be influenced by any other config. It is calculated automatically based on actual available container memory and increases automatically when the container size increases. 
+The `max_connections` property cannot be configured in {{% vendor/name %}} service configurations, nor can it be influenced by any other config. It is calculated automatically based on available container memory and increases automatically when the container size increases.
 
 ### How it works
 
-To determine the max_connections that best fit the container, this is the calculation used:
+The following formula determines `max_connections` for a given container:
 
 ```
         avg_memory_per_connection_mb = 4
@@ -110,10 +110,9 @@ To determine the max_connections that best fit the container, this is the calcul
 The memory for a given container from its `size` depends on its [container profile](/create-apps/image-properties/size.html#container-profiles-cpu-and-memory).
 
 For example, [MariaDB](/create-apps/image-properties/size.md#container-profile-reference) has a [`HIGH_MEMORY` container profile](/create-apps/image-properties/size.html#container-profiles-cpu-and-memory).
-For `size: L`, it means 0.40 CPU and 1280 MB of memory.
+For `size: L`, this means 0.40 CPU and 1280 MB of memory.
 
-If we assume the configuration above, where:
-- `mariadb.size: L`, which we know is 1280 MB, the calculation becomes:
+Using the configuration above, where `mariadb.size: L` is 1280 MB, the calculation becomes:
 
 ```
         avg_memory_per_connection_mb = 4
@@ -122,7 +121,7 @@ If we assume the configuration above, where:
 ```
 
 {{% note%}}
-Additionally, `max_connections` has a minimum of 15 and a maximum of 500. 
-If the calculation comes out at less than 15. It will be 15. 
-If the calculation comes out at more than 500. It will be 500. 
+Additionally, `max_connections` has a minimum value of 15 and a maximum value of 500.
+If the result is less than 15, it is set to 15.
+If the result is greater than 500, it is capped at 500.
 {{% /note%}}
