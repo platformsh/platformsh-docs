@@ -431,6 +431,7 @@ paths:
       summary: Get add-ons
       description: Retrieves information about the add-ons for an organization.
       operationId: get-org-addons
+      deprecated: true
       tags:
         - Add-ons
       parameters:
@@ -6250,6 +6251,7 @@ paths:
       summary: List organization discounts
       description: Retrieves all applicable discounts granted to the specified organization.
       operationId: list-org-discounts
+      deprecated: true
       tags:
         - Discounts
       parameters:
@@ -10040,6 +10042,7 @@ paths:
       summary: List invoices
       description: Retrieves a list of invoices for the specified organization.
       operationId: list-org-invoices
+      deprecated: true
       tags:
         - Invoices
       parameters:
@@ -10077,6 +10080,7 @@ paths:
       summary: Get invoice
       description: Retrieves an invoice for the specified organization.
       operationId: get-org-invoice
+      deprecated: true
       tags:
         - Invoices
       parameters:
@@ -10371,6 +10375,7 @@ paths:
       summary: List orders
       description: Retrieves orders for the specified organization.
       operationId: list-org-orders
+      deprecated: true
       tags:
         - Orders
       parameters:
@@ -10410,6 +10415,7 @@ paths:
       summary: Get order
       description: Retrieves an order for the specified organization.
       operationId: get-org-order
+      deprecated: true
       tags:
         - Orders
       parameters:
@@ -10440,6 +10446,7 @@ paths:
       summary: Create confirmation credentials for for 3D-Secure
       description: Creates confirmation credentials for payments that require online authorization
       operationId: create-authorization-credentials
+      deprecated: true
       tags:
         - Orders
       parameters:
@@ -10619,6 +10626,7 @@ paths:
       summary: Estimate total spend
       description: Estimates the total spend for the specified organization.
       operationId: estimate-org
+      deprecated: true
       tags:
         - Organization Management
       parameters:
@@ -10648,6 +10656,7 @@ paths:
       summary: Get billing alert configuration
       description: Retrieves billing alert configuration for the specified organization.
       operationId: get-org-billing-alert-config
+      deprecated: true
       tags:
         - Organization Management
       parameters:
@@ -10676,6 +10685,7 @@ paths:
       summary: Update billing alert configuration
       description: Updates billing alert configuration for the specified organization.
       operationId: update-org-billing-alert-config
+      deprecated: true
       tags:
         - Organization Management
       parameters:
@@ -10724,6 +10734,7 @@ paths:
       summary: Get organization prepayment information
       description: Retrieves prepayment information for the specified organization, if applicable.
       operationId: get-org-prepayment-info
+      deprecated: true
       tags:
         - Organization Management
       parameters:
@@ -10773,6 +10784,7 @@ paths:
       summary: List organization prepayment transactions
       description: Retrieves a list of prepayment transactions for the specified organization, if applicable.
       operationId: list-org-prepayment-transactions
+      deprecated: true
       tags:
         - Organization Management
       parameters:
@@ -11252,6 +11264,10 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
     delete:
@@ -11824,6 +11840,7 @@ paths:
       summary: Get address
       description: Retrieves the address for the specified organization.
       operationId: get-org-address
+      deprecated: true
       tags:
         - Profiles
       parameters:
@@ -11851,6 +11868,7 @@ paths:
       summary: Update address
       description: Updates the address for the specified organization.
       operationId: update-org-address
+      deprecated: true
       tags:
         - Profiles
       parameters:
@@ -11890,6 +11908,7 @@ paths:
       summary: Get profile
       description: Retrieves the profile for the specified organization.
       operationId: get-org-profile
+      deprecated: true
       tags:
         - Profiles
       parameters:
@@ -11917,6 +11936,7 @@ paths:
       summary: Update profile
       description: Updates the profile for the specified organization.
       operationId: update-org-profile
+      deprecated: true
       tags:
         - Profiles
       parameters:
@@ -12585,6 +12605,7 @@ paths:
       summary: List plan records
       description: Retrieves plan records for the specified organization.
       operationId: list-org-plan-records
+      deprecated: true
       tags:
         - Records
       parameters:
@@ -12628,6 +12649,7 @@ paths:
       summary: List usage records
       description: Retrieves usage records for the specified organization.
       operationId: list-org-usage-records
+      deprecated: true
       tags:
         - Records
       parameters:
@@ -12952,122 +12974,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-  /projects/{projectId}/oci-registries:
-    get:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-      operationId: list-projects-oci-registries
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RegistryCredentialCollection'
-      tags:
-        - RegistryCredential
-    post:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-      operationId: create-projects-oci-registries
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AcceptedResponse'
-      requestBody:
-        description: ''
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegistryCredentialCreateInput'
-      tags:
-        - RegistryCredential
-  /projects/{projectId}/oci-registries/{registryCredentialId}:
-    get:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: registryCredentialId
-      operationId: get-projects-oci-registries
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RegistryCredential'
-      tags:
-        - RegistryCredential
-    patch:
-      requestBody:
-        description: ''
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RegistryCredentialPatch'
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: registryCredentialId
-      operationId: update-projects-oci-registries
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AcceptedResponse'
-      tags:
-        - RegistryCredential
-    delete:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: registryCredentialId
-      operationId: delete-projects-oci-registries
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AcceptedResponse'
-      tags:
-        - RegistryCredential
   /projects/{projectId}/git/blobs/{repositoryBlobId}:
     get:
       parameters:
@@ -16348,67 +16254,6 @@ paths:
         - Runtime Operations
       summary: Execute a runtime operation
       description: Execute a runtime operation on a currently deployed environment. This allows you to run one-off commands, such as rebuilding static assets on demand, by defining an `operations` key in a project's `.upsun/config.yaml` configuration. More information on runtime operations is [available in our user documentation](https://docs.upsun.com/anchors/app/runtime-operations/).
-  /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/sboms:
-    get:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: environmentId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: deploymentId
-      operationId: list-projects-environments-deployments-sboms
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SbomCollection'
-      tags:
-        - Sbom
-  /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/sboms/{sbomServiceId}:
-    get:
-      parameters:
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: projectId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: environmentId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: deploymentId
-        - in: path
-          required: true
-          schema:
-            type: string
-          name: sbomServiceId
-      operationId: get-projects-environments-deployments-sboms
-      responses:
-        default:
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sbom'
-      tags:
-        - Sbom
   /projects/{projectId}/environments/{environmentId}/source-operation:
     post:
       parameters:
@@ -16594,6 +16439,7 @@ paths:
     get:
       summary: Estimate the price of a new subscription
       operationId: estimate-new-org-subscription
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16654,6 +16500,7 @@ paths:
     get:
       summary: Checks if the user is able to create a new project.
       operationId: can-create-new-org-subscription
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16707,6 +16554,7 @@ paths:
     get:
       summary: Estimate the price of a subscription
       operationId: estimate-org-subscription
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16758,6 +16606,7 @@ paths:
     get:
       summary: Get current usage for a subscription
       operationId: get-org-subscription-current-usage
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16790,6 +16639,7 @@ paths:
     get:
       summary: List addons for a subscription
       operationId: list-subscription-addons
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16814,6 +16664,7 @@ paths:
       summary: Get usage alerts
       description: Retrieves current and available usage alerts.
       operationId: get-subscription-usage-alerts
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -16853,6 +16704,7 @@ paths:
       summary: Update usage alerts.
       description: Updates usage alerts for a subscription.
       operationId: update-subscription-usage-alerts
+      deprecated: true
       tags:
         - Subscriptions
       parameters:
@@ -17119,6 +16971,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
     delete:
       summary: Delete subscription
       description: Deletes a subscription for the specified organization.
@@ -19062,6 +18916,7 @@ paths:
       summary: List vouchers
       description: Retrieves vouchers for the specified organization.
       operationId: list-org-vouchers
+      deprecated: true
       tags:
         - Vouchers
       parameters:
@@ -19090,6 +18945,7 @@ paths:
       summary: Apply voucher
       description: Applies a voucher for the specified organization, and refreshes the currently open order.
       operationId: apply-org-voucher
+      deprecated: true
       tags:
         - Vouchers
       parameters:
@@ -20953,6 +20809,11 @@ components:
           nullable: true
           title: Size used
           description: Total size of space used on volumes backed up
+        size_object_storage:
+          type: integer
+          nullable: true
+          title: Size of object storage
+          description: Total object-storage quota configured on webapps at backup time
         deployment:
           type: string
           nullable: true
@@ -20979,6 +20840,7 @@ components:
         - safe
         - size_of_volumes
         - size_used
+        - size_object_storage
         - deployment
         - restorable
         - automated
@@ -22924,34 +22786,6 @@ components:
                 nullable: true
                 title: Resources
                 description: ''
-              size:
-                type: string
-                enum:
-                  - 2XL
-                  - 4XL
-                  - AUTO
-                  - L
-                  - M
-                  - S
-                  - XL
-                  - XS
-                title: Container Size
-                description: The container size for this application in production. Leave blank to allow it to be set dynamically.
-              disk:
-                type: integer
-                nullable: true
-                title: Disk size
-                description: The size of the disk.
-              access:
-                type: object
-                additionalProperties:
-                  type: string
-                  enum:
-                    - admin
-                    - contributor
-                    - viewer
-                title: Access Information
-                description: Access information, a mapping between access type and roles.
               authorizations:
                 type: array
                 items:
@@ -22979,7 +22813,7 @@ components:
                     - resource
                   additionalProperties: false
                 title: Authorizations
-                description: Authorizations available to this container.
+                description: Authorizations available to this container
               relationships:
                 type: object
                 additionalProperties:
@@ -23001,7 +22835,7 @@ components:
                   additionalProperties: false
                   nullable: true
                 title: Service Relationships
-                description: The relationships of the application to defined services.
+                description: The relationships of the container to defined services
               additional_hosts:
                 type: object
                 additionalProperties:
@@ -23038,7 +22872,7 @@ components:
                     - source_path
                   additionalProperties: false
                 title: Mounts
-                description: Filesystem mounts of this application.  If not specified the application will have no writeable disk space.
+                description: Filesystem mounts of this container. If not specified the container will have no writeable disk space
               timezone:
                 type: string
                 nullable: true
@@ -23050,7 +22884,40 @@ components:
                   type: object
                   additionalProperties: {}
                 title: Environment Variables
-                description: Variables provide environment-sensitive information to control how your application behaves.  To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment.
+                description: Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment
+              container_profile:
+                type: string
+                nullable: true
+                title: Container Profile
+                description: Selected container profile for this container
+              size:
+                type: string
+                enum:
+                  - 2XL
+                  - 4XL
+                  - AUTO
+                  - L
+                  - M
+                  - S
+                  - XL
+                  - XS
+                title: Container Size
+                description: The container size for this application in production. Leave blank to allow it to be set dynamically.
+              disk:
+                type: integer
+                nullable: true
+                title: Disk size
+                description: The size of the disk.
+              access:
+                type: object
+                additionalProperties:
+                  type: string
+                  enum:
+                    - admin
+                    - contributor
+                    - viewer
+                title: Access Information
+                description: Access information, a mapping between access type and roles.
               firewall:
                 type: object
                 properties:
@@ -23098,11 +22965,74 @@ components:
                 nullable: true
                 title: Firewall
                 description: ''
-              container_profile:
-                type: string
+              egress:
+                type: object
+                properties:
+                  build:
+                    type: object
+                    properties:
+                      allowed_domains:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            host:
+                              type: string
+                              title: Hostname
+                              description: The destination hostname.
+                            port:
+                              type: integer
+                              nullable: true
+                              title: Port
+                              description: Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel.
+                          required:
+                            - host
+                            - port
+                          additionalProperties: false
+                        title: Allowed Domains
+                        description: Destinations the container is permitted to reach.
+                    required:
+                      - allowed_domains
+                    additionalProperties: false
+                    nullable: true
+                    title: Build-phase egress
+                    description: Egress allowlist applied to build containers.
+                  runtime:
+                    type: object
+                    properties:
+                      allowed_domains:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            host:
+                              type: string
+                              title: Hostname
+                              description: The destination hostname.
+                            port:
+                              type: integer
+                              nullable: true
+                              title: Port
+                              description: Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel.
+                          required:
+                            - host
+                            - port
+                          additionalProperties: false
+                        title: Allowed Domains
+                        description: Destinations the container is permitted to reach.
+                    required:
+                      - allowed_domains
+                    additionalProperties: false
+                    nullable: true
+                    title: Runtime-phase egress
+                    description: Egress allowlist applied to runtime containers.
+                required:
+                  - build
+                  - runtime
+                additionalProperties: false
                 nullable: true
-                title: Container Profile
-                description: Selected container profile for the application
+                title: Egress
+                description: ''
               operations:
                 type: object
                 additionalProperties:
@@ -23597,17 +23527,18 @@ components:
                 description: Whether this service type supports horizontal scaling
             required:
               - resources
-              - size
-              - disk
-              - access
               - authorizations
               - relationships
               - additional_hosts
               - mounts
               - timezone
               - variables
-              - firewall
               - container_profile
+              - size
+              - disk
+              - access
+              - firewall
+              - egress
               - operations
               - name
               - type
@@ -23770,34 +23701,6 @@ components:
                 nullable: true
                 title: Resources
                 description: ''
-              size:
-                type: string
-                enum:
-                  - 2XL
-                  - 4XL
-                  - AUTO
-                  - L
-                  - M
-                  - S
-                  - XL
-                  - XS
-                title: Container Size
-                description: The container size for this application in production. Leave blank to allow it to be set dynamically.
-              disk:
-                type: integer
-                nullable: true
-                title: Disk size
-                description: The writeable disk size to reserve on this application container.
-              access:
-                type: object
-                additionalProperties:
-                  type: string
-                  enum:
-                    - admin
-                    - contributor
-                    - viewer
-                title: Access Information
-                description: Access information, a mapping between access type and roles.
               authorizations:
                 type: array
                 items:
@@ -23825,7 +23728,7 @@ components:
                     - resource
                   additionalProperties: false
                 title: Authorizations
-                description: Authorizations available to this container.
+                description: Authorizations available to this container
               relationships:
                 type: object
                 additionalProperties:
@@ -23847,7 +23750,7 @@ components:
                   additionalProperties: false
                   nullable: true
                 title: Service Relationships
-                description: The relationships of the application to defined services.
+                description: The relationships of the container to defined services
               additional_hosts:
                 type: object
                 additionalProperties:
@@ -23884,7 +23787,7 @@ components:
                     - source_path
                   additionalProperties: false
                 title: Mounts
-                description: Filesystem mounts of this application.  If not specified the application will have no writeable disk space.
+                description: Filesystem mounts of this container. If not specified the container will have no writeable disk space
               timezone:
                 type: string
                 nullable: true
@@ -23896,7 +23799,40 @@ components:
                   type: object
                   additionalProperties: {}
                 title: Environment Variables
-                description: Variables provide environment-sensitive information to control how your application behaves.  To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment.
+                description: Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment
+              container_profile:
+                type: string
+                nullable: true
+                title: Container Profile
+                description: Selected container profile for this container
+              size:
+                type: string
+                enum:
+                  - 2XL
+                  - 4XL
+                  - AUTO
+                  - L
+                  - M
+                  - S
+                  - XL
+                  - XS
+                title: Container Size
+                description: The container size for this application in production. Leave blank to allow it to be set dynamically.
+              disk:
+                type: integer
+                nullable: true
+                title: Disk size
+                description: The writeable disk size to reserve on this application container.
+              access:
+                type: object
+                additionalProperties:
+                  type: string
+                  enum:
+                    - admin
+                    - contributor
+                    - viewer
+                title: Access Information
+                description: Access information, a mapping between access type and roles.
               firewall:
                 type: object
                 properties:
@@ -23944,11 +23880,74 @@ components:
                 nullable: true
                 title: Firewall
                 description: ''
-              container_profile:
-                type: string
+              egress:
+                type: object
+                properties:
+                  build:
+                    type: object
+                    properties:
+                      allowed_domains:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            host:
+                              type: string
+                              title: Hostname
+                              description: The destination hostname.
+                            port:
+                              type: integer
+                              nullable: true
+                              title: Port
+                              description: Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel.
+                          required:
+                            - host
+                            - port
+                          additionalProperties: false
+                        title: Allowed Domains
+                        description: Destinations the container is permitted to reach.
+                    required:
+                      - allowed_domains
+                    additionalProperties: false
+                    nullable: true
+                    title: Build-phase egress
+                    description: Egress allowlist applied to build containers.
+                  runtime:
+                    type: object
+                    properties:
+                      allowed_domains:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            host:
+                              type: string
+                              title: Hostname
+                              description: The destination hostname.
+                            port:
+                              type: integer
+                              nullable: true
+                              title: Port
+                              description: Destination port. Omit for the default web ports (80/443), or specify explicitly for non-HTTP destinations (e.g. databases) reached over a CONNECT tunnel.
+                          required:
+                            - host
+                            - port
+                          additionalProperties: false
+                        title: Allowed Domains
+                        description: Destinations the container is permitted to reach.
+                    required:
+                      - allowed_domains
+                    additionalProperties: false
+                    nullable: true
+                    title: Runtime-phase egress
+                    description: Egress allowlist applied to runtime containers.
+                required:
+                  - build
+                  - runtime
+                additionalProperties: false
                 nullable: true
-                title: Container Profile
-                description: Selected container profile for the application
+                title: Egress
+                description: ''
               operations:
                 type: object
                 additionalProperties:
@@ -24129,17 +24128,18 @@ components:
                 description: Whether this service type supports horizontal scaling
             required:
               - resources
-              - size
-              - disk
-              - access
               - authorizations
               - relationships
               - additional_hosts
               - mounts
               - timezone
               - variables
-              - firewall
               - container_profile
+              - size
+              - disk
+              - access
+              - firewall
+              - egress
               - operations
               - name
               - type
@@ -27739,6 +27739,18 @@ components:
           additionalProperties: false
           title: Outbound Firewall
           description: ''
+        egress_proxy:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Enabled
+              description: 'If true, the egress proxy is on for every container in the project: outbound traffic is denied by default and must traverse the proxy. Applies project-wide regardless of whether an application declares an egress allowlist.'
+          required:
+            - enabled
+          additionalProperties: false
+          title: Egress Proxy
+          description: ''
         metrics:
           type: object
           properties:
@@ -27891,8 +27903,13 @@ components:
               type: boolean
               title: Enabled
               description: If true, autoscaling can be configured.
+            supports_horizontal_scaling_services:
+              type: boolean
+              title: Enable autoscaling for services
+              description: Allow autoscaling to be configured for services (not just apps and workers)
           required:
             - enabled
+            - supports_horizontal_scaling_services
           additionalProperties: false
           title: Autoscaling
           description: ''
@@ -29300,144 +29317,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Ref'
-    RegistryCredential:
-      type: object
-      properties:
-        id:
-          type: string
-          title: RegistryCredential Identifier
-          description: The identifier of RegistryCredential
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-          title: Creation date
-          description: The creation date
-        updated_at:
-          type: string
-          format: date-time
-          nullable: true
-          title: Update date
-          description: The update date
-        registry:
-          type: string
-          title: Registry URL
-          description: Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000', 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
-        auth:
-          type: object
-          properties:
-            username:
-              type: string
-              title: Username
-              description: Username used to basic auth to container registry
-            password:
-              type: string
-              title: Password
-              description: Password used to basic auth to container registry
-          required:
-            - username
-            - password
-          additionalProperties: false
-          nullable: true
-          title: Basic Auth
-          description: Basic Auth for the container registry
-        identity_token:
-          type: string
-          nullable: true
-          title: Identity Token
-          description: Refresh token to exchange for bearer token with container registry auth
-        registry_token:
-          type: string
-          nullable: true
-          title: Registry token
-          description: Bearer token used to auth with container registry auth
-      required:
-        - id
-        - created_at
-        - updated_at
-        - registry
-        - auth
-        - identity_token
-        - registry_token
-      additionalProperties: false
-    RegistryCredentialCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/RegistryCredential'
-    RegistryCredentialCreateInput:
-      type: object
-      properties:
-        registry:
-          type: string
-          title: Registry URL
-          description: Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000', 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
-        auth:
-          type: object
-          properties:
-            username:
-              type: string
-              title: Username
-              description: Username used to basic auth to container registry
-            password:
-              type: string
-              title: Password
-              description: Password used to basic auth to container registry
-          required:
-            - username
-            - password
-          additionalProperties: false
-          nullable: true
-          title: Basic Auth
-          description: Basic Auth for the container registry
-        identity_token:
-          type: string
-          nullable: true
-          title: Identity Token
-          description: Refresh token to exchange for bearer token with container registry auth
-        registry_token:
-          type: string
-          nullable: true
-          title: Registry token
-          description: Bearer token used to auth with container registry auth
-      required:
-        - registry
-      additionalProperties: false
-    RegistryCredentialPatch:
-      type: object
-      properties:
-        registry:
-          type: string
-          title: Registry URL
-          description: Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000', 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
-        auth:
-          type: object
-          properties:
-            username:
-              type: string
-              title: Username
-              description: Username used to basic auth to container registry
-            password:
-              type: string
-              title: Password
-              description: Password used to basic auth to container registry
-          required:
-            - username
-            - password
-          additionalProperties: false
-          nullable: true
-          title: Basic Auth
-          description: Basic Auth for the container registry
-        identity_token:
-          type: string
-          nullable: true
-          title: Identity Token
-          description: Refresh token to exchange for bearer token with container registry auth
-        registry_token:
-          type: string
-          nullable: true
-          title: Registry token
-          description: Bearer token used to auth with container registry auth
-      additionalProperties: false
     ReplacementDomainStorage:
       type: object
       properties:
@@ -29529,12 +29408,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Route'
-    Sbom:
-      type: object
-    SbomCollection:
-      type: array
-      items:
-        $ref: '#/components/schemas/Sbom'
     ScriptIntegration:
       type: object
       properties:
@@ -30311,6 +30184,128 @@ components:
           type: string
           title: Task Identifier
           description: The identifier of Task
+        resources:
+          type: object
+          properties:
+            base_memory:
+              type: integer
+              title: Base memory
+              description: The base memory for the container
+            memory_ratio:
+              type: integer
+              title: Memory ratio
+              description: The amount of memory to allocate per units of CPU
+          required:
+            - base_memory
+            - memory_ratio
+          additionalProperties: false
+          nullable: true
+          title: Resources
+          description: Resources configuration (base memory and memory ratio)
+        authorizations:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - env
+                  - task
+                title: Authorization Type
+                description: The resource type for this authorization.
+              action:
+                type: string
+                title: Authorization Action
+                description: The action to authorize on the target resource.
+              resource:
+                type: string
+                nullable: true
+                title: Authorization Resource
+                description: The target resource for this authorization.
+            required:
+              - type
+              - action
+              - resource
+            additionalProperties: false
+          title: Authorizations
+          description: Authorizations available to this container
+        relationships:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service.
+              endpoint:
+                type: string
+                nullable: true
+                title: Endpoint Name
+                description: The name of the endpoint on the service.
+            required:
+              - service
+              - endpoint
+            additionalProperties: false
+            nullable: true
+          title: Service Relationships
+          description: The relationships of the container to defined services
+        additional_hosts:
+          type: object
+          additionalProperties:
+            type: string
+          title: Additional hosts
+          description: A mapping of hostname to ip address to be added to the container's hosts file
+        mounts:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              source:
+                type: string
+                enum:
+                  - instance
+                  - local
+                  - service
+                  - storage
+                  - temporary
+                  - tmp
+                title: Mount type
+                description: The type of mount that will provide the data.
+              source_path:
+                type: string
+                title: Source Path
+                description: The path to be mounted, relative to the root directory of the volume that's being mounted from.
+              service:
+                type: string
+                nullable: true
+                title: Service Name
+                description: The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`.
+            required:
+              - source
+              - source_path
+            additionalProperties: false
+          title: Mounts
+          description: Filesystem mounts of this container. If not specified the container will have no writeable disk space
+        timezone:
+          type: string
+          nullable: true
+          title: Timezone
+          description: The timezone of the task. Defaults to the project's timezone if not specified
+        variables:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: {}
+          title: Environment Variables
+          description: Variables provide environment-sensitive information to control how this container behaves. To set a Unix environment variable, specify a key of `env:`, and then each sub-item of that is a key/value pair that will be injected into the environment
+        container_profile:
+          type: string
+          nullable: true
+          title: Container Profile
+          description: Selected container profile for this container
         type:
           type: string
           title: Image type
@@ -30346,77 +30341,6 @@ components:
           additionalProperties: false
           title: Hooks
           description: Scripts executed at various points in the lifecycle of the task
-        relationships:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              service:
-                type: string
-                nullable: true
-                title: Service Name
-                description: The name of the service.
-              endpoint:
-                type: string
-                nullable: true
-                title: Endpoint Name
-                description: The name of the endpoint on the service.
-            required:
-              - service
-              - endpoint
-            additionalProperties: false
-            nullable: true
-          title: Relationships
-          description: The relationships of the task to defined services and applications
-        additional_hosts:
-          type: object
-          additionalProperties:
-            type: string
-          title: Additional hosts
-          description: A mapping of hostname to ip address to be added to the task container's hosts file
-        mounts:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              source:
-                type: string
-                enum:
-                  - instance
-                  - local
-                  - service
-                  - storage
-                  - temporary
-                  - tmp
-                title: Mount type
-                description: The type of mount that will provide the data.
-              source_path:
-                type: string
-                title: Source Path
-                description: The path to be mounted, relative to the root directory of the volume that's being mounted from.
-              service:
-                type: string
-                nullable: true
-                title: Service Name
-                description: The name of the service that the volume will be mounted from. Must be a service in `services.yaml` of type `network-storage`.
-            required:
-              - source
-              - source_path
-            additionalProperties: false
-          title: Mounts
-          description: Filesystem mounts of this task
-        timezone:
-          type: string
-          nullable: true
-          title: Timezone
-          description: The timezone of the task. Defaults to the project's timezone if not specified
-        variables:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties: {}
-          title: Environment Variables
-          description: Variables provide environment-sensitive information to control how your task behaves
         dependencies:
           type: object
           additionalProperties:
@@ -30427,34 +30351,6 @@ components:
           type: object
           title: Runtime Configuration
           description: Runtime-specific configuration
-        authorizations:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                  - env
-                  - task
-                title: Authorization Type
-                description: The resource type for this authorization.
-              action:
-                type: string
-                title: Authorization Action
-                description: The action to authorize on the target resource.
-              resource:
-                type: string
-                nullable: true
-                title: Authorization Resource
-                description: The target resource for this authorization.
-            required:
-              - type
-              - action
-              - resource
-            additionalProperties: false
-          title: Authorizations
-          description: Authorizations available to this task
         run:
           type: object
           properties:
@@ -30472,49 +30368,26 @@ components:
           additionalProperties: false
           title: Run Configuration
           description: Configuration for task execution
-        resources:
-          type: object
-          properties:
-            base_memory:
-              type: integer
-              title: Base memory
-              description: The base memory for the container
-            memory_ratio:
-              type: integer
-              title: Memory ratio
-              description: The amount of memory to allocate per units of CPU
-          required:
-            - base_memory
-            - memory_ratio
-          additionalProperties: false
-          nullable: true
-          title: Resources
-          description: Resources configuration (base memory and memory ratio)
-        container_profile:
-          type: string
-          nullable: true
-          title: Container Profile
-          description: Selected container profile for the task
         name:
           type: string
           title: Task name
           description: The unique name of the task
       required:
         - id
-        - type
-        - source
-        - hooks
+        - resources
+        - authorizations
         - relationships
         - additional_hosts
         - mounts
         - timezone
         - variables
+        - container_profile
+        - type
+        - source
+        - hooks
         - dependencies
         - runtime
-        - authorizations
         - run
-        - resources
-        - container_profile
         - name
       additionalProperties: false
     TaskCollection:
@@ -33687,6 +33560,12 @@ components:
             $ref: '#/components/schemas/Error'
     Conflict:
       description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Unprocessable Entity
       content:
         application/problem+json:
           schema:
