@@ -13,7 +13,6 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
   PRURLJOBNAME: 'Get PR URL'
 
 jobs:
@@ -77,7 +76,6 @@ jobs:
     if: needs.get_info_on_pr.outputs.continuetests == 'true'
     outputs:
       pr_url: ${{ steps.get_env_url.outputs.pr_url }}
-      pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
       pr_url_status: ${{ steps.get_env_url.outputs.env_status }}
 
     steps:
@@ -169,6 +167,77 @@ jobs:
           status_description: '${{ steps.set-status-message.outputs.status_message }}'
           state: '${{ steps.set-status-message.outputs.status_state }}'
 
+
+  smoke_test_upsun_api_internal:
+    name: Smoke test Upsun api-internal
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
+    if: needs.get_pr_url.outputs.pr_url_status == 'success'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve Upsun api-internal URL
+        id: resolve-url
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          UPSUN_API_INTERNAL_URL=$(platform routes --format plain --columns route,to,url --no-header --project "${PLATFORM_PROJECT}" --environment "${BRANCH}" | awk '$1 ~ /\/api-internal$/ && $2 ~ /upsun/ { print $NF; exit }')
+
+          if [ -z "${UPSUN_API_INTERNAL_URL}" ]; then
+            echo "::error::Could not resolve the Upsun /api-internal route URL."
+            exit 1
+          fi
+
+          echo "url=${UPSUN_API_INTERNAL_URL}" >> $GITHUB_OUTPUT
+
+      - name: Smoke test Upsun api-internal
+        run: |
+          curl --fail --silent --show-error "${{ steps.resolve-url.outputs.url }}" -o /dev/null
+
+  report_upsun_api_internal_smoke:
+    name: Report Upsun api-internal smoke status
+    needs:
+      - get_info_on_pr
+      - smoke_test_upsun_api_internal
+    runs-on: ubuntu-latest
+    env:
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
+    if: ${{ always() }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Determine status and message
+        id: determine-status-message
+        run: |
+          if [ 'success' = '${{ needs.smoke_test_upsun_api_internal.result }}' ]; then
+            state="success"
+            message="Upsun api-internal smoke test passed."
+          else
+            state="failure"
+            message="Upsun api-internal smoke test failed. Please see run summary."
+            if [ 'skipped' = '${{ needs.smoke_test_upsun_api_internal.result }}' ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
+              message="Upsun api-internal smoke test can not run on forks until approved."
+            fi
+          fi
+
+          echo "::warning::${message}"
+
+          echo "message=${message}" >> $GITHUB_OUTPUT
+          echo "state=${state}" >> $GITHUB_OUTPUT
+
+      - uses: ./.github/actions/report-status
+        with:
+          job_name: 'Smoke test Upsun api-internal'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ env.HEADSHA }}'
+          status_description: '${{ steps.determine-status-message.outputs.message }}'
+          state: '${{ steps.determine-status-message.outputs.state }}'
+
   report_changed_files:
     name: Collects a list of changed files, reports their URL as a comment
     needs:
@@ -182,7 +251,6 @@ jobs:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
       PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
       ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
-      UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -202,7 +270,6 @@ jobs:
         id: get-files
         run: |
           files_platform=()
-          files_upsun=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
@@ -220,20 +287,6 @@ jobs:
               files_platform+=("$ENV_URL$page")
             fi
 
-            if [[ $file = "sites/upsun/src/"*".md" ]]; then
-
-              # Remove file extension
-              page=${file/.md/.html}
-
-              # Remove initial directory
-              page=${page/"sites/upsun/src/"/}
-
-              # Shift index pages up a level
-              page=${page/"/_index.html"/".html"}
-
-              files_upsun+=("$UPSUN_ENV_URL$page")
-            fi
-
           done
 
           # If there are changed files for Upsun Fixed, return a list
@@ -245,104 +298,28 @@ jobs:
             echo changed_files_platform="" >> $GITHUB_OUTPUT
           fi
 
-          # If there are changed files for Upsun, return a list
-          # Using "\n" here creates problems in passing data to the next step, so replace there instead
-          if (( ${#files_upsun[@]} != 0 )); then
-            echo $(printf "||%s" "${files_upsun[@]}")
-            echo changed_files_upsun=$(printf "||%s" "${files_upsun[@]}") >> $GITHUB_OUTPUT
-          else
-            echo changed_files_upsun="" >> $GITHUB_OUTPUT
-          fi
-
       # If there are changed pages, create a comment with a checklist
       - name: Comment with links
-        if: steps.get-files.outputs.changed_files_platform != '' || steps.get-files.outputs.changed_files_upsun != ''
+        if: steps.get-files.outputs.changed_files_platform != ''
         env:
           PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
-          PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
         run: |
-          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Upsun Fixed docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Upsun Fixed docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
       - name: Comment without links
-        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == ''
+        if: steps.get-files.outputs.changed_files_platform == ''
         env:
           ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
-          UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
         run: |
-          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Upsun Fixed docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Upsun Fixed docs]($ENV_URL)" > pr_comment.txt
 
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           number: ${{ env.PRNUM }}
           path: pr_comment.txt
-
-  run-redirection-tests:
-    name: Verify contracted redirections
-    needs:
-      - get_info_on_pr
-      - get_pr_url
-    runs-on: ubuntu-latest
-    env:
-      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
-      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
-    # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: needs.get_info_on_pr.outputs.continuetests == 'true'
-    steps:
-      - uses: actions/checkout@v4
-      - id: redirection-tests
-        uses: ./.github/actions/redirection-verification
-        with:
-          environment_url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
-          base_environment_url: ${{ needs.get_pr_url.outputs.pr_url }}
-          redirection_project_id: ${{ secrets.REDIRECTIONIO_PROJECT_ID }}
-          redirection_token: ${{ secrets.REDIRECTIONIO_API_KEY }}
-
-  report_redirection_test:
-    name: "Report redirection test results"
-    needs:
-      - get_info_on_pr
-      - get_pr_url
-      - run-redirection-tests
-    runs-on: ubuntu-latest
-    env:
-      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
-    if: ${{ always() }}
-    steps:
-      # we want the default branch
-      - uses: actions/checkout@v4
-      - name: "Determine status and message"
-        id: determine-status-message
-        run: |
-          if [ 'success' = ${{ needs.run-redirection-tests.result }} ]; then
-            state="success"
-            message="Redirection verifications passed."
-          else
-            # if it isn't `success` then no matter what it was it's a failure
-            state="failure"
-            message="Redirection verifications failed. Please see run summary."
-            if [ 'skipped' = ${{ needs.run-redirection-tests.result }} ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
-              message="Redirection tests can not run on forks until approved."
-            fi
-          fi
-
-          echo "::warning::${message}"
-
-          echo "message=${message}" >> $GITHUB_OUTPUT
-          echo "state=${state}" >> $GITHUB_OUTPUT
-
-      - uses: ./.github/actions/report-status
-        with:
-          # @todo i wish there was a way to go get this info instead of hard-coding it
-          job_name: 'Verify contracted redirections'
-          workflow_name: '${{ github.workflow }}'
-          gh_token: '${{ github.token }}'
-          run_id: '${{ github.run_id }}'
-          head_sha: '${{ env.HEADSHA }}'
-          status_description: '${{ steps.determine-status-message.outputs.message }}'
-          state: '${{ steps.determine-status-message.outputs.state }}'
 
   run-e2e-test:
     runs-on: ubuntu-latest
@@ -361,8 +338,6 @@ jobs:
         include:
           - site: platformsh
             url: ${{ needs.get_pr_url.outputs.pr_url }}
-          - site: upsun
-            url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
         if: env.REPOSOURCE == 'source'
