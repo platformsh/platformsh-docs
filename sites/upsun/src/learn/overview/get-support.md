@@ -1,5 +1,5 @@
 ---
-title: " Get support"
+title: "Get support"
 weight: 4
 toc: false
 description: |
@@ -41,9 +41,9 @@ To upgrade to either the Premium or Advanced support tier, visit the [add-on sub
 ## Community
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the {{< vendor/url "discord" "Discord" >}}.
+join other customers and engineers in the {{< vendor/url "community" "Upsun Community Forum" >}}.
 
-Also, the [{{% vendor/name %}} Community forum](https://community.platform.sh/) has how-to guides with suggestions
+Also, the [{{% vendor/name %}} Community forum](https://community.upsun.com/) has how-to guides with suggestions
 on how to get the most out of {{% vendor/name %}}.
 
 {{% community-buttons %}}
