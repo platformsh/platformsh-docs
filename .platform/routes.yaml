@@ -23,14 +23,14 @@ https://{default}/:
 #  upstream: redirectionio-agent:http
 #  id: redirectionio
 
-https://docs.upsun.com/:
-  type: upstream
-  upstream: 'redirectionio-upsun:http'
-  id: upsun
-  cache:
-    enabled: true
-  ssi:
-    enabled: false
+# https://docs.upsun.com/:
+#   type: upstream
+#   upstream: 'redirectionio-upsun:http'
+#   id: upsun
+#   cache:
+#     enabled: true
+#   ssi:
+#     enabled: false
 
 https://docs.platform.sh/:
   type: redirect
