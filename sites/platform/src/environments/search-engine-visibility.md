@@ -11,20 +11,24 @@ Whether search engines can index an environment depends on your project type:
 
 **Grid projects**
 
-- **Preview or production environment without a custom domain**: Always hidden from search engines. This is enforced and can't be changed.
-- **Preview environment with a custom domain**: Hidden by default. You can change this.
-- **Production environment with a custom domain (new project)**: Visible by default. You can change this.
-- **Production environment with a custom domain (existing project)**: Retains its current setting. You can change this.
+| Environment type              | Custom domain | Search engine visibility | Changeable? |
+|-------------------------------|---------------|--------------------------|-------------|
+| Preview or production         | No            | Always hidden            | No  |
+| Preview                       | Yes           | Hidden by default        | Yes |
+| Production (new project)      | Yes           | Visible by default       | Yes |
+| Production (existing project) | Yes           | Retains current setting  | Yes |
 
 **{{% names/dedicated-gen-2 %}} projects**
 
-- **Development environments** (Grid-based preview branches): Always hidden from search engines. This is enforced and can't be changed.
-- **Staging environment**: Hidden by default. You can change this.
-- **Production environment**: Always visible to search engines. This is enforced and can't be changed.
+| Environment type                            | Search engine visibility | Changeable? |
+|---------------------------------------------|--------------------------|-------------|
+| Development (Grid-based preview branches)   | Always hidden            | No  |
+| Staging                                     | Hidden by default        | Yes |
+| Production                                  | Always visible           | No  |
 
 {{< note >}}
 
-Keep only one environment visible to search engines at a time to avoid duplicate content and SEO dilution.
+If multiple environments in a project have [custom domains](/domains/steps.md), ensure that **at most** one environment is visible to avoid duplicate content and SEO dilution.
 
 {{< /note >}}
 
@@ -37,7 +41,7 @@ title=In the Console
 
 1. Select the project you want to update.
 1. From the **Environment** menu, select the environment.
-1. Click {{< icon settings >}} **Settings**.
+1. Click {{< icon settings >}} **Settings** near the upper right of the page.
 1. Select or clear the **Hide from search engines** checkbox.
 
 <--->
