@@ -149,7 +149,7 @@ To configure your CDN and your domain name to point to your project:
 8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes/_index.md).
 
-Adding a custom domain sets your site as [visible to search engines](/environments/search-engine-visibility.md#how-its-done).
+Adding a custom domain sets your site as [visible to search engines](/environments/search-engine-visibility.md#how-it-works).
 
 See how you can further [configure your CDN](/domains/cdn/_index.md).
 
