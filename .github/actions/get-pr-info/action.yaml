@@ -91,8 +91,25 @@ runs:
           exit 0
         fi
 
-        # Get the URL of the environment
-        ENV_URL=$(platform url --primary --pipe --environment "${BRANCH}")
+        # Get the URL of the environment. A completed activity can still leave
+        # the environment inactive, in which case URL resolution exits non-zero.
+        set +e
+        ENV_URL=$(platform url --primary --pipe --project "${PROJECT}" --environment "${BRANCH}" 2>platform-url-error.log)
+        URL_RESULT=$?
+        set -e
+
+        if [ ${URL_RESULT} -ne 0 ]; then
+          URL_ERROR=$(cat platform-url-error.log)
+          if echo "${URL_ERROR}" | grep -qi "environment is inactive"; then
+            echo "::notice::Environment ${BRANCH} is inactive; skipping URL resolution."
+            echo "env_status=inactive" >> $GITHUB_OUTPUT
+            echo "env_url=" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "::error title=Unable to resolve environment URL::${URL_ERROR}"
+          exit ${URL_RESULT}
+        fi
 
         # Get the status of the build activity
         COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "result" --limit 1 --environment "${BRANCH}")
