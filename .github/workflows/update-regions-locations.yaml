@@ -26,8 +26,26 @@ jobs:
 
       - name: Download latest regions_location.json
         run: |
-          # TODO: Replace the following line with your actual curl command
-          platform api:curl regions | jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' > ./shared/data/regions_location.json
+          regions_response="$(mktemp)"
+          trap 'rm -f "${regions_response}"' EXIT
+
+          for attempt in {1..5}; do
+            if platform api:curl regions > "${regions_response}"; then
+              break
+            fi
+
+            if [ "${attempt}" -eq 5 ]; then
+              echo "::error::Unable to retrieve regions after ${attempt} attempts."
+              exit 1
+            fi
+
+            sleep_seconds=$((attempt * 30))
+            echo "::warning::Unable to retrieve regions. Retrying in ${sleep_seconds}s. Attempt ${attempt} of 5 failed."
+            platform clear-cache || true
+            sleep "${sleep_seconds}"
+          done
+
+          jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' "${regions_response}" > ./shared/data/regions_location.json
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
