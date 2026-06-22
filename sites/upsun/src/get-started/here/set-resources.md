@@ -8,6 +8,16 @@ You can define how much CPU, memory, and disk you want to assign to each of your
 
 If you don't explicitly set resources, {{% vendor/name %}} uses [default resources](/manage-resources/resource-init.md) instead.
 {{% vendor/name %}} also offers several [resource initialization strategies](/manage-resources/resource-init.md) to help you allocate resources depending on your needs and use cases.
+
+{{< note >}}
+
+If you are using a [source integration](/integrations/source/_index.md),
+resource initialization for new environments is controlled by the `resources-init`
+option on the integration.
+See [resource initialization with source integrations](/manage-resources/resource-init.md#environment-branch).
+
+{{< /note >}}
+
 However, for the sake of this guide, let's set resources manually.
 To do so, follow these steps:
 

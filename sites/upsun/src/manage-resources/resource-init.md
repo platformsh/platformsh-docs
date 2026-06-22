@@ -201,6 +201,12 @@ For example, to use the `minimum` strategy for your deployment, run the the foll
 Available: `parent`, `default`, `minimum` </br>
 Default: `default` if the new environment is of type `staging`, `minimum` if the new environment is of type `development`
 
+When using a [source integration](/integrations/source/_index.md), defaults are per environment type:
+- `default` for production and staging
+- `minimum` for development
+
+(`parent` is not available for production environments in source integrations)
+
 {{% /note %}}
 
 By default, when you [branch an environment](/glossary.md#branch) to create a new child environment, 
@@ -221,7 +227,7 @@ This ensures the branching can succeed.
 {{< codetabs >}}
 
 +++
-title=Using the CLI
+title=Without a source integration
 +++
 
 Run the following command:
@@ -239,7 +245,7 @@ For example, to use the `parent` resource initialization strategy, run the follo
 <--->
 
 +++
-title=In the Console
+title=In the Console (without source integration)
 +++
 
 1. Navigate to the environment you want to branch from.
@@ -247,6 +253,60 @@ title=In the Console
 3. Enter a name and a type for the new environment.
 4. Select an initialization strategy from the proposed list.
 5. Click **Branch**.
+
+<--->
+
++++
+title=With a source integration
++++
+
+When you push a new branch to your repository, your [source integration](/integrations/source/_index.md) automatically creates a new environment using the resource initialization strategy configured on the integration.
+
+By default:
+- Production and staging environments use the `default` strategy
+- Development environments use the `minimum` strategy
+
+To override these defaults:
+
+**Via CLI** (single string, backward-compatible):
+Run the following command to update your integration's resource initialization strategy:
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `parent` strategy:
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} integration:update --resources-init=parent
+```
+
+{{< note >}}
+
+When using the CLI, the value applies to **development** environments only.
+Production and staging environments always use the `default` strategy.
+
+{{< /note >}}
+
+**Via API** (full per-type control):
+For complete control over all environment types, use the API to set the resource initialization strategy for each type independently:
+
+```bash {location="Terminal"}
+curl -X PATCH https://api.upsun.com/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}} \
+  -H "Authorization: Bearer {{< variable "API_TOKEN" >}}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "environment_init_resources": {
+      "production": "{{< variable "STRATEGY" >}}",
+      "staging": "{{< variable "STRATEGY" >}}",
+      "development": "{{< variable "STRATEGY" >}}"
+    }
+  }'
+```
+
+Valid strategies: `minimum`, `default`, `manual`, `parent` (except `parent` is not valid for `production`).
+
+See [available resource initialization strategies](#specify-a-resource-initialization-strategy) for more details.
 
 {{< /codetabs >}}
 
