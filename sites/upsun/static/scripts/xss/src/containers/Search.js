@@ -39,6 +39,7 @@ const Search = ({ fullPage }) => {
     urlQuery = url.pathname.replace('.html', '').replaceAll('/', ' ').replaceAll('-', ' ')
   }
 
+  const [setError] = useState(null)
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
@@ -61,7 +62,7 @@ const Search = ({ fullPage }) => {
           apidocs: data.hits.filter((hit) => hit.site === 'apidocs'),
         })
       })
-      .catch((err) => console.error(err))
+      .catch((err) => setError(err.message))
   }
 
   useEffect(() => {
