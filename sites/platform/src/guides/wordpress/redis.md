@@ -58,7 +58,7 @@ title=WP Redis
 highlight=bash
 +++
 
-composer require "wpackagist-plugin/wp-redis":"^1.1.4"
+composer require "wp-plugin/wp-redis":"^1.1.4"
 
 <--->
 
@@ -67,7 +67,7 @@ title=Redis Object Cache
 highlight=bash
 +++
 
-composer require "wpackagist-plugin/redis-cache":"^2.0.23"
+composer require "wp-plugin/redis-cache":"^2.0.23"
 
 {{< /codetabs >}}
 
