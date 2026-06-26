@@ -396,7 +396,6 @@ Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 
 - Everything under `access`
 - Everything under `relationship`
-- Everything under `firewall`
 - `hooks.deploy` and `hooks.post_deploy`
 - Everything under `crons`
 - Everything under  `web`, except `web.mounts`

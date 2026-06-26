@@ -107,14 +107,14 @@ Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/singl
 set the values for `reserved_memory` and `request_memory`.
 
 For example,
-if you estimate your [optimal request memory](#1-estimate-the-optimal-request-memory-for-your-app) to be 110 MB
+if you estimate your [optimal request memory](#1-estimate-the-optimal-request-memory-for-your-app) to be 35 MB
 and your reserved memory to be 80 MB,
 you can use:
 
 ```yaml {configFile="app"}
 runtime:
   sizing_hints:
-    request_memory: 110
+    request_memory: 35 # LESS memory per request == MORE workers.
     reserved_memory: 80
 ```
 Note that the minimum value for the `request_memory` key is 10 MB

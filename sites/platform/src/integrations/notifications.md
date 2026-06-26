@@ -2,19 +2,14 @@
 title: "Health notifications"
 weight: -1
 description: |
-  {{% vendor/name %}} can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
+  {{% vendor/name %}} monitors disk space and inode usage. Learn how health notifications are handled on Grid and Dedicated Gen 2 environments.
 ---
 
 {{% description %}}
 
-To add or modify an integration for a project, you need to be a [project admin](/administration/users.md#project-roles).
+## Notification types
 
-## Default low-disk email notifications
-
-When you create a new project,
-{{% vendor/name %}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](/administration/users.md#project-roles).
-
-## Available notifications
+Notifications include the steps to take to resolve the issue.
 
 ### Low-disk warning
 
@@ -24,15 +19,31 @@ When you create a new project,
 * When available disk space drops below 10% or 2&nbsp;GB, whichever is smaller, a critical notification is generated.
 * When available disk space returns above 20% or 4&nbsp;GB, whichever is smaller, an all-clear notification is generated.
 
+### Low-inode warning
+
+Inodes are filesystem metadata entries that store information about files and directories.
+Each file, directory, or symlink consumes one inode, regardless of its size. Running out of inodes prevents
+the creation of new files even when disk space is available.
+
+{{% vendor/name %}} monitors inode usage on all applications and services in your cluster.
+
+* When available inodes drop below 20% of the total available, a warning notification is generated.
+* When available inodes drop below 10% of the total available, a critical notification is generated.
+* When available inodes return above 20% of the total available, an all-clear notification is generated.
+
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
-## Configuring notifications
+## Health notifications on Grid {#health-notifications-on-grid}
 
-Health notifications can be set up via the [{{% vendor/name %}} CLI](/administration/cli/_index.md), through a number of different channels.
+By default, {{% vendor/name %}} emails low-disk and low-inode notifications to [project admins](/administration/users.md#project-roles).
+
+As a project admin, you can also:   
+- Configure the sending of health notifications through other channels (for example, via Slack or PagerDuty) as described in this topic.
+- Use the CLI to [add](/administration/cli/reference.html#integrationadd) and [manage](/administration/cli/reference.html#integrationupdate) health notifications. 
 
 ### Email notifications
 
-A notification can trigger an email to be sent, from an address of your choosing to one or more addresses of your choosing.
+A notification can trigger an email to be sent from an address of your choosing to one or more addresses of your choosing.
 
 You can view an email notification by running `{{% vendor/cli %}} integration:get`.
 
@@ -145,10 +156,24 @@ Now register a `health.pagerduty` integration as follows:
 Any notification will now trigger an alert in PagerDuty.
 
 
-## Validate the integration
+### Validate the integration
 
-You can then verify that your integration is functioning properly [using the CLI](/integrations/overview.md#validate-integrations) command
+You can then verify that your integration is functioning properly using the [`integration:validate`](/administration/cli/reference.md#integrationvalidate) command
 
 ```bash
 {{% vendor/cli %}} integration:validate
 ```
+
+## Health notifications on Dedicated Gen 2  
+
+For Dedicated Generation 2 projects, the response to health notifications depends on the environment type.
+
+| Environment | Response |
+|-------------|----------|
+| Production (any cloud) | {{% vendor/company_name %}} Support and Operations teams are alerted and a support ticket is automatically opened on your behalf. |
+| Staging  | No alerts are sent and no action is taken by {{% vendor/company_name %}}. You can monitor your disk usage via the [Console](/administration/web/_index.md) or [CLI](/administration/cli/_index.md). |
+| Development/preview | DG2 development/preview environments run on the Grid - notifications work as described in the [Health notifications on Grid](#health-notifications-on-grid) section of this topic. |
+
+## Related topics
+- [Dedicated Gen 2 Overview](dedicated-environments/dedicated-gen-2/overview.md)
+- [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md)

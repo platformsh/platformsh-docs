@@ -124,14 +124,15 @@ set up a new service with a different name.
 and it cannot be amended.
 It is defined by comparing the following values and keeping the lower of the two:
 
-- Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
-- The amount of memory allocated to the service container
+- Disk size / 2
+- Container memory x 0.75
 
-For instance, if your Redis container has 3072 MB of disk space and 1024 MB of memory,
-only 512 MB of RAM are actually available to the service (3072/6 = 512).
+For example:
 
-But if your Redis container has 3072 MB of disk space and 256 MB of memory,
-only 256 MB of RAM are actually available to the service (as per the container limit).
+- 1024 MB disk, 1024 MB memory → `maxmemory` = 512 MB
+  _(disk/2 = 512, lower than 1024 × 0.75 = 768)_
+- 6144 MB disk, 1024 MB memory → `maxmemory` = 768 MB
+  _(memory × 0.75 = 768, lower than 6144/2 = 3072)_
 
 {{% /note %}}
 

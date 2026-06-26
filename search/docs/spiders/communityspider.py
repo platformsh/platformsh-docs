@@ -7,15 +7,15 @@ from pprint import pprint
 import hashlib
 import re
 
-# Main scrapy settings for community.platform.sh. The below functions match the HTML grabbed from the API documentation
+# Main scrapy settings for community.upsun.com. The below functions match the HTML grabbed from the API documentation
 # to our final Meilisearch index. 
 
 class CommunitySpider(scrapy.Spider):
     # Relative priority of search results compared to those from the documentation. 
     rank = 3
     name = 'community'
-    allowed_domains = ['community.platform.sh']
-    start_urls = ['https://community.platform.sh/']
+    allowed_domains = ['community.upsun.com']
+    start_urls = ['https://community.upsun.com/']
 
     seen = set()
 

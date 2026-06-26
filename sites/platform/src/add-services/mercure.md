@@ -86,14 +86,62 @@ To define the service, use the `mercure` type:
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
+#### Configuration options {#configuration-options}
+
+You can pass additional options under the `configuration` key:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+  type: mercure:0
+  disk: 256
+  configuration:
+    anonymous: true
+    cors_origins:
+      - "https://your-frontend.example.com"
+```
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `anonymous` | boolean | `false` | Allows unauthenticated subscribers to connect without a JWT token. |
+| `cors_origins` | list of strings | — | Domains allowed to make cross-origin requests to the Mercure hub. Requires environment-specific values in your YAML — see the [routing step warning](#2-define-the-route) before using. |
+
 ### 2. Define the route
 
-Include an entry in your `.platform/routes.yaml` file as shown below, replacing <APP_NAME> with the name of your Mercure app:
+Include an entry in your `.platform/routes.yaml` file as shown below, replacing <SERVICE_NAME> with the name of your Mercure service.
+
+{{< note theme="warning" >}}
+
+By default, the {{< vendor/name >}} Mercure image doesn't expose CORS headers.
+If your Mercure hub will be accessed from a browser (e.g. subscribing to Server-Sent Events via JavaScript),
+you **must** route it as a sub-path of your main domain rather than on a dedicated subdomain.
+A subdomain like `mercure.{default}` is treated as a different origin by browsers,
+and without CORS headers, requests will be blocked.
+
+If you can't use a sub-path route, you can configure [`cors_origins`](#configuration-options) as a last resort.
+Be aware that hardcoding domain names directly in your YAML config is an anti-pattern on {{< vendor/name >}}:
+those values are environment-specific (production, staging, preview each have different domains),
+which means your config file no longer describes a single consistent state.
+
+{{< /note >}}
+
+Use a **sub-path route** so the hub shares the same origin as your frontend (recommended for browser usage):
+
+```yaml {configFile="routes"}
+"https://{default}/":
+   type: upstream
+   upstream: "<APP_NAME>:http"
+"https://{default}/.well-known/mercure":
+   type: upstream
+   upstream: "<SERVICE_NAME>:mercure"
+```
+
+Use a **subdomain route** if the Mercure hub is only consumed server-side (no browser clients — CORS headers aren't required):
 
 ```yaml {configFile="routes"}
 "https://mercure.{default}/":
    type: upstream
-   upstream: "<APP_NAME>:mercure"
+   upstream: "<SERVICE_NAME>:mercure"
 ```
 
 ### 3. Define the relationship 
@@ -174,7 +222,7 @@ mercure:
 ```yaml {configFile="routes"}
 "https://mercure.{default}/":
    type: upstream
-   upstream: "<APP_NAME>:mercure"
+   upstream: "<SERVICE_NAME>:mercure"
 ```
 
 #### [App configuration](/create-apps/_index.md)

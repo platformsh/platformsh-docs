@@ -27,21 +27,27 @@ To fix the error, do one of the following:
 * Increase your plan's storage limits.
   This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
 
-## Low disk space
+## Low disk space or inode exhaustion
 
-If you have set up [health notifications](/integrations/notifications.md),
-you may receive a notification of low disk space.
+[Health notifications](/integrations/notifications.md) can alert you to low disk space,
+inode exhaustion (a file count limit), or both.
 
-To solve this issue:
+To help identify the cause, you can:
 
 * [Check mount usage](/create-apps/troubleshoot-mounts.md#disk-space-issues)
 * [Check your database disk space](#check-your-database-disk-space) (if applicable)
-* [Increase the available disk space](#increase-available-disk-space) (if necessary)
+
+Deleting unnecessary files such as temporary files, logs, or build artifacts can free up disk space and inodes.
+If you know their origin, consider setting up automated cleanup to prevent recurrence.
+
+If cleanup measures are insufficient, you can [increase the allocated disk space](#increase-allocated-disk-space).
 
 ### Check your database disk space
 
-To get approximate disk usage for a database, run the command `{{% vendor/cli %}} db:size`.
-This returns an estimate such as the following:
+If you receive a low disk space notification, the database might be a contributing factor.
+
+To get an estimate of current database disk usage, run `{{% vendor/cli %}} db:size`.
+The estimate looks something like this:
 
 ```text
 +----------------+-----------------+--------+
@@ -51,12 +57,11 @@ This returns an estimate such as the following:
 +----------------+-----------------+--------+
 ```
 
-Keep in mind that this estimate doesn't represent the exact real size on disk.
-But if you notice that the usage percentage is high, you may need to increase the available space.
+Try cleaning up unused data before [increasing the allocated disk space](#increase-allocated-disk-space).
 
-### Increase available disk space
+### Increase allocated disk space
 
-If you find that your application or service is running out of disk space,
+If you find that your application or service is running out of disk space, available inodes, or both,
 you can increase the available storage.
 
 To increase the space available for applications and services,
@@ -74,12 +79,13 @@ During the `build` hook, you may see the following error:
 W: [Errno 28] No space left on device: ...
 ```
 
-This is caused by the amount of disk provided to the build container before deployment.
-Application images are restricted to 8&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
+This is caused by the disk limit on the build container — a temporary environment used to compile
+your app before deployment. The resulting image is restricted to 8&nbsp;GB, no matter how much
+writable disk has been allocated for the deployed application.
 
 Some build tools (yarn/npm) store cache for different versions of their modules.
 This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
-If for some reason your application absolutely requires more than 8&nbsp;GB during build,
+If your application requires more than 8&nbsp;GB during the build phase,
 you can open a [support ticket](/learn/overview/get-support.md) to have this limit increased.

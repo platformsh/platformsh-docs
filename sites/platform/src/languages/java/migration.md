@@ -104,14 +104,14 @@ You can load balance to some or [all applications in the project cluster](https:
 ## Access to managed services
 
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
-However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/image-properties/firewall.md).
+However, you can use an external database or other services during a transition process. To maintain security, you must ensure that your external service (e.g., your external database or a third-party API) is configured to accept connections from Upsun’s outbound IP addresses.
 
-When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
+When applications need to access a _managed_ service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.
 
 To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.
 The way to do so varies with the application.
-The most common mechanisms are listed below.
+The most common mechanisms for connecting a managed service are listed below.
 
 ### Overwrite
 

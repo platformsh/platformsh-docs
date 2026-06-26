@@ -19,6 +19,10 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="kafka" status="supported" environment="grid" >}}
 
+{{% deprecated-versions %}}
+
+{{< image-versions image="kafka" status="deprecated" environment="grid" >}}
+
 ## Relationship reference
 
 For each service [defined via a relationship](#usage-example) to your application,
@@ -218,6 +222,24 @@ services:
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 {{< codetabs >}}
+
+<--->
+
++++
+title=Java
+file=static/files/fetch/examples/java/kafka
+highlight=java
++++
+
+<--->
+
++++
+title=PHP
+file=static/files/fetch/examples/php/kafka
+highlight=php
++++
+
+<--->
 
 +++
 title=Python

@@ -31,6 +31,30 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
+
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="kafka" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="kafka" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+
+## Relationship reference
+
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
@@ -190,6 +214,14 @@ To use the configured service in your app, add a configuration file similar to t
 title=Java
 file=static/files/fetch/examples/java/kafka
 highlight=java
++++
+
+<--->
+
++++
+title=PHP
+file=static/files/fetch/examples/php/kafka
+highlight=php
 +++
 
 <--->
