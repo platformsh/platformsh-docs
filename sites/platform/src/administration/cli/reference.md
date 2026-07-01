@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI (Platform.sh compatibility) 5.10.4
+# Upsun CLI (Platform.sh compatibility) 5.10.7
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -293,11 +293,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash | sudo tee /etc/bash_completion.d/platform.phar
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.7/platform.phar completion bash | sudo tee /etc/bash_completion.d/platform.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash > completion.sh
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.7/platform.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -310,7 +310,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash)"
+    eval "$(/home/runner/.cache/platformsh-cli-tmp/legacy-5.10.7/platform.phar completion bash)"
 
 #### Arguments
 
