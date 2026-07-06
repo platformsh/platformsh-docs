@@ -45,7 +45,7 @@ jobs:
             sleep "${sleep_seconds}"
           done
 
-          jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' "${regions_response}" > ./shared/data/regions_location.json
+          jq '[ .regions[] | select(.available and .private == false and .provider.name != "none") |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' "${regions_response}" > ./shared/data/regions_location.json
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
