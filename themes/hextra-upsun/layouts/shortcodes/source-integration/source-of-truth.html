@@ -1,0 +1,29 @@
+{{ $source := .Get "source" }}
+<p>When you add an integration, your {{ $source }} repository is considered to be the source of truth for the project.
+Your {{ .Site.Params.vendor.name }} project is only a mirror of that repository and you can only push commits to {{ $source }}.
+
+<p>To clone your code, follow these steps:</p>
+
+{{ $Inner := `
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">{{< vendor/cli >}} get {{< variable PROJECT_ID >}}</code></pre></div>
+
+<--->
++++
+title=Using Git
++++
+
+1. In the Console, open the project you want to clone.
+2. Click **Code**.
+3. Click **Git**.
+4. Run the command you find using Git.
+`}}
+{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
+
+<p>When you do this, you're cloning from your integrated {{ $source }} repository,
+if you have the <a href="/integrations/source/troubleshoot.html">appropriate access to do so</a>.</p>

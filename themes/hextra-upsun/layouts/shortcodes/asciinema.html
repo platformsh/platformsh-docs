@@ -1,0 +1,15 @@
+<!-- Asciinema Player -->
+
+{{ if not (.Page.Scratch.Get "asciinema") }}
+
+<!-- Include asciinema only first time -->
+<script src="{{ printf "/asciinema/asciinema-player.min.js?version=%s" $.Site.Params.version }}"></script>
+
+{{ .Page.Scratch.Set "asciinema" true }}
+{{ end }}
+
+<div>
+  {{- with .Get "src" -}}
+    <asciinema-player class="mx-auto w-[70%]" src="{{ . | relURL}}" preload=1></asciinema-player>
+  {{end}}
+</div>

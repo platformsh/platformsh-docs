@@ -1,0 +1,12 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
+<script>
+  window.addEventListener("load", () => {
+    quicklink.listen();
+  });
+</script>
+
+{{ $zdV := site.Params.services.site.zd }}
+{{ $gV := site.Params.services.site.google }}
+
+<meta name='zd-site-verification' content='{{ $zdV }}' />
+<meta name="google-site-verification" content="{{ $gV }}" />
