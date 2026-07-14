@@ -11,11 +11,20 @@ You can deploy Python apps on {{% vendor/name %}} using a server or a project su
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="python" status="supported" environment="grid" >}}
+- 3.13: `Active`. Will deprecate on `2026-10-01`
+- 3.12: `Deprecated`. Will retire on `2028-10-31`
+- 3.11: `Deprecated`. Will retire on `2027-10-31`
+- 3.10: `Deprecated`. Will retire on `2026-10-31`
+- 3.9: `Retired`. Could be decomissioned from `2026-04-30`
+- 3.8: `To be decommissioned`
+
+<!-- {{< image-versions image="python" status="supported" environment="grid" >}} -->
 
 ### Specify the language
 

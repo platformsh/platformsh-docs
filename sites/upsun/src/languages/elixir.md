@@ -9,12 +9,19 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="elixir" status="supported" environment="grid" >}}
+- 1.18: `Active`.
+- 1.15: `Deprecated`.
+- 1.14: `Retired`.
+
+
+<!-- {{< image-versions image="elixir" status="supported" environment="grid" >}} -->
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
