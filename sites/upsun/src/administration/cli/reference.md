@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.10.4
+# Upsun CLI 5.10.8
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -296,11 +296,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
+    /home/runner/.cache/upsun-tmp/legacy-5.10.8/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash > completion.sh
+    /home/runner/.cache/upsun-tmp/legacy-5.10.8/upsun.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -313,7 +313,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash)"
+    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.10.8/upsun.phar completion bash)"
 
 #### Arguments
 
@@ -5090,7 +5090,7 @@ upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--type TYP
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, disk*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, disk*, object_storage*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -5102,7 +5102,7 @@ Set the resources of apps and services on an environment
 ### Usage
 
 ```
-upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [-f|--force] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [--object-storage OBJECT-STORAGE] [-f|--force] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 Configure the resources allocated to apps, workers and services on an environment.
@@ -5125,6 +5125,9 @@ You can also configure autoscaling by running upsun autoscaling:set
 
 * `--disk` (`-D`) (expects a value)
   Set the disk size (in MB) of apps or services. Items are in the format name:value as above. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
+
+* `--object-storage` (expects a value)
+  Set the object storage size (in MB) of apps. Items are in the format name:value as above. Only applicable to apps; a value of 0 disables the bucket.
 
 * `--force` (`-f`)
   Try to run the update, even if it might exceed your limits
@@ -5159,6 +5162,11 @@ upsun resources:set --count backend:3
 * Give 512 MB disk to the "backend" app and 2 GB to the "database" service:
 ```
 upsun resources:set --disk backend:512,database:2048
+```
+
+* Give 524288 MB (512 GB) of object storage to the "backend" app:
+```
+upsun resources:set --object-storage backend:524288
 ```
 
 * Set the same profile size for the "backend" and "frontend" apps using a wildcard:
