@@ -10,7 +10,7 @@ weight: 30
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} [Continuous Profiler](/increase-observability/application-metrics/cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly from the Console under the `Profiling` tab of your environments.
+It is available in the Console under **Apps and Services → your app → Profiling**.
 
 The GO continuous profiling is currently made across 6 dimensions:
 - **Allocations**: Number of objects allocated
