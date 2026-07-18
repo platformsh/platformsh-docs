@@ -45,10 +45,8 @@ jobs:
                   prNumber = matchingPr.number;
                   console.log(`matched PR #${prNumber} by head branch: ${headBranch}`)
                 } else {
-                  // Fallback to first PR if no branch match (shouldn't happen)
-                  // @todo - after testing let's remove this.
-                  prNumber = context.payload.workflow_run.pull_requests[0].number;
-                  console.log(`No branch match found, using first PR #${prNumber}`)
+                  console.log(`No PR matched head branch ${headBranch}; skipping this run to avoid acting on the wrong PR.`)
+                  return null;
                 }
               } else {
                 console.log('No pull_requests in workflow_run payload, attempting commit lookup')
@@ -111,19 +109,26 @@ jobs:
             const prData = JSON.parse('${{ steps.pr.outputs.result }}');
             const headSha = prData.head_sha;
 
-            // Get combined status for the commit
-            const { data: status } = await github.rest.repos.getCombinedStatusForRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: headSha
-            });
+            let status;
+            let checkRuns;
+            try {
+              // Get combined status for the commit
+              ({ data: status } = await github.rest.repos.getCombinedStatusForRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: headSha
+              }));
 
-            // Get check runs for the commit
-            const { data: checkRuns } = await github.rest.checks.listForRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: headSha
-            });
+              // Get check runs for the commit
+              ({ data: checkRuns } = await github.rest.checks.listForRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: headSha
+              }));
+            } catch (error) {
+              core.warning(`Unable to read checks for ${headSha}: ${error.message}`);
+              return false;
+            }
 
             console.log(`Combined status state: ${status.state}`);
             console.log(`Total statuses: ${status.statuses.length}`);
