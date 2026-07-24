@@ -108,7 +108,7 @@ jobs:
           BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           # For PRs from non-forked repos
-          if [ ${{ github.event.pull_request.head.repo.id }} == ${{ vars.REPO_ID }} ]; then
+          if [ "1" == "2" ]; then
             branch_name="${{ env.BRANCH_NAME }}"
 
           # For PRs from forks
