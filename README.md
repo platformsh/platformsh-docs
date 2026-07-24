@@ -3,7 +3,7 @@
 This repository holds the public user documentation for the Upsun Fixed (formerly Platform.sh) and Upsun Flex (formerly Upsun) product offerings.
 
 The documentation sites ([fixed.docs.upsun.com](https://fixed.docs.upsun.com/) and [docs.upsun.com](https://docs.upsun.com/) are themselves hosted on Upsun
-and built using the powerful Upsun build-and-deploy system.
+and built using the powerful Upsun build-and-deploy system. t
 
 Every pull request (PR) is automatically built on Upsun
 and provided with a link to a fully built environment just for that request.
