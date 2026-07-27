@@ -36,13 +36,13 @@ The total resources allocated across all apps and services cannnot exceed what's
 
 ### Container profiles: CPU and memory
 
-By default, {{% vendor/name %}} allocates a container profile to each app and service depending on:
+{{% vendor/name %}} allocates a container profile to each app and service depending on:
 
 - The range of resources it’s expected to need
 - Your [plan size](/administration/pricing/_index.md), as resources are distributed across containers.
   Ideally you want to give databases the biggest part of your memory, and apps the biggest part of your CPU.
 
-The container profile and the [size of the container](#sizes) determine
+The container profile and the [container size](#sizes) determine
 how much CPU and memory (in [MB](/glossary/_index.md#mb)) the container gets.
 
 There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``HIGH_MEMORY``.

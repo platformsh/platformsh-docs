@@ -251,9 +251,9 @@ To discover which PHP extensions and Python packages are available for these run
 
 ## Resources (CPU, memory, disk space) {#resources}
 
-By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
+{{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
 
-The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.
+The container _profile_ defines and enforces a specific CPU-to-memory ratio. For an app or service in a composable image, the container profile is always `HIGH_CPU` and can't be changed.
 
 To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified.
 
