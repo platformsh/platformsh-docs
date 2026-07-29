@@ -175,11 +175,11 @@ URLs in [preview environments](/glossary/_index.md#preview-environment) (develop
 
 | Route pattern | Resolves to |
 | --- | --- |
-| `https://{default}/blog` | `https://feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/blog` |
-| `https://example.com/blog` | `https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/blog` |
-| `https://www.{default}/` | `https://www.feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/` |
+| `https://{default}/blog` | `https://feature-a1bcdef-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog` |
+| `https://example.com/blog` | `https://example.com.feature-a1bcdef-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog` |
+| `https://www.{default}/` | `https://www.feature-a1bcdef-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/` |
 
-Only `{default}` (or `{all}`) is replaced with the generated per-environment domain — any literal text around it, such as `www.` or a custom domain, is preserved as-is in the result.
+For the `{default}` placeholder, it's replaced entirely by the generated per-environment domain. For an absolute URL, the literal domain isn't replaced — it's prepended to the generated per-environment domain instead.
 
 ### `{all}`
 
