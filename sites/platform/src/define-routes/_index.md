@@ -171,52 +171,15 @@ In both cases, the URLs for your Production environment are the same.
 
 #### URLs in preview environments
 
-URLs in [preview environments](/glossary/_index.md#preview-environment) (development and staging types) follow a different pattern.
+URLs in [preview environments](/glossary/_index.md#preview-environment) (development and staging types) follow a different pattern depending on whether you use a placeholder or an absolute URL. For example, for an environment named `feature`:
 
-No matter how you have set your default domain (even if you don't have one),
-using either the absolute URL or the `{default}` placeholder results in the same URL.
+| Route pattern | Resolves to |
+| --- | --- |
+| `https://{default}/blog` | `https://feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/blog` |
+| `https://example.com/blog` | `https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/blog` |
+| `https://www.{default}/` | `https://www.feature-t6dnbai-abcdef1234567.us-2.{{config_vendor_hostname}}/` |
 
-In any case, you get the same URL for an environment named `feature`:
-
-```txt
-https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
-```
-
-Note that the `example.com` prefix isn't part of the generated URL.
-
-{{< note title="Previous behavior" >}}
-
-Before April 7, 2022, URLs in preview environments differed depending on whether or not you used the `{default}` placeholder.
-
-If you used the `{default}` placeholder:
-
-```yaml {configFile="routes"}
-"https://{default}/blog":
-  type: upstream
-  upstream: "myapp:http"
-```
-
-The generated URL for the `feature` environment was:
-
-```txt
-https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
-```
-
-If you used an absolute URL:
-
-```yaml {configFile="routes"}
-"https://example.com/blog":
-  type: upstream
-  upstream: "myapp:http"
-```
-
-The generated URL for the `feature` environment was:
-
-```txt
-https://example.com.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
-```
-
-{{< /note >}}
+Only `{default}` (or `{all}`) is replaced with the generated per-environment domain — any literal text around it, such as `www.` or a custom domain, is preserved as-is in the result.
 
 ### `{all}`
 
