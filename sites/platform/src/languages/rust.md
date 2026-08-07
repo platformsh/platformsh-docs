@@ -1,10 +1,6 @@
 ---
 title: "Rust"
-description:
-banner:
-  title: Beta Feature
-  body: The Rust runtime is currently available in Beta.
-        To share your feedback so we can improve it, add a comment to the [Rust feature card](https://devcenter.upsun.com/posts/releases/ ).
+description: "{{% vendor/name %}} supports building and deploying applications written in Rust, using Cargo to manage dependencies."
 ---
 
 {{% vendor/name %}} supports building and deploying applications written in Rust.
