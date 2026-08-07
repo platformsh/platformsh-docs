@@ -75,7 +75,21 @@ Learn more about [how DKIM works](https://www.twilio.com/docs/sendgrid/glossary/
 
 To have DKIM enabled for your domain:
 
-1. Open a [support ticket](/learn/overview/get-support.md) with the domain where you want DKIM.
+1. Open a [support ticket](/learn/overview/get-support.md) and ask:
+
+```
+subject: DKIM record
+
+Hello,
+
+I'd like to request DKIM records to be generated for project <PROJECTID>. E-mails are sent from the address <noreply@media.yourdomain.com>.
+
+Kind regards
+```
+
+*Note*: the DKIM domain might not be the same as your site domain (but it can be). DKIM needs to be generated on the *sender* email address domain. e.g.: noreply@media.yourdomain.com (not yourdomain.com)
+Please ensure you have sent at least 1 email before requesting DKIM.
+
 2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
 
 Checks for the expected DNS records run every 15 minutes before validation.
