@@ -10,7 +10,7 @@ and provided with a link to a fully built environment just for that request.
 Each PR against the default branch of this repository has an Upsun check.
 Click **Details** on an open PR to see a fully functional site based on the changes in the PR.
 (You can have the same functionality for your repository.)
-
+t
 ## Tools
 
 The documentation site is build using [Hugo](https://gohugo.io), a Go static site generator.
