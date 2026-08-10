@@ -14,7 +14,7 @@ Click **Details** on an open PR to see a fully functional site based on the chan
 ## Tools
 
 The documentation site is build using [Hugo](https://gohugo.io), a Go static site generator.
-The build script is rerun on every deploy to produce a fresh static site instance.
+The build script is rerun on every deploy to produce a fresh static site instancte.
 
 The cross-site search in the documentation is built as a separate Upsun app
 from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
