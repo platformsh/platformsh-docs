@@ -17,7 +17,7 @@ The documentation site is build using [Hugo](https://gohugo.io), a Go static sit
 The build script is rerun on every deploy to produce a fresh static site instance.
 
 The cross-site search in the documentation is built as a separate Upsun app
-from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
+from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).t
 
 ## Contributing
 
