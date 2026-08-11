@@ -14,20 +14,10 @@
     "runtime": false,
     "type": "chrome-headless",
     "versions": {
-      "deprecated": [
-        "113",
-        "95",
-        "91",
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
-      ],
       "supported": [
         "120"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -55,9 +45,11 @@
       "platformsh"
     ],
     "versions": {
-      "deprecated": [],
       "supported": [
-        "25.8",
+        "26.3",
+        "25.8"
+      ],
+      "deprecated": [
         "25.3",
         "24.3",
         "23.8"
@@ -98,19 +90,11 @@
     "runtime": true,
     "type": "dotnet",
     "versions": {
-      "deprecated": [
-        "7.0",
-        "6.0",
-        "5.0",
-        "3.1",
-        "2.2",
-        "2.1",
-        "2.0"
-      ],
       "supported": [
         "10.0",
         "8.0"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "elasticsearch": {
@@ -128,18 +112,10 @@
     "runtime": false,
     "type": "elasticsearch",
     "versions": {
-      "deprecated": [
-        "7.9",
-        "7.7",
-        "7.6",
-        "7.5",
-        "7.2",
-        "6.8",
-        "6.5"
-      ],
       "supported": [
         "7.10"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -191,12 +167,11 @@
     "runtime": false,
     "type": "elasticsearch-enterprise",
     "versions": {
-      "deprecated": [],
       "supported": [
-        "8.19",
-        "8.5",
-        "7.17"
-      ]
+        "9.3",
+        "8.19"
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "deprecated": [],
@@ -242,17 +217,12 @@
     "runtime": true,
     "type": "elixir",
     "versions": {
-      "deprecated": [
-        "1.14",
-        "1.13",
-        "1.12",
-        "1.11",
-        "1.10",
-        "1.9"
-      ],
       "supported": [
-        "1.18",
-        "1.15"
+        "1.20"
+      ],
+      "deprecated": [
+        "1.19",
+        "1.18"
       ]
     }
   },
@@ -291,26 +261,11 @@
     "runtime": true,
     "type": "golang",
     "versions": {
-      "deprecated": [
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20",
-        "1.19",
-        "1.18",
-        "1.17",
-        "1.16",
-        "1.15",
-        "1.14",
-        "1.13",
-        "1.12",
-        "1.11",
-        "1.10"
-      ],
       "supported": [
-        "1.25",
-        "1.24"
-      ]
+        "1.26",
+        "1.25"
+      ],
+      "deprecated": []
     }
   },
   "influxdb": {
@@ -328,19 +283,12 @@
     "runtime": false,
     "type": "influxdb",
     "versions": {
-      "deprecated": [
-        "2.2",
-        "2.1",
-        "2.0",
-        "1.8",
-        "1.7",
-        "1.3",
-        "1.2"
-      ],
       "supported": [
+        "3",
         "2.7",
         "2.3"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "gotenberg": {
@@ -358,10 +306,10 @@
     "runtime": false,
     "type": "gotenberg",
     "versions": {
-      "deprecated": [],
       "supported": [
         "8"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "java": {
@@ -388,19 +336,12 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [
-        "19",
-        "18",
-        "14",
-        "13",
-        "12",
-        "11",
-        "8"
-      ],
       "supported": [
+        "25",
         "21",
         "17"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -431,21 +372,13 @@
     "runtime": false,
     "type": "kafka",
     "versions": {
-      "deprecated": [
-        "3.6",
-        "3.4",
-        "3.2",
-        "2.7",
-        "2.6",
-        "2.5",
-        "2.4",
-        "2.3",
-        "2.2",
-        "2.1"
-      ],
       "supported": [
-        "3.7"
-      ]
+        "4.3",
+        "4.1",
+        "3.7",
+        "3.6"
+      ],
+      "deprecated": []
     }
   },
   "mariadb": {
@@ -463,23 +396,12 @@
     "runtime": false,
     "type": "mariadb",
     "versions": {
-      "deprecated": [
-        "11.2",
-        "11.0",
-        "10.5",
-        "10.4",
-        "10.3",
-        "10.2",
-        "10.1",
-        "10.0",
-        "5.5"
-      ],
       "supported": [
+        "12.3",
         "11.8",
-        "11.4",
-        "10.11",
-        "10.6"
-      ]
+        "11.4"
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -526,23 +448,12 @@
     "runtime": false,
     "type": "mysql",
     "versions": {
-      "deprecated": [
-        "11.2",
-        "11.0",
-        "10.5",
-        "10.4",
-        "10.3",
-        "10.2",
-        "10.1",
-        "10.0",
-        "5.5"
-      ],
       "supported": [
+        "12.3",
         "11.8",
-        "11.4",
-        "10.11",
-        "10.6"
-      ]
+        "11.4"
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -590,13 +501,10 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [
-        "1.5",
-        "1.4"
-      ],
       "supported": [
         "1.6"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -620,10 +528,10 @@
     "runtime": false,
     "type": "mercure",
     "versions": {
-      "deprecated": [],
       "supported": [
         "0"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "mongodb": {
@@ -641,15 +549,10 @@
     "runtime": false,
     "type": "mongodb",
     "versions": {
-      "deprecated": [
-        "3.6",
-        "3.4",
-        "3.2",
-        "3.0"
-      ],
       "supported": [
         "4.0"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "mongodb-enterprise": {
@@ -668,16 +571,10 @@
     "type": "mongodb-enterprise",
     "premium": true,
     "versions": {
-      "deprecated": [
-        "6.0",
-        "5.0",
-        "4.4",
-        "4.2",
-        "4.0"
-      ],
       "supported": [
         "7.0"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -707,12 +604,10 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [
-        "2.0"
-      ],
       "supported": [
         "1.0"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -741,27 +636,12 @@
     "runtime": true,
     "type": "nodejs",
     "versions": {
-      "deprecated": [
-        "18",
-        "16",
-        "8.9",
-        "6.10",
-        "6.9",
-        "6.8",
-        "6.6",
-        "6.3",
-        "6.2",
-        "4.7",
-        "4.6",
-        "4.5",
-        "4.4",
-        "4.3",
-        "4.2"
-      ],
       "supported": [
-        "24",
-        "22",
-        "20"
+        "26",
+        "24"
+      ],
+      "deprecated": [
+        "22"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -795,12 +675,10 @@
     "runtime": false,
     "type": "opensearch",
     "versions": {
-      "deprecated": [
-        "1.2",
-        "1.1"
-      ],
       "supported": [
-        "3",
+        "3"
+      ],
+      "deprecated": [
         "2"
       ]
     },
@@ -839,13 +717,10 @@
     "runtime": false,
     "type": "oracle-mysql",
     "versions": {
-      "deprecated": [
-        "5.7"
-      ],
       "supported": [
-        "8.4",
-        "8.0"
-      ]
+        "8.4"
+      ],
+      "deprecated": []
     }
   },
   "php": {
@@ -901,21 +776,11 @@
       ]
     },
     "versions": {
-      "deprecated": [
-        "8.1",
-        "8.0",
-        "7.4",
-        "7.3",
-        "7.2",
-        "7.1",
-        "7.0",
-        "5.6",
-        "5.5",
-        "5.4"
-      ],
       "supported": [
         "8.5",
-        "8.4",
+        "8.4"
+      ],
+      "deprecated": [
         "8.3",
         "8.2"
       ]
@@ -936,22 +801,14 @@
     "runtime": false,
     "type": "postgresql",
     "versions": {
-      "deprecated": [
-        "13",
-        "12",
-        "11",
-        "10",
-        "9.6",
-        "9.5",
-        "9.3"
-      ],
       "supported": [
         "18",
         "17",
         "16",
         "15",
         "14"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "deprecated": [
@@ -1009,17 +866,11 @@
     "runtime": true,
     "type": "python",
     "versions": {
-      "deprecated": [
-        "3.9",
-        "3.8",
-        "3.7",
-        "3.6",
-        "3.5",
-        "2.7"
-      ],
       "supported": [
         "3.14",
-        "3.13",
+        "3.13"
+      ],
+      "deprecated": [
         "3.12",
         "3.11",
         "3.10"
@@ -1041,21 +892,10 @@
     "runtime": false,
     "type": "rabbitmq",
     "versions": {
-      "deprecated": [
-        "4.0",
-        "3.13",
-        "3.12",
-        "3.11",
-        "3.10",
-        "3.9",
-        "3.8",
-        "3.7",
-        "3.6",
-        "3.5"
-      ],
       "supported": [
-        "4.1"
-      ]
+        "4.3"
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -1099,15 +939,13 @@
     "runtime": false,
     "type": "redis",
     "versions": {
-      "deprecated": [
-        "7.0",
-        "6.2",
-        "6.0",
-        "5.0"
-      ],
       "supported": [
+        "8.8"
+      ],
+      "deprecated": [
         "8.0",
-        "7.2"
+        "7.2",
+        "6.2"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1182,21 +1020,12 @@
     "runtime": true,
     "type": "ruby",
     "versions": {
-      "deprecated": [
-        "3.1",
-        "3.0",
-        "2.7",
-        "2.6",
-        "2.5",
-        "2.4",
-        "2.3"
-      ],
       "supported": [
         "4.0",
         "3.4",
-        "3.3",
-        "3.2"
-      ]
+        "3.3"
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
@@ -1241,10 +1070,10 @@
     "runtime": true,
     "type": "rust",
     "versions": {
-      "deprecated": [],
       "supported": [
         "1"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "solr": {
@@ -1262,24 +1091,15 @@
     "runtime": false,
     "type": "solr",
     "versions": {
-      "deprecated": [
-        "9.0",
-        "8.11",
-        "8.0",
-        "7.7",
-        "7.6",
-        "6.6",
-        "6.3",
-        "4.10",
-        "3.6"
-      ],
       "supported": [
+        "10.0",
         "9.9",
         "9.6",
         "9.4",
         "9.2",
         "9.1"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -1330,11 +1150,12 @@
     "runtime": false,
     "type": "valkey",
     "versions": {
-      "deprecated": [],
       "supported": [
+        "9.0",
         "8.1",
         "8.0"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -1361,15 +1182,11 @@
     "runtime": false,
     "type": "varnish",
     "versions": {
-      "deprecated": [
-        "7.3",
-        "7.2",
-        "7.1"
-      ],
       "supported": [
-        "7.6",
+        "9.0",
         "6.0"
-      ]
+      ],
+      "deprecated": []
     }
   },
   "vault-kms": {
@@ -1388,10 +1205,10 @@
     "runtime": false,
     "type": "vault-kms",
     "versions": {
-      "deprecated": [],
       "supported": [
         "1.12"
-      ]
+      ],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -1408,44 +1225,25 @@
       ]
     }
   },
-  "mariadb-replica": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "11.4"
-      ]
-    },
+  "activemq-artemis": {
     "description": "",
     "disk": true,
-    "endpoint": "",
-    "name": "mariadb-replica",
-    "repo_name": "mariadb-replica",
-    "runtime": false,
-    "type": "mariadb-replica",
     "docs": {
-      "relationship_name": "mariadb-replica",
-      "service_name": "mariadb-replica",
-      "url": "/add-services/mysql/mysql-readonly-replication.html"
-    }
-  },
-  "postgresql-replica": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "15"
-      ]
+      "relationship_name": "activemq-artemis",
+      "service_name": "activemq-artemis",
+      "url": "/add-services/activemq-artemis.html"
     },
-    "description": "",
-    "disk": true,
     "endpoint": "",
-    "name": "postgresql-replica",
-    "repo_name": "postgresql-replica",
+    "min_disk_size": null,
+    "name": "activemq-artemis",
+    "repo_name": "activemq-artemis",
     "runtime": false,
-    "type": "postgresql-replica",
-    "docs": {
-      "relationship_name": "postgresql-replica",
-      "service_name": "postgresql-replica",
-      "url": "/add-services/postgresql/postgresql-readonly-replication.html"
+    "type": "activemq-artemis",
+    "versions": {
+      "supported": [
+        "2"
+      ],
+      "deprecated": []
     }
   }
 }
