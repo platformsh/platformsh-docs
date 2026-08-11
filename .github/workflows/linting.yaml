@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        site: ['platform', 'upsun']
+        site: ['platform']
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        site: ['platform', 'upsun']
+        site: ['platform']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
