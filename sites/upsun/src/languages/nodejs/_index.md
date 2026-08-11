@@ -15,11 +15,17 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="nodejs" status="supported" environment="grid" >}}
+- 24: `Active`. Will retire on `2026-10-20`
+- 22: `Deprecated`. Will retire on `2027-03-30`
+- 20: `Deprecated`. Will retire on `2026-04-30`
+
+<!-- {{< image-versions image="nodejs" status="supported" environment="grid" >}} -->
 
 ### Specify the language
 
