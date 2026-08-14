@@ -141,18 +141,13 @@ PostgreSQL 10 and later, for example, include a built-in upgrade utility that ru
        type: postgresql:{{% latest "postgresql" %}}
    ```
 
-2. Push to a non-production branch:
-
-   ```bash
-   git add {{< vendor/configfile "services" >}}
-   git commit -m "Update service version"
-   {{% vendor/cli %}} push
-   ```
-
-   If you don't already have a non-production branch, create one first:
+2. Push to a non-production branch. If you don't already have one, create it first:
 
    ```bash
    {{% vendor/cli %}} branch upgrade-service
+   git add {{< vendor/configfile "services" >}}
+   git commit -m "Update service version"
+   {{% vendor/cli %}} push
    ```
 
    Pushing triggers {{% vendor/name %}} to automatically build and deploy the environment.
