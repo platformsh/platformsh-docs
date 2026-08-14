@@ -33,7 +33,6 @@ or your service in [Add services](/add-services/_index.md).
 Some runtimes and services (for example, [Redis](/add-services/redis.md) Grid) use the **Active/Sunset/Decommissioned** classification below.
 
 Others currently use the **Supported/Deprecated/Retired** classification, until they migrate to **Active/Sunset/Decommissioned**.
-This migration happens in phases, so check the docs page for your specific runtime or service to see which classification currently applies to it.
 
 {{< /note >}}
 
