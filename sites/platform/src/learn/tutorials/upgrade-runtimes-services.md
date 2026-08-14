@@ -20,7 +20,7 @@ Use a maintained runtime or service image.
 Outdated images can fail to build and may carry known CVEs.
 See [Image statuses](#image-statuses) to check your image's status and what to do next.
 
-Once you know you need to upgrade, the steps are the same regardless of which runtime or service you use. 
+Once you know you need to upgrade, the steps are the same regardless of which runtime or service you use.
 For version-specific details, see the docs page for your runtime in [Languages](/languages/_index.md)
 or your service in [Add services](/add-services/_index.md).
 
@@ -88,18 +88,13 @@ Updating to a new version means changing that value and pushing it.
        type: 'php:{{% latest "php" %}}'
    ```
 
-2. Push to a non-production branch:
-
-   ```bash
-   git add {{< vendor/configfile "app" >}}
-   git commit -m "Update runtime version"
-   {{% vendor/cli %}} push
-   ```
-
-   If you don't already have a non-production branch, create one first:
+2. Push to a non-production branch. If you don't already have one, create it first:
 
    ```bash
    {{% vendor/cli %}} branch upgrade-runtime
+   git add {{< vendor/configfile "app" >}}
+   git commit -m "Update runtime version"
+   {{% vendor/cli %}} push
    ```
 
    Pushing triggers {{% vendor/name %}} to automatically build and deploy the environment.
