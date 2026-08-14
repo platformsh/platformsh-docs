@@ -1,0 +1,39 @@
+{{/*
+  Lists image versions matching a given Upsun internal_status (active, sunset, or
+  decommissioned), fetched live from the public Upsun meta API. Unlike
+  `image-versions`, this reads no local data file — it queries
+  https://meta.upsun.com/images/<image> at build time.
+
+  Params:
+    image  - registry image key, e.g. "redis"
+    status - one of "active", "sunset", "decommissioned"
+*/}}
+{{ $image := .Get "image" }}
+{{ $status := .Get "status" }}
+{{ $url := printf "https://meta.upsun.com/images/%s" $image }}
+
+{{ with resources.GetRemote $url }}
+  {{ with .Err }}
+    {{ errorf "image-versions-live: error fetching %s: %s" $url . }}
+  {{ else }}
+    {{ $data := . | transform.Unmarshal }}
+    {{ $matches := slice }}
+    {{ range $name, $v := $data.versions }}
+      {{ if eq $v.upsun.internal_status $status }}
+        {{ $matches = $matches | append (dict "name" $name "sortKey" (float $name)) }}
+      {{ end }}
+    {{ end }}
+    {{ $sorted := sort $matches "sortKey" "desc" }}
+    {{ if eq (len $sorted) 0 }}
+None available
+    {{ else }}
+<ul>
+{{ range $sorted }}
+  <li>{{ .name }}</li>
+{{ end }}
+</ul>
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ errorf "image-versions-live: could not fetch %s" $url }}
+{{ end }}
