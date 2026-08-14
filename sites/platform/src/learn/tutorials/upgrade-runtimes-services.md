@@ -77,10 +77,10 @@ Test any version change on a non-production [environment](/environments/_index.m
 
 ## Upgrade a runtime
 
-Runtimes are defined by the `type` key on your application in `{{< vendor/configfile "app" >}}`.
+The `type` key on your application in `{{< vendor/configfile "app" >}}` defines the runtime.
 Updating to a new version means changing that value and pushing it.
 
-1. Check the supported versions on your runtime's page under [Languages](/languages/_index.md), then update the `type` key with the correct version number:
+1. Check the supported versions on the runtime page under [Languages](/languages/_index.md), then update the `type` key with the correct version number:
 
    ```yaml {configFile="app"}
    applications:
