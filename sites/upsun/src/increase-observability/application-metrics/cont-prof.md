@@ -19,7 +19,13 @@ ensuring the smooth running of software in live environments.
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly from the Console under the `Profiling` tab of your environments.
+
+To access Continuous Profiling in the Console:
+
+1. Open your project in the Console.
+2. Select **Apps and Services**.
+3. Select your **app**.
+4. Click **Profiling**.
 
 The Continuous Profiling dashboard lets you visualize the profiling data of a specific application.
 It is composed of several views: flame graph, table view, and a split view combining the flame graph and table views.
