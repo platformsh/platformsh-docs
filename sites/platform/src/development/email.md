@@ -97,7 +97,9 @@ To have DKIM enabled for your domain:
 
    {{< note >}}
 
-   The DKIM domain might not be the same as your site domain (but it can be). DKIM needs to be generated on the domain of the `SENDER_EMAIL_ADDRESS` you provide above (the *sender* address), not necessarily your site's domain. For example, if `SENDER_EMAIL_ADDRESS` is `noreply@media.yourdomain.com`, request DKIM for `media.yourdomain.com`, not `yourdomain.com`.
+   The DKIM domain might not be the same as your site domain (but it can be).
+   DKIM needs to be generated on the domain of the `SENDER_EMAIL_ADDRESS` you provide above (the *sender* address), not necessarily your site's domain.
+   For example, if `SENDER_EMAIL_ADDRESS` is `noreply@media.yourdomain.com`, request DKIM for `media.yourdomain.com`, not `yourdomain.com`.
 
    Make sure you've sent at least one email before requesting DKIM.
 
@@ -121,7 +123,8 @@ To have DKIM enabled for your domain:
 
    {{< note >}}
 
-   SendGrid rotates DKIM keys on an internal schedule that it doesn't publish, and offers no manual rotation option — the process is entirely transparent to you.
+   SendGrid rotates DKIM keys on an internal schedule that it doesn't publish.
+   It offers no manual rotation option, so the process is entirely transparent to you.
 
    {{< /note >}}
 
