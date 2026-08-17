@@ -147,7 +147,7 @@ Check the recipient's inbox, including the spam folder — the test message shou
 
 {{% note theme="warning" %}}
 
-When sending emails from your project, **use an address from your sender domain**.
+When sending emails from your project, **use an address from your sender domain, not an unrelated domain**.
 If you enable DKIM, that must be the same domain you used for the DKIM request.
 Otherwise, the message will be flagged as a spoofing attempt and not be sent.
 
