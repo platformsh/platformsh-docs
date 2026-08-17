@@ -1,18 +1,24 @@
 ---
-title: Send email
+title: Send email from your {{% vendor/name %}} environment using an SMTP proxy
 weight: 9
 sidebarTitle: Email
-description: Send email from your {{% vendor/name %}} environments.
+description: Configure outgoing email for your {{% vendor/name %}} environment, improve deliverability with SPF and DKIM, and send test messages using the built-in SMTP proxy.
+keywords:
+  - send email
+  - SMTP proxy
+  - outgoing email
+  - SPF
+  - DKIM
 ---
 
-You can configure your {{% vendor/name %}} environments to send emails via an SMTP proxy.
+You can configure your {{% vendor/name %}} environments to send emails through an SMTP proxy.
 
 Emails aren't guaranteed to be deliverable and you can't white-label them.
 The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-All preview environments are limited to 12,000 email credits per calendar month.
+Each preview environment (a development or staging environment) has its own SendGrid sub-user, so the 12,000 email credits per calendar month limit applies individually per environment, not as a shared pool across your project.
 
 {{< /note >}}
 
@@ -29,13 +35,12 @@ To turn it on for a specific environment, follow these steps:
 title=In the Console
 +++
 
-- Select the project with the given environment.
-- From the **Environment** menu, select the environment.
-- Click {{< icon settings >}} **Settings**.
-- In the row with **Outgoing emails**, click **Edit {{< icon chevron >}}**.
-- Select the **Email sending** checkbox.
+1. Select the project.
+2. Select the environment from the **Environment** menu.
+3. Click {{< icon settings >}} **Settings**.
+4. On the **General** tab, select the **Enable outgoing emails** checkbox.
 
-To turn off outgoing email, clear the **Email sending** checkbox.
+To turn off outgoing email, clear the **Enable outgoing emails** checkbox.
 
 <--->
 
@@ -55,7 +60,7 @@ To turn off outgoing email, replace `true` with `false`.
 
 Changing the setting rebuilds the environment.
 
-## 2. Recommended: Improve deliverability
+## 2. (Recommended) Improve deliverability
 
 Improve deliverability of your email with [Sender Policy Framework (SPF)](https://www.twilio.com/docs/sendgrid/glossary/spf).
 If you don't have an SPF record, add the following `TXT` record to your domain's DNS records:
@@ -66,39 +71,58 @@ v=spf1 include:sendgrid.net -all
 
 Having several, conflicting `TXT` records isn't supported due to [rfc4408 section 3.1.2](https://datatracker.ietf.org/doc/html/rfc4408#section-3.1.2).
 
-If you already have an SPF record, please add SendGrid into your existing record.
+If you already have an SPF record, add SendGrid to your existing record.
 
 ## 3. (Optional) Validate your email
+
+You can request DomainKeys Identified Mail (DKIM) validation for your domain.
 
 DKIM improves your delivery rate as an email sender.
 Learn more about [how DKIM works](https://www.twilio.com/docs/sendgrid/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
-1. Open a [support ticket](/learn/overview/get-support.md) and ask:
+1. Open a [support ticket](/learn/overview/get-support.md) and request the following, replacing `{{< variable "SENDER_EMAIL_ADDRESS" >}}` with the address you send from:
 
-```
-subject: DKIM record
+   ```
+   subject: DKIM record
 
-Hello,
+   Hello,
 
-I'd like to request DKIM records to be generated for project <PROJECTID>. E-mails are sent from the address <noreply@media.yourdomain.com>.
+   I'd like to request DKIM records to be generated for project {{< variable "PROJECT_ID" >}}. Emails are sent from the address {{< variable "SENDER_EMAIL_ADDRESS" >}}.
 
-Kind regards
-```
+   Kind regards
+   ```
 
-*Note*: the DKIM domain might not be the same as your site domain (but it can be). DKIM needs to be generated on the *sender* email address domain. e.g.: noreply@media.yourdomain.com (not yourdomain.com)
-Please ensure you have sent at least 1 email before requesting DKIM.
+   {{< note >}}
 
-2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
+   The DKIM domain might not be the same as your site domain (but it can be). DKIM needs to be generated on the domain of the `SENDER_EMAIL_ADDRESS` you provide above (the *sender* address), not necessarily your site's domain. For example, if `SENDER_EMAIL_ADDRESS` is `noreply@media.yourdomain.com`, request DKIM for `media.yourdomain.com`, not `yourdomain.com`.
 
-Checks for the expected DNS records run every 15 minutes before validation.
+   Make sure you've sent at least one email before requesting DKIM.
 
-The `TXT` record looks similar to the following:
+   {{< /note >}}
 
-```txt
-v=spf1 include:u17504801.wl.sendgrid.net -all
-```
+2. Add the `CNAME` and `TXT` records from the support team's reply to your domain's DNS configuration.
+
+   The reply looks similar to the following:
+
+   ```txt
+   em1._domainkey.yourdomain.com        CNAME   em1.domainkey.u99999999.wl999.sendgrid.net
+   em12._domainkey.yourdomain.com       CNAME   em12.domainkey.u99999999.wl999.sendgrid.net
+   em9999.yourdomain.com        CNAME   u99999999.wl999.sendgrid.net
+
+   yourdomain.com       TXT     v=spf1 include:em9999.yourdomain.com
+   ```
+
+   This `TXT` record replaces the generic one from [step 2](#2-recommended-improve-deliverability) — as part of DKIM setup, SendGrid provides a unique SPF record for your domain instead of the generic one.
+
+   Checks for the expected DNS records run every 15 minutes. After SendGrid detects the records, it confirms them automatically — you don't need to take any further action.
+
+   {{< note >}}
+
+   SendGrid rotates DKIM keys on an internal schedule that it doesn't publish, and offers no manual rotation option — the process is entirely transparent to you.
+
+   {{< /note >}}
 
 ## 4. Test the email service
 
@@ -115,11 +139,11 @@ Replace the variables with actual email addresses as in the following example:
 printf "From: someone@example.com\nSubject: Test \nThis is a test message" | /usr/sbin/sendmail someone@example.net
 ```
 
-In a little while, the test message should arrive at the recipient address.
+Check the recipient's inbox, including the spam folder — the test message should arrive within a few minutes.
 
 {{% note theme="warning" %}}
 
-When sending emails from your project, **use a mail address that is on the same domain as your project** otherwise it will be flagged as spoofing attempt and not be sent.
+When sending emails from your project, use an address on the same domain you requested DKIM for (see the [domain note](#3-optional-validate-your-email) above), otherwise the message will be flagged as a spoofing attempt and not be sent.
 
 Also, **make sure to test with real email addresses**. If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation. Make sure your test emails are deliverable.
 
@@ -138,7 +162,7 @@ Your emails are proxied through the {{% vendor/name %}} SMTP host and encrypted 
 before being sent to the outside world.
 
 The precise way to send email depends on the language and framework you use.
-See some examples for given languages.
+The following examples show PHP and Java.
 
 {{< codetabs >}}
 
@@ -150,8 +174,7 @@ To send email in PHP, you can use the built-in [`mail()` function](https://www.p
 The PHP runtime is configured to send email automatically with the correct configuration.
 This works even for libraries such as PHPMailer, which uses the `mail()` function by default.
 
-Note that the `From` header is required.
-Your email isn't sent if that header is missing.
+**The `From` header is required**. Your email will not be sent if the header is missing.
 
 Beware of potential security problems when using the `mail()` function.
 If you use any input from users in the `$additional_headers` or `$additional_params` parameters,
@@ -163,7 +186,7 @@ be sure to sanitize it first.
 title=Java
 +++
 
-JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
+JavaMail is a Java API used to send and receive email through SMTP, POP3, and IMAP.
 JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
 
 [Jakarta Mail](https://projects.eclipse.org/projects/ee4j.mail) defines a platform-independent and protocol-independent framework to build mail and messaging applications.
@@ -229,5 +252,5 @@ Guides on using JavaMail:
 ## Alternative: Use a different email server
 
 If you need more options, use your own SMTP server or email delivery service provider.
-Bear in mind that TCP port 25 is blocked for security reasons.
+Remember that TCP port 25 is blocked for security reasons.
 Use port 465 or 587 instead to send email to your own external email server.
