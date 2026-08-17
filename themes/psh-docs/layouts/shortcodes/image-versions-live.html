@@ -10,6 +10,14 @@
 */}}
 {{ $image := .Get "image" }}
 {{ $status := .Get "status" }}
+
+{{ if not $image }}
+  {{ errorf "image-versions-live: missing required param %q" "image" }}
+{{ end }}
+{{ if not (in (slice "active" "sunset" "decommissioned") $status) }}
+  {{ errorf "image-versions-live: invalid status %q (expected active, sunset, or decommissioned) for image %q" $status $image }}
+{{ end }}
+
 {{ $url := printf "https://meta.upsun.com/images/%s" $image }}
 
 {{ with resources.GetRemote $url }}
@@ -20,7 +28,14 @@
     {{ $matches := slice }}
     {{ range $name, $v := $data.versions }}
       {{ if eq $v.upsun.internal_status $status }}
-        {{ $matches = $matches | append (dict "name" $name "sortKey" (float $name)) }}
+        {{ $parts := split $name "." }}
+        {{ $major := ((index $parts 0) | replaceRE "[^0-9]" "" | default "0" | int) }}
+        {{ $minor := 0 }}
+        {{ $patch := 0 }}
+        {{ if ge (len $parts) 2 }}{{ $minor = ((index $parts 1) | replaceRE "[^0-9]" "" | default "0" | int) }}{{ end }}
+        {{ if ge (len $parts) 3 }}{{ $patch = ((index $parts 2) | replaceRE "[^0-9]" "" | default "0" | int) }}{{ end }}
+        {{ $sortKey := add (add (mul $major 1000000) (mul $minor 1000)) $patch }}
+        {{ $matches = $matches | append (dict "name" $name "sortKey" $sortKey) }}
       {{ end }}
     {{ end }}
     {{ $sorted := sort $matches "sortKey" "desc" }}
