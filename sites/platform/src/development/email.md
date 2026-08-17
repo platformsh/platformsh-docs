@@ -179,7 +179,7 @@ To send email in PHP, you can use the built-in [`mail()` function](https://www.p
 The PHP runtime is configured to send email automatically with the correct configuration.
 This works even for libraries such as PHPMailer, which uses the `mail()` function by default.
 
-**The `From` header is required**. Your email will not be sent if the header is missing.
+**The `From` header is required**. Your email isn't sent if the header is missing.
 
 Beware of potential security problems when using the `mail()` function.
 If you use any input from users in the `$additional_headers` or `$additional_params` parameters,
