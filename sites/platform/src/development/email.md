@@ -18,7 +18,8 @@ The SMTP proxy is intended as a zero-configuration, best-effort service.
 
 {{< note >}}
 
-Each preview environment (a development or staging environment) has its own SendGrid sub-user, so the 12,000 email credits per calendar month limit applies individually per environment, not as a shared pool across your project.
+Each preview environment (a development or staging environment) has its own SendGrid sub-user.
+The 12,000 email credits per calendar month limit applies individually per environment, not as a shared pool across your project.
 
 {{< /note >}}
 
@@ -143,7 +144,8 @@ Check the recipient's inbox, including the spam folder — the test message shou
 
 {{% note theme="warning" %}}
 
-When sending emails from your project, **use an address on the same domain you requested DKIM for** (see the [domain note](#3-optional-validate-your-email) above), otherwise the message will be flagged as a spoofing attempt and not be sent.
+When sending emails from your project, **use an address on the same domain you requested DKIM for** (see the [domain note](#3-optional-validate-your-email) above).
+Otherwise, the message will be flagged as a spoofing attempt and not be sent.
 
 Also, **make sure to test with real email addresses**. If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation. Make sure your test emails are deliverable.
 
