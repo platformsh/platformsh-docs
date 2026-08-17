@@ -148,7 +148,8 @@ Check the recipient's inbox, including the spam folder — the test message shou
 {{% note theme="warning" %}}
 
 When sending emails from your project, **use an address from your sender domain, not an unrelated domain**.
-If you enable DKIM, that must be the same domain you used for the DKIM request.
+This domain requirement applies even if you don't enable DKIM.
+If you do enable DKIM, use the same domain you used for the DKIM request.
 Otherwise, the message will be flagged as a spoofing attempt and not be sent.
 
 Also, **make sure to test with real email addresses**. If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation. Make sure your test emails are deliverable.
