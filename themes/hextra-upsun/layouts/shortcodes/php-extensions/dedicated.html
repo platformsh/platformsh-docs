@@ -1,0 +1,45 @@
+{{ $data := index $.Site.Data.php_extensions "dedicated" }}
+
+<!-- Create a map of all extensions with the versions that support it -->
+{{ $allExtensions := dict }}
+{{ range $version,$extensions := $data }}
+  {{ range $extensions }}
+    {{ $newVersions := slice }}
+    <!-- If the extension is already in the map, add the new version -->
+    {{ with index $allExtensions . }}
+      {{ $newVersions = . | append $version }}
+    <!-- Otherwise add the extension to the map with just the one version -->
+    {{ else }}
+      {{ $newVersions = slice $version }}
+    {{ end }}
+    {{ $allExtensions = merge $allExtensions ( dict . $newVersions ) }}
+  {{ end }}
+{{ end }}
+<table>
+  <thead>
+    <tr>
+      <th>Extension</th>
+      <!-- List all the versions (keys in the data file) -->
+      {{ range $version,$extensions := $data }}
+        <th>{{ $version }}</th>
+      {{ end }}
+    </tr>
+  </thead>
+  <tbody>
+    <!-- For each extension in the map, create a row -->
+    {{ range $extension,$versions := $allExtensions }}
+      <tr>
+        <td><code>{{ $extension }}</code></td>
+        <!-- Loop through all the versions (keys in the data file) -->
+        {{ range $version,$extensions := $data }}
+          <td>
+            <!-- If the map has this version, add an emoji-->
+            {{ with in $versions $version }}
+              ✅
+            {{ end }}
+          </td>
+        {{ end }}
+      </tr>
+    {{ end }}
+</tbody>
+</table>

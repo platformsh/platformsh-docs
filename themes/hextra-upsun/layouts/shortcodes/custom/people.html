@@ -1,0 +1,19 @@
+<div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 6; column-gap: 0.5rem; row-gap: 0.5rem;">
+{{ $pages := where site.RegularPages ".RelPermalink" "in" "/community/people" }}
+
+{{ range site.RegularPages }}
+    {{ if and ( strings.Contains .RelPermalink "/community/people/" ) ( ne .Title "People" ) }}
+    <a style="align-items: center; padding: 1.5rem 0rem;" class="hextra-card hx-group hx-flex hx-flex-col hx-justify-center hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ .RelPermalink }}" rel="noreferrer">
+        {{ if isset .Params "image" }}
+            <img class="hx-rounded-full" style="max-width: 80px; border-radius: 50%;" src="{{ .Page.Params.image }}">
+        {{ else }}
+            <img class="hx-rounded-full" style="max-width: 80px; border-radius: 50%;" src="https://github.com/{{ .Page.File }}.png">
+        {{ end }}
+        <h1 class="hx-text-center hx-mt-2 hx-text-xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">{{ .Title }}</h1>
+        <p class="hx-text-gray-500 hx-text-sm" style="font-weight: 400; text-align: center; margin-top: 0;">
+            {{ .Page.Params.role | safeHTML }}
+        </p>
+    </a>
+    {{ end }}
+{{ end }} 
+</div>  

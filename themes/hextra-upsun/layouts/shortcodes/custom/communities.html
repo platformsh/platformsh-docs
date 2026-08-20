@@ -1,0 +1,117 @@
+{{ $link := "https://upsun.com" }}
+{{ $target := "blank" }}
+
+<div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 4; column-gap: 2.5rem; row-gap: 2.5rem;">
+    <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" {{ if eq $target "blank" }}target="_blank"{{ end }} rel="noreferrer">
+        <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-4 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+        Upsun</span>
+    </a>
+
+    <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" {{ if eq $target "blank" }}target="_blank"{{ end }} rel="noreferrer">
+        <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-4 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+        Upsun</span>
+    </a>
+
+    <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" {{ if eq $target "blank" }}target="_blank"{{ end }} rel="noreferrer">
+        <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-4 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+        Upsun</span>
+    </a>
+</div>
+
+<div class="communities-container">
+    <div class="brand-upsun">
+      <div class="brand-title">
+        <div class="brand-title-text">Upsun</div>
+        <div class="brand-title-icon"></div>
+      </div>
+      <div class="brand-desc">Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun PaaS.</div>
+    </div>
+    <div class="brand-platform">
+        <div class="brand-title">
+            <div class="brand-title-text">Platform.sh</div>
+            <div class="brand-title-icon"></div>
+          </div>
+          <div class="brand-desc">Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun PaaS.</div>
+        </div>
+    <div class="brand-blackfire">
+        <div class="brand-title">
+            <div class="brand-title-text">Blackfire.io</div>
+            <div class="brand-title-icon"></div>
+          </div>
+          <div class="brand-desc">Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun PaaS.</div>
+        </div>
+</div>
+
+<style>
+    .container {  display: grid;
+    grid-template-columns: .333fr 0.333fr .333fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "brand-upsun brand-platform brand-blackfire";
+    }
+
+    .brand-upsun {  
+    background-color: #D5F800;
+    border-radius: 32px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-area: brand-upsun;
+    grid-template-areas:
+        "brand-title brand-desc";
+    
+    }
+
+    .brand-title {  display: grid;
+    grid-template-columns: 1fr 30%;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "brand-title-text brand-title-icon";
+    grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .brand-title-text { grid-area: brand-title-text; }
+
+    .brand-title-icon { grid-area: brand-title-icon; }
+
+
+    .brand-desc { grid-area: 2 / 1 / 3 / 2; }
+
+    .brand-platform { grid-area: brand-platform; 
+        background-color: #0E1113;
+        color: white;
+        border-radius: 32px;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20% 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-area: brand-upsun;
+        grid-template-areas:
+            "brand-title brand-desc";
+    }
+
+    .brand-blackfire { grid-area: brand-blackfire;
+        background-color: #6046FF;
+        color: white;
+        border-radius: 32px;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20% 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-area: brand-upsun;
+        grid-template-areas:
+            "brand-title brand-desc";
+    }
+
+</style>
