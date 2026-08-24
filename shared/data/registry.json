@@ -941,14 +941,8 @@
     "runtime": false,
     "type": "redis",
     "versions": {
-      "supported": [
-        "8.8",
-        "8.0",
-        "7.2"
-      ],
-      "deprecated": [
-        "6.2"
-      ]
+      "supported": [],
+      "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
