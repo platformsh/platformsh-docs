@@ -15,7 +15,7 @@ Upsun Fixed takes a byte-for-byte snapshot of Dedicated Gen 2 production environ
 
 | Backup retention period     | Retention            |  # of backups from time period available |
 |----------------|---------------------|--------------------|
-| 1–3 days ago          | Every backup taken in that period | 6 (1 day) to 18 (3 days) |  
+| 1–3 days ago          | Every backup taken in that period | 4 (1 day) to 12 (3 days) |  
 | 4-6 days ago         | One backup per day in that period  |   1 (4 days) to 3 (6 days) |
 | 2–6 weeks ago      | One backup per week | 1 (2 weeks) to 5 (6 weeks) |
 | 8–12 weeks ago   | One bi-weekly backup | 1 (8 weeks) to 3 (12 weeks) |    
