@@ -263,8 +263,7 @@
     "type": "golang",
     "versions": {
       "supported": [
-        "1.26",
-        "1.25"
+        "1.26"
       ],
       "deprecated": []
     }
