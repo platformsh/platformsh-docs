@@ -72,17 +72,16 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "python:{{% latest "python" %}}"
-    source:
-      root: "/"
-    web:
-      commands:
-        start: 'uwsgi --ini conf/server.ini'
-        post_start: |
-        date
-        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+name: {{% variable "APP_NAME" %}}:   
+type: "python:{{% latest "python" %}}"    
+source:
+  root: "/"
+web:
+  commands:
+    start: 'uwsgi --ini conf/server.ini'
+    post_start: |
+    date
+    curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 <--->
@@ -91,20 +90,19 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python{{% latest python %}}" ]
-    web:
-      commands:
-        start: 'uwsgi --ini conf/server.ini'
-        post_start: |
-        date
-        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python{{% latest python %}}" ]
+  web:
+    commands:
+      start: 'uwsgi --ini conf/server.ini'
+      post_start: |
+      date
+      curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 {{< /codetabs >}}
@@ -130,15 +128,14 @@ For all other containers, the default for `protocol` is `http`.
 The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+name: myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  upstream:
+    socket_family: tcp
+    protocol: http
 ```
 
 <--->
@@ -157,18 +154,17 @@ For all other containers, the default for `protocol` is `http`.
 
 The following example is the default on non-PHP containers:
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
 ```
 
 {{< /codetabs >}}
@@ -254,23 +250,22 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          # Handle dynamic requests
-          root: 'public'
-          passthru: '/index.php'
-          # Disallow static files
-          allow: false
-          rules:
-            # Allow common image files only.
-            '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-              allow: true
+name: myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      # Handle dynamic requests
+      root: 'public'
+      passthru: '/index.php'
+      # Disallow static files
+      allow: false
+      rules:
+        # Allow common image files only.
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          allow: true
 ```
 
 <--->
@@ -279,26 +274,25 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      locations:
-        '/':
-          # Handle dynamic requests
-          root: 'public'
-          passthru: '/index.php'
-          # Disallow static files
-          allow: false
-          rules:
-            # Allow common image files only.
-            '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-              allow: true
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    locations:
+      '/':
+        # Handle dynamic requests
+        root: 'public'
+        passthru: '/index.php'
+        # Disallow static files
+        allow: false
+        rules:
+          # Allow common image files only.
+          '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+            allow: true
 ```
 
 {{< /codetabs >}}
@@ -316,17 +310,16 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          root: 'public'
-          passthru: '/index.php'
-          dynamic_compression: true
+name: myapp
+type: 'php:{{% latest "php" %}}'  
+source:
+  root: "/"   
+web:
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/index.php'
+      dynamic_compression: true
 ```
 
 <--->
@@ -335,20 +328,19 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack:
-      runtimes: [ "php@{{% latest php %}}" ]
-    web:
-      locations:
-        '/':
-          root: 'public'
-          passthru: '/index.php'
-          dynamic_compression: true
+```yaml {configFile="apps"}
+myapp:  
+  type: "composable:{{% latest composable %}}"  
+  source:
+    root: "/"
+  stack:
+    runtimes: [ "php@{{% latest php %}}" ]
+  web:
+    locations:
+      '/':
+        root: 'public'
+        passthru: '/index.php'
+        dynamic_compression: true
 ```
 
 {{< /codetabs >}}
@@ -372,21 +364,20 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          root: 'public'
-          passthru: '/index.php'
-          dynamic_compression: true
-          rules:
-            # Leave the authenticated area uncompressed.
-            '^/account/':
-              dynamic_compression: false
+name: myapp
+type: 'php:{{% latest "php" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/index.php'
+      dynamic_compression: true
+      rules:
+        # Leave the authenticated area uncompressed.
+        '^/account/':
+          dynamic_compression: false
 ```
 
 <--->
@@ -395,24 +386,23 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack:
-      runtimes: [ "php@{{% latest php %}}" ]
-    web:
-      locations:
-        '/':
-          root: 'public'
-          passthru: '/index.php'
-          dynamic_compression: true
-          rules:
-            # Leave the authenticated area uncompressed.
-            '^/account/':
-              dynamic_compression: false
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack:
+    runtimes: [ "php@{{% latest php %}}" ]
+  web:
+    locations:
+      '/':
+        root: 'public'
+        passthru: '/index.php'
+        dynamic_compression: true
+        rules:
+          # Leave the authenticated area uncompressed.
+          '^/account/':
+            dynamic_compression: false
 ```
 
 {{< /codetabs >}}
@@ -456,18 +446,17 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+name:  myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: true
+        max_request_size: 250m
 ```
 
 <--->
@@ -476,21 +465,20 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      locations:
-        '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    locations:
+      '/':
+        passthru: true
+        request_buffering:
+          enabled: true
+          max_request_size: 250m
 ```
 
 {{< /codetabs >}}
