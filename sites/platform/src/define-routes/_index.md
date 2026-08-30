@@ -183,10 +183,10 @@ For the `{default}` placeholder, it's replaced entirely by the generated per-env
 
 ### `{all}`
 
-You can also set up multiple domains for a single project.
+You can also set up multiple domains for a single environment.
 To define rules for all of them, use `{all}` in your template.
 
-Say you have both `example.com` and `example.net` as domains in a project.
+Say you have both `example.com` and `example.net` as domains on an environment.
 You can then define the following routes:
 
 ```yaml {configFile="routes"}
@@ -205,7 +205,7 @@ your app runs at both `https://example.com` and `https://example.net`.
 The second route means that `https://www.example.com` redirects to `https://example.com`
 _and_ `https://www.example.net` redirects to `https://example.net`.
 
-If your project has no domains or only one, `{all}` behaves exactly like `{default}`.
+If your environment has no domains or only one, `{all}` behaves exactly like `{default}`.
 
 If you have two routes sharing the same HTTP scheme, domain, and path
 and the first route is using `{default}` and the second is using `{all}`,
