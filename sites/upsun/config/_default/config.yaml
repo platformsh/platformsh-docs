@@ -5,7 +5,9 @@ author: Upsun
 description: Upsun User Documentation
 
 # Themes
-theme: psh-docs
+theme:
+  - hextra-upsun
+  - hextra
 themesdir: '../../themes'
 
 uglyurls: true
@@ -22,6 +24,15 @@ disableKinds: ["taxonomy"]
 baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
+
+social:
+      discord: "https://discord.gg/platformsh"
+      forum: "https://community.platform.sh"
+      github: "https://github.com/upsun"
+      youtube: "https://www.youtube.com/@upsun_com"
+      xtwitter: "https://x.com/upsuncom"
+      linkedin: "https://linkedin.com/company/upsuncom"
+      tiktok: "https://www.tiktok.com/@upsun.com"
 
 outputs:
     home:

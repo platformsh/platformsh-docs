@@ -1,0 +1,10 @@
+<!-- Markdown passed between shortcode `vendor/inner` will render only if the current version = first passed variable -->
+<!-- For example, -->
+<!-- vendor/only "1" -->
+<!-- platform variable:get  -->
+<!-- /vendor/only -->
+<!-- When the site is built, the `platform` command will appear iff vendor.config.version = 1 in params.yaml -->
+{{- $version := .Site.Params.vendor.config.version -}}
+{{- if eq $version ( int (.Get 0)) -}}
+    {{- .Inner | .Page.RenderString -}}
+{{- end -}}

@@ -1,0 +1,27 @@
+{{ $data := index $.Site.Data.php_extensions "grid" }}
+{{ with partial "php-extensions/sort-grid" ( dict "data" $data ) }}
+  {{ $allExtensions := . }}
+  <table>
+    <thead>
+      <tr>
+        <th>Extension</th>
+        <!-- List all the versions (keys in the data file) -->
+        {{ range $version,$support_type := $data }}
+          <th>{{ $version }}</th>
+        {{ end }}
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sort the extension list as if all were lower case -->
+      {{ $.Scratch.Set "lower_names" (slice) }}
+      {{ range $extension,$versions := $allExtensions }}
+        {{ $.Scratch.Add "lower_names" (lower $extension) }}
+      {{ end }}
+      {{ range sort ($.Scratch.Get "lower_names") }}
+        {{ $lower_ext := . }}
+        <!-- For each extension in the map, create a row -->
+        {{ partial "php-extensions/grid-row" ( dict "data" $data "allExtensions" $allExtensions "row_extension" $lower_ext "extension_name" true ) }}
+      {{ end }}
+    </tbody>
+  </table>
+{{ end }}
