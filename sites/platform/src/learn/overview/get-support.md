@@ -14,7 +14,7 @@ Open a support ticket to report infrastructure, application container, or build 
 
 1. [Open the Console]({{% vendor/urlraw "console" %}}).
 1. In the upper right corner, click **Help**, then select **Support**.
-1. On the {{% vendor/company_name %}} Community landing page, click **Create a new request**.
+1. On the {{% vendor/company_name %}} Help Center landing page, click **Create a new request**.
 1. On the "Submit a request" page, choose the request type, then complete and submit the form.
 
 **Shortcuts**
