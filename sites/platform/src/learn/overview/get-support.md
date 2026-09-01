@@ -12,14 +12,15 @@ description: |
 
 Open a support ticket to report infrastructure, application container, or build issues, flag a possible bug, ask a general question, or submit a feature request:
 
-1. [Open the Console](https://console.{{config_vendor_host}}/).
+1. [Open the Console]({{% vendor/urlraw "console" %}}).
 1. In the upper right corner, click **Help**, then select **Support**.
-1. On the {{% vendor/company_name %}} Community landing page, click **Open a support ticket**.
-1. Complete and submit the form on the "Submit a request" page.
+1. On the {{% vendor/company_name %}} Community landing page, click **Create a new request**.
+1. On the "Submit a request" page, choose the request type, then complete and submit the form.
 
 **Shortcuts**
 - [Open a new ticket](https://support.upsun.com/hc/en-us/requests/new?ticket_form_id=35294051960082)
 - [View your tickets](https://support.upsun.com/hc/en-us/requests)
+- [Submit a feature request](https://support.upsun.com/hc/en-us/requests/new?ticket_form_id=37982573191442)
 
 {{< note theme="info" >}}
 
@@ -27,25 +28,8 @@ You can't modify or delete a ticket after submitting it. To add more information
 
 {{< /note >}}
 
-## View your support tickets
-
-To see tickets and requests you've submitted:
-
-1. In the Console, click **Help** near the upper right and select **Support**.
-1. On the {{% vendor/company_name %}} Community landing page, click the user menu in the upper-right corner and click **Requests**.
-
-Or use this shortcut: [access your support tickets and requests](https://support.upsun.com/hc/en-us/requests).
-
-## Request a feature
-
-To submit a feature idea:
-
-1. In the Console, click **What's new** > **Request a feature**.
-1. Complete the form to submit your request, and click **Submit**.
-
-Or use this shortcut: [request a feature][Submit a feature request](https://support.upsun.com/hc/en-us/requests/new?ticket_form_id=37982573191442)
-
 If you don't have an {{% vendor/company_name %}} account yet, or you'd rather discuss your idea first, join the [Upsun Community Forum](#upsun-community-forum) instead.
+
 
 <!-- vale off -->
 ## Upsun Community Forum
