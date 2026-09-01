@@ -196,7 +196,7 @@ If you're experiencing issues with Blackfire and [troubleshooting](#troubleshoot
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
-3. [Create a support ticket](https://support.blackfire.io) to send this data to Blackfire Support.
+3. [Create a support ticket](https://support.upsun.com/hc/en-us/requests/new) to send this data to Blackfire Support.
 
 ### 1. Retrieve startup errors
 
