@@ -72,17 +72,16 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "python:{{% latest "python" %}}"
-    source:
-      root: "/"
-    web:
-      commands:
-        start: 'uwsgi --ini conf/server.ini'
-        post_start: |
-        date
-        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+name: {{% variable "APP_NAME" %}}:   
+type: "python:{{% latest "python" %}}"    
+source:
+  root: "/"
+web:
+  commands:
+    start: 'uwsgi --ini conf/server.ini'
+    post_start: |
+    date
+    curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 <--->
@@ -91,20 +90,19 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python{{% latest python %}}" ]
-    web:
-      commands:
-        start: 'uwsgi --ini conf/server.ini'
-        post_start: |
-        date
-        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python{{% latest python %}}" ]
+  web:
+    commands:
+      start: 'uwsgi --ini conf/server.ini'
+      post_start: |
+      date
+      curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 {{< /codetabs >}}
@@ -130,15 +128,14 @@ For all other containers, the default for `protocol` is `http`.
 The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+name: myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  upstream:
+    socket_family: tcp
+    protocol: http
 ```
 
 <--->
@@ -157,18 +154,17 @@ For all other containers, the default for `protocol` is `http`.
 
 The following example is the default on non-PHP containers:
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
 ```
 
 {{< /codetabs >}}
@@ -210,6 +206,7 @@ title=Single-runtime image
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.md)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                |
 | [`request_buffering`](#request-buffering) | A request buffering dictionary | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| [`dynamic_compression`](#dynamic-response-compression) | `boolean` | `false` | Whether to compress dynamic responses from your app. |
 | [`rules`](#rules)             | A rules dictionary                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 <--->
@@ -228,6 +225,7 @@ title=Composable image
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.md)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                      |
 | [`request_buffering`](#request-buffering) | A request buffering dictionary | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| [`dynamic_compression`](#dynamic-response-compression) | `boolean` | `false` | Whether to compress dynamic responses from your app. |
 | [`rules`](#rules)             | A rules dictionary                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 {{< /codetabs>}}
@@ -252,23 +250,22 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          # Handle dynamic requests
-          root: 'public'
-          passthru: '/index.php'
-          # Disallow static files
-          allow: false
-          rules:
-            # Allow common image files only.
-            '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-              allow: true
+name: myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      # Handle dynamic requests
+      root: 'public'
+      passthru: '/index.php'
+      # Disallow static files
+      allow: false
+      rules:
+        # Allow common image files only.
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          allow: true
 ```
 
 <--->
@@ -277,30 +274,158 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      locations:
-        '/':
-          # Handle dynamic requests
-          root: 'public'
-          passthru: '/index.php'
-          # Disallow static files
-          allow: false
-          rules:
-            # Allow common image files only.
-            '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-              allow: true
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    locations:
+      '/':
+        # Handle dynamic requests
+        root: 'public'
+        passthru: '/index.php'
+        # Disallow static files
+        allow: false
+        rules:
+          # Allow common image files only.
+          '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+            allow: true
 ```
 
 {{< /codetabs >}}
 
+
+#### Dynamic response compression
+
+Static files are compressed automatically, but responses generated by your app aren't.
+Set `dynamic_compression` to `true` on a location to compress them:
+
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
+```yaml {configFile="app"}
+name: myapp
+type: 'php:{{% latest "php" %}}'  
+source:
+  root: "/"   
+web:
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/index.php'
+      dynamic_compression: true
+```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="apps"}
+myapp:  
+  type: "composable:{{% latest composable %}}"  
+  source:
+    root: "/"
+  stack:
+    runtimes: [ "php@{{% latest php %}}" ]
+  web:
+    locations:
+      '/':
+        root: 'public'
+        passthru: '/index.php'
+        dynamic_compression: true
+```
+
+{{< /codetabs >}}
+
+The algorithm is chosen based on the request's `Accept-Encoding` header, with Brotli preferred and gzip as the fallback.
+Requests without that header get an uncompressed response.
+Compressed responses carry a `Vary: Accept-Encoding` header.
+Responses that already have a `Content-Encoding` header are left alone,
+so an app that compresses its own output isn't compressed twice.
+
+Compression starts at 256 bytes, on a best-effort basis:
+the web server can only check the size of responses that declare a `Content-Length`,
+which means chunked responses are compressed whatever their size.
+
+To keep some paths uncompressed, turn the setting on for the location and off in a [rule](#rules):
+
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
+```yaml {configFile="app"}
+name: myapp
+type: 'php:{{% latest "php" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/index.php'
+      dynamic_compression: true
+      rules:
+        # Leave the authenticated area uncompressed.
+        '^/account/':
+          dynamic_compression: false
+```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack:
+    runtimes: [ "php@{{% latest php %}}" ]
+  web:
+    locations:
+      '/':
+        root: 'public'
+        passthru: '/index.php'
+        dynamic_compression: true
+        rules:
+          # Leave the authenticated area uncompressed.
+          '^/account/':
+            dynamic_compression: false
+```
+
+{{< /codetabs >}}
+
+Enable compression on the location and opt out per rule, not the other way around.
+A rule that turns compression on inside a location where it's off doesn't survive the `passthru` rewrite,
+which leaves the traffic uncompressed on a typical PHP app.
+A rule that turns compression off applies to both direct hits and requests served through `passthru`.
+
+{{< note theme="warning" >}}
+
+Compressing dynamic responses reintroduces the theoretical [BREACH](https://en.wikipedia.org/wiki/BREACH) attack surface over HTTPS.
+BREACH needs a secret and attacker-controlled input in the same response,
+so only enable `dynamic_compression` when your framework mitigates it,
+through Cross-Site Request Forgery (CSRF) token masking or a similar technique.
+Most frameworks do by default.
+Turn the setting off with a rule on authenticated areas,
+and on any path that reflects user input into a response that also carries a secret.
+
+{{< /note >}}
+
+Apps serving large volumes of public, cacheable HTML from the origin get the most out of the setting,
+especially behind a content delivery network (CDN) that can't compress what the origin sends it.
 
 #### Request buffering
 
@@ -321,18 +446,17 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    web:
-      locations:
-        '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+name:  myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+web:
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: true
+        max_request_size: 250m
 ```
 
 <--->
@@ -341,21 +465,20 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    web:
-      locations:
-        '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  web:
+    locations:
+      '/':
+        passthru: true
+        request_buffering:
+          enabled: true
+          max_request_size: 250m
 ```
 
 {{< /codetabs >}}

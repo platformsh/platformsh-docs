@@ -23,51 +23,52 @@ If you use one of the following frameworks, follow its guide:
 - [Spring](/guides/spring/redis.md)
 - [WordPress](/guides/wordpress/redis.md)
 
-## Supported versions
+## Grid versions
+
+### Active versions
+
+See [Image statuses](/learn/tutorials/upgrade-runtimes-services.md#image-statuses) for what Active means for Redis specifically.
+Some Active versions may be past their upstream end of life; {{% vendor/name %}} applies security updates only where upstream still provides them.
+Dedicated Gen 2 doesn't use this classification — see [Dedicated Gen 2 versions](#dedicated-gen-2-versions).
 
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions-live image="redis" status="active" >}}
 
-### Deprecated versions
+### Sunset versions
 
-The following versions are [deprecated](/glossary.html#deprecated-versions).
-They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
-They'll be removed in the future,
-so migrate to one of the [supported versions](#supported-versions).
+The following versions are still available in your projects, including code pushes, but new projects can't use them.
+These versions are decommissioned 180 calendar days after entering Sunset.
+The exact decommission date is shown on your project's Overview page and on the relevant activity in the **Activity** panel.
+[Upgrade](/learn/tutorials/upgrade-runtimes-services.md) to one of the [active versions](#active-versions) before that date.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions-live image="redis" status="sunset" >}}
+
+### Decommissioned versions
+
+{{% vendor/name %}} no longer supports decommissioned versions.
+Existing projects using one continue to run as is, but all code pushes are blocked.
+[Upgrade](/learn/tutorials/upgrade-runtimes-services.md) to an [active version](#active-versions) to continue deploying.
+
+{{< image-versions-live image="redis" status="decommissioned" >}}
 
 Note that versions 3.0 and higher support up to 64 different databases per instance of the service,
 while Redis 2.8 only supports a single database.
+
+## Dedicated Gen 2 versions
+
+Dedicated Gen 2 doesn't use the Active/Sunset/Decommissioned lifecycle above.
+It still uses the [Supported/Deprecated classification](/learn/tutorials/upgrade-runtimes-services.md#image-statuses).
+
+### Supported versions
+
+{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}
+
+### Deprecated versions
+
+{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}
 
 ## Service types
 

@@ -20,8 +20,10 @@ For how that structure is applied to different types of docs in this project, se
   - [Table of contents](#table-of-contents)
   - [Adding new pages](#adding-new-pages)
     - [Adding security reports](#adding-security-reports)
+  - [Version-status data for runtimes and services](#version-status-data-for-runtimes-and-services)
   - [Commit messages](#commit-messages)
   - [Review process](#review-process)
+    - [Splitting pull requests](#splitting-pull-requests)
     - [Review comment style](#review-comment-style)
     - [Checks](#checks)
 
@@ -75,6 +77,30 @@ Instead, prefer redirects that return 301 codes (Moved Permanently).
 Set them up in the [routes configuration](./.platform/routes.yaml).
 For more information, see how to [redirect routes](https://docs.platform.sh/define-routes/redirects.html).
 
+## Version-status data for runtimes and services
+
+Two shortcodes render version lists for a runtime or service, reading from different sources:
+
+- `image-versions` reads `shared/data/registry.json` (git-committed, refreshed daily by an
+  external bot). Statuses: `supported`/`deprecated`. Supports `environment=` (`grid`,
+  `dedicated-gen-2`, `dedicated-gen-3`).
+- `image-versions-live` fetches `https://meta.upsun.com/images/<id>` live at Hugo build time
+  (`resources.GetRemote`, no authentication needed). Statuses: `active`/`sunset`/`decommissioned`
+  (the `upsun.internal_status` field). It doesn't support `environment=` — the API returns one
+  flat list with no Grid/Dedicated breakdown; `?platform=`/`?environment=` query params are
+  silently ignored.
+
+The two classification systems aren't a 1:1 mapping: `internal_status: active` groups
+*both* `supported` and `deprecated` together; only `retired` maps to `sunset`. See
+[Image statuses](/learn/tutorials/upgrade-runtimes-services.md#image-statuses) for the canonical
+explainer, and link to it rather than re-describing the statuses inline on a new page.
+
+This is a phased migration: only Redis (Grid) uses Active/Sunset/Decommissioned today, and
+everything else still uses Supported/Deprecated. When another service migrates, mirror
+`redis.md`'s structure: a Grid-scoped section using `image-versions-live`, kept separate from
+any Dedicated Gen 2/3 section, which stays on `image-versions` until, or unless, that data
+becomes available too.
+
 ## Commit messages
 
 To help understand why changes happened and not repeat work already done,
@@ -116,6 +142,13 @@ To speed the process along, we may merge small changes such as spelling and form
 into your branch.
 Otherwise, we make suggestions and work with you to finalize the changes.
 <!-- vale Platform.first-person = YES -->
+
+### Splitting pull requests
+
+New Hugo shortcode infrastructure and the content that consumes it go in separate pull requests,
+even when tightly coupled: the infra PR merges first, and the content PR is stacked on it and
+rebased onto the default branch afterward. Independent changes, such as unrelated copy edits, get
+their own PR too rather than being bundled in.
 
 ### Review comment style
 

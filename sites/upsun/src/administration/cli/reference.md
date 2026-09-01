@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.10.4
+# Upsun CLI 5.11.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -224,6 +224,11 @@ showTitle: false
 
 * [`subscription:info`](#subscriptioninfo)
 
+**task**
+
+* [`task:list`](#tasklist)
+* [`task:run`](#taskrun)
+
 **team**
 
 * [`team:create`](#teamcreate)
@@ -296,11 +301,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
+    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash > completion.sh
+    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -313,7 +318,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.10.4/upsun.phar completion bash)"
+    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash)"
 
 #### Arguments
 
@@ -2470,7 +2475,7 @@ Aliases: `log`
 ### Usage
 
 ```
-upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<type>]
+upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<type>]
 ```
 
 #### Arguments
@@ -2500,6 +2505,12 @@ upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVI
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
+
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
 
 ### Examples
 
@@ -2782,7 +2793,7 @@ Aliases: `scp`
 ### Usage
 
 ```
-upsun scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>...]
+upsun scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<files>...]
 ```
 
 #### Arguments
@@ -2809,6 +2820,12 @@ upsun scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
+
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
 
 ### Examples
 
@@ -2841,7 +2858,7 @@ Aliases: `ssh`
 ### Usage
 
 ```
-upsun ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>...]
+upsun ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<cmd>...]
 ```
 
 #### Arguments
@@ -2875,11 +2892,22 @@ upsun ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--env
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
+
 ### Examples
 
 * Open a shell over SSH:
 ```
 upsun environment:ssh 
+```
+
+* Open a shell into a running task container:
+```
+upsun environment:ssh --task mytask
 ```
 
 * Pass an extra option to SSH:
@@ -3193,7 +3221,7 @@ Add an integration to the project
 ### Usage
 
 ```
-upsun integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait]
+upsun integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--redaction REDACTION] [--header HEADER] [--excluded-services EXCLUDED-SERVICES] [-p|--project PROJECT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -3327,8 +3355,14 @@ upsun integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBU
 * `--verify-tls` (expects a value)
   Whether HTTPS certificate verification should be enabled (recommended)
 
+* `--redaction` (expects a value)
+  Whether to enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+
 * `--header` (expects a value)
   HTTP header(s) to use in POST requests. Separate names and values with a colon (:).
+
+* `--excluded-services` (expects a value)
+  A list of services to exclude from the log forwarding.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3445,7 +3479,7 @@ Update an integration
 ### Usage
 
 ```
-upsun integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
+upsun integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--redaction REDACTION] [--header HEADER] [--excluded-services EXCLUDED-SERVICES] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
 ```
 
 #### Arguments
@@ -3584,8 +3618,14 @@ upsun integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 * `--verify-tls` (expects a value)
   Whether HTTPS certificate verification should be enabled (recommended)
 
+* `--redaction` (expects a value)
+  Whether to enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+
 * `--header` (expects a value)
   HTTP header(s) to use in POST requests. Separate names and values with a colon (:).
+
+* `--excluded-services` (expects a value)
+  A list of services to exclude from the log forwarding.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -5053,26 +5093,29 @@ upsun build-resources:set [--cpu CPU] [--memory MEMORY] [-p|--project PROJECT]
 
 ## `resources:get`
 
-View the resources of apps and services on an environment
+View the resources of apps, tasks and services on an environment
 
 Aliases: `resources`, `res`
 
 ### Usage
 
 ```
-upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--type TYPE] [--cpu-type [CPU-TYPE]] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--task TASK] [--type TYPE] [--cpu-type [CPU-TYPE]] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
 
 * `--service` (`-s`) (expects a value)
-  Filter by service name. This can select any service, including apps and workers.
+  Filter by service name. This can select any service, including apps, workers and tasks.
 
 * `--app` (expects a value)
   Filter by app name
 
 * `--worker` (expects a value)
   Filter by worker name
+
+* `--task` (expects a value)
+  Filter by task name
 
 * `--type` (expects a value)
   Filter by service, app or worker type, e.g. "postgresql"
@@ -5090,24 +5133,25 @@ upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--type TYP
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, disk*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, disk*, object_storage*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
 
 ## `resources:set`
 
-Set the resources of apps and services on an environment
+Set the resources of apps, tasks and services on an environment
 
 ### Usage
 
 ```
-upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [-f|--force] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [--object-storage OBJECT-STORAGE] [-f|--force] [--dry-run] [-s|--service SERVICE] [--app APP] [--worker WORKER] [--task TASK] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
-Configure the resources allocated to apps, workers and services on an environment.
+Configure the resources allocated to apps, workers, tasks and services on an environment.
 
 The resources may be the profile size, the instance count, or the disk size (MB).
+Tasks are run-to-completion containers: only their profile size can be set.
 
 Profile sizes are predefined CPU & memory values that can be viewed by running: upsun resources:sizes
 
@@ -5118,7 +5162,7 @@ You can also configure autoscaling by running upsun autoscaling:set
 #### Options
 
 * `--size` (`-S`) (expects a value)
-  Set the profile size (CPU and memory) of apps, workers, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
+  Set the profile size (CPU and memory) of apps, workers, tasks, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
 * `--count` (`-C`) (expects a value)
   Set the instance count of apps or workers. Items are in the format name:value as above.
@@ -5126,11 +5170,26 @@ You can also configure autoscaling by running upsun autoscaling:set
 * `--disk` (`-D`) (expects a value)
   Set the disk size (in MB) of apps or services. Items are in the format name:value as above. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
+* `--object-storage` (expects a value)
+  Set the object storage size (in MB) of apps. Items are in the format name:value as above. Only applicable to apps; a value of 0 disables the bucket.
+
 * `--force` (`-f`)
   Try to run the update, even if it might exceed your limits
 
 * `--dry-run`
   Show the changes that would be made, without changing anything
+
+* `--service` (`-s`) (expects a value)
+  Limit to a service name. This can select any service, including apps, workers and tasks.
+
+* `--app` (expects a value)
+  Limit to an app name
+
+* `--worker` (expects a value)
+  Limit to a worker name
+
+* `--task` (expects a value)
+  Limit to a task name
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -5159,6 +5218,11 @@ upsun resources:set --count backend:3
 * Give 512 MB disk to the "backend" app and 2 GB to the "database" service:
 ```
 upsun resources:set --disk backend:512,database:2048
+```
+
+* Give 524288 MB (512 GB) of object storage to the "backend" app:
+```
+upsun resources:set --object-storage backend:524288
 ```
 
 * Set the same profile size for the "backend" and "frontend" apps using a wildcard:
@@ -5840,6 +5904,76 @@ upsun subscription:info status
 * View the storage limit (in MiB):
 ```
 upsun subscription:info storage
+```
+
+## `task:list`
+
+Get a list of tasks on an environment
+
+Aliases: `tasks`
+
+### Usage
+
+```
+upsun tasks [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+#### Options
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: command, name, timeout, type. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+## `task:run`
+
+Execute a task on an environment
+
+### Usage
+
+```
+upsun task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <task>
+```
+
+#### Arguments
+
+* `task`(required)
+  The name of the task to execute
+
+#### Options
+
+* `--variable` (expects a value)
+  A variable to set when running the task, in the format type:name=value
+
+* `--wait`
+  Wait for the task to complete
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+### Examples
+
+* Run the "migrate" task on the environment "main":
+```
+upsun task:run migrate --environment main
+```
+
+* Run the "migrate" task, setting environment variable FOO=bar:
+```
+upsun task:run migrate -e main --variable env:FOO=bar
 ```
 
 ## `team:create`

@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI (Platform.sh compatibility) 5.10.4
+# Upsun CLI (Platform.sh compatibility) 5.11.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -221,6 +221,11 @@ showTitle: false
 
 * [`subscription:info`](#subscriptioninfo)
 
+**task**
+
+* [`task:list`](#tasklist)
+* [`task:run`](#taskrun)
+
 **team**
 
 * [`team:create`](#teamcreate)
@@ -293,11 +298,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash | sudo tee /etc/bash_completion.d/platform.phar
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.11.0/platform.phar completion bash | sudo tee /etc/bash_completion.d/platform.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash > completion.sh
+    /home/runner/.cache/platformsh-cli-tmp/legacy-5.11.0/platform.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -310,7 +315,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/platformsh-cli-tmp/legacy-5.10.4/platform.phar completion bash)"
+    eval "$(/home/runner/.cache/platformsh-cli-tmp/legacy-5.11.0/platform.phar completion bash)"
 
 #### Arguments
 
@@ -2456,7 +2461,7 @@ Aliases: `log`
 ### Usage
 
 ```
-platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<type>]
+platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<type>]
 ```
 
 #### Arguments
@@ -2486,6 +2491,12 @@ platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment E
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
+
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
 
 ### Examples
 
@@ -2762,7 +2773,7 @@ Aliases: `scp`
 ### Usage
 
 ```
-platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<files>...]
+platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<files>...]
 ```
 
 #### Arguments
@@ -2789,6 +2800,12 @@ platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONME
 
 * `--instance` (`-I`) (expects a value)
   An instance ID
+
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
 
 ### Examples
 
@@ -2821,7 +2838,7 @@ Aliases: `ssh`
 ### Usage
 
 ```
-platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--] [<cmd>...]
+platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<cmd>...]
 ```
 
 #### Arguments
@@ -2855,11 +2872,22 @@ platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--
 * `--instance` (`-I`) (expects a value)
   An instance ID
 
+* `--task` (expects a value)
+  The name of a running task (instead of an app or worker)
+
+* `--activity` (expects a value)
+  The ID of the task run to target (with --task), when multiple runs are in progress
+
 ### Examples
 
 * Open a shell over SSH:
 ```
 platform environment:ssh 
+```
+
+* Open a shell into a running task container:
+```
+platform environment:ssh --task mytask
 ```
 
 * Pass an extra option to SSH:
@@ -3165,7 +3193,7 @@ Add an integration to the project
 ### Usage
 
 ```
-platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait]
+platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--redaction REDACTION] [--header HEADER] [--excluded-services EXCLUDED-SERVICES] [-p|--project PROJECT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -3299,8 +3327,14 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 * `--verify-tls` (expects a value)
   Whether HTTPS certificate verification should be enabled (recommended)
 
+* `--redaction` (expects a value)
+  Whether to enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+
 * `--header` (expects a value)
   HTTP header(s) to use in POST requests. Separate names and values with a colon (:).
+
+* `--excluded-services` (expects a value)
+  A list of services to exclude from the log forwarding.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3417,7 +3451,7 @@ Update an integration
 ### Usage
 
 ```
-platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--header HEADER] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
+platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBUCKET-URL] [--username USERNAME] [--token TOKEN] [--key KEY] [--secret SECRET] [--license-key LICENSE-KEY] [--server-project SERVER-PROJECT] [--repository REPOSITORY] [--build-merge-requests BUILD-MERGE-REQUESTS] [--build-pull-requests BUILD-PULL-REQUESTS] [--build-draft-pull-requests BUILD-DRAFT-PULL-REQUESTS] [--build-pull-requests-post-merge BUILD-PULL-REQUESTS-POST-MERGE] [--build-wip-merge-requests BUILD-WIP-MERGE-REQUESTS] [--merge-requests-clone-parent-data MERGE-REQUESTS-CLONE-PARENT-DATA] [--pull-requests-clone-parent-data PULL-REQUESTS-CLONE-PARENT-DATA] [--resync-pull-requests RESYNC-PULL-REQUESTS] [--fetch-branches FETCH-BRANCHES] [--prune-branches PRUNE-BRANCHES] [--resources-init RESOURCES-INIT] [--url URL] [--shared-key SHARED-KEY] [--file FILE] [--events EVENTS] [--states STATES] [--environments ENVIRONMENTS] [--excluded-environments EXCLUDED-ENVIRONMENTS] [--from-address FROM-ADDRESS] [--recipients RECIPIENTS] [--channel CHANNEL] [--routing-key ROUTING-KEY] [--category CATEGORY] [--index INDEX] [--sourcetype SOURCETYPE] [--protocol PROTOCOL] [--syslog-host SYSLOG-HOST] [--syslog-port SYSLOG-PORT] [--facility FACILITY] [--message-format MESSAGE-FORMAT] [--auth-mode AUTH-MODE] [--auth-token AUTH-TOKEN] [--verify-tls VERIFY-TLS] [--redaction REDACTION] [--header HEADER] [--excluded-services EXCLUDED-SERVICES] [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] [<id>]
 ```
 
 #### Arguments
@@ -3556,8 +3590,14 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 * `--verify-tls` (expects a value)
   Whether HTTPS certificate verification should be enabled (recommended)
 
+* `--redaction` (expects a value)
+  Whether to enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+
 * `--header` (expects a value)
   HTTP header(s) to use in POST requests. Separate names and values with a colon (:).
+
+* `--excluded-services` (expects a value)
+  A list of services to exclude from the log forwarding.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -5709,6 +5749,76 @@ platform subscription:info status
 * View the storage limit (in MiB):
 ```
 platform subscription:info storage
+```
+
+## `task:list`
+
+Get a list of tasks on an environment
+
+Aliases: `tasks`
+
+### Usage
+
+```
+platform tasks [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+#### Options
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: command, name, timeout, type. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+## `task:run`
+
+Execute a task on an environment
+
+### Usage
+
+```
+platform task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <task>
+```
+
+#### Arguments
+
+* `task`(required)
+  The name of the task to execute
+
+#### Options
+
+* `--variable` (expects a value)
+  A variable to set when running the task, in the format type:name=value
+
+* `--wait`
+  Wait for the task to complete
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+### Examples
+
+* Run the "migrate" task on the environment "main":
+```
+platform task:run migrate --environment main
+```
+
+* Run the "migrate" task, setting environment variable FOO=bar:
+```
+platform task:run migrate -e main --variable env:FOO=bar
 ```
 
 ## `team:create`
