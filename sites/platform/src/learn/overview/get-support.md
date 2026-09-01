@@ -8,27 +8,28 @@ description: |
 
 {{% description %}}
 
-
 ## Create a support ticket
 
-If you're experiencing issues related to the proper functioning of the {{% vendor/name %}} infrastructure, application container software, build processes, have found possible bugs, have general questions or wish to submit a feature request, open a support ticket:
+Open a support ticket to report infrastructure, application container, or build issues, flag a possible bug, ask a general question, or submit a feature request:
 
 1. [Open the Console]({{% vendor/urlraw "console" %}}).
-1. In the upper right-hand corner, click **Help** and select **Support** from the menu.
-1. In the **Support tickets** section, click **New ticket**.
-1. Complete the **Create a ticket** form and then click **Submit**.
+1. In the upper right corner, click **Help**, then select **Support**.
+1. On the {{% vendor/company_name %}} Community landing page, click **Create a new request**.
+1. On the "Submit a request" page, choose the request type, then complete and submit the form.
 
-Or use these shortcuts to [access all support tickets]({{% vendor/urlraw "console" %}}-/users/~/tickets)
-or [open a new ticket]({{% vendor/urlraw "console" %}}-/users/~/tickets/open).
-
-Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
+**Shortcuts**
+- [Open a new ticket](https://support.upsun.com/hc/en-us/requests/new?ticket_form_id=35294051960082)
+- [View your tickets](https://support.upsun.com/hc/en-us/requests)
+- [Submit a feature request](https://support.upsun.com/hc/en-us/requests/new?ticket_form_id=37982573191442)
 
 {{< note theme="info" >}}
 
-Note that once you submit the ticket, you can't modify or delete the submission.
-If you have any additional information, you can select the submitted ticket and write a message.
+You can't modify or delete a ticket after submitting it. To add more information, go to [your tickets](https://support.upsun.com/hc/en-us/requests) and add a message to the relevant one.
 
 {{< /note >}}
+
+If you don't have an {{% vendor/company_name %}} account yet, or you'd rather discuss your idea first, join the [Upsun Community Forum](#upsun-community-forum) instead.
+
 
 <!-- vale off -->
 ## Upsun Community Forum
@@ -45,17 +46,14 @@ get in touch with [Sales]({{% vendor/urlraw "sales" %}}).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/company_name %}} account, follow these steps:
-
 {{% note theme=warning title="Warning"%}}
 
 Deleting your {{% vendor/company_name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
 {{% /note %}}
 
-1. [Open the Console]({{% vendor/urlraw "console" %}}).
-2. Open the user menu (your name or profile picture) and select **My Profile**.
-3. Click **Delete account**.
-4. Check that the pre-filled information is correct and click **Submit**.
-5. Read the consequences of account deletion and click **Submit request** to confirm.</br>
-   Your request is now submitted and will be handled by Support shortly.
+1. In the Console, select **My Profile** from the user menu in the upper-right corner.
+1. On the **My Profile** tab, click **Delete account**.
+1. Review your request and click **Submit**.
+
+{{% vendor/company_name %}} Support handles your request shortly.

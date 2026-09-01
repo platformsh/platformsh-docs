@@ -334,3 +334,5 @@ When you do so, we would recommend:
 
 1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first.
 1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
+
+For step-by-step instructions, including how to migrate data when a service doesn't support an in-place upgrade, see [Upgrade a runtime or service](/learn/tutorials/upgrade-runtimes-services.md).

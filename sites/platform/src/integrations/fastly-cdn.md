@@ -28,7 +28,7 @@ The Fastly CDN integration provides a centralized interface within the Upsun Con
 
     - If you have a Fastly subscription, you can retrieve your credentials directly from the Fastly interface.
 
-    - If you purchased Fastly through Upsun, you can retrieve your credentials by running `upsun ssh "printenv | grep FASTLY"` in your terminal, or by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
+    - If you purchased Fastly through Upsun, you can retrieve your credentials by running `upsun ssh "printenv | grep FASTLY"` in your terminal, or by [creating a support ticket](/learn/overview/get-support.md).
 
     Your Fastly credentials are stored securely within your browser and are never transmitted to Upsun.
 
