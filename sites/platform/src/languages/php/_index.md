@@ -284,7 +284,7 @@ type: 'php:{{% latest "php" %}}'
 dependencies:
   php:
     require:
-      "third-party/required-plugin"": "^3.0"
+      "third-party/required-plugin": "^3.0"
 ```
 
 2. Add each additional property as a block at the same indentation as the `require` block:

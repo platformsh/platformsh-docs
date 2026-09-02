@@ -51,14 +51,15 @@ title=Composable image
   source:
     root: "/"
   stack: 
-    runtimes: "php@{{% latest php %}}"
-      extensions:
-        - raphf
-        - http
-        - igbinary
-        - redis
-      disabled_extensions:
-        - sqlite3
+    runtimes:
+      - "php@{{% latest php %}}":
+          extensions:
+            - raphf
+            - http
+            - igbinary
+            - redis
+          disabled_extensions:
+            - sqlite3
 ```
 
 {{< /codetabs >}}
