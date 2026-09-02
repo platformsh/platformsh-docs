@@ -135,9 +135,8 @@ PostgreSQL 10 and later, for example, include a built-in upgrade utility that ru
 1. Update the `type` key for your service:
 
    ```yaml {configFile="services"}
-   services:
-     database:
-       type: postgresql:{{% latest "postgresql" %}}
+   database:
+     type: postgresql:{{% latest "postgresql" %}}
    ```
 
 2. Push to a non-production branch. If you don't already have one, create it first:
@@ -186,9 +185,8 @@ export your data, provision a new service at the target version, and import the 
    Renaming forces {{% vendor/name %}} to create a fresh service container.
 
    ```yaml {configFile="services"}
-   services:
-     database-target:
-       type: postgresql:{{% latest "postgresql" %}}
+   database-target:
+     type: postgresql:{{% latest "postgresql" %}}
    ```
 
 3. Update the `relationships` of any application that references the old service name:

@@ -140,10 +140,9 @@ For example:
 To define the service, use the `valkey-persistent` endpoint:
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  <SERVICE_NAME>:
-    type: valkey-persistent:<VERSION>
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+  type: valkey-persistent:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -501,12 +500,11 @@ When Valkey reaches its memory limit, it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  valkey:
-    type: "valkey:{{% latest "valkey" %}}"
-    configuration:
-      maxmemory_policy: allkeys-lfu
+# The name of the service container. Must be unique within a project.
+valkey:
+  type: "valkey:{{% latest "valkey" %}}"
+  configuration:
+    maxmemory_policy: allkeys-lfu
 ```
 
 The following table presents the possible values:
