@@ -116,15 +116,15 @@ If you're using a deprecated version, you should upgrade to a supported version 
 
 ## Drush
 
-Drush is a command-line shell and scripting interface for Drupal.
+[Drush](https://www.drush.org/) is a command-line shell and scripting interface for Drupal.
+See [Use Drush with {{% vendor/name %}}](/development/drush.md) for how to install it and run it through the CLI, SSH, or hooks.
 
 ## Drush aliases
 
-Drush site aliases allow you to define short names
-that let you run Drush commands on specific local or remote Drupal installations.
-The {{% vendor/name %}} CLI configures Drush aliases for you on your local environment
-(via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
-You can also configure them manually.
+Drush site aliases let you run Drush commands against a specific local or remote Drupal installation
+(such as `drush @myproject.main <COMMAND>`) without connecting manually first.
+The `{{% vendor/cli %}}` CLI generates and updates them for you automatically.
+See [Use Drush aliases](/development/drush.md#use-drush-aliases).
 
 ## Endpoint
 
