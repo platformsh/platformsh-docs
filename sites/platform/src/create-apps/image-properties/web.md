@@ -72,16 +72,16 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-name: {{% variable "APP_NAME" %}}:   
-type: "python:{{% latest "python" %}}"    
+name: {{% variable "APP_NAME" %}}
+type: "python:{{% latest "python" %}}"
 source:
   root: "/"
 web:
   commands:
     start: 'uwsgi --ini conf/server.ini'
     post_start: |
-    date
-    curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+      date
+      curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 <--->
@@ -101,8 +101,8 @@ title=Composable image
     commands:
       start: 'uwsgi --ini conf/server.ini'
       post_start: |
-      date
-      curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+        date
+        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 {{< /codetabs >}}

@@ -18,9 +18,9 @@ To configure a PostgreSQL database for Strapi on {{% vendor/name %}}, follow the
 1. In your `{{< vendor/configfile "services" >}}` file, add the following:
 
    ```yaml {configFile="services"}
-   	postgres:
-      type: postgresql:13
-        disk: 512
+   postgres:
+     type: postgresql:13
+     disk: 512
    ```
 
 1. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the PostgreSQL database you added:

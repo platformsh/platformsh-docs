@@ -511,17 +511,17 @@ For example, if you define a `mariadb` database as follows:
 mariadb:
   type: mariadb:{{% latest "mariadb" %}}
   disk: 2048
-    configuration:
-      schemas:
-        - main
-    endpoints:
-      admin:
-        default_schema: main
-        privileges:
-          main: admin
-      reporter:
-        privileges:
-          main: ro
+  configuration:
+    schemas:
+      - main
+  endpoints:
+    admin:
+      default_schema: main
+      privileges:
+        main: admin
+    reporter:
+      privileges:
+        main: ro
 ```
 
 To create a replica of the `mariadb` database and allow your app to connect to it
