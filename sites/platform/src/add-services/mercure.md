@@ -155,15 +155,14 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>: 
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>: 
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -184,16 +183,15 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: mercure
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: mercure
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships

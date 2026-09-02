@@ -236,33 +236,31 @@ By default, PHP builds fail if a dependency in a project has a known vulnerabili
 
 Examples: 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        config:
-          audit:
-            ignore:  # ignore these security advisories
-              - "PKSA-yhcn-xrg3-68b1"
-              - "PKSA-2wrf-1mxk-1pky"
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    config:
+      audit:
+        ignore:  # ignore these security advisories
+          - "PKSA-yhcn-xrg3-68b1"
+          - "PKSA-2wrf-1mxk-1pky"
 ```
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        config:
-          audit:
-            ignore-severity:
-              low:
-                apply: all   # ignore all low severity findings
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    config:
+      audit:
+        ignore-severity:
+          low:
+            apply: all   # ignore all low severity findings
 ```
 
 Related information: 
@@ -279,32 +277,30 @@ To add additional composer schema properties:
 1. Set an explicit `require` block:
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        require:
-          "third-party/required-plugin"": "^3.0"
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    require:
+      "third-party/required-plugin"": "^3.0"
 ```
 
 2. Add each additional property as a block at the same indentation as the `require` block:
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        require:
-          symfony/runtime: '*'
-        config:
-          "allow-plugins":
-            symfony/runtime: true
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    require:
+      symfony/runtime: '*'
+    config:
+      "allow-plugins":
+        symfony/runtime: true
 ```
 
 

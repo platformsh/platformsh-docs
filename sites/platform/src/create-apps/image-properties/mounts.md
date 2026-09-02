@@ -109,20 +109,19 @@ The locations of mounts as they are visible to application containers can overla
 For example:
 
 ```yaml {configFile="apps"}
-applications:
-  myapp:
-    # ...
-    mounts:
-      'var/cache_a':
-        source: service
-        service: ns_service
-        source_path: cacheA
-      'var/cache_b':
-        source: tmp
-        source_path: cacheB
-      'var/cache_c':
-        source: local
-        source_path: cacheC
+myapp:
+  # ...
+  mounts:
+    'var/cache_a':
+      source: service
+      service: ns_service
+      source_path: cacheA
+    'var/cache_b':
+      source: tmp
+      source_path: cacheB
+    'var/cache_c':
+      source: local
+      source_path: cacheC
 ```
 
 In this case, it does not matter that each mount is of a different `source` type.
@@ -131,20 +130,19 @@ Each mount is restricted to a subfolder within `var`, and all is well.
 The following, however, is not allowed and will result in a failure:
 
 ```yaml {configFile="apps"}
-applications:
-  myapp:
-    # ...
-    mounts:
-      'var/':
-        source: service
-        service: ns_service
-        source_path: cacheA
-      'var/cache_b':
-        source: tmp
-        source_path: cacheB
-      'var/cache_c':
-        source: local
-        source_path: cacheC
+myapp:
+  # ...
+  mounts:
+    'var/':
+      source: service
+      service: ns_service
+      source_path: cacheA
+    'var/cache_b':
+      source: tmp
+      source_path: cacheB
+    'var/cache_c':
+      source: local
+      source_path: cacheC
 ```
 
 The `service` mount type specifically exists to share data between instances of the same application, whereas `tmp` and `instance` are meant to restrict data to build time and runtime of a single application instance, respectively.

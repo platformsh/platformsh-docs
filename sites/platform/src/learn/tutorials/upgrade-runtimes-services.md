@@ -83,9 +83,8 @@ Updating to a new version means changing that value and pushing it.
 1. Check the supported versions on the runtime page under [Languages](/languages/_index.md), then update the `type` key with the correct version number:
 
    ```yaml {configFile="app"}
-   applications:
-     myapp:
-       type: 'php:{{% latest "php" %}}'
+   name: myapp
+   type: 'php:{{% latest "php" %}}'
    ```
 
 2. Push to a non-production branch. If you don't already have one, create it first:
@@ -195,12 +194,11 @@ export your data, provision a new service at the target version, and import the 
 3. Update the `relationships` of any application that references the old service name:
 
    ```yaml {configFile="app"}
-   applications:
-     myapp:
-       relationships:
-         database:
-           service: database-target
-           endpoint: postgresql
+   name: myapp
+   relationships:
+     database:
+       service: database-target
+       endpoint: postgresql
    ```
 
 4. Push to a non-production branch and import your data into the new service.

@@ -36,17 +36,16 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 A worker named `queue` that was small and had a different start command could look like this:
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    workers:
-      queue:
-        size: S
-        commands:
-          start: |
-            ./worker.sh        
+name: {{% variable "APP_NAME" %}}
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+workers:
+  queue:
+    size: S
+    commands:
+      start: |
+        ./worker.sh        
 ```
     
 <--->
@@ -67,20 +66,19 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 
 A worker named `queue` that was small and had a different start command could look like this:
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    workers:
-      queue:
-        size: S
-        commands:
-          start: |
-            ./worker.sh        
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  workers:
+    queue:
+      size: S
+      commands:
+        start: |
+          ./worker.sh        
 ```
 
 {{< /codetabs >}}

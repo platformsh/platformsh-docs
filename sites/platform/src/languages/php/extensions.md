@@ -25,19 +25,18 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'php:{{% latest "php" %}}'
-    source:
-      root: "/"
-    runtime:
-      extensions:
-        - raphf
-        - http
-        - igbinary
-        - redis
-      disabled_extensions:
-        - sqlite3
+name: {{% variable "APP_NAME" %}}
+type: 'php:{{% latest "php" %}}'
+source:
+  root: "/"
+runtime:
+  extensions:
+    - raphf
+    - http
+    - igbinary
+    - redis
+  disabled_extensions:
+    - sqlite3
 ```
 
 <--->
@@ -46,21 +45,20 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: "php@{{% latest php %}}"
-        extensions:
-          - raphf
-          - http
-          - igbinary
-          - redis
-        disabled_extensions:
-          - sqlite3
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: "php@{{% latest php %}}"
+      extensions:
+        - raphf
+        - http
+        - igbinary
+        - redis
+      disabled_extensions:
+        - sqlite3
 ```
 
 {{< /codetabs >}}
