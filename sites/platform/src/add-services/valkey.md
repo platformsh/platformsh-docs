@@ -140,10 +140,9 @@ For example:
 To define the service, use the `valkey-persistent` endpoint:
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  <SERVICE_NAME>:
-    type: valkey-persistent:<VERSION>
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+  type: valkey-persistent:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -160,15 +159,14 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>:
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -186,16 +184,15 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="services"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: valkey
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: valkey
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -219,19 +216,18 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # PHP extensions.
-    runtime:
-      extensions:
-        - redis
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>:
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# PHP extensions.
+runtime:
+  extensions:
+    - redis
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 <--->
@@ -241,20 +237,19 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # PHP extensions.
-    runtime:
-      extensions:
-          - redis
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: valkey
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# PHP extensions.
+runtime:
+  extensions:
+      - redis
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: valkey
 ```
 
 {{< /codetabs >}}
@@ -505,12 +500,11 @@ When Valkey reaches its memory limit, it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  valkey:
-    type: "valkey:{{% latest "valkey" %}}"
-    configuration:
-      maxmemory_policy: allkeys-lfu
+# The name of the service container. Must be unique within a project.
+valkey:
+  type: "valkey:{{% latest "valkey" %}}"
+  configuration:
+    maxmemory_policy: allkeys-lfu
 ```
 
 The following table presents the possible values:
@@ -581,37 +575,37 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
+# The name of the app container. Must be unique within a project.
+name: myapp
+source:
+  root: "myapp"
 
-    type: "php:{{% latest "php" %}}"
+type: "php:{{% latest "php" %}}"
 
-    # PHP extensions.
-    runtime:
-      extensions:
-        - redis
+# PHP extensions.
+runtime:
+  extensions:
+    - redis
 
-    relationships:
-      valkeysession:
-
-    variables:
-      php:
-        session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
-
-    web:
-      locations:
-        '/':
-          root: 'web'
-          passthru: '/index.php'
-
-services:
-  # The name of the service container. Must be unique within a project.
+relationships:
   valkeysession:
-    type: "valkey-persistent:{{% latest "valkey" %}}"
+
+variables:
+  php:
+    session.save_handler: valkey
+    session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+  locations:
+    '/':
+      root: 'web'
+      passthru: '/index.php'
+```
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+valkeysession:
+  type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 <--->
@@ -621,42 +615,42 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
+# The name of the app container. Must be unique within a project.
+name: myapp
+source:
+  root: "myapp"
 
-    type: "php:{{% latest "php" %}}"
+type: "php:{{% latest "php" %}}"
 
-    # PHP extensions.
-    runtime:
-      extensions:
-        - redis
+# PHP extensions.
+runtime:
+  extensions:
+    - redis
 
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkeysession:
-        service: valkeysession
-        endpoint: valkey
-
-    variables:
-      php:
-        session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
-
-    web:
-      locations:
-        '/':
-          root: 'web'
-          passthru: '/index.php'
-
-services:
-  # The name of the service container. Must be unique within a project.
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
   valkeysession:
-    type: "valkey-persistent:{{% latest "valkey" %}}"
+    service: valkeysession
+    endpoint: valkey
+
+variables:
+  php:
+    session.save_handler: valkey
+    session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+  locations:
+    '/':
+      root: 'web'
+      passthru: '/index.php'
+```
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+valkeysession:
+  type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}

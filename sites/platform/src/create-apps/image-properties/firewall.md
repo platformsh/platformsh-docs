@@ -35,14 +35,13 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    firewall:
-      outbound:
-        - ips: [ "0.0.0.0/0" ]
+name: {{% variable "APP_NAME" %}}
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+firewall:
+  outbound:
+    - ips: [ "0.0.0.0/0" ]
 ```
 
 <--->
@@ -51,17 +50,16 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    firewall:
-      outbound:
-        - ips: [ "0.0.0.0/0" ]
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  firewall:
+    outbound:
+      - ips: [ "0.0.0.0/0" ]
 ```
 
 {{< /codetabs >}}
@@ -86,16 +84,15 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    firewall:
-      outbound:
-        - ips: [ "1.2.3.4/32" ]
-          ports: [ 443 ]
-        - ports: [ 80 ]
+name: {{% variable "APP_NAME" %}}
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+firewall:
+  outbound:
+    - ips: [ "1.2.3.4/32" ]
+      ports: [ 443 ]
+    - ports: [ 80 ]
 ```
 
 <--->
@@ -104,19 +101,18 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    firewall:
-      outbound:
-        - ips: [ "1.2.3.4/32" ]
-          ports: [ 443 ]
-        - ports: [ 80 ]
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  firewall:
+    outbound:
+      - ips: [ "1.2.3.4/32" ]
+        ports: [ 443 ]
+      - ports: [ 80 ]
 ```
 
 {{< /codetabs >}}
@@ -146,19 +142,18 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    firewall:
-      outbound:
-        - protocol: tcp
-          domains: [ "api.stripe.com", "api.twilio.com" ]
-          ports: [ 80, 443 ]
-        - protocol: tcp
-          ips: [ "1.2.3.4/29","2.3.4.5" ]
-          ports: [ 22 ]
+name: {{% variable "APP_NAME" %}}
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+firewall:
+  outbound:
+    - protocol: tcp
+      domains: [ "api.stripe.com", "api.twilio.com" ]
+      ports: [ 80, 443 ]
+    - protocol: tcp
+      ips: [ "1.2.3.4/29","2.3.4.5" ]
+      ports: [ 22 ]
 ```
 
 <--->
@@ -167,22 +162,21 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    firewall:
-      outbound:
-        - protocol: tcp
-          domains: [ "api.stripe.com", "api.twilio.com" ]
-          ports: [ 80, 443 ]
-        - protocol: tcp
-          ips: [ "1.2.3.4/29","2.3.4.5" ]
-          ports: [ 22 ]
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  firewall:
+    outbound:
+      - protocol: tcp
+        domains: [ "api.stripe.com", "api.twilio.com" ]
+        ports: [ 80, 443 ]
+      - protocol: tcp
+        ips: [ "1.2.3.4/29","2.3.4.5" ]
+        ports: [ 22 ]
 ```
 
 {{< /codetabs >}}

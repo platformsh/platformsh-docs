@@ -83,9 +83,8 @@ Updating to a new version means changing that value and pushing it.
 1. Check the supported versions on the runtime page under [Languages](/languages/_index.md), then update the `type` key with the correct version number:
 
    ```yaml {configFile="app"}
-   applications:
-     myapp:
-       type: 'php:{{% latest "php" %}}'
+   name: myapp
+   type: 'php:{{% latest "php" %}}'
    ```
 
 2. Push to a non-production branch. If you don't already have one, create it first:
@@ -136,9 +135,8 @@ PostgreSQL 10 and later, for example, include a built-in upgrade utility that ru
 1. Update the `type` key for your service:
 
    ```yaml {configFile="services"}
-   services:
-     database:
-       type: postgresql:{{% latest "postgresql" %}}
+   database:
+     type: postgresql:{{% latest "postgresql" %}}
    ```
 
 2. Push to a non-production branch. If you don't already have one, create it first:
@@ -187,20 +185,18 @@ export your data, provision a new service at the target version, and import the 
    Renaming forces {{% vendor/name %}} to create a fresh service container.
 
    ```yaml {configFile="services"}
-   services:
-     database-target:
-       type: postgresql:{{% latest "postgresql" %}}
+   database-target:
+     type: postgresql:{{% latest "postgresql" %}}
    ```
 
 3. Update the `relationships` of any application that references the old service name:
 
    ```yaml {configFile="app"}
-   applications:
-     myapp:
-       relationships:
-         database:
-           service: database-target
-           endpoint: postgresql
+   name: myapp
+   relationships:
+     database:
+       service: database-target
+       endpoint: postgresql
    ```
 
 4. Push to a non-production branch and import your data into the new service.

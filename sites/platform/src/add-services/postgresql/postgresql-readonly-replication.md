@@ -45,40 +45,39 @@ Be sure to:
 - **Important:** Use `replicator` as the endpoint name when you define the replica service. This is a special endpoint name that the replica service uses to connect to the database.
 
 ```yaml {configFile="services"}
-services:
-  db:
-    type: postgresql:<VERSION>
-    disk: <SIZE>
-    configuration:
-      extensions:
-        - postgis
-      endpoints:
-        replicator:
-          replication: true
+db:
+  type: postgresql:<VERSION>
+  disk: <SIZE>
+  configuration:
+    extensions:
+      - postgis
+    endpoints:
+      replicator:
+        replication: true
 
-  db-replica1:
-    type: postgres-replica:<VERSION>
-    disk: <SIZE>
-    configuration:
-      endpoints:
-        postgresql:
-          default_database: main
-      extensions:
-        - postgis
-    relationships: 
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+db-replica1:
+  type: postgres-replica:<VERSION>
+  disk: <SIZE>
+  configuration:
+    endpoints:
+      postgresql:
+        default_database: main
+    extensions:
+      - postgis
+  relationships: 
+    primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 
-  db-replica2:
-    type: postgres-replica:<VERSION>
-    disk: <SIZE>
-    configuration:
-      endpoints:
-        postgresql:
-          default_database: main
-      extensions:
-        - postgis
-    relationships: 
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+db-replica2:
+  type: postgres-replica:<VERSION>
+  disk: <SIZE>
+  configuration:
+    endpoints:
+      postgresql:
+        default_database: main
+    extensions:
+      - postgis
+  relationships: 
+    primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 ```
 
 ### How it works

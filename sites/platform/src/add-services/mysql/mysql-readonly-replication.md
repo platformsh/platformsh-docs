@@ -54,49 +54,48 @@ Be sure to:
 - **Important:** Use `replicator` as the endpoint name when you define the replica service. This is a special endpoint name that the replica service uses to connect to the database.
 
 ```yaml {configFile="services"}
-services:
-  db:
-    type: mariadb:<VERSION>
-    disk: <SIZE>
-    configuration:
-      schemas:
-        - main
-      endpoints:
-        main:
-          default_schema: main
-          privileges:
-              main: admin
-        replicator:
-          privileges:
-            main: replication
-
-  db-replica1:
-    type: mariadb-replica:<VERSION>
-    disk: <SIZE>
-    configuration:
-      schemas:
-        - main
-      endpoints:
-        main:
-          default_schema: main
-          privileges:
+db:
+  type: mariadb:<VERSION>
+  disk: <SIZE>
+  configuration:
+    schemas:
+      - main
+    endpoints:
+      main:
+        default_schema: main
+        privileges:
             main: admin
-    relationships:
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+      replicator:
+        privileges:
+          main: replication
 
-  db-replica2:
-    type: mariadb-replica:<VERSION>
-    disk: <SIZE>
-    configuration:
-      schemas:
-        - main
-      endpoints:
-        main:
-          default_schema: main
-          privileges:
-            main: admin
-    relationships:
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+db-replica1:
+  type: mariadb-replica:<VERSION>
+  disk: <SIZE>
+  configuration:
+    schemas:
+      - main
+    endpoints:
+      main:
+        default_schema: main
+        privileges:
+          main: admin
+  relationships:
+    primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+
+db-replica2:
+  type: mariadb-replica:<VERSION>
+  disk: <SIZE>
+  configuration:
+    schemas:
+      - main
+    endpoints:
+      main:
+        default_schema: main
+        privileges:
+          main: admin
+  relationships:
+    primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 ```
 
 ### How it works

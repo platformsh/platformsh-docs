@@ -738,7 +738,7 @@ web:
   locations:
     '/':
       root: 'web'
-        passthru: '/index.php'
+      passthru: '/index.php'
 ```
 
 <--->

@@ -440,36 +440,34 @@ As a result, bundled modules shipped under `/opt/solr/<VERSION>/modules/` (such 
 By default, no bundled modules are loaded &mdash; only the modules you explicitly request are placed on the classpath. This keeps small instances from paying the memory cost of modules they don't use.
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  solr:
-    type: solr:{{% latest "solr" %}}
-    configuration:
-      modules:
-        - extraction
-        - analysis-extras
-        - langid
-        - ltr
-      cores:
-        mainindex:
-          conf_dir: !archive "core1-conf"
-      endpoints:
-        main:
-          core: mainindex
+# The name of the service container. Must be unique within a project.
+solr:
+  type: solr:{{% latest "solr" %}}
+  configuration:
+    modules:
+      - extraction
+      - analysis-extras
+      - langid
+      - ltr
+    cores:
+      mainindex:
+        conf_dir: !archive "core1-conf"
+    endpoints:
+      main:
+        core: mainindex
 ```
 
 If you're upgrading from Solr 9.6 or earlier and your configset relies on `<lib>` directives (for example, the default Drupal [`search_api_solr`](https://www.drupal.org/project/search_api_solr) configset), add the matching modules to `configuration.modules` when you bump the version:
 
 ```yaml {configFile="services"}
-services:
-  solr:
-    type: solr:9.9
-    configuration:
-      modules:
-        - extraction
-        - analysis-extras
-        - langid
-        - ltr
+solr:
+  type: solr:9.9
+  configuration:
+    modules:
+      - extraction
+      - analysis-extras
+      - langid
+      - ltr
 ```
 
 The `configuration.modules` field is supported only on Solr 9.9 and later.

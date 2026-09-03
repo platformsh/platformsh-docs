@@ -26,13 +26,12 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "python:{{% latest "python" %}}"
-    source:
-      root: "/"
-    access:
-      ssh: admin
+name: {{% variable "APP_NAME" %}}
+type: "python:{{% latest "python" %}}"
+source:
+  root: "/"
+access:
+  ssh: admin
 ```
 
 <--->
@@ -41,16 +40,15 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    access:
-      ssh: admin
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  access:
+    ssh: admin
 ```
 
 {{< /codetabs >}}
