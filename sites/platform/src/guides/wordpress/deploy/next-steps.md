@@ -28,13 +28,13 @@ so you need to copy and re-copy accordingly.
 
 ## Adding public plugins and themes via Composer
 
-Adding a plugin or theme from WPPackagist is the same as downloading a package through Composer:
+Adding a plugin or theme from WP Packages is the same as downloading a package through Composer:
 
 ```bash
 # Plugin
-$ composer require wpackagist-plugin/cache-control
+$ composer require wp-plugin/cache-control
 # Theme
-$ composer require wpackagist-theme/neve
+$ composer require wp-theme/neve
 ```
 
 This updates your `composer.json` and `composer.lock` files.
@@ -56,14 +56,14 @@ Push those changes on a new environment and configure your store through the adm
 
 ## Adding private plugins and themes via Composer
 
-If your plugins aren't accessible from WPPackagist or Packagist, but are still valid packages,
+If your plugins aren't accessible from WP Packages or Packagist, but are still valid packages,
 you can use them in your project by defining local `repositories` for them in your `composer.json` file.
 
 ```json
 "repositories":[
     {
        "type":"composer",
-       "url":"https://wpackagist.org"
+       "url":"https://repo.wp-packages.org"
     },
     {
       "type": "path",

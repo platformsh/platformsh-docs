@@ -187,13 +187,13 @@ Next, having placed `wp-config.php` in the root of your repository, you need to 
   },
 ```
 
-Since you're likely using [WPPackagist](https://wpackagist.org/) to download plugins and themes with Composer, you also need to add `wpackagist.org` as a repository in `composer.json`.
+Since you're likely using [WP Packages](https://wp-packages.org/) to download plugins and themes with Composer, you also need to add `repo.wp-packages.org` as a repository in `composer.json`.
 
 ```json
   "repositories": [
     {
       "type": "composer",
-      "url": "https://wpackagist.org"
+      "url": "https://repo.wp-packages.org"
     }
   ]
 ```
