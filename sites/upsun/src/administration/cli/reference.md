@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.11.0
+# Upsun CLI 5.11.1
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -301,11 +301,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
+    /home/runner/.cache/upsun-tmp/legacy-5.11.1/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash > completion.sh
+    /home/runner/.cache/upsun-tmp/legacy-5.11.1/upsun.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -318,7 +318,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash)"
+    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.11.1/upsun.phar completion bash)"
 
 #### Arguments
 
@@ -5942,12 +5942,12 @@ Execute a task on an environment
 ### Usage
 
 ```
-upsun task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <task>
+upsun task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<task>]
 ```
 
 #### Arguments
 
-* `task`(required)
+* `task`(optional)
   The name of the task to execute
 
 #### Options
