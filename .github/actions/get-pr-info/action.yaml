@@ -19,10 +19,6 @@ outputs:
   pr_url:
     description: "The URL of the PR environment"
     value: ${{ steps.get_env_url.outputs.env_url }}
-  pr_url_upsun:
-    description: "The URL of the Upsun variant of the PR environment"
-    value: ${{ steps.get_env_url.outputs.env_url_upsun }}
-
 
 runs:
   using: composite
@@ -37,7 +33,7 @@ runs:
       env:
         PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
         BRANCH: ${{ inputs.branch }}
-        UPSUN_DOCS_PREFIX: "https://docs.upsun.com" # @todo move to a repo var?
+        PROJECT: ${{ inputs.project }}
       id: get_env_url
       run: |
         COMMIT_STATUS="pending"
@@ -87,8 +83,33 @@ runs:
           exit 1
         fi
 
-        # Get the URL of the environment
-        ENV_URL=$(platform url --primary --pipe --environment "${BRANCH}")
+        ENV_STATE=$(platform environment:info status --project "${PROJECT}" --environment "${BRANCH}" --format plain --no-header || true)
+        if [ "${ENV_STATE}" != "active" ]; then
+          echo "::notice::Environment ${BRANCH} is ${ENV_STATE:-unknown}; skipping URL resolution."
+          echo "env_status=${ENV_STATE:-inactive}" >> $GITHUB_OUTPUT
+          echo "env_url=" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+
+        # Get the URL of the environment. A completed activity can still leave
+        # the environment inactive, in which case URL resolution exits non-zero.
+        set +e
+        ENV_URL=$(platform url --primary --pipe --project "${PROJECT}" --environment "${BRANCH}" 2>platform-url-error.log)
+        URL_RESULT=$?
+        set -e
+
+        if [ ${URL_RESULT} -ne 0 ]; then
+          URL_ERROR=$(cat platform-url-error.log)
+          if echo "${URL_ERROR}" | grep -qi "environment is inactive"; then
+            echo "::notice::Environment ${BRANCH} is inactive; skipping URL resolution."
+            echo "env_status=inactive" >> $GITHUB_OUTPUT
+            echo "env_url=" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "::error title=Unable to resolve environment URL::${URL_ERROR}"
+          exit ${URL_RESULT}
+        fi
 
         # Get the status of the build activity
         COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "result" --limit 1 --environment "${BRANCH}")
@@ -104,4 +125,3 @@ runs:
         # Report the final statuses to be used in future jobs
         echo "env_status=$COMMIT_STATUS" >> $GITHUB_OUTPUT
         echo "env_url=$ENV_URL" >> $GITHUB_OUTPUT
-        echo "env_url_upsun=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}" >> $GITHUB_OUTPUT
