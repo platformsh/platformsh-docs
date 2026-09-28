@@ -12,7 +12,7 @@ But you can include Varnish as a service.
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
 
 <table>
     <thead>
@@ -33,7 +33,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
 
 <table>
     <thead>

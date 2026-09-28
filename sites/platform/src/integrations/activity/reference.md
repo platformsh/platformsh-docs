@@ -179,9 +179,10 @@ The following table presents the possible activity types:
 Activities that relate to a maintenance.
 The following table presents the possible types:
 
-| Name                  | Description                                               |
-|-----------------------|-----------------------------------------------------------|
-| `maintenance.upgrade` | An upgrade is triggered for API Server and Metrics Server |
+| Name                               | Description                                                                      |
+|------------------------------------|----------------------------------------------------------------------------------|
+| `maintenance.upgrade`              | An upgrade is triggered for API Server and Metrics Server                        |
+| `environment.maintenance.redeploy` | A [maintenance window](/learn/overview/build-deploy.md#maintenance-window) redeploys an environment to apply pending service image updates |
 
 ### `environments`
 

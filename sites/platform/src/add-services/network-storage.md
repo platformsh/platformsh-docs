@@ -9,7 +9,7 @@ Your apps can use any combination of `local` and `service` mounts.
 
 {{< note >}}
 
-Writing to network mounts is slightly slower than to local mounts, most noticeably during high-volume sequential file creation — in that case, a local mount is more effective. Applications polling network mounts for a new file may not immediately detect it even though it exists. 
+Writing to network mounts is slightly slower than to local mounts, most noticeably during high-volume sequential file creation — in that case, a local mount is more effective. Applications polling network mounts for a new file may not immediately detect it even though it exists.
 
 Detection can be delayed by approximately 30 seconds, so polling logic should account for this delay and not treat a missing file as an error until that window has passed.
 
@@ -21,8 +21,7 @@ This service is the {{% vendor/name %}} network storage implementation, not the 
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and security updates.
-When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
 
 <table>
     <thead>
@@ -72,7 +71,7 @@ Upsun has deprecated version 2.0 due to performance inconsistencies identified u
 
 {{< note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}" >}}
 
-Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
+Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**.
 
 To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for guidance.** These options are described below.
 
@@ -85,8 +84,8 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 <!-- vale on -->
 
 **Option 1: Manual migration to version {{% latest \"network-storage\" %}}**<br>
-Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. 
-   
+Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself.
+
 1. [Manually back up your environment](/environments/backup.md#create-a-manual-backup).
 
 1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `{{% latest "network-storage" %}}`.
@@ -96,7 +95,7 @@ Complete these steps only if you understand how to provision and decommission {{
 1. Decommission the old service: After you verify the data, remove the old version of the service from your configuration.
 
 **Option 2: Supported Transition**<br>
-If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will provide guidance to ensure your data remains intact. 
+If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will provide guidance to ensure your data remains intact.
 
 ## Usage example
 

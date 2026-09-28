@@ -12,12 +12,11 @@ Built for simplicity and performance, Mercure is widely used in the Symfony ecos
 
 You can select the major version. The latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
 
 {{< image-versions image="mercure" status="supported" >}}
 
-<!-- 
+<!--
 ## Deprecated versions
 
 The following versions are still available in your projects,
@@ -144,9 +143,9 @@ Use a **subdomain route** if the Mercure hub is only consumed server-side (no br
    upstream: "<SERVICE_NAME>:mercure"
 ```
 
-### 3. Define the relationship 
+### 3. Define the relationship
 
-Define the relationship to the app, as shown below: 
+Define the relationship to the app, as shown below:
 
 {{< codetabs >}}
 
@@ -162,7 +161,7 @@ name: <APP_NAME>
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-  <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services

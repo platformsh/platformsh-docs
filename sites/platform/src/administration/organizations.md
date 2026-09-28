@@ -206,7 +206,7 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 | Custom domains on preview environments | Enterprise and Elite only | Yes |
 | Automated code updates | Enterprise and Elite only | Yes |
 | Manual deployment | Enterprise and Elite only | Yes |
-| Zero downtime deployment | Enterprise and Elite only | Yes |
+| Zero downtime deployment | No | Yes |
 | Custom backup retention policies | Different packages | Unlimited (pay for storage) |
 | Email SMTP server | Yes | Yes |
 | Email validation (DKIM) | Enterprise and Elite only | Yes |

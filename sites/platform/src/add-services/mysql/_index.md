@@ -28,7 +28,7 @@ If you use one of the following frameworks, follow its guide:
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
 
 {{< note theme="info" title="" >}}
 - Both `mariadb` and `mysql` service types use MariaDB.\
@@ -78,7 +78,7 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 2. **Important:** Push the branch (`git push`) before making any changes. This step is required — it ensures your data is copied to a new container before the upgrade begins.
 3. In `.platform/services.yaml`, update the service `type` key to include the target version. You can upgrade directly to any higher supported version — sequential upgrades are not required.
   {{% note theme="caution" title="Caution" %}}
-  **Do not change the service name.** Changing the service name deletes the existing container and all its data. 
+  **Do not change the service name.** Changing the service name deletes the existing container and all its data.
   {{% /note %}}
 4. Commit and push the changes.
 5. You can now test the new version on the branch you created in step 1 (e.g. the `database-upgrade` branch).
@@ -87,14 +87,14 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 ### Downgrade
 
 {{% note theme="caution" title="Caution" %}}
-Downgrading requires changing the service name, which permanently deletes the existing container and all its data. 
+Downgrading requires changing the service name, which permanently deletes the existing container and all its data.
 
 Before downgrading, back up your environment for rollback, and export your data — you'll reimport it into the re-created service.
 
 {{% /note %}}
 
-1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so. 
-2. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment. 
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so.
+2. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.
 
     **Review the dump file for version compatibility issues.**
     Your exported data might contain features that don’t exist in the older target version. Review the dump file for compatibility issues such as:
@@ -123,7 +123,7 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
   disk: 256
 ```
 
-Remember to back up your environment and export your data before changing the service. 
+Remember to back up your environment and export your data before changing the service.
 
 ### 2. Define the relationship
 
@@ -706,9 +706,9 @@ Each has its own credentials you can use to connect to the given database.
 
 For MariaDB 10.1 and later, you can configure the database by adding the properties below to the `.services.<SERVICE_NAME>.configuration.properties` key. This method is equivalent to using a using a `my.cnf` file.
 
-{{% note theme="info" %}} 
+{{% note theme="info" %}}
 **At this time, these properties can be configured on MariaDB/MySQL databases only.** They cannot be configured for Oracle MySQL databases.
-{{% /note %}}  
+{{% /note %}}
 
 | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
 |---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -760,7 +760,7 @@ See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-
 
 ## Password generation {#password-generation}
 
-If your YAML file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated. 
+If your YAML file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated.
 
 Because the database container is strictly isolated, it remains invisible to any resource until you [define an explicit relationship](/add-services/mysql.md#2-define-the-relationship) between it and other apps or workers. The container's "walls" ensure that only authorized applications and workers can reach the data, while all other processes are blocked at the network level.
 
@@ -781,15 +781,15 @@ Using this method to retrieve password credentials is considered a best practice
 
 ## Password rotation {#password-rotation}
 
-{{% note %}} 
+{{% note %}}
 For rotation to occur, you must define a `schema` and `endpoint` in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated to be rotated.
 {{% /note %}}
 
-By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
+By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings.
 
-Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
+Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference).
 
-Passwords do **not** rotate automatically when you reset this value to `true`. 
+Passwords do **not** rotate automatically when you reset this value to `true`.
 
 {{% note title="Important" theme="warning" %}}
 Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.

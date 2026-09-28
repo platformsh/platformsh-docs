@@ -210,6 +210,54 @@ As soon as your deployment type is switched from manual to automatic, all curren
 
 {{< /note >}}
 
+## Maintenance window
+
+A maintenance window is a recurring time slot when {{% vendor/name %}} Fixed applies patch updates to your services' container images, such as bug and security fixes.
+Some of these updates can cause brief downtime, so you choose when they happen instead of having them run unexpectedly:
+you set how often the window repeats (every 2 or 4 weeks), the day, and the time.
+Maintenance windows are configured per project.
+
+### What happens during a maintenance window
+
+During your scheduled maintenance window, {{% vendor/name %}} Fixed redeploys your environment to apply any pending minor and patch updates to your services' container images, which can cause brief downtime.
+
+Maintenance redeployments and your regular deployments stay separate:
+a maintenance redeployment skips your own staged or pending activities, and a regular deployment never applies pending patch updates.
+A code push won't unexpectedly restart a service onto a new version.
+
+After the redeployment on your production environment succeeds, {{% vendor/name %}} Fixed schedules the same redeployment on your non-production environments,
+staggered roughly 15 minutes apart so they don't all redeploy at once.
+
+Maintenance windows run only against active environments.
+[Paused or inactive environments](/environments/deactivate-environment.md) are skipped, even if the project has a maintenance window configured.
+
+If no updates are pending, nothing runs.
+
+### Configure a maintenance window
+
+A project's maintenance window is not enabled by default. To configure one:
+
+1. In the [Console]({{% vendor/urlraw "console" %}}), open your project and click **{{< icon settings >}}**.
+2. Click **Project Settings {{< icon chevron >}}** and then click **Maintenance window**.
+3. Choose the recurrence (2 or 4 weeks), weekday, and time (in your project's [timezone](/projects/change-project-timezone.md)).
+   Click **Save**.
+
+![Maintenance window in Project settings](/images/management-console/maintenance-window.png "0.5")
+
+Based on your recurrence settings, {{% vendor/name %}} Fixed calculates the next maintenance date.
+The Console displays the next scheduled event, and the run itself appears as pending in the [activity log](/increase-observability/logs/access-logs.md#activity-logs) about 5 days ahead of time.
+
+You can change the recurrence at any time.
+The new schedule applies from the next maintenance cycle, so a run that's already scheduled keeps its date.
+
+### Reschedule a maintenance window
+
+You can postpone a scheduled maintenance event multiple times within a five-day window.
+The new date must fall within the allowable range shown in the Console.
+
+### Turn off a maintenance window
+
+[Contact support](/learn/overview/get-support.md) to turn one off.
 
 ## Deployment philosophy
 
