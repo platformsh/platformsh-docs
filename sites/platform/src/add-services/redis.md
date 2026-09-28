@@ -33,7 +33,7 @@ Dedicated Gen 2 doesn't use this classification — see [Dedicated Gen 2 version
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
 {{< image-versions-live image="redis" status="active" >}}
 

@@ -12,7 +12,7 @@ Built for simplicity and performance, Mercure is widely used in the Symfony ecos
 
 You can select the major version. The latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and other maintenance updates. When you deploy your app, you get the latest available patches, unless your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured. With a maintenance window, patches are applied only during the window.
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
 {{< image-versions image="mercure" status="supported" >}}
 
