@@ -56,3 +56,10 @@ The **Integrations** section allows you to manage all of your [integrations](/in
 The **Variables** section allows you to manage all project-wide [variables](/development/variables/_index.md).
 
 ![Project variables](/images/management-console/settings-variables-project.png "0.7")
+
+## Maintenance window
+
+The **Maintenance window** section lets you schedule when {{% vendor/name %}} applies patch updates to your services' container images.
+See [Maintenance window](/learn/overview/build-deploy.md#maintenance-window).
+
+![Maintenance window in Project settings](/images/management-console/maintenance-window.png "0.5")

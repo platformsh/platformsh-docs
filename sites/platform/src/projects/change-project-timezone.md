@@ -3,7 +3,8 @@ title: Change the project timezone
 description: See how to change the timezone for a project and what it affects.
 ---
 
-The project timezone affects [automated backups](/environments/backup.md).
+The project timezone affects [automated backups](/environments/backup.md)
+and the day and time you choose for your [maintenance window](/learn/overview/build-deploy.md#maintenance-window).
 
 The project timezone doesn't affect:
 

@@ -55,6 +55,8 @@ title=Using the CLI
 
 If a running activity is stuck, you can [cancel the activity](/environments/cancel-activity.md).
 
+A scheduled [maintenance window](/learn/overview/build-deploy.md#maintenance-window) run also appears here as a pending activity, about 5 days before it runs.
+
 ### Sharing activity logs
 
 When trying to identify and resolve failures, it can often help to have another person's perspective.

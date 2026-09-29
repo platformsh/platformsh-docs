@@ -22,6 +22,8 @@ If you use one of the following frameworks, follow its guide:
 
 ## Supported versions
 
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
+
 <table>
     <thead>
         <tr>
