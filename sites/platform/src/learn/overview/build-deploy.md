@@ -223,7 +223,7 @@ You configure one maintenance window per project.
 
 ### What happens during a maintenance window
 
-During your scheduled maintenance window, {{% vendor/name %}} redeploys your environment to apply any pending minor and patch updates to your services' container images, which can cause brief downtime.
+During your scheduled maintenance window, {{% vendor/name %}} redeploys your environment to apply any pending patch updates to your services' container images, which can cause brief downtime.
 
 Maintenance redeployments and your regular deployments stay separate:
 a maintenance redeployment skips your own staged or pending activities, and a regular deployment doesn't apply pending patch updates.
@@ -240,7 +240,16 @@ If no updates are pending, nothing runs.
 
 ### Configure a maintenance window
 
-A project's maintenance window is not enabled by default. To configure one:
+A project's maintenance window is not enabled by default.
+
+{{< note theme="warning" >}}
+
+Once enabled, a maintenance window can't be turned off from the Console or CLI.
+[Contact support](/learn/overview/get-support.md) to turn one off.
+
+{{< /note >}}
+
+To configure one:
 
 1. In the [Console]({{% vendor/urlraw "console" %}}), open your project and click **{{< icon settings >}}**.
 2. Click **Project Settings {{< icon chevron >}}** and then click **Maintenance window**.
@@ -257,11 +266,12 @@ The new schedule applies from the next maintenance cycle, so a run that's alread
 
 ### Reschedule a maintenance window
 
-You can postpone a scheduled maintenance event multiple times within a five-day window.
+You can postpone a scheduled maintenance event multiple times within a seven-day window.
 The new date must fall within the allowable range shown in the Console.
 
 ### Turn off a maintenance window
 
+A maintenance window can't be turned off from the Console or CLI.
 [Contact support](/learn/overview/get-support.md) to turn one off.
 
 ## Deployment philosophy
