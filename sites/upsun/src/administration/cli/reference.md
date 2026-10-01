@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.11.0
+# Upsun CLI 5.13.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -301,11 +301,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
+    /home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash > completion.sh
+    /home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -318,7 +318,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.11.0/upsun.phar completion bash)"
+    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash)"
 
 #### Arguments
 
@@ -3717,7 +3717,7 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
   The end time. Defaults to now.
 
 * `--latest` (`-1`)
-  Show only the latest single data point
+  Show only the latest single data point Points that started in the last 2 minutes are skipped if they have fewer services than an older point.
 
 * `--service` (`-s`) (expects a value)
   Filter by service or application name The % or * characters may be used as a wildcard.
@@ -3735,7 +3735,7 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, inodes_percent*, tmp_disk_percent*, tmp_inodes_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_used, mem_limit, mem_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, inodes_percent*, tmp_disk_percent*, tmp_inodes_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_used, mem_limit, mem_used, storage_inodes_limit, storage_inodes_percent, storage_inodes_used, storage_limit, storage_percent, storage_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -3784,7 +3784,7 @@ upsun cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-
   The end time. Defaults to now.
 
 * `--latest` (`-1`)
-  Show only the latest single data point
+  Show only the latest single data point Points that started in the last 2 minutes are skipped if they have fewer services than an older point.
 
 * `--service` (`-s`) (expects a value)
   Filter by service or application name The % or * characters may be used as a wildcard.
@@ -3840,7 +3840,7 @@ upsun disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--t
   The end time. Defaults to now.
 
 * `--latest` (`-1`)
-  Show only the latest single data point
+  Show only the latest single data point Points that started in the last 2 minutes are skipped if they have fewer services than an older point.
 
 * `--service` (`-s`) (expects a value)
   Filter by service or application name The % or * characters may be used as a wildcard.
@@ -3858,7 +3858,7 @@ upsun disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--t
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, used*, limit*, percent*, ipercent*, tmp_percent*, ilimit, iused, tmp_ilimit, tmp_ipercent, tmp_iused, tmp_limit, tmp_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, used*, limit*, percent*, ipercent*, tmp_percent*, ilimit, iused, storage_ilimit, storage_ipercent, storage_iused, storage_limit, storage_percent, storage_used, tmp_ilimit, tmp_ipercent, tmp_iused, tmp_limit, tmp_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -3893,7 +3893,7 @@ upsun mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1
   The end time. Defaults to now.
 
 * `--latest` (`-1`)
-  Show only the latest single data point
+  Show only the latest single data point Points that started in the last 2 minutes are skipped if they have fewer services than an older point.
 
 * `--service` (`-s`) (expects a value)
   Filter by service or application name The % or * characters may be used as a wildcard.
@@ -4104,7 +4104,7 @@ Run an operation on the environment
 ### Usage
 
 ```
-upsun operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-W|--no-wait] [--wait] [--] [<operation>]
+upsun operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [--parameter PARAMETER] [-W|--no-wait] [--wait] [--] [<operation>]
 ```
 
 #### Arguments
@@ -4126,11 +4126,21 @@ upsun operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--
 * `--worker` (expects a value)
   A worker name
 
+* `--parameter` (expects a value)
+  A parameter to pass to the operation, one per option, in order
+
 * `--no-wait` (`-W`)
   Do not wait for the operation to complete
 
 * `--wait`
   Wait for the operation to complete (default)
+
+### Examples
+
+* Run the "migrate" operation with parameters:
+```
+upsun operation:run migrate --app app --parameter=--force --parameter "my value"
+```
 
 ## `organization:billing:address`
 
@@ -4367,10 +4377,10 @@ upsun org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project PRO
 #### Options
 
 * `--page` (expects a value)
-  Page number. This enables pagination, despite configuration or --count.
+  Page number. This enables pagination, despite the configuration or --count 0.
 
 * `--count` (`-c`) (expects a value)
-  The number of items to display per page. Use 0 to disable pagination. Ignored if --page is specified.
+  The number of items to display per page (max: 100). Use 0 to disable pagination.
 
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
@@ -5815,9 +5825,9 @@ To load or check your SSH certificate, run: upsun ssh-cert:load
 
 ### Examples
 
-* Delete the key 123:
+* Delete the key with the given ID:
 ```
-upsun ssh-key:delete 123
+upsun ssh-key:delete 01JX7Q8YV0N4W2S6TRK3M9BAEC
 ```
 
 ## `ssh-key:list`
@@ -5846,7 +5856,7 @@ To load or check your SSH certificate, run: upsun ssh-cert:load
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: id*, title*, path*, fingerprint (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, label*, active*, path*, sha256 (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -5942,12 +5952,12 @@ Execute a task on an environment
 ### Usage
 
 ```
-upsun task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] <task>
+upsun task:run [--variable VARIABLE] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<task>]
 ```
 
 #### Arguments
 
-* `task`(required)
+* `task`(optional)
   The name of the task to execute
 
 #### Options
