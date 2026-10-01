@@ -88,104 +88,102 @@ FrankenPHP is available as a package in {{% vendor/name %}} composable stacks.
 
 ### Classic mode configuration
 
-```yaml {configFile="app"}
-applications:
-  app:
-    type: "composable:25.11"
-    source:
-      root: "/"
+```yaml {configFile="apps"}
+app:
+  type: "composable:25.11"
+  source:
+    root: "/"
 
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - blackfire
-              - ctype
-              - iconv
-              - mbstring
-              - pdo_pgsql
-              - sodium
-              - xsl
-        - "nodejs@22"
-      packages:
-        - "frankenphp"
+  stack:
+    runtimes:
+      - "php@8.4":
+          extensions:
+            - apcu
+            - blackfire
+            - ctype
+            - iconv
+            - mbstring
+            - pdo_pgsql
+            - sodium
+            - xsl
+      - "nodejs@22"
+    packages:
+      - "frankenphp"
 
-    variables:
-      php:
-        opcache.preload: config/preload.php
-      env:
-        APP_RUNTIME: 'Runtime\\FrankenPhpSymfony\\Runtime'
-        # composer require runtime/frankenphp-symfony
+  variables:
+    php:
+      opcache.preload: config/preload.php
+    env:
+      APP_RUNTIME: 'Runtime\\FrankenPhpSymfony\\Runtime'
+      # composer require runtime/frankenphp-symfony
 
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
 
-      commands:
-        start: frankenphp php-server --listen=localhost:$PORT --root=$PLATFORM_DOCUMENT_ROOT index.php
+    commands:
+      start: frankenphp php-server --listen=localhost:$PORT --root=$PLATFORM_DOCUMENT_ROOT index.php
 
-      locations:
-        "/":
-          root: "public"
-          expires: 1h
-          passthru: true
-          allow: true
-          scripts: true
-          request_buffering:
-            enabled: false
+    locations:
+      "/":
+        root: "public"
+        expires: 1h
+        passthru: true
+        allow: true
+        scripts: true
+        request_buffering:
+          enabled: false
 
 ```
 ### Worker mode configuration
 
-```yaml {configFile="app"}
-applications:
-  app:
-    type: "composable:25.11"
-    source:
-      root: "/"
+```yaml {configFile="apps"}
+app:
+  type: "composable:25.11"
+  source:
+    root: "/"
 
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - blackfire
-              - ctype
-              - iconv
-              - mbstring
-              - pdo_pgsql
-              - sodium
-              - xsl
-        - "nodejs@22"
-      packages:
-        - "frankenphp"
+  stack:
+    runtimes:
+      - "php@8.4":
+          extensions:
+            - apcu
+            - blackfire
+            - ctype
+            - iconv
+            - mbstring
+            - pdo_pgsql
+            - sodium
+            - xsl
+      - "nodejs@22"
+    packages:
+      - "frankenphp"
 
-    variables:
-      php:
-        opcache.preload: config/preload.php
-      env:
-        APP_RUNTIME: 'Runtime\\FrankenPhpSymfony\\Runtime'
-        # composer require runtime/frankenphp-symfony
+  variables:
+    php:
+      opcache.preload: config/preload.php
+    env:
+      APP_RUNTIME: 'Runtime\\FrankenPhpSymfony\\Runtime'
+      # composer require runtime/frankenphp-symfony
 
-    web:
-      upstream:
-        socket_family: tcp
-        protocol: http
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
 
-      commands:
-        start: frankenphp php-server --worker $PLATFORM_DOCUMENT_ROOT/index.php --listen=localhost:$PORT --root=$PLATFORM_DOCUMENT_ROOT
+    commands:
+      start: frankenphp php-server --worker $PLATFORM_DOCUMENT_ROOT/index.php --listen=localhost:$PORT --root=$PLATFORM_DOCUMENT_ROOT
 
-      locations:
-        "/":
-          root: "public"
-          expires: 1h
-          passthru: true
-          allow: true
-          scripts: true
-          request_buffering:
-            enabled: false
+    locations:
+      "/":
+        root: "public"
+        expires: 1h
+        passthru: true
+        allow: true
+        scripts: true
+        request_buffering:
+          enabled: false
 
 ```
 ### Using the latest FrankenPHP version

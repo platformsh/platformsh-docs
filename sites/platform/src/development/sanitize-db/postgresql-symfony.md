@@ -96,10 +96,10 @@ Set up a script by following these steps:
     hooks:
       build: ...
       deploy: |
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
-        # The sanitization of the database should happen here (since it's non-production)
-        php bin/console app:sanitize-data
-      fi
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
+          # The sanitization of the database should happen here (since it's non-production)
+          php bin/console app:sanitize-data
+        fi
     ```
 
     To sanitize only on the initial deploy and not all future deploys, on sanitization create a file on a mount. Then add a check for the file as in the following example:

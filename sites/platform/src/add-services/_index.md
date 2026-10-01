@@ -233,8 +233,8 @@ Add them to the `type` key of the [service configuration](#1-configure-the-servi
 
 These services generally follow [semantic versioning conventions](https://semver.org/).
 You can select the major version, but the latest compatible minor is applied automatically and can’t be overridden.
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
+
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
 ## Service timezones
 
@@ -334,3 +334,5 @@ When you do so, we would recommend:
 
 1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first.
 1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
+
+For step-by-step instructions, including how to migrate data when a service doesn't support an in-place upgrade, see [Upgrade a runtime or service](/learn/tutorials/upgrade-runtimes-services.md).

@@ -47,6 +47,8 @@ Please note that the above versions only apply to Dedicated Gen 2. As of now, th
 
 {{< /note >}}
 
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
+
 <!-- 
 | Grid  | Dedicated Gen 2 |
 |-------|----------------|

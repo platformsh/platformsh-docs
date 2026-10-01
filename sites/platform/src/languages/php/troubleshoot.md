@@ -23,16 +23,15 @@ If advisories were published after the most recent PHP app deployment, the build
 **Important: Upsun advises against disabling security blocking.** However, as a last resort, the feature can be disabled as a workaround while you fix issues with dependencies.  
 
 ```yaml {configFile="app"}
-applications:
 # The app's name, which must be unique within the project.
-myapp:
-  type: 'php:{{% latest "php" %}}'
-  <snip>
-  dependencies:
-    php:
-      config:
-        audit:
-          block-insecure: false
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    config:
+      audit:
+        block-insecure: false
 ```      
 
 ## Server reached `max_children`

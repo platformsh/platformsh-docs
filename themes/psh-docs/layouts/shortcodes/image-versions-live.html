@@ -1,0 +1,54 @@
+{{/*
+  Lists image versions matching a given Upsun internal_status (active, sunset, or
+  decommissioned), fetched live from the public Upsun meta API. Unlike
+  `image-versions`, this reads no local data file — it queries
+  https://meta.upsun.com/images/<image> at build time.
+
+  Params:
+    image  - registry image key, e.g. "redis"
+    status - one of "active", "sunset", "decommissioned"
+*/}}
+{{ $image := .Get "image" }}
+{{ $status := .Get "status" }}
+
+{{ if not $image }}
+  {{ errorf "image-versions-live: missing required param %q" "image" }}
+{{ end }}
+{{ if not (in (slice "active" "sunset" "decommissioned") $status) }}
+  {{ errorf "image-versions-live: invalid status %q (expected active, sunset, or decommissioned) for image %q" $status $image }}
+{{ end }}
+
+{{ $url := printf "https://meta.upsun.com/images/%s" $image }}
+
+{{ with resources.GetRemote $url }}
+  {{ with .Err }}
+    {{ errorf "image-versions-live: error fetching %s: %s" $url . }}
+  {{ else }}
+    {{ $data := . | transform.Unmarshal }}
+    {{ $matches := slice }}
+    {{ range $name, $v := $data.versions }}
+      {{ if eq $v.upsun.internal_status $status }}
+        {{ $parts := split $name "." }}
+        {{ $major := ((index $parts 0) | replaceRE "[^0-9]" "" | default "0" | int) }}
+        {{ $minor := 0 }}
+        {{ $patch := 0 }}
+        {{ if ge (len $parts) 2 }}{{ $minor = ((index $parts 1) | replaceRE "[^0-9]" "" | default "0" | int) }}{{ end }}
+        {{ if ge (len $parts) 3 }}{{ $patch = ((index $parts 2) | replaceRE "[^0-9]" "" | default "0" | int) }}{{ end }}
+        {{ $sortKey := add (add (mul $major 1000000) (mul $minor 1000)) $patch }}
+        {{ $matches = $matches | append (dict "name" $name "sortKey" $sortKey) }}
+      {{ end }}
+    {{ end }}
+    {{ $sorted := sort $matches "sortKey" "desc" }}
+    {{ if eq (len $sorted) 0 }}
+None available
+    {{ else }}
+<ul>
+{{ range $sorted }}
+  <li>{{ .name }}</li>
+{{ end }}
+</ul>
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ errorf "image-versions-live: could not fetch %s" $url }}
+{{ end }}

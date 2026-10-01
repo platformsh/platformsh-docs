@@ -13,27 +13,18 @@ Node.js is a popular asynchronous JavaScript runtime.
 Deploy scalable Node.js apps of all sizes on {{% vendor/name %}}.
 You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](/create-apps/multi-app/_index.md).
 
-## Supported versions
+## Grid versions
+
+### Active versions
+
+See [Image statuses](/learn/tutorials/upgrade-runtimes-services.md#image-statuses) for what Active means.
+Dedicated Gen 2 doesn't use this classification — see [Dedicated Gen 2 versions](#dedicated-gen-2-versions).
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="nodejs" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions-live image="nodejs" status="active" >}}
 
 {{% language-specification type="nodejs" display_name="Node.js" %}}
 
@@ -49,22 +40,35 @@ type: 'nodejs:{{% latest "nodejs" %}}'
 
 To use a specific version in a container with a different language, [use a version manager](node-version.md).
 
-{{% deprecated-versions %}}
+### Sunset versions
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="nodejs" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+The following versions are still available in your projects, including code pushes, but new projects can't use them.
+These versions are decommissioned 180 calendar days after entering Sunset.
+The exact decommission date is shown on your project's Overview page and on the relevant activity in the **Activity** panel.
+[Upgrade](/learn/tutorials/upgrade-runtimes-services.md) to one of the [active versions](#active-versions) before that date.
+
+{{< image-versions-live image="nodejs" status="sunset" >}}
+
+### Decommissioned versions
+
+{{% vendor/name %}} no longer supports decommissioned versions.
+Existing projects using one continue to run as is, but all code pushes are blocked.
+[Upgrade](/learn/tutorials/upgrade-runtimes-services.md) to an [active version](#active-versions) to continue deploying.
+
+{{< image-versions-live image="nodejs" status="decommissioned" >}}
+
+## Dedicated Gen 2 versions
+
+Dedicated Gen 2 doesn't use the Active/Sunset/Decommissioned lifecycle above.
+It still uses the [Supported/Deprecated classification](/learn/tutorials/upgrade-runtimes-services.md#image-statuses).
+
+### Supported versions
+
+{{< image-versions image="nodejs" status="supported" environment="dedicated-gen-2" >}}
+
+### Deprecated versions
+
+{{< image-versions image="nodejs" status="deprecated" environment="dedicated-gen-2" >}}
 
 ## Usage example
 
@@ -73,7 +77,7 @@ To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app confi
 
 ### 1. Specify the version
 
-Choose a version from the [list of supported versions](#supported-versions)
+Choose a version from the [list of active versions](#active-versions)
 and add it to your app configuration:
 
 ```yaml {configFile="app"}
@@ -225,7 +229,7 @@ hooks:
 <--->
 
 +++
-title=Yarn 3.x and Node.js 14
+title=Yarn 3.x and Node.js < 16
 +++
 
 3. Enable Corepack (which is opt-in):
@@ -284,14 +288,16 @@ hooks:
 
 {{< partial "bun/body.md" >}}
 
+Choose one of the [active versions](#active-versions) rather than the minimum supported version.
+
 To switch to Bun to manage dependencies,
 use the following configuration:
 
 ```yaml {configFile="app"}
 # The name of your app.
 name: myapp
-# Choose Node.js version 20 or above.
-type: 'nodejs:20'
+# Choose an active Node.js version.
+type: 'nodejs:{{% latest "nodejs" %}}'
 # Override the default Node.js build flavor.
 build:
   flavor: none
@@ -307,8 +313,8 @@ You can even [use Bun as a runtime](https://devcenter.upsun.com/posts/bun-suppor
 ```yaml {configFile="app"}
 # The name of your app.
 name: myapp
-# Choose Node.js version 20 or above.
-type: 'nodejs:20'
+# Choose an active Node.js version.
+type: 'nodejs:{{% latest "nodejs" %}}'
 # Override the default Node.js build flavor.
 build:
   flavor: none

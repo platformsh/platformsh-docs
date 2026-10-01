@@ -12,12 +12,11 @@ Built for simplicity and performance, Mercure is widely used in the Symfony ecos
 
 You can select the major version. The latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
 {{< image-versions image="mercure" status="supported" >}}
 
-<!-- 
+<!--
 ## Deprecated versions
 
 The following versions are still available in your projects,
@@ -144,9 +143,9 @@ Use a **subdomain route** if the Mercure hub is only consumed server-side (no br
    upstream: "<SERVICE_NAME>:mercure"
 ```
 
-### 3. Define the relationship 
+### 3. Define the relationship
 
-Define the relationship to the app, as shown below: 
+Define the relationship to the app, as shown below:
 
 {{< codetabs >}}
 
@@ -155,15 +154,14 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>: 
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -184,16 +182,15 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: mercure
+# The name of the app container. Must be unique within a project.
+name: <APP_NAME>
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: mercure
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships

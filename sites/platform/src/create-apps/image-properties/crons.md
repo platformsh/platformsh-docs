@@ -48,18 +48,17 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'nodejs:{{% latest "nodejs" %}}'  
-    source:
-      root: "/"
-    crons:
-      mycommand:
-        spec: 'H * * * *'
-        commands:
-          start: sleep 60 && echo sleep-60-finished && date
-          stop: killall sleep
-        shutdown_timeout: 18
+name: {{% variable "APP_NAME" %}}
+type: 'nodejs:{{% latest "nodejs" %}}'  
+source:
+  root: "/"
+crons:
+  mycommand:
+    spec: 'H * * * *'
+    commands:
+      start: sleep 60 && echo sleep-60-finished && date
+      stop: killall sleep
+    shutdown_timeout: 18
 ```
 <--->
 
@@ -67,21 +66,20 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack:
-      runtimes: [ 'nodejs:{{% latest "nodejs" %}}' ]
-    crons:
-      mycommand:
-        spec: 'H * * * *'
-        commands:
-          start: sleep 60 && echo sleep-60-finished && date
-          stop: killall sleep
-        shutdown_timeout: 18
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack:
+    runtimes: [ 'nodejs:{{% latest "nodejs" %}}' ]
+  crons:
+    mycommand:
+      spec: 'H * * * *'
+      commands:
+        start: sleep 60 && echo sleep-60-finished && date
+        stop: killall sleep
+      shutdown_timeout: 18
 ```
 
 {{< /codetabs >}}
@@ -288,19 +286,18 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: 'php:{{% latest "php" %}}'
-    crons:
-      update:
-        spec: '0 0 * * *'
-        commands:
-          start: |
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-              {{% vendor/cli %}} source-operation:run update --no-wait --yes
-            fi
+name: myapp
+source:
+  root: "/"
+type: 'php:{{% latest "php" %}}'
+crons:
+  update:
+    spec: '0 0 * * *'
+    commands:
+      start: |
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+          {{% vendor/cli %}} source-operation:run update --no-wait --yes
+        fi
 ```
 <--->
 
@@ -308,23 +305,22 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: "composable:{{% latest composable %}}"
-    stack: 
-      runtimes: [ "php@{{% latest php %}}" ]
-    crons:
-      update:
-        spec: '0 0 * * *'
-        commands:
-          start: |
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-              {{% vendor/cli %}} backup:create --yes --no-wait
-              {{% vendor/cli %}} source-operation:run update --no-wait --yes
-            fi
+```yaml {configFile="apps"}
+myapp:
+  source:
+    root: "/"
+  type: "composable:{{% latest composable %}}"
+  stack: 
+    runtimes: [ "php@{{% latest php %}}" ]
+  crons:
+    update:
+      spec: '0 0 * * *'
+      commands:
+        start: |
+          if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+            {{% vendor/cli %}} backup:create --yes --no-wait
+            {{% vendor/cli %}} source-operation:run update --no-wait --yes
+          fi
 ```
 
 {{< /codetabs >}}

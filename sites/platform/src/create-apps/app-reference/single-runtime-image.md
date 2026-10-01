@@ -126,24 +126,23 @@ The format for package names and version constraints are defined by the specific
 An example of dependencies in multiple languages:
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'nodejs:{{% latest "nodejs" %}}'
-    source:
-      root: "/"
-    dependencies:
-      php: # Specify one Composer package per line.
-        drush/drush: '8.0.0'
-        composer/composer: '^2'
-      python2: # Specify one Python 2 package per line.
-        behave: '*'
-        requests: '*'
-      python3: # Specify one Python 3 package per line.
-        numpy: '*'
-      ruby: # Specify one Bundler package per line.
-        sass: '3.4.7'
-      nodejs: # Specify one NPM package per line.
-        pm2: '^4.5.0'
+name: {{% variable "APP_NAME" %}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+source:
+  root: "/"
+dependencies:
+  php: # Specify one Composer package per line.
+    drush/drush: '8.0.0'
+    composer/composer: '^2'
+  python2: # Specify one Python 2 package per line.
+    behave: '*'
+    requests: '*'
+  python3: # Specify one Python 3 package per line.
+    numpy: '*'
+  ruby: # Specify one Bundler package per line.
+    sass: '3.4.7'
+  nodejs: # Specify one NPM package per line.
+    pm2: '^4.5.0'
 ```
 
 ## `runtime` {#runtime}
@@ -171,32 +170,30 @@ See [how to configure extensions with the composable image](/create-apps/app-ref
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'php:{{% latest "php" %}}'
-    source:
-      root: "/"
-    runtime:
-      extensions:
-        - geoip
-        - tidy
+name: {{% variable "APP_NAME" %}}
+type: 'php:{{% latest "php" %}}'
+source:
+  root: "/"
+runtime:
+  extensions:
+    - geoip
+    - tidy
 ```
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'php:{{% latest "php" %}}'
-    source:
-      root: "/"
-    runtime:
-      extensions:
-        - geoip
-        - name: blackfire
-          configuration:
-            server_id: foo
-            server_token: bar
+name: {{% variable "APP_NAME" %}}
+type: 'php:{{% latest "php" %}}'
+source:
+  root: "/"
+runtime:
+  extensions:
+    - geoip
+    - name: blackfire
+      configuration:
+        server_id: foo
+        server_token: bar
 ```
 
 In this case, the `name` property is required.
@@ -224,23 +221,22 @@ The following sample configuration includes two applications:
   In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](/create-apps/app-reference/composable-image.md#php-as-a-primary-runtime) section in the Composable image topic.
 
 
-```yaml {configFile="app"}
-applications:
-  frontend:
-    # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}}'
-  backend:
-    # this app uses the composable image and specifies two runtimes
-    type: "composable:8.4"
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - sodium
-              - xsl
-              - pdo_sqlite
-        - "python@3.13"
-      packages:
-        - "python313Packages.yq" # python package specific
+```yaml {configFile="apps"}
+frontend:
+  # this app uses the single-runtime image with a specific node.js runtime
+  type: 'nodejs:{{% latest "nodejs" %}}'
+backend:
+  # this app uses the composable image and specifies two runtimes
+  type: "composable:8.4"
+  stack:
+    runtimes:
+      - "php@8.4":
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+      - "python@3.13"
+    packages:
+      - "python313Packages.yq" # python package specific
 ```

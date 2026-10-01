@@ -16,7 +16,7 @@ Also, see how you can [modify your PHP runtime when using a composable image](#m
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+Patch versions are applied periodically for bug fixes and other maintenance updates. By default, you get the latest available patches each time you deploy. If your project has a [maintenance window](/learn/overview/build-deploy.md#maintenance-window) configured, {{% vendor/name %}} applies patches only during that window. {{% vendor/name %}} may still apply urgent or critical fixes outside of the maintenance window.
 
 <table>
     <thead>
@@ -223,49 +223,47 @@ dependencies:
 
 When building a PHP app, Upsun runs `composer install`, which runs the latest available Composer version.
 
-By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned. 
+By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned.
 
-**The best practice is to upgrade the dependencies** to reduce security risks and to catch issues sooner. However, you can configure the level of security blocking by defining the following keys in the `.dependencies.php.config` section of your `.platform.app.yaml` configuration file. 
+**The best practice is to upgrade the dependencies** to reduce security risks and to catch issues sooner. However, you can configure the level of security blocking by defining the following keys in the `.dependencies.php.config` section of your `.platform.app.yaml` configuration file.
 
 | Key                     | Description                                                      |
 | ------------------------| ---------------------------------------------------------------- |
-| `audit.block-insecure`  | Default is `true`. **Important: {{% vendor/company_name %}} recommends keeping this default setting and upgrading affected dependencies to reduce security risks.**                                  | 
+| `audit.block-insecure`  | Default is `true`. **Important: {{% vendor/company_name %}} recommends keeping this default setting and upgrading affected dependencies to reduce security risks.**                                  |
 | `audit.block-abandoned` | Default is `false`; set to `true` for even stricter security. Ignored if `audit.block-insecure` is `false`.                  |
-| `audit.ignore`          | Array of specific advisories to ignore; see example below.        | 
+| `audit.ignore`          | Array of specific advisories to ignore; see example below.        |
 | `audit.ignore-severity` | Ignore vulnerabilities based on their severity rating (`low`/`medium`/`high`). See the example below.<BR>For each rating, include an `apply` key with one of these values:<ul><li>`all` to ignore everything for this rating</li><li> `block` to ignore this severity level for blocking builds (but still flag findings in audit reports)</li><li>`audit` to ignore this severity level in audit reports (but still block builds)</li> |
 
-Examples: 
+Examples:
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        config:
-          audit:
-            ignore:  # ignore these security advisories
-              - "PKSA-yhcn-xrg3-68b1"
-              - "PKSA-2wrf-1mxk-1pky"
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    config:
+      audit:
+        ignore:  # ignore these security advisories
+          - "PKSA-yhcn-xrg3-68b1"
+          - "PKSA-2wrf-1mxk-1pky"
 ```
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        config:
-          audit:
-            ignore-severity:
-              low:
-                apply: all   # ignore all low severity findings
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    config:
+      audit:
+        ignore-severity:
+          low:
+            apply: all   # ignore all low severity findings
 ```
 
-Related information: 
+Related information:
 - [Troubleshooting PHP builds that now fail](/languages/php/troubleshoot.md#build-failure-security-blocking)
 
 ### Additional Composer schema properties
@@ -279,32 +277,30 @@ To add additional composer schema properties:
 1. Set an explicit `require` block:
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        require:
-          "third-party/required-plugin"": "^3.0"
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    require:
+      "third-party/required-plugin": "^3.0"
 ```
 
 2. Add each additional property as a block at the same indentation as the `require` block:
 
 ```yaml {configFile="app"}
-applications:
-  # The app's name, which must be unique within the project.
-  myapp:
-    type: 'php:{{% latest "php" %}}'
-    <snip>
-    dependencies:
-      php:
-        require:
-          symfony/runtime: '*'
-        config:
-          "allow-plugins":
-            symfony/runtime: true
+# The app's name, which must be unique within the project.
+name: myapp
+type: 'php:{{% latest "php" %}}'
+<snip>
+dependencies:
+  php:
+    require:
+      symfony/runtime: '*'
+    config:
+      "allow-plugins":
+        symfony/runtime: true
 ```
 
 

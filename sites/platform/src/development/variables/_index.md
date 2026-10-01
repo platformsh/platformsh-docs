@@ -182,11 +182,10 @@ To use variables across environments, set them in your [app configuration](/crea
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
 ```yaml {configFile="app"}
-applications:
-  {{< variable "APP_NAME" >}}:
-    variables:
-      php:
-        memory_limit: "256M"
+name: {{< variable "APP_NAME" >}}
+variables:
+  php:
+    memory_limit: "256M"
 ```
 
 ### Framework-specific variables

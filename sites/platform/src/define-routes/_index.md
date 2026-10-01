@@ -79,11 +79,10 @@ Sticky routing ensures that all requests from a specific client are consistently
 At {{% vendor/name %}}, sticky routing is implemented using a hash of the client’s IP address. This ensures requests from the same IP are generally routed to the same container.
 
 ```yaml {configFile="routes"}
-routes:
-  "https://{default}/":
-    type: upstream
-    upstream: app:http
-    sticky: true
+"https://{default}/":
+  type: upstream
+  upstream: app:http
+  sticky: true
 ```
 This enables sticky routing at the router level.
 

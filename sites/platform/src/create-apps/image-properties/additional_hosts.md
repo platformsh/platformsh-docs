@@ -23,14 +23,13 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: 'nodejs:{{% latest "nodejs" %}}'
-    source:
-      root: "/"
-    additional_hosts:
-      api.example.com: "192.0.2.23"
-      web.example.com: "203.0.113.42"
+name: {{% variable "APP_NAME" %}}
+type: 'nodejs:{{% latest "nodejs" %}}'
+source:
+  root: "/"
+additional_hosts:
+  api.example.com: "192.0.2.23"
+  web.example.com: "203.0.113.42"
 ```
 
 <--->
@@ -39,17 +38,16 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "nodejs@{{% latest nodejs %}}" ]
-    additional_hosts:
-      api.example.com: "192.0.2.23"
-      web.example.com: "203.0.113.42"
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "nodejs@{{% latest nodejs %}}" ]
+  additional_hosts:
+    api.example.com: "192.0.2.23"
+    web.example.com: "203.0.113.42"
 ```
 
 {{< /codetabs >}}

@@ -21,7 +21,7 @@ All other variables are available in the [`PLATFORM_VARIABLES` environment varia
 The following example sets two variables:
 
 - A variable named `env:AUTHOR` with the value `Juan` that's available in the environment as `AUTHOR`
-- A variable named `d8config:system.site:name` with the value `My site rocks`
+- A variable named `d8config:system.site:name` with the value `Example Site`
   that's available in the `PLATFORM_VARIABLES` environment variable
 
 {{< codetabs >}}
@@ -31,16 +31,15 @@ title=Single-runtime image
 +++
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    type: 'python:{{% latest "python" %}}'
-    source:
-      root: "/"
-    variables:
-      env:
-        AUTHOR: 'Juan'
-      d8config:
-        "system.site:name": 'My site rocks'
+name: myapp
+type: 'python:{{% latest "python" %}}'
+source:
+  root: "/"
+variables:
+  env:
+    AUTHOR: 'Juan'
+  d8config:
+    "system.site:name": 'Example Site'
 ```
 
 <--->
@@ -49,19 +48,18 @@ applications:
 title=Composable image
 +++
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
-    variables:
-      env:
-        AUTHOR: 'Juan'
-      d8config:
-        "system.site:name": 'My site rocks'
+```yaml {configFile="apps"}
+myapp:
+  type: "composable:{{% latest composable %}}"
+  source:
+    root: "/"
+  stack: 
+    runtimes: [ "python@{{% latest python %}}" ]
+  variables:
+    env:
+      AUTHOR: 'Juan'
+    d8config:
+      "system.site:name": 'Example Site'
 ```
 
 {{< /codetabs >}}

@@ -55,13 +55,13 @@ You need:
 
   If you have a {{% names/dedicated-gen-2 %}} project,
   currently you can only add a custom domain to the dedicated environments of your project (production and staging).
-  To do so, [contact Support](https://console.upsun.com/-/users/~/tickets/open).
+  To do so, [create a support ticket](/learn/overview/get-support.md).
 
   {{< /note >}}
 
   If you use a [Managed Fastly](/domains/cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom domains for preview environments.
-  For more information, [contact Support](https://console.upsun.com/-/users/~/tickets/open).
+  For more information, [create a support ticket](/learn/overview/get-support.md).
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
 - Optional: The [{{% vendor/name %}} CLI](/administration/cli/_index.md) (v4.8.0+)
@@ -69,7 +69,7 @@ You need:
 To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
 and you can increase it without charge.
-To do so, [contact Support](/learn/overview/get-support.md).
+To do so, [create a support ticket](/learn/overview/get-support.md).
 
 {{< note >}}
 

@@ -28,7 +28,9 @@ You can also skip directly to this [comprehensive example](/create-apps/_index.m
 
 ## Top-level properties
 
-All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
+All application configuration takes place in a `{{< vendor/configfile "app" >}}` file.
+For a single app, its properties sit directly at the top level of the file.
+For multiple apps, each application is configured under a unique key at the top level of `{{< vendor/configfile "apps" >}}`.
 
 The following table presents all of the properties available to each unique application `name`.
 
@@ -71,9 +73,8 @@ Required for all applications that use the composable image. Defines the version
 For example, to specify the Nix channel `{{% latest composable %}}` for `{{< variable "APP_NAME" >}}`, use the following syntax:
 
 ```yaml {configFile="apps"}
-applications:
-  {{% variable "APP_NAME" %}}:
-      type: "composable:{{% latest composable %}}"
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
 ```
 
 ### Supported Nix channels
@@ -129,33 +130,32 @@ The `{{< vendor/configfile "app" >}}` file excerpt below shows the following `st
   - `python313Packages.jupyterlab` (with config) and `wkhtmltopdf` from the `unstable` channel
 
 ```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - pdo_sqlite
-              - facedetect
-              - sodium
-              - xsl
-              - name: blackfire   # php@8.4 extension
-                configuration:    # extension subkeys
-                    server_id: {{% variable "SERVER_ID" %}}
-                    server_token: {{% variable "SERVER_TOKEN" %}}
-            disabled_extensions:
-              - gd
-        - "nodejs@{{% latest "nodejs" %}}"
-        - "python@{{% latest "python" %}}"
-      packages:
-        - yarn                      # Package manager
-        - python313Packages.yq      # Python package
-        - package: python313Packages.jupyterlab
-          channel: unstable
-        - package: wkhtmltopdf      # Conversion tool
-          channel: unstable
+name: {{% variable "APP_NAME" %}}
+type: "composable:{{% latest composable %}}"
+stack:
+  runtimes:
+    - "php@8.4":
+        extensions:
+          - apcu
+          - pdo_sqlite
+          - facedetect
+          - sodium
+          - xsl
+          - name: blackfire   # php@8.4 extension
+            configuration:    # extension subkeys
+                server_id: {{% variable "SERVER_ID" %}}
+                server_token: {{% variable "SERVER_TOKEN" %}}
+        disabled_extensions:
+          - gd
+    - "nodejs@{{% latest "nodejs" %}}"
+    - "python@{{% latest "python" %}}"
+  packages:
+    - yarn                      # Package manager
+    - python313Packages.yq      # Python package
+    - package: python313Packages.jupyterlab
+      channel: unstable
+    - package: wkhtmltopdf      # Conversion tool
+      channel: unstable
 ```
 
 {{% note theme=warning title="Warning" %}}
@@ -257,7 +257,7 @@ The container _profile_ defines and enforces a specific CPU-to-memory ratio. For
 
 To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified.
 
-If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you must [change your plan size](/administration/pricing.md#plans) to Medium (`M`) or larger.
+If you define **multiple runtimes** in an application's `stack.runtimes` key, you must [change your plan size](/administration/pricing.md#plans) to Medium (`M`) or larger.
 
 
 ### Downsize a disk
@@ -279,24 +279,23 @@ The following sample configuration includes two applications:
   In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](#php-as-a-primary-runtime) section in this topic.
 
 
-```yaml {configFile="app"}
-applications:
-  frontend:
-    # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}}'
-  backend:
-    # this app uses the composable image and specifies two runtimes
-    type: "composable:{{% latest composable %}}"
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - sodium
-              - xsl
-              - pdo_sqlite
-        - "python@3.13"
-      packages:
-        - "python313Packages.yq" # python package specific
+```yaml {configFile="apps"}
+frontend:
+  # this app uses the single-runtime image with a specific node.js runtime
+  type: 'nodejs:{{% latest "nodejs" %}}'
+backend:
+  # this app uses the composable image and specifies two runtimes
+  type: "composable:{{% latest composable %}}"
+  stack:
+    runtimes:
+      - "php@8.4":
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+      - "python@3.13"
+    packages:
+      - "python313Packages.yq" # python package specific
 ```
 
