@@ -340,8 +340,7 @@
     "versions": {
       "supported": [
         "25",
-        "21",
-        "17"
+        "21"
       ],
       "deprecated": []
     },
