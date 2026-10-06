@@ -526,6 +526,98 @@ dedicated:
     - xml
     - xsl
     - zip
+  "8.4":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - json # json is built in from version 8.0
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - msgpack
+    - mysql
+    - odbc
+    - opcache
+    - openswoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - ssh2
+    - sybase
+    - tidy
+    - swoole
+    - xdebug
+    - xml
+    - xsl
+    - zip
+  "8.5":
+    - amqp
+    - apcu
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - fpm
+    - gd
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - intl
+    - json # json is built in from version 8.0
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - msgpack
+    - mysql
+    - odbc
+    - opcache
+    - openswoole
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - redis
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - ssh2
+    - sybase
+    - tidy
+    - swoole
+    - xdebug
+    - xml
+    - xsl
+    - zip
 grid:
   "5.4":
     available:
@@ -1419,6 +1511,7 @@ grid:
       - imap
       - ioncube
       - ldap
+      - lzf
       - mailparse
       - memcached
       - mongodb
@@ -1441,6 +1534,7 @@ grid:
       - readline
       - redis
       - shmop
+      - snappy
       - snmp
       - sodium
       - sourceguardian
@@ -1516,6 +1610,8 @@ grid:
       - imap
       - ioncube
       - ldap
+      - lz4
+      - lzf
       - mailparse
       - memcached
       - mongodb
@@ -1537,6 +1633,7 @@ grid:
       - readline
       - redis
       - shmop
+      - snappy
       - snmp
       - sodium
       - sourceguardian
@@ -1551,6 +1648,7 @@ grid:
       - xmlrpc
       - xsl
       - yaml
+      - zstd
     default:
       - bcmath
       - bz2
@@ -1603,11 +1701,15 @@ grid:
       - geoip
       - gmp
       - gnupg
+      - grpc
       - http
       - igbinary
       - imagick
       - imap
+      - ioncube
       - ldap
+      - lz4
+      - lzf
       - mailparse
       - memcached
       - mongodb
@@ -1628,10 +1730,12 @@ grid:
       - readline
       - redis
       - shmop
+      - snappy
       - snmp
       - sodium
       - sourceguardian
       - ssh2
+      - swoole
       - sybase
       - tideways
       - tidy
@@ -1640,6 +1744,7 @@ grid:
       - xmlrpc
       - xsl
       - yaml
+      - zstd
     default:
       - bcmath
       - bz2
