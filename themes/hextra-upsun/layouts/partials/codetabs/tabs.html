@@ -1,0 +1,131 @@
+<!-- Shortcode separator strings -->
+{{- $splitTabChar := "<--->" -}}
+{{- $paramFrontMatterChar := "\n+++\n" -}}
+
+{{- $allParams := newScratch -}}
+{{- $allContent := newScratch -}}
+
+{{- $tabIndex := 0 -}}
+{{- $tabKeys := slice -}}
+{{- range split .Inner $splitTabChar -}}
+
+  {{- $splitParams := ( split . $paramFrontMatterChar ) -}}
+  {{- $params := index $splitParams 1 -}}
+  {{- $body := index $splitParams 2 -}}
+
+  <!-- Pull out the params  -->
+  {{- $tabParams := newScratch -}}
+  {{- range (split $params "\n") -}}
+    {{- $key := index ( split . "=" ) 0 -}}
+    {{- $value := index ( split . "=" ) 1 -}}
+    {{- $tabParams.Set $key $value -}}
+  {{- end -}}
+  {{- $allParams.Set ( string $tabIndex ) $tabParams -}}
+
+  <!-- Pull out the content -->
+  {{- $allContent.Set ( string $tabIndex ) $body -}}
+
+
+  <!-- Increment ze loop -->
+  {{- $tabKeys = $tabKeys | append ( string $tabIndex ) -}}
+  {{- $tabIndex = add $tabIndex 1 -}}
+
+{{- end -}}
+
+<!-- If page doesn't have multiple related codetabs,
+     create context just for this set of codetabs -->
+<div class="mb-4"
+{{ if not $.Page.Params.multipleTabs -}}
+  x-data="{
+    codetab: 'default',
+    switchCodetab(targetCodetab) {
+      this.codetab = targetCodetab;
+    }
+  }"
+{{ end -}}
+>
+
+  <!-- Buttons to control tab visibility-->
+    <ul class="{{ partial "codetabs/tab-control-list-styles" }}" role="tablist">
+
+      {{- range $tabKeys -}}
+
+        {{- $tabIndex = . -}}
+
+        {{- with ( $allParams.Get $tabIndex ) -}}
+
+          {{- $title := .Get "title" -}}
+
+          <!-- Set the first tab to "default" and others based on the title text -->
+          {{- $codetabCodename := $title | urlize -}}
+          {{- if eq $tabIndex "0" -}}
+            {{- $codetabCodename = "default" -}}
+          {{- end -}}
+
+          <li class="tab-item {{ partial "codetabs/tab-control-tab-styles" }}">
+            <a class="{{ partial "codetabs/tab-control-link-styles" }}" :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': codetab === '{{ $codetabCodename -}}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
+              {{- $title | markdownify -}}
+            </a>
+          </li>
+
+        {{- end -}}
+
+      {{- end -}}
+
+
+    </ul>
+
+    <!-- Tab content -->
+    <div class="{{ partial "codetabs/tab-styles" -}}" style="border-color: rgb(231 231 231 / var(--tw-border-opacity)) !important;">
+
+      {{- range $tabKeys -}}
+
+        {{- $tabIndex = . -}}
+
+        {{- with ( $allParams.Get $tabIndex ) -}}
+
+          <!-- Match the title and codename information from the buttons -->
+          {{- $title := .Get "title" -}}
+          {{- $codetabCodename := $title | urlize -}}
+          {{- if eq $tabIndex "0" -}}
+            {{- $codetabCodename = "default" -}}
+          {{- end -}}
+
+          <div class="{{ partial "codetabs/tab-children-styles" -}}" role="tabpanel" x-show="codetab === '{{ $codetabCodename -}}'" :aria-hidden="codetab !== '{{ $codetabCodename -}}'">
+
+            {{- $content := $allContent.Get $tabIndex -}}
+            {{- with ( $allParams.Get $tabIndex ) -}}
+              {{- if ne (.Get "highlight") nil -}}
+                {{- if ne (.Get "file") nil -}}
+
+                {{- if ne ( len ( getenv "GITHUB_API_TOKEN" ) ) 0 -}}
+                    {{- $content := readFile ( .Get "file" ) | default "" -}}
+                    {{- $contentLength := len $content -}}
+                    {{- if ne $contentLength 0 -}}
+                        {{- highlight $content ( .Get "highlight") "style=abap" | chomp -}}
+                    {{- else -}}
+                        {{ errorf "File %s not found" ( .Get "file" ) -}}
+                    {{- end -}}
+                {{- else -}}
+                    {{ partial "file-not-found" ( .Get "file" ) -}}
+                {{- end -}}
+
+                {{- else -}}
+                  {{- highlight $content ( .Get "highlight") "style=abap" | chomp -}}
+                {{- end -}}
+              {{- else -}}
+                {{- if ne (.Get "file") nil -}}
+                  {{-  readFile ( .Get "file" ) | markdownify | chomp -}}
+                {{- else -}}
+                  {{- $content | $.Page.RenderString -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+
+          </div>
+
+          {{- end -}}
+
+      {{- end -}}
+    </div>
+</div>

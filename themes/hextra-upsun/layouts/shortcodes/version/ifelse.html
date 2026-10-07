@@ -1,0 +1,6 @@
+{{- $version := .Site.Params.vendor.config.version -}}
+{{- if eq $version 1 -}}
+{{- .Get 0 -}}
+{{- else if eq $version 2 -}}
+{{- .Get 1 -}}
+{{- end -}}

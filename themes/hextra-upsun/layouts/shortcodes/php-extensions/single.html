@@ -1,0 +1,18 @@
+{{ $extension := .Get "extension" }}
+{{ $data := index $.Site.Data.php_extensions "grid" }}
+{{ with partial "php-extensions/sort-grid" ( dict "data" $data ) }}
+  {{ $allExtensions := . }}
+  <table>
+    <thead>
+      <tr>
+        <!-- List all the versions (keys in the data file) -->
+        {{ range $version,$support_type := $data }}
+          <th>{{ $version }}</th>
+        {{ end }}
+      </tr>
+    </thead>
+    <tbody>
+      {{ partial "php-extensions/grid-row" ( dict "data" $data "allExtensions" $allExtensions "row_extension" $extension ) }}
+    </tbody>
+  </table>
+{{ end }}

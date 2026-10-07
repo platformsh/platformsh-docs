@@ -1,0 +1,18 @@
+{{- $class := .Get "class" -}}
+{{- $cols := .Get "cols" | default 2 -}}
+{{- $style := .Get "style" -}}
+
+{{- $css := printf "--hextra-feature-grid-cols: %v; %s" $cols $style -}}
+
+<div
+  class="{{ $class }} hextra-feature-grid hx-grid sm:max-lg:hx-grid-cols-2 max-sm:hx-grid-cols-1 hx-gap-4 hx-w-full not-prose"
+  {{ with $css }}style="{{ . | safeCSS }}"{{ end }}
+>
+   {{ $content := split .Inner "<----->" }}
+   {{ range $content }}
+    <!-- <div class="hx-w-full" style="margin-top: auto; margin-bottom: auto;"> -->
+    <div class="hx-w-full">
+        {{ . | markdownify }}
+    </div>
+   {{ end }}
+</div>

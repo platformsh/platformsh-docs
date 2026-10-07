@@ -1,0 +1,6 @@
+{{ $feature := .Get "feature" }}
+{{ $content := print $feature ` isn't included in any ` .Site.Params.vendor.name ` plan.
+You need to add it separately at an additional cost.
+To add ` $feature `, [contact Sales](https://platform.sh/contact/).`}}
+    
+{{ partial "note" ( dict "context" . "Inner" $content "title" "Premium Service" "theme" "info" )}}

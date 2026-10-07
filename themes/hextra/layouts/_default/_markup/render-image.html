@@ -1,0 +1,27 @@
+{{- $alt := .PlainText | safeHTML -}}
+{{- $lazyLoading := .Page.Site.Params.enableImageLazyLoading | default true -}}
+{{- $dest := .Destination -}}
+
+{{- $isLocal := not (urls.Parse $dest).Scheme -}}
+{{- $isPage := and (eq .Page.Kind "page") (not .Page.BundleType) -}}
+{{- $startsWithSlash := hasPrefix $dest "/" -}}
+{{- $startsWithRelative := hasPrefix $dest "../" -}}
+
+{{- if and $dest $isLocal -}}
+  {{- if $startsWithSlash -}}
+    {{/* Images under static directory */}}
+    {{- $dest = (relURL (strings.TrimPrefix "/" $dest)) -}}
+  {{- else if and $isPage (not $startsWithRelative) -}}
+    {{/* Images that are sibling to the individual page file */}}
+    {{ $dest = (printf "../%s" $dest) }}
+  {{- end -}}
+{{- end -}}
+
+{{- with .Title -}}
+  <figure>
+    <img src="{{ $dest | safeURL }}" title="{{ . }}" alt="{{ $alt }}" {{ if $lazyLoading }}loading="lazy"{{ end }} />
+    <figcaption>{{ . }}</figcaption>
+  </figure>
+{{- else -}}
+  <img src="{{ $dest | safeURL }}" alt="{{ $alt }}" {{ if $lazyLoading }}loading="lazy"{{ end }} />
+{{- end -}}
