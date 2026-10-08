@@ -10,6 +10,8 @@ description: |
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like.
@@ -17,7 +19,13 @@ When you deploy your app, you always get the latest available patches.
 
 ### Ruby
 
-{{< image-versions image="ruby" status="supported" environment="grid" >}}
+- 3.4: `Active`. Will deprecate on `2027-03-31`
+- 3.3: `Active`. Will deprecate on `2026-03-31`
+- 3.2: `Deprecated`. Will retire on `2026-10-31`
+- 3.1: `To be decommissioned`
+- 3.0: `To be decommissioned`
+
+<!-- {{< image-versions image="ruby" status="supported" environment="grid" >}} -->
 
 {{% language-specification type="ruby" display_name="Ruby" %}}
 
