@@ -10,22 +10,25 @@ import DOMPurify from 'dompurify';
 const Suggestions = ({ hits }) => {
   const results = hits.map((r) => (
     <li className="mb-4 border-b border-grey-dark" key={r.relurl}>
-      <h3 className="my-2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r.section) }} />
+      <h3 className="my-2">
+        {DOMPurify.sanitize(r.section)}
+      </h3>
       <p className="mb-4">
         <a className="text-skye-dark hover:underline" href={r.url}>
-          <span dangerouslySetInnerHTML={{ __html: `${DOMPurify.sanitize(r.title)}` }} />
+          <span>{DOMPurify.sanitize(r.title)}</span>
         </a>
       </p>
     </li>
-  ))
+  ));
 
   return (
     <div>
-      <div className="hits"><ul>{results}</ul></div>
-      {' '}
+      <div className="hits">
+        <ul>{results}</ul>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 Suggestions.propTypes = {
   hits: PropTypes.arrayOf(
