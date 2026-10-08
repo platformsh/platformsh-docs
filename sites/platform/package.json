@@ -25,7 +25,7 @@
     "eslint": "^8.34.0",
     "eslint-plugin-mdx": "^2.0.5",
     "p-limit": "^4.0.0",
-    "postcss": "^8.4.31",
+    "postcss": "^8.5.10",
     "postcss-cli": "^10.1.0",
     "postcss-import": "^16.1.0",
     "pshregistry-parser": "^1.5.7",
