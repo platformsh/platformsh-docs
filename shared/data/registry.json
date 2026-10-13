@@ -1156,6 +1156,7 @@
     "type": "valkey",
     "versions": {
       "supported": [
+        "9.1",
         "9.0",
         "8.1",
         "8.0"
