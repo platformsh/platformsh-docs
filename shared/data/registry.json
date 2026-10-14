@@ -15,8 +15,7 @@
     "type": "chrome-headless",
     "versions": {
       "supported": [
-        "120",
-        "113"
+        "120"
       ],
       "deprecated": []
     },
@@ -945,11 +944,11 @@
     "type": "redis",
     "versions": {
       "supported": [
-        "8.8",
-        "8.0",
-        "7.2"
+        "8.8"
       ],
       "deprecated": [
+        "8.0",
+        "7.2",
         "6.2"
       ]
     },
@@ -1228,6 +1227,52 @@
       "deprecated": [
         "1.8",
         "1.6"
+      ]
+    }
+  },
+  "activemq-artemis": {
+    "description": "",
+    "disk": true,
+    "docs": {
+      "relationship_name": "activemq-artemis",
+      "service_name": "activemq-artemis",
+      "url": "/add-services/activemq-artemis.html"
+    },
+    "endpoint": "",
+    "min_disk_size": null,
+    "name": "activemq-artemis",
+    "repo_name": "activemq-artemis",
+    "runtime": false,
+    "type": "activemq-artemis",
+    "versions": {
+      "supported": [
+        "2"
+      ],
+      "deprecated": []
+    }
+  },
+  "frankenphp": {
+    "description": "",
+    "disk": false,
+    "docs": {
+      "relationship_name": "frankenphp",
+      "service_name": "frankenphp",
+      "url": "/languages/frankenphp.html"
+    },
+    "endpoint": "",
+    "min_disk_size": null,
+    "name": "FrankenPHP",
+    "repo_name": "frankenphp",
+    "runtime": true,
+    "type": "frankenphp",
+    "versions": {
+      "supported": [
+        "1.8.5",
+        "1.8.4"
+      ],
+      "deprecated": [
+        "1.8.3",
+        "1.8.2"
       ]
     }
   }
