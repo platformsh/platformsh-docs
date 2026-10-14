@@ -1230,5 +1230,24 @@
         "1.6"
       ]
     }
+  },
+  "frankenphp": {
+    "description": "",
+    "disk": false,
+    "docs": {
+      "relationship_name": "frankenphp",
+      "service_name": "frankenphp",
+      "url": "/add-services/frankenphp.html"
+    },
+    "endpoint": "",
+    "min_disk_size": null,
+    "name": "FrankenPHP",
+    "repo_name": "frankenphp",
+    "runtime": false,
+    "type": "frankenphp",
+    "versions": {
+      "supported": [],
+      "deprecated": []
+    }
   }
 }
