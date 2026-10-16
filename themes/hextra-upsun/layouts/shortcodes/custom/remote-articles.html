@@ -1,0 +1,88 @@
+{{ $contentType := "posts" }}
+{{ $category := .Get 0 | default "all" }}
+{{ $showDates := .Get 1 | default true }}
+
+{{ $attribution := "by" }}
+{{ $context := . }}
+{{ $output := partial "custom/all-articles.html" (dict "context" . ) }}
+
+{{ $maxFeaturedArticle := 3 }}
+{{ $countFeatArticle := 0 }}
+
+<div class="excludeSearch hx-mt-4">
+    {{ $contentIndex := 0 }}
+    {{ $currentYear := "" }}
+    <ul>
+    {{ range $k, $v := sort $output "date" "desc" }}
+        {{ $t := time.AsTime $v.date }}
+
+        {{ $skip := $v.draft }}
+
+        {{ if ne $category "all" }}
+            {{ if not ( in $v.categories $category ) }}
+                {{ $skip = true }}
+            {{ end }}
+        {{ end }}
+        
+        {{ if eq $category "featured" }}
+            {{ if (gt $countFeatArticle $maxFeaturedArticle ) }}
+                {{ $skip = true }}
+            {{ end }}
+            {{ $countFeatArticle = (math.Add $countFeatArticle 1) }}
+        {{ end }}
+        
+        {{ if not $skip }}
+            {{ if and ( ne ( $t.Format "2006" ) $currentYear ) ( ne $showDates "false" ) }}
+            {{ $currentYear = $t.Format "2006" }}
+                <div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+            {{ end }}
+        
+            <div class="contrib-item">
+                <div class="contrib-img">
+                    {{ if and (isset $v "image") ($v.image) }}
+                    <img src="{{ $v.image }}" alt="{{ if $v.image_alt }}{{ $v.image_alt }}{{ else }}{{ $v.title | anchorize }}{{ end }}">
+                    {{ end }}
+                </div>
+                <div class="contrib-desc">
+                    <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+                        {{ if ( len $v.author ) }}<span class="hx-mx-1">·</span>
+                            {{ if eq ( len $v.author ) 1 }}
+                                {{ $author0 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index $v.author 0 ) )}}
+                                {{ if ne $author0.Title "" }}
+                                    {{ $author0 = $author0.Title }}
+                                {{ else }}
+                                    {{ $author0 = index $v.author 0 }}
+                                {{ end }}
+                                {{ $attribution }} {{ $author0 }}
+                            {{ else }}
+
+                                {{ $author0 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index $v.author 0 ) )}}
+                                {{ if ne $author0.Title "" }}
+                                    {{ $author0 = $author0.Title }}
+                                {{ else }}
+                                    {{ $author0 = index $v.author 0 }}
+                                {{ end }}
+                                {{ $author1 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index  $v.author 1 ) )}}
+                                {{ if ne $author1.Title "" }}
+                                    {{ $author1 = $author1.Title }}
+                                {{ else }}
+                                    {{ $author1 = index $v.author 1 }}
+                                {{ end }}
+                                {{ $attribution }} {{ $author0}} and {{ $author1 }}
+
+                            {{ end }}
+                        {{ end }}
+
+                    </span>
+                    {{ if ( strings.Contains $v.full "devcenter.upsun.com" ) }}
+                        <a href="{{ $v.path }}">{{ $v.title | markdownify }}{{ if $v.subtitle }}: {{ $v.subtitle | markdownify }}{{ end }}</a>
+                    {{ else }}
+                        <a href="{{ $v.full }}" target="_blank">{{ $v.title | markdownify }}{{ if $v.subtitle }}: {{ $v.subtitle | markdownify }}{{ end }} <sup>↗</sup></a>
+                    {{ end }}
+                </div>
+            </div>
+        {{ end }}
+    {{ end }}
+    </ul>
+
+</div>

@@ -1,0 +1,5 @@
+{{- $path := .Get 0 -}}
+{{- $page := .Page.GetPage $path -}}
+<p>
+    {{- index $page.Params "description" | markdownify -}}
+</p>

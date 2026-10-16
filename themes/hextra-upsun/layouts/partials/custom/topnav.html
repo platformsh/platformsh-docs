@@ -1,0 +1,88 @@
+
+
+{{- $copyright := (T "copyright") | default "© 2024 Hextra." -}}
+{{ $currentPage := printf "%s%s" ( site.BaseURL ) ( .context.Page.RelPermalink ) }}
+
+{{ $campaign := .context.Page.Params.campaign | default "default" }}
+{{ $utmSuffix := printf "utm_source=%s&utm_medium=%s&utm_campaign=%s" .context.Site.Params.utm.source .context.Site.Params.utm.medium ( index .context.Site.Data.campaigns $campaign "utm_campaign" ) }}
+{{ $ctaLinkURL := printf "https://platform.sh?%s" $utmSuffix }}
+{{ $ctaLinkURL := "https://platform.sh"}}
+
+<div class="topnav-outer max-md:hx-hidden">
+    <div
+    class="{{ .navWidth }} topnav-container hx-mx-auto hx-flex hx-justify-center hx-pl-[max(env(safe-area-inset-left),1.5rem)] hx-pr-[max(env(safe-area-inset-right),1.5rem)] dark:hx-text-gray-400 md:hx-justify-start"
+    >
+    <div class="footer-row hx-flex hx-w-full hx-items-center sm:hx-items-start" style="display: flex;">
+      <div class="topnav-links" style="letter-spacing: 0.025rem; display: flex; margin-right: auto; margin-left: 0rem; gap: 3rem;">
+        <!-- Powered by Platform.sh -->
+        <a class="footer-mobile" href="{{ $ctaLinkURL }}" target="_blank">
+          <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+            <svg viewBox="0 0 24 24" height="1em" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 0H0V9.53329H24V0Z" fill="white"/>
+              <path d="M24 20.752H0V23.9999H24V20.752Z" fill="white"/>
+              <path d="M24 12.6233H0V17.5216H24V12.6233Z" fill="white"/>
+            </svg>
+          </span>
+          Powered by Platform.sh</a>
+
+      </div>
+      <div class="topnav-links" style="letter-spacing: 0.025rem; display: flex; margin-left: auto; margin-right: 2rem; gap: 3rem;">
+        <a class="footer-mobile" href="https://upsun.com/" target="_blank">
+          <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" height="1em" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                </svg> -->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1em" viewBox="0 0 24 24" version="1.1">
+                  <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 11.996094 0 C 5.375 0 0 5.371094 0 12.003906 L 5.996094 12.003906 C 6.011719 8.683594 8.699219 6.003906 12.003906 6.003906 C 15.3125 6.003906 18.003906 8.691406 18.003906 12.003906 L 24 12.003906 C 23.996094 5.375 18.628906 0 11.996094 0 Z M 11.996094 0 "/>
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 18.023438 12.003906 L 6.035156 12.003906 C 6.035156 14.597656 7.6875 16.816406 9.996094 17.644531 L 9.996094 17.746094 L 1.5 17.746094 C 3.53125 21.472656 7.488281 24 12.035156 24 C 16.582031 24 20.53125 21.472656 22.570312 17.746094 L 14.0625 17.746094 L 14.0625 17.644531 C 16.375 16.808594 18.023438 14.597656 18.023438 12.003906 Z M 18.023438 12.003906 "/>
+                  </g>
+                  </svg>
+                  
+          </span>
+          upsun.com</a>
+          <a class="footer-mobile" href="https://platform.sh/" target="_blank">
+            <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+                  <svg viewBox="0 0 24 24" height="1em" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 0H0V9.53329H24V0Z" fill="white"/>
+                    <path d="M24 20.752H0V23.9999H24V20.752Z" fill="white"/>
+                    <path d="M24 12.6233H0V17.5216H24V12.6233Z" fill="white"/>
+                  </svg>
+            </span>
+            platform.sh</a>
+          <a class="footer-mobile" href="https://blackfire.io/" target="_blank">
+            <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="1rem" viewBox="0 0 24 24" version="1.1">
+                <g id="surface1">
+                <path style=" stroke:none;fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 24 12 C 24 18.628906 18.628906 24 12 24 C 5.371094 24 0 18.628906 0 12 C 0 5.371094 5.371094 0 12 0 C 18.628906 0 24 5.371094 24 12 Z M 24 12 "/>
+                <path style=" stroke:none;fill-rule:evenodd;fill:rgb(9.803922%,10.980392%,11.764706%);fill-opacity:1;" d="M 9.589844 20.164062 C 9.722656 20.347656 9.5625 20.601562 9.339844 20.570312 C 5.417969 20.023438 2.617188 14.203125 6.273438 10.816406 C 10.316406 7.078125 11.238281 4.851562 10.75 3.6875 C 10.6875 3.53125 10.835938 3.371094 10.988281 3.449219 C 12.320312 4.113281 15.363281 6.148438 14.355469 10.527344 C 14.355469 10.527344 16.117188 10.492188 16.167969 8.851562 C 16.175781 8.695312 16.359375 8.617188 16.472656 8.722656 C 17.238281 9.429688 19.082031 11.433594 18.835938 14.117188 C 18.484375 17.949219 15.835938 19.960938 13.871094 20.441406 C 13.671875 20.488281 13.519531 20.269531 13.632812 20.097656 C 14.183594 19.265625 15.179688 17.550781 13.109375 15.851562 C 11.539062 14.679688 11.351562 13.449219 11.578125 12.6875 C 11.617188 12.558594 11.472656 12.457031 11.371094 12.542969 C 7.359375 15.980469 8.792969 19.027344 9.589844 20.164062 Z M 9.589844 20.164062 "/>
+                </g>
+                </svg>
+            </span>
+            blackfire.io</a>
+            
+        <a class="footer-mobile" href="https://discord.gg/platformsh" target="_blank"
+          onclick="dataLayer.push({'event': 'click_discord', 'click_name': 'Join Discord', 'link_url': '{{ $currentPage }}'});"
+        >
+            <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;"><svg height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path></svg></span>
+            Discord
+        </a>
+
+        <a class="footer-mobile" href="https://status.platform.sh/" target="_blank">
+          <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+          </span>
+          Status</a>
+        <a class="footer-mobile" href="https://console.upsun.com/-/users/:user/tickets/" target="_blank">
+          <span class="hx-inline-block icon" style="vertical-align: middle; padding-bottom: 2px; padding-right: 5px;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+            </svg></span>
+          Support
+        </a>
+        </div>
+    </div>
+    </div>
+</div>

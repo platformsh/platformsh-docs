@@ -1,0 +1,53 @@
+{{ $targetType := slice ( .Get 0 ) }}
+{{ $author := slice }}
+{{ $context := . }}
+{{ with .Page.File }}
+    {{ $author = $author | append .BaseFileName }}
+{{ end }}
+
+{{ $media := where .Site.Data.media ".categories" "intersect" $targetType }}
+{{ $written := where $media ".author" "intersect" $author }}
+{{ if gt ( len $written ) 0 }}
+<!-- <ul>     -->
+    {{ range $written }}
+        {{ if eq ( index $targetType 0 ) "talks" }}
+            {{ $event_link := "#" }}
+            {{ $event_title := "EVENT TITLE TBD"}}
+            {{ $eventPage := "Something" }}
+            {{ if isset . "event" }}
+                {{ $event_link = printf "/events/%s" .event }}
+                {{ $eventPage = $context.Site.GetPage $event_link }}
+                {{ with $eventPage }}
+                    {{ $event_title = .Title }}
+                {{ end }}
+            {{ end }}
+            {{ $t := time.AsTime .date }}
+            <div class="hx-py-2">
+                <a style="display: block; text-decoration: none; padding-top: 5px; padding-bottom: 3px;" class="post-category hx-text-xs max-md:hx-hidden hx-font-semibold" href="{{ $event_link }}">{{ upper $event_title }} ({{ $t.Format "02 Jan 2006" }})</a>
+                {{ if isset . "id" }}
+                <a href="https://www.youtube.com/watch?v={{ .id }}" target="_blank">{{ .title }}</a>
+                {{ else }}
+                <a href="{{ .link }}" target="_blank">{{ .title }}</a>
+                {{ end }}
+            </div>
+            <!-- <li><a class="max-md:hx-hidden hx-font-semibold" href="{{ $event_link }}">{{ $event_title }}</a> <a href="https://www.youtube.com/watch?v={{ .id }}" target="_blank">{{ .title }}</a></li> -->
+        {{ else }}
+        {{ $t := time.AsTime .date }}
+        <div class="hx-py-2">
+            <!-- <a style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold" href="#">{{ $t.Format "02 Jan 2006" }}</a> -->
+            <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}</span>
+            {{ if isset . "id" }}
+            <a href="https://www.youtube.com/watch?v={{ .id }}" target="_blank">{{ .title }}</a>
+            {{ else }}
+            <a href="{{ .link }}" target="_blank">{{ .title }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    {{ end }}
+<!-- </ul> -->
+{{ else }}
+<p>
+    Nothing here - yet.
+</p>
+{{ end }}
+    

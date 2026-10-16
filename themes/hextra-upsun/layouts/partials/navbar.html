@@ -1,0 +1,108 @@
+{{- $logoPath := .Site.Params.navbar.logo.path | default "images/logo.svg" -}}
+{{- $logoLink := .Site.Params.navbar.logo.link | default .Site.Home.RelPermalink -}}
+{{- $logoWidth := .Site.Params.navbar.logo.width | default "20" -}}
+{{- $logoHeight := .Site.Params.navbar.logo.height | default "20" -}}
+{{- $logoDarkPath := .Site.Params.navbar.logo.dark | default $logoPath -}}
+{{ $heapCurrentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
+{{- $context := . -}}
+
+{{- $navWidth := "hx-max-w-[90rem]" -}}
+{{- with .Site.Params.navbar.width -}}
+  {{ if eq . "normal" -}}
+    {{ $navWidth = "hx-max-w-screen-xl" -}}
+  {{ else if eq . "full" -}}
+    {{ $navWidth = "max-w-full" -}}
+  {{ end -}}
+{{- end -}}
+
+{{- if .Site.Params.announcement.enable -}}
+  {{- partial "custom/announcement.html" (dict "context" . "navWidth" $navWidth )  -}}
+{{- end -}}
+{{- partial "custom/topnav.html" (dict "context" . "navWidth" $navWidth )  -}}
+
+<div class="nav-container hx-sticky hx-top-0 hx-z-20 hx-w-full hx-bg-transparent print:hx-hidden">
+  <div class="nav-container-blur hx-pointer-events-none hx-absolute hx-z-[-1] hx-h-full hx-w-full hx-bg-white dark:hx-bg-dark hx-shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] contrast-more:hx-shadow-[0_0_0_1px_#000] dark:hx-shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] contrast-more:dark:hx-shadow-[0_0_0_1px_#fff]"></div>
+
+  <nav class="hx-mx-auto hx-flex hx-items-center hx-justify-end hx-gap-2 hx-h-16 hx-px-6 {{ $navWidth }}">
+    <a class="hx-flex hx-items-center hover:hx-opacity-75 ltr:hx-mr-auto rtl:hx-ml-auto" href="{{ $logoLink }}">
+      {{- if (.Site.Params.navbar.displayLogo | default true) }}
+        <img class="hx-block dark:hx-hidden" src="{{ $logoPath | relURL }}" alt="{{ .Site.Title }}" height="{{ $logoHeight }}" width="{{ $logoWidth }}" />
+        <img class="hx-hidden dark:hx-block" src="{{ $logoDarkPath | relURL }}" alt="{{ .Site.Title }}" height="{{ $logoHeight }}" width="{{ $logoWidth }}" />
+      {{- end }}
+      {{- if (.Site.Params.navbar.displayTitle | default true) }}
+        <span class="hx-mx-2 hx-font-extrabold hx-inline hx-select-none" title="{{ .Site.Title }}">{{- .Site.Title -}}</span>
+      {{- end }}
+    </a>
+
+    {{- $currentPage := . -}}
+    {{- range .Site.Menus.main -}}
+      {{- $currentMenu := . -}}
+      {{- if eq .Params.type "search" -}}
+        {{- partial "search.html" (dict "params" .Params) -}}
+      {{- else -}}
+        {{- $link := .URL -}}
+        {{- $external := strings.HasPrefix $link "http" -}}
+        {{- with .PageRef -}}
+          {{- if hasPrefix . "/" -}}
+            {{- $link = relLangURL (strings.TrimPrefix "/" .) -}}
+          {{- end -}}
+        {{- end -}}
+
+        {{/* Display icon menu item */}}
+        {{- if .Params.icon -}}
+          {{- $rel := cond (eq .Params.icon "mastodon") "noreferer me" "noreferer" }}
+          <a class="nav-item hx-p-2 hx-text-current" {{ if $external }}target="_blank" rel="{{ $rel }}"{{ end }} href="{{ $link }}" title="{{ or (T .Identifier) .Name | safeHTML }}">
+            {{- partial "utils/icon.html" (dict "name" .Params.icon "attributes" "height=24 class=\"search\"") -}}
+            <span class="hx-sr-only">{{ or (T .Identifier) .Name | safeHTML }}</span>
+          </a>
+        {{- else if .Params.login -}}
+          {{- $rel := cond (eq .Params.icon "mastodon") "noreferer me" "noreferer" }}
+          <a class="nav-item login-button hx-p-2 hx-text-current" {{ if $external }}target="_blank" rel="{{ $rel }}"{{ end }} href="{{ $link }}" title="{{ or (T .Identifier) .Name | safeHTML }}"
+            onclick="dataLayer.push({'event': 'click_login', 'click_name': 'Login', 'link_url': '{{ $heapCurrentPage }}'});"
+          >
+            <svg width="109" height="48" viewBox="0 0 109 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="lines" d="M1 24C1 11.2975 11.2975 1 24 1H85C97.7025 1 108 11.2975 108 24C108 36.7025 97.7025 47 85 47H24C11.2975 47 1 36.7025 1 24Z" stroke="#0E1113" stroke-width="2"/>
+              <path class="fills" d="M33.056 30V18.8H35.168V28.08H40.288V30H33.056ZM46.0479 30.224C45.2585 30.224 44.5492 30.064 43.9199 29.744C43.2905 29.424 42.7945 28.96 42.4319 28.352C42.0692 27.744 41.8879 27.0133 41.8879 26.16V25.904C41.8879 25.0507 42.0692 24.32 42.4319 23.712C42.7945 23.104 43.2905 22.64 43.9199 22.32C44.5492 22 45.2585 21.84 46.0479 21.84C46.8372 21.84 47.5465 22 48.1759 22.32C48.8052 22.64 49.3012 23.104 49.6639 23.712C50.0265 24.32 50.2079 25.0507 50.2079 25.904V26.16C50.2079 27.0133 50.0265 27.744 49.6639 28.352C49.3012 28.96 48.8052 29.424 48.1759 29.744C47.5465 30.064 46.8372 30.224 46.0479 30.224ZM46.0479 28.432C46.6665 28.432 47.1785 28.2347 47.5839 27.84C47.9892 27.4347 48.1919 26.8587 48.1919 26.112V25.952C48.1919 25.2053 47.9892 24.6347 47.5839 24.24C47.1892 23.8347 46.6772 23.632 46.0479 23.632C45.4292 23.632 44.9172 23.8347 44.5119 24.24C44.1065 24.6347 43.9039 25.2053 43.9039 25.952V26.112C43.9039 26.8587 44.1065 27.4347 44.5119 27.84C44.9172 28.2347 45.4292 28.432 46.0479 28.432ZM52.1647 26.064V25.808C52.1647 24.976 52.3301 24.2667 52.6607 23.68C52.9914 23.0827 53.4287 22.6293 53.9727 22.32C54.5274 22 55.1301 21.84 55.7807 21.84C56.5061 21.84 57.0554 21.968 57.4287 22.224C57.8021 22.48 58.0741 22.7467 58.2447 23.024H58.5327V22.064H60.5167V31.408C60.5167 31.952 60.3567 32.384 60.0367 32.704C59.7167 33.0347 59.2901 33.2 58.7567 33.2H53.4447V31.44H58.0527C58.3514 31.44 58.5007 31.28 58.5007 30.96V28.896H58.2127C58.1061 29.0667 57.9567 29.2427 57.7647 29.424C57.5727 29.5947 57.3167 29.7387 56.9967 29.856C56.6767 29.9733 56.2714 30.032 55.7807 30.032C55.1301 30.032 54.5274 29.8773 53.9727 29.568C53.4287 29.248 52.9914 28.7947 52.6607 28.208C52.3301 27.6107 52.1647 26.896 52.1647 26.064ZM56.3567 28.272C56.9754 28.272 57.4927 28.0747 57.9087 27.68C58.3247 27.2853 58.5327 26.7307 58.5327 26.016V25.856C58.5327 25.1307 58.3247 24.576 57.9087 24.192C57.5034 23.7973 56.9861 23.6 56.3567 23.6C55.7381 23.6 55.2207 23.7973 54.8047 24.192C54.3887 24.576 54.1807 25.1307 54.1807 25.856V26.016C54.1807 26.7307 54.3887 27.2853 54.8047 27.68C55.2207 28.0747 55.7381 28.272 56.3567 28.272ZM63.2319 30V22.064H65.2479V30H63.2319ZM64.2399 21.136C63.8772 21.136 63.5679 21.0187 63.3119 20.784C63.0665 20.5493 62.9439 20.24 62.9439 19.856C62.9439 19.472 63.0665 19.1627 63.3119 18.928C63.5679 18.6933 63.8772 18.576 64.2399 18.576C64.6132 18.576 64.9225 18.6933 65.1679 18.928C65.4132 19.1627 65.5359 19.472 65.5359 19.856C65.5359 20.24 65.4132 20.5493 65.1679 20.784C64.9225 21.0187 64.6132 21.136 64.2399 21.136ZM67.9619 30V22.064H69.9459V23.104H70.2339C70.3619 22.8267 70.6019 22.5653 70.9539 22.32C71.3059 22.064 71.8392 21.936 72.5539 21.936C73.1725 21.936 73.7112 22.08 74.1699 22.368C74.6392 22.6453 75.0019 23.0347 75.2579 23.536C75.5139 24.0267 75.6419 24.6027 75.6419 25.264V30H73.6259V25.424C73.6259 24.8267 73.4765 24.3787 73.1779 24.08C72.8899 23.7813 72.4739 23.632 71.9299 23.632C71.3112 23.632 70.8312 23.84 70.4899 24.256C70.1485 24.6613 69.9779 25.232 69.9779 25.968V30H67.9619Z" fill="#0E1113"/>
+              </svg>
+          </a>
+        {{- else -}}
+        
+          {{- $active := or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .) -}}
+          
+          {{- if isset (index $context.Site.Params.overrides "navbar-active" .Identifier) "exclude" -}}
+            {{- $excludeData := index $context.Site.Params.overrides "navbar-active" .Identifier "exclude" }}
+
+            {{- $overrideExclude := in $excludeData $currentPage.RelPermalink -}}
+
+            {{- range $excludeData -}}
+                {{- if strings.Contains $currentPage.RelPermalink . -}}
+                    {{- $overrideExclude = true -}}
+                {{- end -}}
+            {{- end -}}
+
+            {{- if $overrideExclude -}}
+              {{- $active = false -}}
+            {{- end -}}
+          
+            {{- end -}}
+          <!-- <p style="color: gray;">{{- .Identifier -}}</p> -->
+          
+          {{- $activeClass := cond $active "hx-font-medium" "hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200" -}}
+          <a
+            title="{{ or (T .Identifier) .Name | safeHTML }}"
+            href="{{ $link }}"
+            {{ if $external }}target="_blank" rel="noreferer"{{ end }}
+            class="nav-item hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block {{ $activeClass }}"
+          >
+            <span class="hx-text-center">{{ or (T .Identifier) .Name | safeHTML }}</span>
+          </a>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+
+
+    <button type="button" aria-label="Menu" class="hamburger-menu -hx-mr-2 hx-rounded hx-p-2 active:hx-bg-gray-400/20 md:hx-hidden">
+      {{- partial "utils/icon.html" (dict "name" "hamburger-menu" "attributes" "height=24") -}}
+    </button>
+  </nav>
+</div>

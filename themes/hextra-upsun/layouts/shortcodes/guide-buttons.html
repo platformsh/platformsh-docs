@@ -1,0 +1,93 @@
+<!--
+usage:
+guide-buttons type="*"  = display navigation bar with prev and next page title
+guide-buttons previous="Previous name" next="Next name" type="*" = if you want to override button names
+-->
+{{ $pageContext := .Page }}
+{{ $navType := "*" }}
+{{ with .Get "type" }}
+  {{ $navType = . }}
+{{ end }}
+
+{{ $next := "" }}
+{{ with .Get "next" }}
+  {{ $next = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $nextLink := "" }}
+{{ with .Get "nextLink" }}
+  {{ $nextLink = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $previous := "" }}
+{{ with .Get "previous" }}
+  {{ $previous = . | $pageContext.RenderString }}
+{{ end }}
+
+{{ $prevLink := "" }}
+{{ with .Get "previousLink" }}
+  {{ $prevLink = . | $pageContext.RenderString }}
+{{ end }}
+
+<div class="text-center">
+
+<!-- If exists both a next and previous page (two buttons) -->
+{{ if eq $navType "*" }}
+
+  {{ if $prevLink }}
+  <!-- Back button -->
+  <a href="{{ ref . $prevLink }}" type="button" class="font-semibold text-sm xl:text-base pr-4 pl-2 py-2 rounded-full text-white hover:bg-skye-light focus:bg-skye-light">
+    <svg class="inline rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+    {{ if $previous }}{{ $previous }}{{ else }}{{ .Page.NextInSection.LinkTitle }}{{ end }}
+  </a>
+  {{ else if or (.Page.NextInSection) ($previous) }}
+    <!-- Back button -->
+    <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" type="button" class="font-semibold text-sm xl:text-base pr-4 pl-2 py-2 rounded-full text-white hover:bg-skye-light focus:bg-skye-light">
+      <svg class="inline rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+      {{ if $previous }}{{ $previous }}{{ else }}{{ .Page.NextInSection.LinkTitle }}{{ end }}
+    </a>
+  {{ end }}
+
+  {{ if $nextLink }}
+    <!-- Next button -->
+    <a href="{{ ref . $nextLink }}" class="font-semibold text-sm xl:text-base pl-4 pr-2 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-full !text-white hover:!text-white inline-flex items-center gap-2">
+      {{ if $next }}{{ $next }}{{ else }}{{ .Page.PrevInSection.LinkTitle }}{{ end }}
+      <svg class="inline -rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+    </a>
+
+  {{ else if .Page.PrevInSection }}
+    <!-- Next button -->
+    <a href="{{ if .Page.PrevInSection }}{{ .Page.PrevInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" class="font-semibold text-sm xl:text-base pl-4 pr-2 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-full !text-white hover:!text-white inline-flex items-center gap-2">
+      {{ if $next }}{{ $next }}{{ else }}{{ .Page.PrevInSection.LinkTitle }}{{ end }}
+      <svg class="inline -rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+    </a>
+  {{ end }}
+
+<!-- Single button -->
+{{ else }}
+
+  <!-- Only contains a back button -->
+  {{ if eq $navType "last" }}
+  <a href="{{ if .Page.NextInSection }}{{ .Page.NextInSection.RelPermalink }}{{ else }}{{ .Page.CurrentSection.RelPermalink }}{{ end }}" type="button" class="font-semibold text-sm xl:text-base px-4 py-2 rounded text-white hover:bg-skye-light focus:bg-skye-light">
+    <svg class="inline rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+    Back
+  </a>
+
+  <!-- Only contains a next button -->
+  {{ else }}
+      {{ $loop := 0 }}
+      {{ $firstPageInSection := "*" }}
+      {{ range .Page.CurrentSection.Pages }}
+        {{ if eq $loop 0}}
+          {{ $firstPageInSection =  . }}
+          {{ $loop = 1}}
+        {{ end }}
+      {{ end }}
+      <a href="{{ $firstPageInSection.RelPermalink }}" class="font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded !text-white hover:!text-white hover:!bg-skye-dark focus:!bg-skye-dark inline-flex items-center gap-2">
+        {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
+        <svg class="inline -rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
+      </a>
+  {{ end }}
+
+{{ end }}
+</div>

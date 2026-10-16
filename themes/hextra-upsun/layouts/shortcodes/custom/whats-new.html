@@ -1,0 +1,87 @@
+{{ $context := . }}
+{{ $media := .Site.Data.media }}
+    <div class="hextra-cards hx-mt-4 hx-w-full hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 4; column-gap: 2.5rem; row-gap: 2.5rem;">
+    {{- $data := .Site.Params.featured -}}
+    {{ $limitThree := 0 }}
+    {{ range $data }}
+        {{ if ne $limitThree 3 }}
+            {{ $title := "tempTitle" }}
+            {{ $subtitle := "" }}
+            {{ $link := "tempLink" }}
+            {{ $category := "tempCategory" }}
+            {{ $authors := slice "John Doe" }}
+            {{ $imgLink := "tempImgLink" }}
+            {{ $attribution := "" }}
+            {{ $target := "" }}
+            {{ $date := "2024-07-11T15:20:15+09:00" }}
+            {{ if isset . "pageRef" }}
+                {{ $link = .pageRef }}
+                {{ with $context.Site.GetPage .pageRef }}
+                    {{ $title = .Title }}
+                    {{ if isset .Params "subtitle" }}
+                        {{ $subtitle = printf ": %s" ( .Params.subtitle ) }}
+                    {{ end }}
+                    {{ $imgLink = .Params.image }}
+                    {{ if isset . "image" }}
+                        {{ $imgLink = .image }}
+                    {{ end }}
+                    {{ $category = index .Params.categories 0 }}
+                    {{ $attribution = "by" }}
+                    {{ $authors = .Params.author }}
+                    {{ $date = .Params.date }}
+                {{ end }}
+            {{ else }}
+                {{ if isset . "media" }}
+                    {{ $target = "blank" }}
+                    {{ $video := index ( where $media ".id" .id ) 0 }}
+                    {{ $title = $video.title }}
+                    {{ $imgLink = printf "https://img.youtube.com/vi/%s/hqdefault.jpg" $video.id }}
+                    {{ $category = index $video.categories 0 }}
+                    {{ $attribution = "with" }}
+                    {{ $authors = $video.authors }}
+                    {{ $date = $video.date }}
+                    {{ $link = printf "https://www.youtube.com/watch?v=%s" $video.id }}
+                {{ end }}
+            {{ end }}
+        <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" {{ if eq $target "blank" }}target="_blank"{{ end }} rel="noreferrer">
+            <img alt="{{ $title }}" class="hextra-card-image" loading="lazy" decoding="async" src="{{ $imgLink }}" style="object-fit:cover; aspect-ratio: 4/3;">
+            <div class="post-category hx-text-sm hx-px-4 hx-mb-2 hx-mt-4">{{ upper $category }}</div>
+            <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-4 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+            {{ $title }}{{ $subtitle }}</span>
+            <div class="author-info hx-line-clamp-3 hx-text-sm hx-font-normal hx-text-gray-500 dark:hx-text-gray-400 hx-mt-4 hx-px-4">
+
+                {{ if eq ( len $authors) 1 }}
+                    {{ $author0 := site.GetPage ( printf "/community/engage/people/%s" ( index $authors 0 ) )}}
+                    {{ if ne $author0.Title "" }}
+                        {{ $author0 = $author0.Title }}
+                    {{ else }}
+                        {{ $author0 = index $authors 0 }}
+                    {{ end }}
+                    {{ $attribution }} {{ $author0 }}
+                {{ else }}
+                    {{ $author0 := site.GetPage ( printf "/community/engage/people/%s" ( index $authors 0 ) )}}
+                    {{ if ne $author0.Title "" }}
+                        {{ $author0 = $author0.Title }}
+                    {{ else }}
+                        {{ $author0 = index $authors 0 }}
+                    {{ end }}
+                    {{ $author1 := site.GetPage ( printf "/community/engage/people/%s" ( index $authors 1 ) )}}
+                    {{ if ne $author1.Title "" }}
+                        {{ $author1 = $author1.Title }}
+                    {{ else }}
+                        {{ $author1 = index $authors 1 }}
+                    {{ end }}
+                    {{ $attribution }} {{ $author0}} and {{ $author1 }}
+                {{ end }}
+            </div>
+            <div class="author-info hx-line-clamp-3 hx-text-sm hx-font-normal hx-text-gray-500 dark:hx-text-gray-400 hx-px-4 hx-mb-4">
+                {{ $t := time.AsTime $date }}
+                {{ $t.Format "02 Jan 2006" }}
+            </div>
+        </a>
+            {{ if eq $context.Page.Type "community" }}
+                {{ $limitThree = add $limitThree 1 }}
+            {{ end }}
+            {{ end }}
+      {{ end -}}
+    </div>      

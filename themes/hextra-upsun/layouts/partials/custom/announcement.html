@@ -1,0 +1,33 @@
+<!-- <div id="announcement" data-id="global-alert-cc1ddbd304d9bbad47fcfd7c28d8eb4e" class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+    <span class="alert-text">
+        <a target="_blank" class="alert-link stretched-link fw-normal" href="https://thulite.io/anna/">Anna will ship soon!</a>
+    </span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> -->
+
+{{ $announcementContent := .context.Site.Params.announcement.message }}
+
+<div id="announcement" role="alert" data-id="global-alert-{{ md5 $announcementContent }}" 
+    class="alert announcement-container hx-text-center max-md:hx-hidden nav-container hx-top-0 hx-z-20 hx-w-full hx-bg-transparent print:hx-hidden">
+    <div class="announcement max-md:hx-hidden">
+        <span class="alert-text">{{ $announcementContent | markdownify }}</span>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+        <!-- <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn-close">
+            <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" class="css-5265ru"><g clip-path="url(#close_svg__clip0)"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.364 5.05L14.95 3.636 10 8.586l-4.95-4.95L3.636 5.05 8.586 10l-4.95 4.95 1.414 1.414 4.95-4.95 4.95 4.95 1.414-1.414-4.95-4.95 4.95-4.95z" fill="#171719"></path></g><defs><clipPath id="close_svg__clip0"><path fill="#fff" d="M0 0h20v20H0z"></path></clipPath></defs></svg>
+        </button>     -->
+    </div>
+    <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn-close" onclick="closeAnnouncement()">
+        <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" class="css-5265ru">
+            <g clip-path="url(#close_svg__clip0)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.364 5.05L14.95 3.636 10 8.586l-4.95-4.95L3.636 5.05 8.586 10l-4.95 4.95 1.414 1.414 4.95-4.95 4.95 4.95 1.414-1.414-4.95-4.95 4.95-4.95z" fill="currentColor">
+                </path>
+            </g>
+            <defs>
+                <clipPath id="close_svg__clip0">
+                    <path fill="currentColor" d="M0 0h20v20H0z">
+                    </path>
+                </clipPath>
+            </defs>
+        </svg>
+    </button>   
+</div>

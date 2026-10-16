@@ -1,0 +1,89 @@
+{{ $contentType := .Get 0 | default "posts" }}
+{{ $category := .Get 1 | default "all" }}
+
+{{ $posts := .Site.GetPage ( printf "/%s/" $contentType ) }}
+{{ $written := $posts.RegularPages }}
+
+{{ $defaultImage := index .Site.Params.contrib "defaultImage" $contentType }}
+{{ $attribution := "by" }}
+{{ if eq $contentType "videos" }}
+    {{ $attribution = "with" }}
+{{ end }}
+
+<div class="excludeSearch hx-mt-4">
+    {{ $contentIndex := 0 }}
+    {{ $currentYear := "" }}
+
+    {{ $catPosts := $written }}
+    {{ if ne $category "all" }}
+        {{ $catPosts = where $written ".Params.categories" "intersect" ( slice $category ) }}
+    {{ end }}
+
+    {{ if eq 0 ( len $catPosts ) }}
+
+        Coming soon.
+
+    {{ else }}
+    <ul>
+        {{ range $catPosts }}
+            {{ if ne .Params.sidebar.separator true }}
+
+                {{ $t := time.AsTime .Params.date }}
+                {{ if ne ( $t.Format "2006" ) $currentYear }}
+                    {{ $currentYear = $t.Format "2006" }}
+                    <div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+                {{ end }}
+
+                <div class="contrib-item">
+                    <div class="contrib-img">
+                        {{ if isset .Params "image" }}
+                        <img src="{{ .Params.image }}">
+                        {{ else if eq $contentType "videos" }}
+                        <img src="https://img.youtube.com/vi/{{ with .File }}{{ .BaseFileName }}{{ end }}/hqdefault.jpg">
+                        {{ else }}
+                        <img src="{{ $defaultImage }}">
+                        {{ end }}
+                    </div>
+                    <div class="contrib-desc">
+                        <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+                            {{ if and .Date .Params.author }}<span class="hx-mx-1">·</span>
+                                {{ if eq ( len .Params.author ) 1 }}
+                                    {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                    {{ if ne $author0.Title "" }}
+                                        {{ $author0 = $author0.Title }}
+                                    {{ else }}
+                                        {{ $author0 = index .Params.author 0 }}
+                                    {{ end }}
+                                    {{ $attribution }} {{ $author0 }}
+                                {{ else }}
+                                    {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                    {{ if ne $author0.Title "" }}
+                                        {{ $author0 = $author0.Title }}
+                                    {{ else }}
+                                        {{ $author0 = index .Params.author 0 }}
+                                    {{ end }}
+                                    {{ $author1 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 1 ) )}}
+                                    {{ if ne $author1.Title "" }}
+                                        {{ $author1 = $author1.Title }}
+                                    {{ else }}
+                                        {{ $author1 = index .Params.author 1 }}
+                                    {{ end }}
+                                    {{ $attribution }} {{ $author0}} and {{ $author1 }}
+                                {{ end }}
+                            {{ end -}}
+                        </span>
+                        {{ if isset .Params "link" }}
+                            <a href="{{ .Params.link }}" target="_blank">{{ .Title | markdownify }}</a>
+                        {{ else }}
+                            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+                        {{ end }}
+                    </div>
+                </div>
+
+            {{ end }} 
+        {{ end }}
+    </ul>
+    {{ end }}
+
+
+</div>
