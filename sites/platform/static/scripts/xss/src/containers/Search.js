@@ -38,7 +38,7 @@ const Search = ({ fullPage }) => {
     const url = new URL(window.location.href)
     urlQuery = url.pathname.replace('.html', '').replaceAll('/', ' ').replaceAll('-', ' ')
   }
-
+  const [setError] = useState(null)
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
@@ -48,6 +48,8 @@ const Search = ({ fullPage }) => {
         setConfig(value)
       })
     }
+
+
     axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
         setHits({
@@ -58,7 +60,7 @@ const Search = ({ fullPage }) => {
           apidocs: data.hits.filter((hit) => hit.site === 'apidocs'),
         })
       })
-      .catch((err) => console.error(err))
+      .catch((err) => setError(err.message))
   }
 
   useEffect(() => {
