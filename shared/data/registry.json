@@ -642,10 +642,10 @@
     "type": "nodejs",
     "versions": {
       "supported": [
-        "26",
-        "24"
+        "26"
       ],
       "deprecated": [
+        "24",
         "22"
       ]
     },
