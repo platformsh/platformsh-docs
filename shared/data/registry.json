@@ -1237,13 +1237,13 @@
     "docs": {
       "relationship_name": "frankenphp",
       "service_name": "frankenphp",
-      "url": "/add-services/frankenphp.html"
+      "url": "/languages/php/frankenphp.html"
     },
     "endpoint": "",
     "min_disk_size": null,
     "name": "FrankenPHP",
     "repo_name": "frankenphp",
-    "runtime": false,
+    "runtime": true,
     "type": "frankenphp",
     "versions": {
       "supported": [
