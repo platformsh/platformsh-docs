@@ -61,6 +61,8 @@ Supported versions are the following:
     </tbody>
 </table>
 
+On {{% names/dedicated-gen-2 %}}, MariaDB 11.2 Galera and later are available on hosts running Debian 11 or 12.
+
 Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).

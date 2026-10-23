@@ -407,14 +407,20 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "13.0 Galera",
+        "12.3 Galera",
+        "12.2 Galera",
+        "11.8 Galera",
+        "11.6 Galera",
+        "11.5 Galera",
         "11.4 Galera",
+        "11.2 Galera",
         "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
         "10.4 Galera"
       ],
       "deprecated": [
-        "11.2 Galera",
         "10.2 Galera",
         "10.1 Galera",
         "10.0 Galera",
