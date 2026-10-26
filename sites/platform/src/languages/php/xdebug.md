@@ -41,6 +41,19 @@ runtime:
   xdebug:
     idekey: {{< variable "YOUR_KEY" >}}
 ```
+
+If you use a [composable image](/create-apps/app-reference/composable-image.md), set `xdebug` on the PHP runtime instead:
+
+```yaml {configFile="apps"}
+{{% variable "APP_NAME" %}}:
+  type: "composable:{{% latest composable %}}"
+  stack:
+    runtimes:
+      - "php@{{% latest php %}}":
+          xdebug:
+            idekey: {{< variable "YOUR_KEY" >}}
+```
+
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
 When that key is defined, {{% vendor/name %}} starts a second PHP-FPM process on the container that's identically configured but also has Xdebug enabled.
