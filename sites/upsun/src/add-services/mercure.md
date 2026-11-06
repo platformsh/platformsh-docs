@@ -33,6 +33,34 @@ switch to a [supported version](#supported-versions).
 
 The service generates the JSON Web Token (JWT) token secret. It's available in the `password` field of the Mercure relationship in the `PLATFORM_RELATIONSHIPS` environment variable.
 
+## Configuration options
+
+You can configure your Mercure service in the [services configuration](#1-configure-the-service) with the following options:
+
+| Name           | Type              | Required | Description                                                                                       |
+|----------------|-------------------|----------|---------------------------------------------------------------------------------------------------|
+| `cors_origins` | List of `string`s | No       | Origins allowed to subscribe from a browser, such as `https://example.com`. `*` allows all origins. |
+| `anonymous`    | `boolean`         | No       | Allows subscribers without a JWT. Defaults to `false`.                                            |
+| `history_size` | `integer`         | No       | Number of updates kept in the history. Defaults to `1000000`. `0` keeps every update.              |
+
+Mercure stores published updates on the service disk so that subscribers can catch up on missed updates with `Last-Event-ID`.
+`history_size` limits how many updates are kept: older ones are removed as new updates are published.
+With `history_size: 0`, the history is never cleaned up and grows until the disk is full.
+
+The history database file doesn't shrink when old updates are removed.
+Its space is reused for new updates.
+
+```yaml {configFile="services"}
+services:
+  # The name of the service container. Must be unique within a project.
+  mercure:
+    type: mercure:0
+    configuration:
+      cors_origins:
+        - "https://example.com"
+      history_size: 100000
+```
+
 ## Relationship reference
 
 For each service [defined via a relationship](#usage-example) to your application,
