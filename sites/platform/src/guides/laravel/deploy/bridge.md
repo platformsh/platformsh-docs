@@ -11,9 +11,9 @@ Laravel expects all configuration to come in through environment variables with 
 {{% vendor/name %}} provides configuration information as environment variables in a different specific format.
 This library handles mapping the {{% vendor/name %}} variables to the format Laravel expects for common values.
 
-*Note: the information on this page is outdated. We do not recommend using the laravel-bridge and platformsh-config-reader moving forward. In stead. use environment variables in a `.environment` file.*
+*Note: the information on this page is outdated. We do not recommend using the laravel-bridge and platformsh-config-reader moving forward. Instead, use environment variables in a `.environment` file.*
 
-For example, this is how you could extract information from PLATFORM_RELATIONSHIPS and write them to environment variables that laravel is able to read.
+For example, this is how you could extract information from `PLATFORM_RELATIONSHIPS` and write them to environment variables that laravel is able to read.
 
 ```
 #!/bin/bash
