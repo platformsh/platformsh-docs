@@ -82,23 +82,23 @@ To install WordPress with Composer, complete the following steps:
 
    Now that you have made your WordPress site into a Composer project, you can download packages via Composer.
 
-   To download WordPress itself, run the following commands:
+   To download WordPress itself, run the following command:
 
    ```bash
-   $ composer require johnpbloch/wordpress-core-installer
-   $ composer require johnpbloch/wordpress-core
+   $ composer require roots/wordpress
    ```
 
-   The two dependencies are now listed in your `composer.json` file:
+   The dependency is now listed in your `composer.json` file:
 
    ```json
     {
         "require": {
-            "johnpbloch/wordpress-core-installer": "^2.0",
-            "johnpbloch/wordpress-core": "^6.0"
+            "roots/wordpress": "^6.0"
         }
     }
    ```
+
+   `roots/wordpress` is a meta-package that pulls in `roots/wordpress-core-installer` automatically.
 
 5. Complete the installation:
 
@@ -113,27 +113,27 @@ To install WordPress with Composer, complete the following steps:
 Just like with WordPress core, you can install themes and plugins with the `composer require` command.
 To do so, complete the following steps:
 
-1. Configure the WPackagist repository.
+1. Configure the WP Packages repository.
 
    By default, when you download dependencies using Composer, you retrieve them through [Packagist](https://packagist.org),
    which is the primary Composer repository for public PHP packages.
    Some themes and plugins for WordPress are also on Packagist,
-   but most of them are accessible through a similar service specific to WordPress called [WPackagist](https://wpackagist.org).
+   but most of them are accessible through a similar service specific to WordPress called [WP Packages](https://wp-packages.org).
 
-   To allow Composer to download packages from the WPackagist repository, run the following command:
+   To allow Composer to download packages from the WP Packages repository, run the following command:
 
    ```bash
-   $ composer config repositories.wppackagist composer https://wpackagist.org
+   $ composer config repositories.wp-packages composer https://repo.wp-packages.org
    ```
 
-   WPackagist is now listed in your `composer.json` file:
+   WP Packages is now listed in your `composer.json` file:
 
    ```json
     {
         "repositories": {
-            "wppackagist": {
+            "wp-packages": {
                 "type": "composer",
-                "url": "https://wpackagist.org"
+                "url": "https://repo.wp-packages.org"
             }
         }
     }
@@ -170,14 +170,14 @@ To do so, complete the following steps:
 
 3. Launch the installation of plugins and themes with Composer.
 
-   To search for themes and plugins in [WPackagist](https://wpackagist.org) and install them through Composer, run a `composer require` command:
+   To search for themes and plugins in [WP Packages](https://wp-packages.org) and install them through Composer, run a `composer require` command:
 
    ```bash
    # Plugin
-   $ composer require wpackagist-plugin/wordpress-seo
+   $ composer require wp-plugin/wordpress-seo
 
    # Theme
-   $ composer require wpackagist-theme/hueman
+   $ composer require wp-theme/hueman
    ```
 
    The two dependencies are now listed in your `composer.json` file.
