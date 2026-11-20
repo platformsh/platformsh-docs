@@ -190,7 +190,7 @@ If a PHP runtime is the first declared (or _primary_) runtime in the app:
 
     The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys.
 
-For the complete list of PHP extension keys and PHP-FPM sizing hints, see [Modify your PHP runtime when using the composable image](/languages/php.md#modify-your-php-runtime-when-using-a-composable-image) section in the "PHP" topic.
+For the complete list of PHP extension keys and PHP-FPM sizing hints, see [Modify your PHP runtime when using the composable image](/languages/php/_index.md#modify-your-php-runtime-when-using-a-composable-image) section in the "PHP" topic.
 
 Related resource: [When php-fpm runs out of workers: a 502 error field guide](https://devcenter.upsun.com/posts/when-php-fpm-runs-out-of-workers-a-502-error-field-guide/) (Dev Center article)
 
@@ -201,7 +201,11 @@ Related resource: [When php-fpm runs out of workers: a 502 error field guide](ht
 {{% note %}}
 
 {{% vendor/company_name %}} officially supports the Nix runtimes listed below. To use them in your container, add them to the `stack.runtimes` array.</br>
-Runtimes **not** listed below are supported only by Nix as Nixpkgs _packages_, not as {{% vendor/name %}} runtimes. In those cases, add them to `stack.packages`. </br>For example, if your app requires the [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp) runtime from the `unstable` channel, you would add `frankenphp` to `stack.packages`. See the [`stack` configuration example](#example-stack-configuration) above for a similar addition.
+Runtimes **not** listed below are supported only by Nix as Nixpkgs _packages_, not as {{% vendor/name %}} runtimes. In those cases, add them to `stack.packages`. </br>
+
+For example, to use a package from the `unstable` channel, add it under `stack.packages` with `channel: unstable`. See `python313Packages.jupyterlab` and `wkhtmltopdf` in the [`stack` configuration example](#example-stack-configuration) above for similar additions.</br>
+
+For FrankenPHP, use the dedicated `frankenphp` single-runtime image unless you need the composable image for another runtime or package. See [FrankenPHP](/languages/php/frankenphp.md).</br>
 
 {{% /note %}}
 
@@ -255,7 +259,7 @@ To discover which PHP extensions and Python packages are available for these run
 
 The container _profile_ defines and enforces a specific CPU-to-memory ratio. For an app or service in a composable image, the container profile is always `HIGH_CPU` and can't be changed.
 
-To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified.
+To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to-memory ratio defined by its profile, so it enforces the size you specified.
 
 If you define **multiple runtimes** in an application's `stack.runtimes` key, you must [change your plan size](/administration/pricing.md#plans) to Medium (`M`) or larger.
 

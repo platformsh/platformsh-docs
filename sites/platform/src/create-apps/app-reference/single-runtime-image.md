@@ -51,7 +51,7 @@ The `build`, `dependencies`, and `runtime` properties are unique to this image t
 | [`hooks`](/create-apps/image-properties/hooks.md)            | A hooks dictionary                                             |          | No               | Specifies commands and/or scripts to run in the `build`, `deploy`, and `post_deploy` phases.                                                                                                                                                                                                      |
 | [`crons`](/create-apps/image-properties/crons.md)            | A cron dictionary                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
 | [`source`](/create-apps/image-properties/source.md)           | A source dictionary                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
-| [`runtime`](#runtime)          | A runtime dictionary                                         |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                                |
+| [`runtime`](#runtime)          | A runtime dictionary                                         |          | No               | Customizations to your PHP or FrankenPHP runtime.                                                                                                                                                                                                                                |
 | [`additional_hosts`](/create-apps/image-properties/additional_hosts.md) | An additional hosts dictionary                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
 | [`operations`](/create-apps/runtime-operations.md)       | A dictionary of Runtime operations |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 ## Root directory
@@ -147,15 +147,21 @@ dependencies:
 
 ## `runtime` {#runtime}
 
-The following table presents the various possible modifications to your PHP runtime:
+This applies to the PHP and FrankenPHP runtimes only.
+
+The following table presents the various possible modifications to your PHP or FrankenPHP runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                             |
 |-----------------------------|------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
-| `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
+| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP, FrankenPHP | Extensions to enable. For PHP, see [PHP extensions](/languages/php/extensions.md). For FrankenPHP-specific availability, see [PHP extensions for FrankenPHP](/languages/php/frankenphp.md#php-extensions). |
+| `disabled_extensions`       | List of `string`s                                          | PHP, FrankenPHP | Extensions to disable. For PHP, see [PHP extensions](/languages/php/extensions.md). For FrankenPHP-specific availability, see [PHP extensions for FrankenPHP](/languages/php/frankenphp.md#php-extensions). |
 | `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP, FrankenPHP | The assumptions for setting the number of PHP-FPM workers or FrankenPHP threads.                  |
 | `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
+| `worker`                    | A worker definition (`script`, `num`) or a `string`        | FrankenPHP | The front controller to run in [FrankenPHP worker mode](/languages/php/frankenphp.md#worker-mode-stateful) and the number of workers. With the dedicated `frankenphp` runtime image, configure it with `runtime.worker`; see [Configure worker mode](/languages/php/frankenphp.md#configure-worker-mode). With a composable image, use the [composable worker-mode configuration](/languages/php/frankenphp.md#composable-image-configuration-1) instead. |
+| `threads`                   | `integer`                                                  | FrankenPHP | The number of PHP threads FrankenPHP starts. Overrides the [automatic sizing](/languages/php/frankenphp.md#sizing). Must be greater than `worker.num`. |
+
+Extension availability can differ between runtime images. For FrankenPHP-specific availability, see [PHP extensions for FrankenPHP](/languages/php/frankenphp.md#php-extensions).
 
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 

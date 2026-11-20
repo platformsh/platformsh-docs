@@ -47,6 +47,8 @@ For example:
 type: 'php:{{% latest "php" %}}'
 ```
 
+To run your PHP app with FrankenPHP instead of PHP-FPM, use the `frankenphp` runtime. See [FrankenPHP](/languages/php/frankenphp.md).
+
 {{% deprecated-versions %}}
 
 <table>
@@ -324,7 +326,6 @@ markdownify=false
 title=Memcached
 file=static/files/fetch/examples/php/memcached
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -333,7 +334,6 @@ markdownify=false
 title=MongoDB
 file=static/files/fetch/examples/php/mongodb
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -342,7 +342,6 @@ markdownify=false
 title=MySQL
 file=static/files/fetch/examples/php/mysql
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -351,7 +350,6 @@ markdownify=false
 title=PostgreSQL
 file=static/files/fetch/examples/php/postgresql
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -360,7 +358,6 @@ markdownify=false
 title=RabbitMQ
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -369,7 +366,6 @@ markdownify=false
 title=Redis
 file=static/files/fetch/examples/php/redis
 highlight=php
-markdownify=false
 +++
 
 <--->
@@ -377,8 +373,6 @@ markdownify=false
 +++
 title=Solr
 file=static/files/fetch/examples/php/solr
-highlight=php
-markdownify=false
 +++
 
 {{< /codetabs >}}
@@ -550,6 +544,13 @@ That means that PHP-FPM can't run simultaneously with another persistent process
 such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
 If you need multiple processes, they have to run in separate containers.
+
+{{< note >}}
+
+To serve your app with FrankenPHP, you don't need a custom start command.
+Use the [`frankenphp` runtime](/languages/php/frankenphp.md) instead, which starts FrankenPHP for you.
+
+{{< /note >}}
 
 See some generic examples on how to use alternate start commands:
 
