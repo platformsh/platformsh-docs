@@ -11,6 +11,44 @@ Laravel expects all configuration to come in through environment variables with 
 {{% vendor/name %}} provides configuration information as environment variables in a different specific format.
 This library handles mapping the {{% vendor/name %}} variables to the format Laravel expects for common values.
 
+*Note: the information on this page is outdated. We do not recommend using the laravel-bridge and platformsh-config-reader moving forward. In stead. use environment variables in a `.environment` file.*
+
+For example, this is how you could extract information from PLATFORM_RELATIONSHIPS and write them to environment variables that laravel is able to read.
+
+```
+#!/bin/bash
+# This script can be a starting point to convert
+# PLATFORM_RELATIONSHIPS into another environment variable
+# To make this work, make a '.environment' file in the root of your app.
+
+getRelationshipInfo() {
+    RELATIONSHIP_NAME="$1"
+    PROPERTY="$2"
+    JQ_STR="to_entries[] | select(.key==\"$RELATIONSHIP_NAME\") | .value[].$PROPERTY"
+    CMD="echo $PLATFORM_RELATIONSHIPS | base64 -d | jq -r '$JQ_STR'"
+    eval $CMD
+}
+
+
+# choose the name of the relationship to parse, feel free to alter this
+RELATIONSHIP="db"
+DB_DATABASE="main"
+
+# Extract the information we need
+DB_TYPE=$(getRelationshipInfo "$RELATIONSHIP" 'scheme')
+DB_USERNAME=$(getRelationshipInfo "$RELATIONSHIP" 'username')
+DB_HOST=$(getRelationshipInfo "$RELATIONSHIP" 'host')
+DB_PASS=$(getRelationshipInfo "$RELATIONSHIP" 'password')
+DB_PORT=$(getRelationshipInfo "$RELATIONSHIP" 'port')
+
+# Create your DATABASE_URL variable here
+export DATABASE_URL="mysql://$DB_USERNAME:$DB_PASS@$DB_HOST:$DB_PORT/$DB_DATABASE"
+
+```
+
+The rest of this document is kept in place for historic reasons. 
+
+
 ## Usage
 
 Require this package using Composer.
