@@ -44,6 +44,14 @@ DB_PORT=$(getRelationshipInfo "$RELATIONSHIP" 'port')
 # Create your DATABASE_URL variable here
 export DATABASE_URL="mysql://$DB_USERNAME:$DB_PASS@$DB_HOST:$DB_PORT/$DB_DATABASE"
 
+secret="${APP_KEY:-}"
+
+if [[ -z "$secret" && -n "${PLATFORM_PROJECT_ENTROPY:-}" ]]; then
+    secret="base64:$(printf '%s' "$PLATFORM_PROJECT_ENTROPY" | base64 -d | head -c 32 | base64)"
+fi
+
+# Always define APP_KEY, even if empty.
+export APP_KEY="$secret"
 ```
 
 The rest of this document is kept in place for historic reasons. 
