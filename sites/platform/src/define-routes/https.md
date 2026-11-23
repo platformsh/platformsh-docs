@@ -33,10 +33,9 @@ When you use the Let's Encrypt [TLS certificates](#tls-certificates) provided by
 the following limitations apply.
 
 {{% lets_encrypt_limitations %}}
-
-If you need more hostnames, you can obtain additional certificates
-or a wildcard certificate from a [third-party issuer](/domains/steps/tls.md).
-Alternatively, consider splitting your project up into multiple {{% vendor/name %}} projects.
+Let's Encrypt allows a maximum of 100 hostnames per certificate, and each environment gets one certificate covering all its routes.
+Every hostname counts, so if each custom domain is served on both its apex and `www.` (for example, example.com and www.example.com, or `{all}` and `www.{all}` in your routes), each domain uses two slots, enabling you to add up to 50 domains.
+Exceeding this limit results in a warning on deploy and no new TLS certificates are issued.
 
 Please note that when using multiple domains, the Common Name (CN) to which the certificate is issued to
 is not guaranteed to be the same on each certificate renewal.
@@ -46,9 +45,9 @@ is not guaranteed to be the same on each certificate renewal.
 When you use the [TLS certificates](#tls-certificates) provided by {{% vendor/name %}},
 certificate renewals occur automatically.
 
-These automatic renewals trigger a redeployment, and the following events occur, which can affect the duration of the redeployment: 
+These automatic renewals trigger a redeployment, and the following events occur, which can affect the duration of the redeployment:
 - Any required security and system upgrades are applied to your containers.
-- The `post_deploy` hook is invoked. {{% create-apps/post-deploy-idempotent %}} 
+- The `post_deploy` hook is invoked. {{% create-apps/post-deploy-idempotent %}}
 
 ## Enable HTTPS
 
