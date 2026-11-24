@@ -1,0 +1,44 @@
+{{ $markdown := "false" }}
+{{ $configFiles := .Site.Params.vendor.config.files }}
+{{ with .Get "markdownify" }}
+  {{ $markdown = . }}
+{{ end }}
+{{ $highlight := "false"}}
+{{ with .Get "highlight"}}
+  {{ $highlight = . }}
+{{ end }}
+{{ $location := "false" }}
+{{ with .Get "location" }}
+  {{ $location = . }}
+{{ end }}
+{{ with .Get "configFile" }}
+  {{ $location = index $configFiles . }}
+{{ end }}
+
+{{ $contentLength := 0 }}
+{{ with .Get "file" }}
+    {{ $contentLength = len ( readFile . ) }}
+{{ end }}
+
+{{- if ne ( len ( getenv "GITHUB_API_TOKEN" ) ) 0 }}
+    {{- if ne $contentLength 0 }}
+
+      {{ if eq $markdown "true" }}
+        {{ with .Get "file" }}{{ markdownify ( readFile . ) }}{{end}}
+      {{ else if ne $highlight "false" }}
+        {{ if ne $location "false" }}
+      <div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $location }}</div>
+        {{ end }}
+        {{ with .Get "file" }}{{ highlight ( readFile . ) $highlight ""}}{{end}}
+      {{ else }}
+        {{ with .Get "file" }}{{ safeHTML ( readFile . ) }}{{end}}
+      {{ end }}
+
+    {{- else -}}
+        {{ errorf "File %s not found" ( .Get "file" ) }}
+    {{- end -}}
+{{- else -}}
+  {{ with .Get "file" }}
+      {{ partial "file-not-found" . }}
+  {{ end }}
+{{- end -}}

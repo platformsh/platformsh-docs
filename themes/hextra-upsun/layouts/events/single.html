@@ -1,0 +1,134 @@
+{{ define "main" }}
+{{ $context := . }}
+  <div class='hx-mx-auto hx-flex {{ partial "utils/page-width" . }}'>
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    {{ partial "toc.html" . }}
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        <br class="hx-mt-1.5 hx-text-sm" />
+        <div class="content">
+            {{ if isset .Page.Params "image" }}
+                <img class="hx-rounded-full" style="max-width: 160px; border-radius: 50%;" src="{{ .Page.Params.image }}">
+            {{ else }}
+                <img class="hx-rounded-full" style="max-width: 160px; border-radius: 50%;" src="https://github.com/{{ .Page.File }}.png">
+            {{ end }}
+            <h1 class="hx-text-center hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">{{ .Title }}</h1>
+            <p class="hx-text-gray-500" style="font-weight: 400; font-size: 18px; line-height: 32px; text-align: center; margin-top: 0;">
+              {{ if isset .Page.Params "end" }}  
+                {{ $s := time.AsTime .Page.Params.start }}
+                {{ $e := time.AsTime .Page.Params.end }}
+                {{ $s.Format "02 Jan" }} - {{ $e.Format "02 Jan 2006" }}
+              {{ else }}
+                {{ $t := time.AsTime .Page.Params.start }}
+                {{ $t.Format "02 Jan 2006" }}
+              {{ end }}
+            </p>
+            <p style="text-align: center; margin-top: 0.5rem;">
+                {{ if isset .Params.links "website" }}
+                <span class="author-social">
+                    <a href="{{ .Params.links.website }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "schedule" }}
+                <span class="author-social">
+                    <a href="{{ .Params.links.schedule }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "calendar" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "recordings" }}
+                <span class="author-social">
+                    <a href="{{ .Params.links.recordings }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "video-camera" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "twitter" }}
+                <span class="author-social">
+                    <a href="https://x.com/{{ .Params.links.twitter }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "x-twitter" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "github" }}
+                <span class="author-social">
+                    <a href="https://github.com/{{ .Params.links.github }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "github" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "linkedin" }}
+                <span class="author-social">
+                    <a href="https://linkedin.com/in/{{ .Params.links.linkedin }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "linkedin" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+            </p>
+    
+          {{ .Content }}
+
+        </div>
+        <br class="hx-mt-1.5 hx-text-sm" />
+        {{ $talks := where .Site.Data.media ".categories" "intersect" ( slice "talks" ) }}
+        {{ $eventID := "" }}
+        {{ with .Page.File }}
+            {{ $eventID = .BaseFileName }}
+        {{ end }}
+        {{ $eventTalks := where $talks ".event" "eq" $eventID }}
+        {{ if ( len $eventTalks ) }}
+        <h2 class="hx-text-center hx-mt-2 hx-text-2xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">Talks</h2>
+        <div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 1; column-gap: 2.5rem; row-gap: 1.5rem;">
+            <!-- {{- $pages := partial "utils/sort-pages" (dict "page" . "by" site.Params.blog.list.sortBy "order" site.Params.blog.list.sortOrder) -}} -->
+            {{- $pages := .Site.Data.media -}}
+            {{- range sort $eventTalks "date" "desc" }}
+            {{ $link := .link }}
+            {{ if isset . "id" }}
+              {{ $link = printf "https://www.youtube.com/watch?v=%s" .id }}
+            {{ end }}
+            <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" target="_blank" rel="noreferrer">
+              <!-- <img alt="{{ .title }}" class="hextra-card-image" loading="lazy" decoding="async" src="https://img.youtube.com/vi/{{ .id }}/hqdefault.jpg" style="object-fit:cover; aspect-ratio:16/9;"> -->
+              <!-- <div class="post-category hx-text-sm hx-px-4 hx-mb-2 hx-mt-4">{{ upper ( index .categories 0 ) }}</div> -->
+              <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-2 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+                {{ .title }}</span>
+                <div class="author-info hx-line-clamp-3 hx-text-sm hx-font-normal hx-text-gray-500 dark:hx-text-gray-400 hx-px-4">
+                  {{ $authors := .author }}
+                  {{ if eq ( len $authors ) 1 }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 0 ) ) ) }}
+                    <!-- {{ if isset .Page.Params "image" }}
+                        <span style="display: inline-block;"><img class="hx-rounded-full" style="max-width: 48px; border-radius: 50%;" src="{{ .Page.Params.image }}"></span>
+                    {{ else }}
+                        <span style="display: inline-block;"><img class="hx-rounded-full" style="max-width: 48px; border-radius: 50%;" src="https://github.com/{{ index $authors 0 }}.png"></span>
+                    {{ end }} -->
+                      <span style="padding-bottom: 2rem;">{{ .Title }}</span>
+                    {{ end }}
+                  {{ else if eq ( len $authors ) 3 }}
+                    {{ $author0 := "" }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 0 ) ) ) }}
+                      {{ $author0 = .Title }}
+                    {{ end }}
+                    {{ $author1 := "" }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 1 ) ) ) }}
+                      {{ $author1 = .Title }}
+                    {{ end }}
+                    {{ $author2 := "" }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 2 ) ) ) }}
+                      {{ $author2 = .Title }}
+                    {{ end }}
+                    with {{ $author0 }}, {{ $author1 }}, and {{ index $author2 }}
+                  {{ else }}
+                    {{ $author0 := "" }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 0 ) ) ) }}
+                      {{ $author0 = .Title }}
+                    {{ end }}
+                    {{ $author1 := "" }}
+                    {{ with ( $context.Site.GetPage ( printf "/profiles/%s" ( index $authors 1 ) ) ) }}
+                      {{ $author1 = .Title }}
+                    {{ end }}
+                    with {{ $author0 }} and {{ index $author1 }}
+                  {{ end }}
+                </div>
+                <div class="author-info hx-line-clamp-3 hx-text-sm hx-font-normal hx-text-gray-500 dark:hx-text-gray-400 hx-px-4 hx-mb-4">
+                  {{ $t := time.AsTime .date }}
+                  {{ $t.Format "02 Jan 2006" }}
+                </div>
+            </a>
+            {{ end -}}
+          </div>  
+        {{ end }}
+        <div class="hx-mt-16"></div>
+        {{ partial "components/comments.html" . }}
+      </main>
+    </article>
+  </div>
+{{ end }}

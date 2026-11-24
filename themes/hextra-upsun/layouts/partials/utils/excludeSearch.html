@@ -1,0 +1,19 @@
+{{- $excludeStart := "<!-- excludeSearch -->" -}}
+{{- $excludeEnd := "<!-- /excludeSearch -->" -}}
+{{- $append := true -}}
+{{- $data := slice -}}
+
+{{- $splitC := split .content "\n" -}}
+{{- range $splitC -}}
+    {{- if $append -}}
+        {{- if eq $excludeStart . -}}
+            {{- $append = false -}}
+        {{- else -}}
+            {{- $data = $data | append . -}}
+        {{- end -}}
+    {{- else if eq $excludeEnd . -}}
+        {{- $append = true -}}
+    {{- end -}}
+{{- end -}}
+{{- $final := delimit $data "\n" -}}
+{{- return $final -}}

@@ -1,0 +1,35 @@
+{{ $author := slice }}
+{{ $externalWritten := slice }}
+{{ $context := . }}
+{{ with .Page.File }}
+    {{ $author = $author | append .BaseFileName }}
+    {{ $externalWritten = index $context.Site.Data.external .BaseFileName }}
+{{ end }}
+{{ $blogs := where .Site.RegularPages "Section" "eq" "blog" }}
+{{ $written := where $blogs "Params.author" "intersect" $author }}
+
+{{ $allPosts := slice }}
+{{ range $externalWritten }}
+    {{ $allPosts = $allPosts | append . }}
+{{ end }}
+{{ range $written }}
+    {{ $allPosts = $allPosts | append . }}
+{{ end }}
+<!-- <ul> -->
+{{ range $allPosts }}
+    <!-- <li>({{ .Params.date.Format "02 Jan 2006" }}) <a href="{{ .RelPermalink }}">{{ .Title }}</a></li> -->
+     {{ if .IsPage }}
+    <div class="hx-py-2">
+        <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ upper ( index .Params.categories 0 ) }} ({{ .Params.date.Format "02 Jan 2006" }})</span>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </div>
+    {{ else }}
+    {{ $t := time.AsTime .date }}
+    <div class="hx-py-2">
+        <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ upper ( index .categories 0 ) }} ({{ $t.Format "02 Jan 2006" }})</span>
+        <a href="{{ .link }}" target="_blank">{{ .title }}</a>
+    </div>
+    {{ end }}
+{{ end }}
+<!-- </ul> -->
+

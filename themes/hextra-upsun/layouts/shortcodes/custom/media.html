@@ -1,0 +1,24 @@
+{{ $category := .Get 0 | default "false"}}
+{{ $posts := .Site.GetPage "/community/post/" }}
+{{ if ne "false" $category }}
+{{ $posts = where $posts.Pages ".Params.categories" "intersect" ( slice $category )}}
+{{ else}}
+{{ $posts = $posts.Pages }}
+{{ end }}
+{{ $currentYear := "" }}
+<ul>
+{{ range $posts }}
+{{ $t := time.AsTime .Params.date }}
+{{ if ne ( $t.Format "2006" ) $currentYear }}
+{{ $currentYear = $t.Format "2006" }}
+<div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+{{ end }}
+<div class="hx-py-4">
+    <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+        {{ if and .Date .Params.author }}<span class="hx-mx-1">·</span>{{ if eq ( len .Params.authors ) 1 }}by {{ index .Params.authors 0 "name"}}{{ else }}by {{ index .Params.authors 0 "name"}} and {{ index .Params.authors 1 "name"}}{{ end }}
+        {{ end -}}
+    </span>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</div>
+{{ end }}
+</ul>

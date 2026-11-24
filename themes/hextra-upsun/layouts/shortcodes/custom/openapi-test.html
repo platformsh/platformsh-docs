@@ -1,0 +1,19 @@
+{{ $url := "https://api.upsun.com/docs/openapispec-platformsh.json" }}
+{{ $api := "" }}
+{{ with resources.GetRemote $url }}
+  {{ with .Err }}
+    {{ errorf "%s" . }}
+  {{ else }}
+    {{ $api = . | openapi3.Unmarshal }}
+  {{ end }}
+{{ else }}
+  {{ errorf "Unable to get remote resource %q" $url }}
+{{ end }}
+
+{{ index $api.Info.Title }} ({{ index $api.Info.Version }})
+
+URL: <a href="{{ index $api.Info.Contact.URL }}">{{ index $api.Info.Contact.URL }}</a> | <a href="{{ index $api.Info.TermsOfService }}">Terms of Service</a>
+
+<hr style="margin-top: 2rem;"/>
+
+{{ index (split $api.Info.Description "Introduction\n\n") 1 | safeHTML }}

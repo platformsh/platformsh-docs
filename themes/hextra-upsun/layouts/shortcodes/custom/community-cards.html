@@ -1,0 +1,22 @@
+{{ $context := . }}
+{{ $data := .Site.Params.communitycards }}
+    <div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 4; column-gap: 2.5rem; row-gap: 2.5rem;">
+        {{ range $data }}
+            {{ $title := .title }}
+            {{ $category := .category }}
+            {{ $imgLink := .image }}
+            {{ $link := .link }}
+            {{ $subtitle := .subtitle }}
+            {{ $target := "blank" }}
+        <a class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-gray-100 hx-shadow dark:hx-border-neutral-700 dark:hx-bg-neutral-800 dark:hx-text-gray-50 hover:hx-shadow-lg dark:hover:hx-border-neutral-500 dark:hover:hx-bg-neutral-700" href="{{ $link }}" {{ if eq $target "blank" }}target="_blank"{{ end }} rel="noreferrer">
+            <img alt="{{ $title }}" class="hextra-card-image" loading="lazy" decoding="async" src="{{ $imgLink }}" style="object-fit:cover; aspect-ratio: 4/3;">
+            <div class="post-category hx-text-sm hx-px-4 hx-mb-2 hx-mt-4">{{ upper $category }}</div>
+            <span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-mb-4 hx-pt-4 hx-px-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50">
+            {{ $title }}</span>
+            <div class="author-info hx-line-clamp-3 hx-text-sm hx-font-normal hx-text-gray-500 dark:hx-text-gray-400 hx-mt-4 hx-px-4">
+                {{ $subtitle }}
+            </div>
+        </a>
+        {{ end }}
+
+    </div>     

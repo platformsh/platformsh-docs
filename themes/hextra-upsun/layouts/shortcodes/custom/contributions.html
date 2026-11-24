@@ -1,0 +1,213 @@
+{{ $authorHandle := .Get 0 | default "all" }}
+{{ $contentType := .Get 1 | default "posts" }}
+{{ $author := slice ( $authorHandle ) }}
+{{ $categories := slice "all" }}
+
+{{ $categoryData := index .Site.Data.categories $contentType }}
+
+{{ range $i, $v := $categoryData }}
+    {{ $categories = $categories | append $i }}
+{{ end }}
+
+{{ $posts := .Site.GetPage ( printf "/%s/" $contentType ) }}
+
+{{ $written := $posts.RegularPages }}
+{{ if ne ( index $author 0 ) "all" }}
+    {{ $written = where $posts.Pages "Params.author" "intersect" $author }}
+{{ end }}
+
+{{ $defaultImage := index .Site.Params.contrib "defaultImage" $contentType }}
+
+{{ $attribution := "by" }}
+{{ if eq $contentType "videos" }}
+    {{ $attribution = "with" }}
+{{ end }}
+
+{{ if eq 0 ( len $written ) }}
+<!-- <div class="hx-mt-4">
+    Coming soon.
+</div> -->
+{{ else }}
+    {{ $skipHeadings := slice "/community/content/videos/" "/community/content/posts/" }}
+    {{ if not (in $skipHeadings .Page.RelPermalink) }}
+        {{ if eq $contentType "posts" }}
+        <h2>Articles<span class="hx-absolute -hx-mt-20" id="articles"></span>
+            <a href="#articles" class="subheading-anchor" aria-label="Permalink for this section"></a></h2>
+        {{ else }}
+        <h2>Videos<span class="hx-absolute -hx-mt-20" id="videos"></span>
+            <a href="#videos" class="subheading-anchor" aria-label="Permalink for this section"></a></h2>
+        {{ end }}
+    {{ end }}
+
+<div class="hextra-scrollbar hx-overflow-x-auto hx-overflow-y-hidden hx-overscroll-x-contain">
+    <div class="hx-mt-4 hx-flex hx-w-max hx-min-w-full hx-border-b hx-border-gray-200 hx-pb-px dark:hx-border-neutral-800">
+    {{ $contentIndex := 0 }}
+    {{ range $categories }}
+        {{ if eq . "all" }}
+        <button
+            class="hextra-tabs-toggle data-[state=selected]:hx-border-primary-500 data-[state=selected]:hx-text-primary-600 hx-mr-2 hx-rounded-t hx-p-2 hx-font-medium hx-leading-5 hx-transition-colors -hx-mb-0.5 hx-select-none hx-border-b-2 hx-border-transparent hx-text-gray-600 hover:hx-border-gray-200 hover:hx-text-black dark:hx-text-gray-200 dark:hover:hx-border-neutral-800 dark:hover:hx-text-white"
+            role="tab"
+            type="button"
+            aria-controls="tabs-panel-{{ $contentIndex }}"
+            aria-selected="true"
+            tabindex="0"
+            data-state="selected"
+        >
+            All
+        </button>
+        {{ else }}
+            {{ $catPosts := where $written ".Params.categories" "intersect" ( slice . )}}
+            {{ if gt ( len $catPosts ) 0 }}
+            <button
+                class="hextra-tabs-toggle data-[state=selected]:hx-border-primary-500 data-[state=selected]:hx-text-primary-600 hx-mr-2 hx-rounded-t hx-p-2 hx-font-medium hx-leading-5 hx-transition-colors -hx-mb-0.5 hx-select-none hx-border-b-2 hx-border-transparent hx-text-gray-600 hover:hx-border-gray-200 hover:hx-text-black dark:hx-text-gray-200 dark:hover:hx-border-neutral-800 dark:hover:hx-text-white"
+                role="tab"
+                type="button"
+                aria-controls="tabs-panel-{{ $contentIndex }}"
+            >
+                {{ index $categoryData . "list" }}
+            </button>
+            {{ end }}
+        {{ end }}
+        {{ $contentIndex = add $contentIndex 1 }}
+    {{ end }}
+    </div>
+</div>
+
+<div class="excludeSearch">
+    {{ $contentIndex := 0 }}
+    {{ range $categories }}
+        {{ $currentYear := "" }}
+
+        {{ if eq . "all" }}
+        <div class="hextra-tabs-panel hx-rounded hx-pt-6 hx-hidden data-[state=selected]:hx-block" id="tabs-panel-{{ $contentIndex }}" role="tabpanel" {{ if eq 0 $contentIndex }}tabindex="0" data-state="selected"{{ end }}>
+            
+            
+            <ul>
+                {{ range $written }}
+                {{ if ne .Params.sidebar.separator true }}
+                    {{ $t := time.AsTime .Params.date }}
+                    {{ if ne ( $t.Format "2006" ) $currentYear }}
+                        {{ $currentYear = $t.Format "2006" }}
+                        <div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+                    {{ end }}
+                    <div class="contrib-item">
+                        <div class="contrib-img">
+                            {{ if isset .Params "image" }}
+                            <img src="{{ .Params.image }}" alt="{{ .Title | anchorize }}">
+                            {{ else if eq $contentType "videos" }}
+                            <img src="https://img.youtube.com/vi/{{ with .File }}{{ .BaseFileName }}{{ end }}/hqdefault.jpg" alt="{{ .Title | anchorize }}">
+                            {{ else }}
+                            <img src="{{ $defaultImage }}" alt="{{ .Title | anchorize }}">
+                            {{ end }}
+                        </div>
+                        <div class="contrib-desc">
+                            <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+                                {{ if and .Date .Params.author }}<span class="hx-mx-1">·</span>
+                                    {{ if eq ( len .Params.author ) 1 }}
+                                        {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                        {{ if ne $author0.Title "" }}
+                                            {{ $author0 = $author0.Title }}
+                                        {{ else }}
+                                            {{ $author0 = index .Params.author 0 }}
+                                        {{ end }}
+                                        {{ $attribution }} {{ $author0 }}
+                                    {{ else }}
+                                        {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                        {{ if ne $author0.Title "" }}
+                                            {{ $author0 = $author0.Title }}
+                                        {{ else }}
+                                            {{ $author0 = index .Params.author 0 }}
+                                        {{ end }}
+                                        {{ $author1 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 1 ) )}}
+                                        {{ if ne $author1.Title "" }}
+                                            {{ $author1 = $author1.Title }}
+                                        {{ else }}
+                                            {{ $author1 = index .Params.author 1 }}
+                                        {{ end }}
+                                        {{ $attribution }} {{ $author0}} and {{ $author1 }}
+                                    {{ end }}
+                                {{ end -}}
+                            </span>
+                            {{ if isset .Params "link" }}
+                                <a href="{{ .Params.link }}" target="_blank">{{ .Title | markdownify }}{{ if isset .Params "subtitle" }}: {{ .Params.subtitle | markdownify }}{{ end }}</a>
+                            {{ else }}
+                                <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}{{ if isset .Params "subtitle" }}: {{ .Params.subtitle | markdownify }}{{ end }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                {{ end }}
+                {{ end }}
+            </ul>
+
+
+
+        </div>
+        {{ else }}
+            {{ $catPosts := where $written ".Params.categories" "intersect" ( slice . )}}
+            {{ if gt ( len $catPosts ) 0 }}
+                <div class="hextra-tabs-panel hx-rounded hx-pt-6 hx-hidden data-[state=selected]:hx-block" id="tabs-panel-{{ $contentIndex }}" role="tabpanel" {{ if eq 0 $contentIndex }}tabindex="0" data-state="selected"{{ end }}>
+
+
+                    <ul>
+                        {{ range $catPosts }}
+                            {{ $t := time.AsTime .Params.date }}
+                            {{ if ne ( $t.Format "2006" ) $currentYear }}
+                                {{ $currentYear = $t.Format "2006" }}
+                                <div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+                            {{ end }}
+                            <div class="contrib-item">
+                                <div class="contrib-img">
+                                    {{ if isset .Params "image" }}
+                                    <img src="{{ .Params.image }}" alt="{{ .Title | anchorize }}">
+                                    {{ else if eq $contentType "videos" }}
+                                    <img src="https://img.youtube.com/vi/{{ with .File }}{{ .BaseFileName }}{{ end }}/hqdefault.jpg" alt="{{ .Title | anchorize }}">
+                                    {{ else }}
+                                    <img src="{{ $defaultImage }}" alt="{{ .Title | anchorize }}">
+                                    {{ end }}
+                                </div>
+                                <div class="contrib-desc">
+                                <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+                                    {{ if and .Date .Params.author }}<span class="hx-mx-1">·</span>
+                                    {{ if eq ( len .Params.author ) 1 }}
+                                        {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                        {{ if ne $author0.Title "" }}
+                                            {{ $author0 = $author0.Title }}
+                                        {{ else }}
+                                            {{ $author0 = index .Params.author 0 }}
+                                        {{ end }}
+                                        {{ $attribution }} {{ $author0 }}
+                                    {{ else }}
+                                        {{ $author0 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 0 ) )}}
+                                        {{ if ne $author0.Title "" }}
+                                            {{ $author0 = $author0.Title }}
+                                        {{ else }}
+                                            {{ $author0 = index .Params.author 0 }}
+                                        {{ end }}
+                                        {{ $author1 := .GetPage ( printf "/community/engage/people/%s" ( index .Params.author 1 ) )}}
+                                        {{ if ne $author1.Title "" }}
+                                            {{ $author1 = $author1.Title }}
+                                        {{ else }}
+                                            {{ $author1 = index .Params.author 1 }}
+                                        {{ end }}
+                                        {{ $attribution }} {{ $author0}} and {{ $author1 }}
+                                    {{ end }}
+                                {{ end -}}
+                                </span>
+                                {{ if isset .Params "link" }}
+                                    <a href="{{ .Params.link }}" target="_blank">{{ .Title | markdownify }}{{ if isset .Params "subtitle" }}: {{ .Params.subtitle | markdownify }}{{ end }}</a>
+                                {{ else }}
+                                    <a href="{{ .RelPermalink }}">{{ .Title| markdownify }}{{ if isset .Params "subtitle" }}: {{ .Params.subtitle | markdownify }}{{ end }}</a>
+                                {{ end }}
+                                </div>
+                            </div>
+                        {{ end }}
+                    </ul>                    
+
+
+                </div>
+            {{ end }}
+        {{ end }}
+        {{ $contentIndex = add $contentIndex 1 }}
+    {{ end }}
+</div>
+{{ end }}
