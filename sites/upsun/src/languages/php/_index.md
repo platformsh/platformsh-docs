@@ -14,11 +14,19 @@ Also, see how you can [modify your PHP runtime when using the composable image](
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="php" status="supported" environment="grid" >}}
+- 8.5: `Active`. Will deprecate on `2027-12-31`
+- 8.4: `Active`. Will deprecate on `2026-12-31`
+- 8.3: `Active`. Will deprecate on `2025-12-31`
+- 8.2: `Deprecated`. Will retire on `2027-06-30`
+- 8.1: `Deprecated`. Will retire on `2026-06-30`
+
+<!-- {{< image-versions image="php" status="supported" environment="grid" >}} -->
 
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
