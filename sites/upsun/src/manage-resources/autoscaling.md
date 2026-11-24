@@ -1,6 +1,6 @@
 ---
 title: Autoscaling
-description: Learn how autoscaling adjusts app instances based on CPU and memory usage to keep apps stable and cost-efficient under varying workloads.
+description: Learn how autoscaling adjusts app/worker instances based on CPU and memory usage to keep them stable and cost-efficient under varying workloads.
 weight: -100
 keywords:
   - "resources"
@@ -9,13 +9,13 @@ keywords:
   - "scaling"
 ---
 <!-- vale off -->
-Autoscaling is a feature that automatically adjusts how many instances of your application are running, increasing capacity when demand rises, and reducing it when things are quiet. It helps your app stay responsive under heavy load while keeping your infrastructure costs efficient.
+Autoscaling is a feature that automatically adjusts how many instances of your application or workers are running, increasing capacity when demand rises, and reducing it when things are quiet. It helps your app/worker stay responsive under heavy load while keeping your infrastructure costs efficient.
 
 ## What is autoscaling?
 
-Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application instances depending on resource usage. If CPU or [memory](#memory-based-autoscaling) utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
+Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application/worker instances depending on resource usage. If CPU or [memory](#memory-based-triggers) utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
 
-- **Scope:** Available for applications only  
+- **Scope:** Available for applications and workers  
 - **Product tiers:** Available for all Upsun Flex environments  
 - **Environments:** Configurable per environment - across development, staging, and production
 
@@ -58,8 +58,8 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 | Component | Horizontal autoscaling | Manual scaling (Vertical) |
 | --------- | ---------------------- | ------------------------- |
 | Applications ([PHP](/languages/php.html), [Node.js](/languages/nodejs.html), etc.) | Available              | Available                 |
-| Services ([MySQL](/add-services/mysql.html), [Redis](/add-services/redis.html), etc.) | Unavailable            | Available                 |
-| Queues ([workers](/create-apps/workers.html), background jobs)                            | Unavailable            | Available                 |
+| Services ([MySQL](/add-services/mysql.html), [Redis](/add-services/redis.html), etc.) | Available            | Available                 |
+| Queues ([workers](/create-apps/workers.html), background jobs)                        | Unavailable            | Available               |
 
 ### Product tier support
 
@@ -87,7 +87,7 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 ### Thresholds
 
-Autoscaling monitors the average CPU and [memory usage](#memory-based-autoscaling) of your running app instances.  
+Autoscaling monitors the average CPU and [memory usage](#memory-based-triggers) of your running app/worker instances.  
 You define thresholds that determine when new instances are launched or removed.
 
 There are two different thresholds that your CPU and memory utilization operate within: A scale-up threshold and a scale-down threshold.
@@ -134,7 +134,7 @@ Autoscaling continuously monitors the configured **trigger** across your app’s
 
 This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
 
-## Memory-based autoscaling
+## Resource-based autoscaling
 
 Autoscaling primarily relies on CPU utilization as its trigger, however you can also configure memory-based autoscaling, which works in a similar way, but with a few important differences to understand.
 
@@ -176,7 +176,7 @@ Tools such as [Blackfire](https://www.blackfire.io/) or system-level metrics in 
 
 ## Guardrails and evaluation
 
-Autoscaling gives you control over the minimum and maximum number of instances your app can run. These guardrails ensure your app never scales up or down too far. Set boundaries to keep scaling safe, predictable, and cost-efficient:
+Autoscaling gives you control over the minimum and maximum number of instances your app/worker can run. These guardrails ensure your app/worker never scales up or down too far. Set boundaries to keep scaling safe, predictable, and cost-efficient:
 
 For example, you might configure:
 
