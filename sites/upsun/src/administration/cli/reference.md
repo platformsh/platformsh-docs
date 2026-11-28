@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.13.0
+# Upsun CLI 5.19.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -301,11 +301,11 @@ Static installation
 
 Dump the script to a global completion file and restart your shell:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
+    /home/runner/.cache/upsun-tmp/legacy-5.19.0/upsun.phar completion bash | sudo tee /etc/bash_completion.d/upsun.phar
 
 Or dump the script to a local file and source it:
 
-    /home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash > completion.sh
+    /home/runner/.cache/upsun-tmp/legacy-5.19.0/upsun.phar completion bash > completion.sh
 
     # source the file whenever you use the project
     source completion.sh
@@ -318,7 +318,7 @@ Dynamic installation
 
 Add this to the end of your shell configuration file (e.g. "~/.bashrc"):
 
-    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.13.0/upsun.phar completion bash)"
+    eval "$(/home/runner/.cache/upsun-tmp/legacy-5.19.0/upsun.phar completion bash)"
 
 #### Arguments
 
@@ -816,17 +816,28 @@ upsun app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT]
 
 ## `app:config-validate`
 
-Validate the config files of a project
+Validate the configuration files of a project, reporting all errors at once
 
-Aliases: `validate`, `lint`
+Aliases: `lint`, `validate`
 
 ### Usage
 
 ```
-upsun app:config-validate
+upsun lint [<path>]
 ```
 
+#### Arguments
+
+* `path`(optional)
+  The project directory to validate (default: the Git repository root, or the current directory)
+
 #### Options
+
+* `--format` (expects a value)
+  The output format: "text" or "json"
+
+* `--stdin`
+  Read merged Flex configuration from standard input
 
 * `--help` (`-h`)
   Display this help message
@@ -845,9 +856,19 @@ upsun app:config-validate
 
 ### Examples
 
-* Validate the project configuration files in your current directory:
+* Validate the project configuration files in the current Git repository (or directory):
 ```
 upsun app:config-validate 
+```
+
+* Validate the project configuration files in a specific directory:
+```
+upsun app:config-validate path/to/project
+```
+
+* Validate the current Git repository (or directory) and output the results as JSON:
+```
+upsun app:config-validate --format=json
 ```
 
 ## `app:list`
@@ -880,7 +901,7 @@ upsun apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRON
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: name*, type*, disk, path, size (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: name*, type*, instance_disk, path, size, storage (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -897,11 +918,25 @@ upsun auth:api-token-login
 
 Use this command to log in to your Upsun account using an API token.
 
-You can create an account at:
-    https://auth.upsun.com/register
-
 Alternatively, to log in to the CLI with a browser, run:
     upsun auth:browser-login
+
+#### Options
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|vv|vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:browser-login`
 
@@ -912,39 +947,50 @@ Aliases: `login`
 ### Usage
 
 ```
-upsun login [-f|--force] [--method METHOD] [--max-age MAX-AGE] [--browser BROWSER] [--pipe]
+upsun login
 ```
 
 Use this command to log in to the Upsun CLI using a web browser.
 
-It launches a temporary local website which redirects you to log in if
-necessary, and then captures the resulting authorization code.
+It launches a temporary local website which redirects you to log in if necessary, and then captures the resulting authorization code.
 
-Your system's default browser will be used. You can override this using the
---browser option.
+Your system's default browser will be used. You can override this using the --browser option.
 
-Alternatively, to log in using an API token (without a browser), run:
-upsun auth:api-token-login
+Alternatively, to log in using an API token (without a browser), run: upsun auth:api-token-login
 
-To authenticate non-interactively, configure an API token using the
-UPSUN_CLI_TOKEN environment variable.
+To authenticate non-interactively, configure an API token using the UPSUN_CLI_TOKEN environment variable.
 
 #### Options
-
-* `--force` (`-f`)
-  Log in again, even if already logged in
-
-* `--method` (expects a value)
-  Require specific authentication method(s)
-
-* `--max-age` (expects a value)
-  The maximum age (in seconds) of the web authentication session
 
 * `--browser` (expects a value)
   The browser to use to open the URL. Set 0 for none.
 
+* `--force` (`-f`)
+  Log in again, even if already logged in
+
+* `--max-age` (expects a value)
+  The maximum age (in seconds) of the web authentication session
+
+* `--method` (expects a value)
+  Require specific authentication method(s)
+
 * `--pipe`
   Output the URL to stdout.
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|vv|vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:info`
 
@@ -1007,7 +1053,7 @@ Aliases: `logout`
 ### Usage
 
 ```
-upsun logout [-a|--all] [--other]
+upsun logout
 ```
 
 #### Options
@@ -1017,6 +1063,21 @@ upsun logout [-a|--all] [--other]
 
 * `--other`
   Log out from other local sessions
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|vv|vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
 ## `auth:verify-phone-number`
 
@@ -2475,13 +2536,30 @@ Aliases: `log`
 ### Usage
 
 ```
-upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<type>]
+upsun log [--lines LINES] [--tail] [-s|--service SERVICE] [--severity SEVERITY] [--since SINCE] [--until UNTIL] [--format FORMAT] [--fields FIELDS] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--worker WORKER] [-I|--instance INSTANCE] [--task TASK] [--activity ACTIVITY] [--] [<type>]
 ```
+
+By default, logs are read over SSH, from files in /var/log.
+The type is the name of a log file (without the .log extension).
+
+To read logs from the Observability API instead, set the log protocol to "auto",
+using the UPSUN_CLI_LOG_PROTOCOL environment variable, or the api.log_protocol config option.
+The API is then used where it is available for the environment, and SSH otherwise.
+
+With the API:
+  The error type shows logs of any type with a severity of ERROR or higher.
+  Without a type, all logs are shown except for "platform" logs.
+  For structured (JSON) log lines, the text format also shows some of the line's fields as key=value pairs.
+  Use --fields to choose the fields, or --format json to see everything.
+  Logs take a few seconds to become available, so --tail shows them with a delay of about 15-20 seconds.
+  Logs that become available later are shown when they arrive, unless they are over a minute late.
+  SSH is still used if the --instance or --task option is used,
+  or if the type is not listed above or ends in .log (e.g. "error.log").
 
 #### Arguments
 
 * `type`(optional)
-  The log type, e.g. "access" or "error"
+  The log type: "access", "app", "cron", "deploy", "error" or "platform"
 
 #### Options
 
@@ -2490,6 +2568,24 @@ upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVI
 
 * `--tail`
   Continuously tail the log
+
+* `--service` (`-s`) (expects a value)
+  Filter by service or application name. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--severity` (expects a value)
+  The minimum severity, e.g. "error" or "warning"
+
+* `--since` (expects a value)
+  Show logs since this time, e.g. "30m", "2h", "1d", or a date/time
+
+* `--until` (expects a value)
+  Show logs until this time, in the same format as --since
+
+* `--format` (expects a value)
+  The output format: "text", "raw" (message only), or "json" (one object per line)
+
+* `--fields` (expects a value)
+  The fields to display in the text format, e.g. "datetime,service,content,context.status". Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2532,6 +2628,16 @@ upsun environment:logs access --tail
 * Read the last 500 lines of the cron log:
 ```
 upsun environment:logs cron --lines 500
+```
+
+* Read warnings and errors from the "app" service in the last hour (with the API):
+```
+upsun environment:logs --service app --severity warning --since 1h
+```
+
+* Read HTTP request details from structured logs (with the API):
+```
+upsun environment:logs app --fields datetime,service,content,context.method,context.path,context.status
 ```
 
 ## `environment:merge`
@@ -3735,7 +3841,7 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, inodes_percent*, tmp_disk_percent*, tmp_inodes_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_used, mem_limit, mem_used, storage_inodes_limit, storage_inodes_percent, storage_inodes_used, storage_limit, storage_percent, storage_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, storage_percent*, object_storage_percent*, instance_disk_percent*, tmp_disk_percent*, cpu_limit, cpu_used, instance_disk_limit, instance_disk_used, instance_inodes_limit, instance_inodes_percent, instance_inodes_used, mem_limit, mem_used, object_storage_count, object_storage_limit, object_storage_used, storage_inodes_limit, storage_inodes_percent, storage_inodes_used, storage_limit, storage_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_percent, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -3828,7 +3934,7 @@ upsun disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--t
   Show sizes in bytes
 
 * `--tmp`
-  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent)
+  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent, unless --columns is used)
 
 * `--range` (`-r`) (expects a value)
   The time range. Metrics will be loaded for this duration until the end time (--to). You can specify units: hours (h), minutes (m), or seconds (s). Minimum 5m, maximum 8h or more (depending on the project), default 10m.
@@ -3858,7 +3964,7 @@ upsun disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--t
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, used*, limit*, percent*, ipercent*, tmp_percent*, ilimit, iused, storage_ilimit, storage_ipercent, storage_iused, storage_limit, storage_percent, storage_used, tmp_ilimit, tmp_ipercent, tmp_iused, tmp_limit, tmp_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, storage_used*, storage_limit*, storage_percent*, storage_ipercent*, object_used*, object_limit*, object_percent*, instance_used*, instance_limit*, instance_percent*, instance_ipercent*, tmp_percent*, instance_ilimit, instance_iused, object_count, storage_ilimit, storage_iused, tmp_ilimit, tmp_ipercent, tmp_iused, tmp_limit, tmp_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -4364,9 +4470,9 @@ upsun orgs [--my] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|
 
 ## `organization:subscription:list`
 
-List subscriptions within an organization
+List projects and their subscriptions within an organization
 
-Aliases: `org:subs`
+Aliases: `org:subs`, `org:projects`
 
 ### Usage
 
@@ -4392,7 +4498,7 @@ upsun org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project PRO
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, project_id*, project_title*, project_region*, created_at, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, project_id*, project_title*, project_region*, created_at, status, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -4605,6 +4711,9 @@ upsun convert
 
 #### Options
 
+* `--provider` (`-p`) (expects a value)
+  The provider from which to convert the configuration. Currently, only 'platformsh' is supported.
+
 * `--help` (`-h`)
   Display this help message
 
@@ -4619,9 +4728,6 @@ upsun convert
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
-
-* `--provider` (`-p`)
-  The provider from which to convert the configuration. Currently, only 'platformsh' is supported.
 
 ### Examples
 
@@ -4639,7 +4745,7 @@ Aliases: `create`
 ### Usage
 
 ```
-upsun create [-o|--org ORG] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--init-repo INIT-REPO] [--set-remote] [--no-set-remote]
+upsun create [-o|--org ORG] [--type TYPE] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--init-repo INIT-REPO] [--set-remote] [--no-set-remote]
 ```
 
 Use this command to create a new project.
@@ -4655,10 +4761,16 @@ out (15 minutes by default).
 If known, the project ID will be output to STDOUT. All other output will be sent
 to STDERR.
 
+If the repository's configuration is for a different organization type than the
+selected organization, you will be asked to confirm.
+
 #### Options
 
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
+
+* `--type` (expects a value)
+  The organization type (flexible or fixed)
 
 * `--title` (expects a value)
   The initial project title
@@ -4827,7 +4939,7 @@ You can review the digest at any time by running: upsun init --digest
 
 #### Options
 
-* `--ai` (expects a value)
+* `--ai`
   Use AI configuration
 
 * `--context` (expects a value)
@@ -4877,7 +4989,7 @@ Aliases: `projects`, `pro`
 ### Usage
 
 ```
-upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--org-type ORG-TYPE] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--type TYPE] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -4912,7 +5024,7 @@ upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFR
 * `--org` (`-o`) (expects a value)
   Filter by organization name or ID
 
-* `--org-type` (expects a value)
+* `--type` (expects a value)
   Filter by organization type
 
 * `--format` (expects a value)
@@ -5143,7 +5255,7 @@ upsun resources [-s|--service SERVICE] [--app APP] [--worker WORKER] [--task TAS
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, disk*, object_storage*, instance_count*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: service*, profile_size*, cpu_type*, cpu*, memory*, storage*, instance_count*, instance_disk*, object_storage*, base_memory, memory_ratio, profile, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -5155,12 +5267,12 @@ Set the resources of apps, tasks and services on an environment
 ### Usage
 
 ```
-upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [-D|--disk DISK] [--object-storage OBJECT-STORAGE] [-f|--force] [--dry-run] [-s|--service SERVICE] [--app APP] [--worker WORKER] [--task TASK] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun resources:set [-S|--size SIZE] [-C|--count COUNT] [--storage STORAGE] [--object-storage OBJECT-STORAGE] [-f|--force] [--dry-run] [-s|--service SERVICE] [--app APP] [--worker WORKER] [--task TASK] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 Configure the resources allocated to apps, workers, tasks and services on an environment.
 
-The resources may be the profile size, the instance count, or the disk size (MB).
+The resources may be the profile size, the instance count, the storage size (MB), or the object storage size (MB).
 Tasks are run-to-completion containers: only their profile size can be set.
 
 Profile sizes are predefined CPU & memory values that can be viewed by running: upsun resources:sizes
@@ -5175,10 +5287,10 @@ You can also configure autoscaling by running upsun autoscaling:set
   Set the profile size (CPU and memory) of apps, workers, tasks, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
 * `--count` (`-C`) (expects a value)
-  Set the instance count of apps or workers. Items are in the format name:value as above.
+  Set the instance count of apps, workers, or services that support horizontal scaling. Items are in the format name:value as above.
 
-* `--disk` (`-D`) (expects a value)
-  Set the disk size (in MB) of apps or services. Items are in the format name:value as above. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
+* `--storage` (expects a value)
+  Set the storage size (in MB) of apps or services. Items are in the format name:value as above. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
 * `--object-storage` (expects a value)
   Set the object storage size (in MB) of apps. Items are in the format name:value as above. Only applicable to apps; a value of 0 disables the bucket.
@@ -5225,9 +5337,14 @@ upsun resources:set --size frontend:0.1,backend:.25,database:1
 upsun resources:set --count backend:3
 ```
 
-* Give 512 MB disk to the "backend" app and 2 GB to the "database" service:
+* Give the "database_replica" service 2 instances:
 ```
-upsun resources:set --disk backend:512,database:2048
+upsun resources:set --count database_replica:2
+```
+
+* Give 512 MB of storage to the "backend" app and 2 GB to the "database" service:
+```
+upsun resources:set --storage backend:512,database:2048
 ```
 
 * Give 524288 MB (512 GB) of object storage to the "backend" app:
@@ -5398,7 +5515,7 @@ upsun services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENV
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: disk, name, size, type. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: name, size, storage, type. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -6700,7 +6817,7 @@ upsun variable:create [-u|--update] [-l|--level LEVEL] [--app-scope APP-SCOPE] [
   The level at which to set the variable ('project' or 'environment')
 
 * `--app-scope` (expects a value)
-  A list of application names to which this variable will apply.
+  A list of application, worker, or task names to which this variable will apply.
 
 * `--name` (expects a value)
   The variable name
@@ -6886,7 +7003,7 @@ upsun variable:update [--allow-no-change] [-l|--level LEVEL] [--app-scope APP-SC
   The variable level ('project', 'environment', 'p' or 'e')
 
 * `--app-scope` (expects a value)
-  A list of application names to which this variable will apply.
+  A list of application, worker, or task names to which this variable will apply.
 
 * `--value` (expects a value)
   The variable's value
